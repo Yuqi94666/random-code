@@ -1,9 +1,3 @@
-/**
-  * Author: Fabio Toledo
-  * Date: 21/03/2024
-  * Description: DigLabs Optimizely Extension for customer alerts'
-  */
-
 let customeTimberExt = {
 	aid: 'customeTimberExt',
 	tracking: function (event, value) {
@@ -59,17 +53,53 @@ let customeTimberExt = {
 	},
 	buildCSS: function () {
 		let styleElement = document.createElement('style');
-		styleElement.textContent = '.countdown-wrapper{min-height:51px;} .contanier{background-color:' + customeTimberExt.backgroundColour + ';width:100%}.info-alert-contanier .alert{font-size:14px!important;border:0!important;border-radius:0!important;margin:0 auto!important;background-color:' + customeTimberExt.backgroundColour + ';text-align:center;display:flex;flex-direction:row;gap:10px;justify-content:center;align-items:center;max-width:960px}.info-alert-contanier .alert span,.info-alert-contanier .alert span a{color:' + customeTimberExt.fontColour + '!important}.info-alert-contanier .alert span a{text-decoration:underline}.info-alert-contanier .alert-dismissable .close,.info-alert-contanier .alert-dismissible .iii-cross{cursor:pointer}.info-alert-contanier .alert::after,.info-alert-contanier .alert::before{height:0!important;width:0!important}.info-alert-contanier .alert .fa{font-size:1.3em;position:relative;top:0;padding-right:1px}.info-alert-contanier .close{opacity:1!important;text-shadow:0 0 0 ' + customeTimberExt.backgroundColour + '!important}';
+		styleElement.textContent = '.countdown-wrapper{background-color:' + customeTimberExt.backgroundColour +';display: block !important;height: 80px;padding: 13px;color:'+ customeTimberExt.fontColour +';} .countdown-wrapper .h2{color: #fff;font-size: 28px;border-bottom: none;padding-bottom: 0;margin: 0;padding-top: 10px;font-weight: 700;letter-spacing: .2rem;}    .countdown-wrapper .col-xs-3:after{content: \':\';font-family: PlutoSans, Helvetica, sans-serif;font-weight: 700;font-size: 24px;color: white;position: absolute;right: 0;top: 0px;}';
 
 		let bodyElement = document.body;
 		bodyElement.appendChild(styleElement);
 	},
+  	buildTime: function(){
+		var countDownEndDate = new Date("2024-08-21T23:59:59+11:00").getTime();
+  
+		// Update the count down every 1 second
+		var x = setInterval(function () {
+		  // Get today's date and time
+		  var now = new Date().getTime();
+	  
+		  // Find the distance between now and the count down date
+		  var distance = countDownEndDate - now;
+	  
+		  // Time calculations for days, hours, minutes and seconds
+		  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+		  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+	  
+		  if (days < 10) days = "0" + days;
+		  if (hours < 10) hours = "0" + hours;
+		  if (minutes < 10) minutes = "0" + minutes;
+		  if (seconds < 10) seconds = "0" + seconds;
+	  
+		  // Display the result in the element with id="demo"
+		  $(".wrap_days .numerator").text(days);
+		  $(".wrap_hrs .numerator").text(hours);
+		  $(".wrap_mins .numerator").text(minutes);
+		  $(".wrap_secs .numerator").text(seconds);
+	  
+		  // If the count down is finished, write some text
+		  if (distance > 0) {
+			$(".countdown-wrapper").slideDown();
+		  } else {
+			clearInterval(x);
+		  }
+		}, 1000);
+	},
 	buildTemplate: function () {
 		let template = document.createElement('div');
-		template.innerHTML = `<div id="countdown-wrapper">
+		template.innerHTML = `<div class="countdown-wrapper">
 								<div class="container inside_container text-center">
 									<div class="col-md-6 col-xs-12 bf-logo">
-										<div class="h2 font__primary">EOFY Sale ends in:</div>
+										<div class="h2 font__primary">`+ customeTimberExt.endDate + `:</div>
 									</div>
 									<div class="col-md-6 col-xs-12 bf-counter">
 										<div class="col-xs-3 wrap_days">
@@ -90,8 +120,7 @@ let customeTimberExt = {
 										</div>
 									</div>
 								</div>
-							</div>
-		  <span>`+ customeTimberExt.endDate + `</span>`;
+							</div>`;
 
 		let mainElement = document.querySelectorAll(customeTimberExt.position)[0];
 		mainElement.insertBefore(template, mainElement.firstChild);
@@ -109,7 +138,7 @@ let customeTimberExt = {
 		if (document.querySelector('.close-bt')) {
 			document.querySelector('.close-bt').onclick = function () {
 				customeTimberExt.tracking('click', 'closeBt');
-				document.querySelector('#countdown-wrapper').remove();
+				document.querySelector('#customer-alert').remove();
 				if (customeTimberExt.closeEnable === 'true') {
 					customeTimberExt.createCookie(customeTimberExt.code, 'on', customeTimberExt.daysoff, customeTimberExt.cookieExpire);
 				}
@@ -119,8 +148,8 @@ let customeTimberExt = {
 	},
 	applyBanner: function () {
 
-		if (document.querySelector('#countdown-wrapper')) {
-			document.querySelector('#countdown-wrapper').remove();
+		if (document.querySelector('#customer-alert')) {
+			document.querySelector('#customer-alert').remove();
 		}
 
 		this.getAttributes();
@@ -129,6 +158,7 @@ let customeTimberExt = {
 		if (myCookie !== 'on') {
 			this.buildCSS();
 			this.buildTemplate();
+      this.buildTime();
 			if (customeTimberExt.dismiss === 'true') {
 				if (customeTimberExt.daysoff > 0) {
 					this.createCookie(customeTimberExt.code, 'on', customeTimberExt.daysoff, customeTimberExt.cookieExpire);
