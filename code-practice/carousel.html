@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Carousel</title>
+    <style>
+        .carousel {
+            position: relative;
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+
+        }
+        .carousel-inner-wrapper {
+			position: relative;
+		}
+        /**
+		img{
+			width: 300px;
+			height: 300px;
+		}
+		*/
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+            overflow: visible;
+            height: 80%;
+            background-color: red;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            /***/
+            box-sizing: border-box;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 520px;
+        }
+
+        /**  
+          .carousel-controls {
+          position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .carousel-controls button {
+            background-color: transparent;
+            border: none;
+            color: #ff8200;
+            padding: 10px;
+            cursor: pointer;
+        }
+*/
+        .iii-point:before {
+            content: "\e00d";
+        }
+
+        .carousel-control {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            text-align: center;
+            background-color: transparent;
+            height: 100%;
+            width: 100%;
+            display: block;
+        }
+
+        .carousel-control .icon-prev {
+            left: -30px;
+            position: absolute;
+            top: 50%;
+            margin-top: -19px;
+            z-index: 5;
+            display: inline-block;
+            font-size: 38px;
+            color: #ff8200;
+        }
+
+        .iii-rotate-180 {
+            transform: rotate(180deg);
+        }
+
+        .carousel-control .icon-next {
+            right: -10px;
+            position: absolute;
+            top: 50%;
+            margin-top: -19px;
+            z-index: 5;
+            display: inline-block;
+            font-size: 38px;
+            color: #ff8200;
+        }
+
+        .iii,
+        .iii--watermark:before {
+            display: inline-block;
+            font-family: "iinet-icons" !important;
+            font-style: normal !important;
+            font-weight: normal !important;
+            font-variant: normal !important;
+            text-transform: none !important;
+            speak: none;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            vertical-align: middle;
+        }
+
+        .carousel-dots {
+            text-align: center;
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+        }
+
+        .carousel-dots button {
+            background-color: transparent;
+            border: 1px solid #ff8200;
+            color: white;
+            padding: 5px;
+            cursor: pointer;
+            margin: 0 2px;
+        }
+
+        .carousel-dots .active {
+            background-color: #ff8200;
+            border: 1px solid #ff8200;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin: 5px 8px;
+            text-indent: -999px;
+            border: 1px solid #ff8200;
+            border-radius: 20px;
+            cursor: pointer;
+            background-color: #ff8200;
+
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                width: 100%;
+                max-width: 960px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="carousel">
+            <div class="carousel-inner-wrapper">
+                <div class="carousel-inner">
+                    <div class="carousel-item">
+                        <img src="https://assets.iinet.net.au/website/about/community/learn/_workshops/openday2013-4.jpg"
+                            alt="Image 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://assets.iinet.net.au/website/about/community/learn/_workshops/openday2013-5.jpg"
+                            alt="Image 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://assets.iinet.net.au/website/about/community/learn/_workshops/openday2013-6.jpg"
+                            alt="Image 3">
+                    </div>
+                </div>
+
+                <!-- <a role="button" href="" class="left carousel-control ng-hide" id="prevBtn">
+                    <span class="iii iii-point iii-rotate-180 icon-prev"></span>
+                    <span class="sr-only">previous</span>
+                </a>
+                <a role="button" href="" class="right carousel-control" ng-click="trackCarousel('ClickRight');next()"
+                    id="nextBtn">
+                    <span class="iii iii-point icon-next"></span>
+                    <span class="sr-only">next</span>
+                </a> -->
+                <div class="carousel-controls">
+                    <button  id="prevBtn">❮</button>
+                    <button  id="nextBtn">❯</button>   
+                </div>
+
+                <div class="carousel-dots">
+                    <button class="dot active" data-slide="0"></button>
+                    <button class="dot" data-slide="1"></button>
+                    <button class="dot" data-slide="2"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="./carousel.js">
+
+    </script>
+</body>
+
+</html>

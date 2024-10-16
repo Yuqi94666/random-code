@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Simple Carousel</title>
+	<style>
+		.hidden {
+			display: none;
+			transition: opacity 0.5s ease-in-out;
+		}
+
+		.carousel {
+			position: relative;
+			max-width: 600px;
+			margin: auto;
+			overflow: visible;
+		}
+
+		.carousel-inner-wrapper {
+			position: relative;
+		}
+
+		.carousel-inner {
+			display: flex;
+			transition: transform 0.5s ease-in-out;
+			/**position: relative;
+			width: 100%;
+			height: 710px;
+			overflow: visible;*/
+		}
+
+		.carousel-image {
+			min-width: 100%;
+			height: auto;
+			object-fit: cover;
+		}
+
+		.prevbtn,
+		.nextbtn {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			background-color: rgba(0, 0, 0, 0.5);
+			color: white;
+			font-size: 24px;
+			padding: 8px;
+			cursor: pointer;
+			z-index: 100;
+		}
+
+		.prevbtn {
+			left: -50px;
+			position: absolute;
+			top: 50%;
+			margin-top: -19px;
+			z-index: 5;
+			display: inline-block;
+			font-size: 38px;
+			color: #ff8200;
+		}
+
+		.nextbtn {
+			right: -50px;
+			position: absolute;
+			top: 50%;
+			margin-top: -19px;
+			z-index: 5;
+			display: inline-block;
+			font-size: 38px;
+			color: #ff8200;
+		}
+
+		.iii-point:before {
+			content: "\e00d";
+		}
+
+		.iii-rotate-180 {
+			transform: rotate(180deg);
+		}
+
+		.iii,
+		.iii--watermark:before {
+			display: inline-block;
+			font-family: "iinet-icons" !important;
+			font-style: normal !important;
+			font-weight: normal !important;
+			font-variant: normal !important;
+			text-transform: none !important;
+			line-height: 1;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			vertical-align: middle;
+		}
+
+		.carousel-arrow {
+			position: absolute;
+			text-align: center;
+			background-color: transparent;
+			display: block;
+		}
+
+		.carousel-dots {
+			text-align: center;
+			margin-top: 10px;
+		}
+
+		.carousel-dots .active {
+			background-color: #ff8200;
+		}
+
+		.dot {
+			height: 20px;
+			width: 20px;
+			margin: 0 4px;
+			background-color: transparent;
+			border: 1px solid #ff8200;
+			border-radius: 50%;
+			display: inline-block;
+			cursor: pointer;
+		}
+
+		.active {
+			background-color: #717171;
+		}
+
+		@media (min-width: 1200px) {
+			.container {
+				width: 100%;
+				max-width: 960px;
+				margin: 0 auto;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="carousel">
+			<div class="carousel-inner-wrapper">
+				<div class="carousel-inner">
+					<img src="https://assets.iinet.net.au/website/about/community/learn/_workshops/openday2013-1.jpg"
+						class="carousel-image">
+					<img src="https://assets.iinet.net.au/website/about/community/learn/_workshops/openday2013-2.jpg"
+						class="carousel-image">
+					<img src="https://assets.iinet.net.au/website/about/community/learn/_workshops/openday2013-3.jpg"
+						class="carousel-image">
+					<img src="https://assets.iinet.net.au/website/about/community/learn/_workshops/openday2013-4.jpg"
+						class="carousel-image">
+				</div>
+				<!-- Left and right arrow buttons -->
+				<a class="prevbtn carousel-arrow">
+					<span class="iii iii-point iii-rotate-180 icon-prevbtn"></span>
+				</a>
+				<a class="nextbtn carousel-arrow">
+					<span class="iii iii-point icon-nextbtn"></span>
+				</a>
+				<!-- Dots below images -->
+				<div class="carousel-dots">
+					<span class="dot"></span>
+					<span class="dot"></span>
+					<span class="dot"></span>
+					<span class="dot"></span>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<script src="./carousel2.js">
+
+	</script>
+</body>

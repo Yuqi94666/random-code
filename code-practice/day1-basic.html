@@ -4,9 +4,32 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
-	<script src="./day1-basic.js"></script>
+
 </head>
 <body>
 	<button onclick="print_current_page()">Print this page</button>
+	<div>
+		<pre id="target">w3resource</pre>
+	</div>
+	<div>
+		1st Number : <input type="text" id="firstNumber" /><br>
+		2nd Number: <input type="text" id="secondNumber" /><br>
+		<input type="button" onClick="multiplyBy()" Value="Multiply" />
+		<input type="button" onClick="divideBy()" Value="Divide" />
+		<p>The Result is : <br>
+		<span id = "result"></span>
+		</p>
+	</div>
+	<div>
+		<label for="varName">Enter variable name:</label>
+		<input type="text" id="varName" /><br>
+		<label for="varValue">Enter variable value:</label>
+		<input type="text" id="varValue" /><br>
+		<button onclick="createVariable()">Create Variable</button>
+		<p id="result1"></p>
+	</div>
+	<input type="file" id="fileName" onchange="showFileName(this)" /><br>
+
+	<script src="./day1-basic.js"></script>
 </body>
 </html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Simple Carousel</title>
+	<style>
+		.carousel {
+			position: relative;
+			overflow: hidden;
+		}
+
+		.carousel-inner-wrapper {
+			position: relative;
+		}
+
+		.carousel-inner {
+			position: relative;
+			width: 100%;
+			height: 710px;
+			overflow: visible;
+			transition: height ease-in-out 0.6s;
+		}
+
+		.carousel-inner .item {}
+
+		.item img {}
+
+		.img-responsive {
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+			max-width: 100%;
+			height: auto;
+		}
+
+		.padding-24 {
+			padding: 24px;
+		}
+
+		.carousel-control {
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			text-align: center;
+			background-color: transparent;
+			height: 100%;
+			width: 100%;
+			display: block;
+		}
+
+		.carousel-control .icon-prev {
+			left: -10px;
+			position: absolute;
+			top: 50%;
+			margin-top: -19px;
+			z-index: 5;
+			display: inline-block;
+			font-size: 38px;
+			color: #ff8200;
+		}
+
+		.iii-rotate-180 {
+			transform: rotate(180deg);
+		}
+
+		.carousel-control .icon-next {
+			right: -10px;
+			position: absolute;
+			top: 50%;
+			margin-top: -19px;
+			z-index: 5;
+			display: inline-block;
+			font-size: 38px;
+			color: #ff8200;
+		}
+
+
+		.iii-point:before {
+			content: "\e00d";
+		}
+
+		.iii,
+		.iii--watermark:before {
+			display: inline-block;
+			font-family: "iinet-icons" !important;
+			font-style: normal !important;
+			font-weight: normal !important;
+			font-variant: normal !important;
+			text-transform: none !important;
+			line-height: 1;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			vertical-align: middle;
+		}
+
+		.carousel-indicators {
+			list-style: none;
+			text-align: center;
+			padding: 0;
+		}
+
+		.carousel-indicators li {
+			border: 1px solid #ff8200;
+			display: inline-block;
+			width: 20px;
+			height: 20px;
+			margin: 5px 8px;
+			text-indent: -999px;
+			border: 1px solid #ff8200;
+			border-radius: 20px;
+			cursor: pointer;
+			background-color: transparent;
+		}
+
+		.carousel-indicators .active {
+			background-color: #ff8200;
+		}
+
+		@media (min-width: 1200px) {
+			.container {
+				width: 100%;
+				max-width: 960px;
+				margin: 0 auto;
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="container">
+		<h3 class="text-center">Gallery</h3>
+
+		<div class="carousel">
+			<div class="carousel-inner-wrapper">
+				<div class="carousel-inner" style="">
+					<div class="animate animate-spring- item">
+						<div class="padding-24 ng-scope">
+							<img class="img-responsive"
+								src="https://assets.iinet.net.au/website/about/community/learn/_workshops/openday2013-1.jpg">
+						</div>
+					</div>
+					<div class="animate animate-spring- item">
+						<div class="padding-24 ng-scope">
+							<img class="img-responsive"
+								src="https://assets.iinet.net.au/website/about/community/learn/_workshops/openday2013-2.jpg">
+						</div>
+					</div>
+					<div class="animate animate-spring- item">
+						<div class="padding-24 ng-scope">
+							<img class="img-responsive"
+								src="https://assets.iinet.net.au/website/about/community/learn/_workshops/openday2013-3.jpg">
+						</div>
+					</div>
+					<div class="animate animate-spring- item">
+						<div class="padding-24 ng-scope">
+							<img class="img-responsive"
+								src="https://assets.iinet.net.au/website/about/community/learn/_workshops/openday2013-4.jpg">
+						</div>
+					</div>
+
+				</div>
+				<a role="button" href="" class="left carousel-control ng-hide" id="prevBtn">
+					<span class="iii iii-point iii-rotate-180 icon-prev"></span>
+					<span class="sr-only">previous</span>
+				</a>
+				<a role="button" href="" class="right carousel-control" ng-click="trackCarousel('ClickRight');next()"
+					id="nextBtn">
+					<span class="iii iii-point icon-next"></span>
+					<span class="sr-only">next</span>
+				</a>
+				<ol class="carousel-indicators">
+					<li class="dot active"> <span class="sr-only">slide 1 of 12</li>
+					<li class="dot"> <span class="sr-only">slide 2 of 12</span> </li>
+					<li class="dot"> <span class="sr-only">slide 3 of 12</span> </li>
+
+				</ol>
+			</div>
+		</div>
+
+	</div>
+
+
+
+	<script src="./carousel.js">
+
+	</script>
+</body>
+
+</html>
