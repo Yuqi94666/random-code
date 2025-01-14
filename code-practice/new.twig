@@ -1,0 +1,103 @@
+<div class="modal-header header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h3 class="modal-title title text-center font-reset font-s-24">
+    <span class="font-200">You can get connected with </span><span class="font-500">nbn<sup>&reg;</sup></span>
+  </h3>
+</div>
+<div class="modal-body promo-modal-content container">
+  <p class="pink-text font-s-20 font-500 text-center mt-10">Good news! We also offer TPG Fibre at your address</p>
+
+  <p class="text-center font-s-15 font-s-200">
+    With our high-speed, great value nbn<sup>&reg;</sup> alternative, you'll get nearly double the speeds plus a huge $270 saving on monthly plan fees in the first year alone.
+  </p>
+
+  <div class="plan-table text-center">
+    <div class="plan-container text-center" ng-repeat="(key, planComparison) in comparedPlans">
+      <div class="saving-cell white-text" ng-class="{'bg-pink': planComparison == 'FTTB100'}">
+        <span class="font-s-15 font-500" ng-if="planComparison == 'FTTB100'"><b>$270 saving^</b></span>
+      </div>
+      <div class="plan-name font-s-20" ng-class="{'bg-gradient-purple': planComparison === 'FTTB100', 'bg-black': planComparison != 'FTTB100'}">
+        <span>{* hwModal[planComparison].display.speed_label *}</span>
+      </div>
+      <div class="plan-data coloured flex-container-cell">
+        <div class="large font-s-20" ng-class="{ 'black-text': planComparison !== 'FTTB100' }">
+          <span
+            ng-if="!hwModal[planComparison].promotion"
+            ng-bind-html="hwModal[planComparison].charge | displayPriceMth">
+          </span>
+          <span
+            ng-if="hwModal[planComparison].promotion && hwModal[planComparison].promotion.six_month_price"
+            ng-bind-html="hwModal[planComparison].promotion.six_month_price | displayPriceMth">
+          </span>
+
+          <span
+            ng-if="hwModal[planComparison].promotion && hwModal[planComparison].promotion.twelve_month_price"
+            ng-bind-html="hwModal[planComparison].promotion.twelve_month_price | displayPriceMth">
+          </span>
+        </div>
+        <div class="small font-500" ng-if="hwModal[planComparison].promotion">
+          <span ng-if="hwModal[planComparison].promotion.six_month_promo_message">
+            For 6 months<sup>&dagger;</sup>
+          </span>
+          <span ng-if="hwModal[planComparison].promotion.twelve_month_promo_message">
+            For 12 months<sup>&dagger;</sup>
+          </span>
+        </div>
+        <div class="small black-text font-200">
+          <span>Min charge (with modem) $189.94</span>
+        </div>
+        <div class="small black-text font-700" ng-if="planComparison != 'FTTB100'">
+          <span>Save $10/mth for 3 months</span>
+        </div>
+      </div>
+      <div class="plan-data flex-container-cell">
+        <div ng-class="{'purple-text': planComparison == 'FTTB100'}" class="speed-wrapper">
+          <div ng-class="{ 'purple-border': planComparison == 'FTTB100', 'grey-border': planComparison != 'FTTB100'}">
+            <div class="download-speed promo-dw-speed">{* hwModal[planComparison].display.speed *} </div>
+            <div class="download-speed-text fonts12 black-text">Download</div>
+          </div>
+          <div>
+            <div class="upload-speed promo-up-speed"> {* hwModal[planComparison].display.upload *} </div>
+            <div class="upload-speed-text fonts12 black-text">Upload</div>
+          </div>
+        </div>
+        <span class="font-200 mt-10">{* hwModal[planComparison].display.speed_description *}</span>
+      </div>
+      <div ng-class="{'purple-text': planComparison == 'FTTB100'}" class="plan-data font-s-20 font-500">
+        <span>Unlimited Data</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-20">
+    <a class="planBtn text-center inline-b" ng-href="/fttb" onclick="ii.te('Button Click', 'Modal - link click', 'Modal - Explore TPG Fibre plans')">
+      Explore TPG Fibre plans
+    </a>
+  </div>
+
+  <div class="text-center mt-20">
+    <a href="#" class="closeBtn" role="button" type="button" data-dismiss="modal" onclick="ii.te('Link Click', 'Modal - link click', 'Modal - Go Back to nbn plans');">
+      Go Back to nbn<sup>&reg;</sup> Page
+    </a>
+  </div>
+
+  <div class="text-center terms mt-40-reset">
+    <strong>FTTB100:</strong> ^On monthly plan fees over 12 months compared to NBN50 with a modem. <sup>&dagger;</sup>Reverts to $74.99/mth after the first 12 months. *Typical evening download speed is measured
+      between 7pm-11pm. Typical evening upload speed is estimated by reference to the maximum upload speed for the
+      plan. Actual throughput speeds may be slower and could vary due to various factors including interference,
+      customer cabling and equipment, download source, and quality and distance of in-building copper. The speed tier
+      reflects the maximum possible off-peak download speed and you should refer to the typical evening speed as a
+      more accurate indication of likely experience. Promotional 12-month discount is available for new customers only
+      and is available until withdrawn. Total min charge = First month's plan fee + $10 delivery fee + $99.95 setup fee +
+      $20 Prepayment fee. $20 Prepayment fee paid at sign-up and topped up automatically (if amount falls to min. $10)
+      on recurring basis when service is used for calls outside of included value. Technician appointment required to
+      install equipment. Any calls that are not included (such as mobile, international and 1300 calls) will be subject to
+      extra charges at Pay As You Go rates. <strong>NBN50:</strong> $10/mth off for 3 months. Offer available until 10/12. Total min charge = First month's plan fee + $99.95 modem fee + $10
+      delivery fee on a no lock-in contract.
+  </div>
+
+  <div class="text-center mt-20 mb-10 mb-lt-xs-35">
+    <a class="pink-text text-underline" target="_blank" role="button" type="button" ng-href="sites/tpg/files/doc/TPG_FTTB_CIS_GFAST.pdf">Critical Information Summary</a>
+  </div>
+</div>
+

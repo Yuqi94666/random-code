@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<script>
+		let debouncerTimer;
+		let address = documetn.getElementByClass(".sqAddress");
+		function fetchData() {
+			
+			let apiUrl = `https://www.tpg.com.au/api/sq?addr=${encodeURIComponent(
+				address
+			)}`;
+			fetch(apiUrl).then(res => {
+				if (!res.ok) {
+					throw new Error("network response");
+				}
+				return res.json();
+			}).then(data => {
+				console.log('data:', data);
+			})
+		}
+		function debounceFetch() {
+			clearTimeout(debouncerTimer);
+			debouncerTimer = setTimeout(fetchData, 500);
+		}
+		const addressInput = document.querySelector('.sqAddress');
+		if(addressInput){
+			observer.observe(addressInput,{atrributes:true});
+		}
+		addressInput.addEventListener('keyup', debounceFetch);
+		addressInput.addEventListener('change', fetchData); // For drop-down selection
+		addressInput.addEventListener('keypress', (event) => {
+			if (event.key === 'Enter') {
+				console.log("key press");
+				fetchData();
+			}
+		});
+		addressInput.addEventListener('input',()=>{
+			let addValue = addressInput.value.trim();
+			if(addValue){
+				console.log("input")
+				fetchData(addValue);
+			}
+		})
+	</script>
+</body>
+
+</html>

@@ -32,3 +32,49 @@ function updateCarousel() {
     dots.forEach(dot => dot.classList.remove('active'));
     dots[currentIndex].classList.add('active');
 }
+
+let debouncerTimer;
+let address = documetn.getElementByClass(".sqAddress");
+let address = documetn.getElementBy;
+function fetchData() {
+	
+	let apiUrl = `https://www.tpg.com.au/api/sq?addr=${encodeURIComponent(
+		address
+	)}`;
+	fetch(apiUrl).then(res => {
+		if (!res.ok) {
+			throw new Error("network response");
+		}
+		return res.json();
+	}).then(data => {
+		console.log('data:', data);
+	})
+}
+if(addressInput){
+	observer.observe(addressInput,{atrributes:true});
+	console.log("this has value, ",address);
+	
+}
+// function debounceFetch() {
+// 	clearTimeout(debouncerTimer);
+// 	debouncerTimer = setTimeout(fetchData, 500);
+// }
+// const addressInput = document.querySelector('.sqAddress');
+// if(addressInput){
+// 	observer.observe(addressInput,{atrributes:true});
+// }
+// addressInput.addEventListener('keyup', debounceFetch);
+// addressInput.addEventListener('change', fetchData); // For drop-down selection
+// addressInput.addEventListener('keypress', (event) => {
+// 	if (event.key === 'Enter') {
+// 		console.log("key press");
+// 		fetchData();
+// 	}
+// });
+// addressInput.addEventListener('input',()=>{
+// 	let addValue = addressInput.value.trim();
+// 	if(addValue){
+// 		console.log("input")
+// 		fetchData(addValue);
+// 	}
+// })
