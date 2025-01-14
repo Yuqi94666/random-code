@@ -1,0 +1,56 @@
+!<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>上传图标和描述</title>
+  <style>
+  .icon-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  .icon-item {
+      border: 1px solid #ccc;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+    }
+  .icon-img {
+      width: 50px;
+      height: 50px;
+    }
+  </style>
+</head>
+<body>
+  <input type="file" multiple id="iconUpload" accept="image/*">
+  <textarea id="descriptionInput" placeholder="输入描述"></textarea>
+  <button onclick="uploadAndRender()">上传并渲染</button>
+  <div class="icon-container"></div>
+  <script>
+    function uploadAndRender() {
+      const fileInput = document.getElementById('iconUpload');
+      const descriptionInput = document.getElementById('descriptionInput');
+      const iconContainer = document.querySelector('.icon-container');
+      for (let i = 0; i < fileInput.files.length; i++) {
+        const file = fileInput.files[i];
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const iconImg = document.createElement('img');
+          iconImg.src = e.target.result;
+          iconImg.classList.add('icon-img');
+          const iconItem = document.createElement('div');
+          iconItem.classList.add('icon-item');
+          const descriptionText = document.createElement('p');
+          descriptionText.textContent = descriptionInput.value;
+          iconItem.appendChild(iconImg);
+          iconItem.appendChild(descriptionText);
+          iconContainer.appendChild(iconItem);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
+</body>
+</html>

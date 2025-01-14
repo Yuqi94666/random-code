@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生成带图标 Tab</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+  .tab-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  .tab {
+      padding: 10px 20px;
+      background-color: #f1f1f1;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  .tab img {
+      width: 20px;
+      height: 20px;
+    }
+  .tab.active {
+      background-color: #4CAF50;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <input type="text" id="imageUrlInput" placeholder="enter URL">
+    <input type="text" id="tabTextInput" placeholder="enter text">
+    <button onclick="addTab()">add Tab</button>
+  </div>
+  <div class="tab-container"></div>
+  <script>
+    function addTab() {
+      const imageUrl = document.getElementById('imageUrlInput').value;
+      const tabText = document.getElementById('tabTextInput').value;
+      if (imageUrl && tabText) {
+        const tabContainer = document.querySelector('.tab-container');
+        const tab = document.createElement('div');
+        tab.classList.add('tab');
+        const icon = document.createElement('img');
+        icon.src = imageUrl;
+        const text = document.createTextNode(tabText);
+        tab.appendChild(icon);
+        tab.appendChild(text);
+        tabContainer.appendChild(tab);
+      }
+    }
+  </script>
+</body>
+</html>

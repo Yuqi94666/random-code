@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tab {
+    flex: 1 1 50%; /* Default to 2 tabs per row */
+    box-sizing: border-box;
+    padding: 20px 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.tab img{
+    width: 60px;
+    height: 60px;
+
+}
+.tab img~p{
+    margin: 0;
+}
+@media (min-width: 768px) {
+    .tab {
+        flex: 1 1 20%; /* 5 tabs per row on desktop */
+    }
+}
+
+@media (max-width: 767px) {
+    .tab:nth-child(odd) {
+        flex: 1 1 50%; /* 2 tabs per row for odd tabs */
+    }
+    .tab:nth-child(even) {
+        flex: 1 1 50%; /* 2 tabs per row for even tabs */
+    }
+    .tab.stretch {
+        flex: 1 1 100%; /* Stretch the specified tab */
+    }
+}
