@@ -909,23 +909,23 @@
 	</div>
 	<script>
 		function initSlickCarousel() {
-    // Check if jQuery and Slick are loaded
-    if (typeof jQuery === 'undefined' || typeof jQuery.fn.slick === 'undefined') {
-        setTimeout(initSlickCarousel, 100);
-        return;
-    }
-    
-    // Get the container element
-    var container = document.getElementById('carousel-block-view-primaryPlans');
-    
-    if (!container) {
-        console.error('Container element not found');
-        return;
-    }
-    
-    // Add some basic styling
-    var style = document.createElement('style');
-    style.textContent = `
+			// Check if jQuery and Slick are loaded
+			if (typeof jQuery === 'undefined' || typeof jQuery.fn.slick === 'undefined') {
+				setTimeout(initSlickCarousel, 100);
+				return;
+			}
+
+			// Get the container element
+			var container = document.getElementById('carousel-block-view-primaryPlans');
+
+			if (!container) {
+				console.error('Container element not found');
+				return;
+			}
+
+			// Add some basic styling
+			var style = document.createElement('style');
+			style.textContent = `
         .sc-a1f3094c-7.jjyoIn {
             margin: 20px auto;
             max-width: 1200px;
@@ -940,35 +940,35 @@
             font-size: 12px !important;
         }
     `;
-    document.head.appendChild(style);
-    
-    // Initialize Slick
-    jQuery('#carousel-block-view-primaryPlans').slick({
-        dots: true,
-        infinite: true,
-        speed: 300,
-        slidesToShow: 1,
-        centerMode: true,
-        variableWidth: true,
-        adaptiveHeight: true,
-        responsive: [
-            {
-                breakpoint: 768,
-                settings: {
-                    arrows: false,
-                    centerMode: true,
-                    centerPadding: '40px',
-                    slidesToShow: 1
-                }
-            }
-        ]
-    });
-    
-    console.log('Slick carousel initialized successfully');
-}
+			document.head.appendChild(style);
 
-// Start checking for libraries
-setTimeout(initSlickCarousel, 100);
+			// Initialize Slick
+			jQuery('#carousel-block-view-primaryPlans').slick({
+				dots: true,
+				infinite: true,
+				speed: 300,
+				slidesToShow: 1,
+				centerMode: true,
+				variableWidth: true,
+				adaptiveHeight: true,
+				responsive: [
+					{
+						breakpoint: 768,
+						settings: {
+							arrows: false,
+							centerMode: true,
+							centerPadding: '40px',
+							slidesToShow: 1
+						}
+					}
+				]
+			});
+
+			console.log('Slick carousel initialized successfully');
+		}
+
+		// Start checking for libraries
+		setTimeout(initSlickCarousel, 100);
 	</script>
 </body>
 </html>
