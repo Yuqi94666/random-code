@@ -507,11 +507,13 @@ console.log(tabledataMobile );
 // console.log(first_last_1([]));
 
 function first_last_same(nums){
-    console.log(nums.pop(),"1111");
-    console.log(nums.shift(),"222");
+    // console.log(nums.pop(),"1111");
+    // console.log(nums.shift(),"222");
     
     return nums.pop() == nums.shift();
 }
-console.log(first_last_same([10, 20, 30])); 
-console.log(first_last_same([10, 20, 30, 10])); 
-console.log(first_last_same([20, 20, 20])); 
+// console.log(first_last_same([10, 20, 30])); 
+// console.log(first_last_same([10, 20, 30, 10])); 
+// console.log(first_last_same([20, 20, 20])); 
+
+console.log(new Date().getTime());
