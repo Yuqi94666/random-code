@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div id='popular-offers-container'>
+		<div class='popular-offers-tabs'>
+			<label class='popular-offers-tab checked' for='tab-SIMO-Small' role='tab' aria-selected='true'
+				aria-controls='panel' tabindex='0'>50GB</label>
+			<label class='popular-offers-tab' for='tab-SIMO-Medium' role='tab' aria-selected='false' aria-controls='panel'
+				tabindex='1'>180GB</label>
+			<label class='popular-offers-tab' for='tab-SIMO-Large' role='tab' aria-selected='false'
+				aria-controls='panel' tabindex='2'>360GB</label>
+		</div>
+		<ul id='tabs-popular-offers' class='tabs' role='tablist'>
+			<li><input type='radio' name='tabs' id='tab-SIMO-Small' checked />
+				<div id='tab-content-SIMO-Small' class='tab-content' role='tabpanel' aria-labelledby='SIMO-Small'
+					aria-hidden='false'></div>
+			</li>
+			<li><input type='radio' name='tabs' id='tab-SIMO-Medium' />
+				<div id='tab-content-SIMO-Medium' class='tab-content' role='tabpanel' aria-labelledby='SIMO-Medium'
+					aria-hidden='true'></div>
+			</li>
+			<li><input type='radio' name='tabs' id='tab-SIMO-Large' />
+				<div id='tab-content-SIMO-Large' class='tab-content' role='tabpanel' aria-labelledby='SIMO-Large'
+					aria-hidden='true'></div>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>
