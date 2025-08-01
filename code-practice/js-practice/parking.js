@@ -26,3 +26,5 @@ class ParkingLot {
 	}
 }
 
+const tt= new ParkingLot(6);
+console.log(tt.getSlots());
