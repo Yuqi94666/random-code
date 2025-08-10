@@ -154,73 +154,9 @@ let DCP15834OBJ = {
 					dtContainer.classList.add('section-hidden');
 				}
 			});
-
-			// 重建轮播图
-			this.rebuildSlider();
 		}
 		
 		this.updateCounter();
-	},
-
-	rebuildSlider: function() {
-		try {
-			// 检查是否有 jQuery 和 slick
-			if (typeof $ === 'undefined' || typeof $.fn.slick === 'undefined') {
-				console.log('jQuery or Slick not available');
-				return;
-			}
-
-			// 查找轮播图容器
-			const sliderContainer = document.querySelector('.slick-initialized');
-			if (!sliderContainer) {
-				console.log('No slick container found');
-				return;
-			}
-
-			// 销毁现有的 slick
-			try {
-				$(sliderContainer).slick('destroy');
-				console.log('Slick destroyed');
-			} catch (e) {
-				console.log('Error destroying slick:', e);
-			}
-
-			// 计算可见的slides数量
-			const visibleSlides = document.querySelectorAll('.slick-slide:not(.section-hidden)');
-			console.log('Visible slides count:', visibleSlides.length);
-
-			// 重新初始化 slick
-			setTimeout(() => {
-				try {
-					$(sliderContainer).slick({
-						slidesToShow: Math.min(3, visibleSlides.length),
-						slidesToScroll: 1,
-						infinite: visibleSlides.length > 3,
-						arrows: visibleSlides.length > 3,
-						dots: visibleSlides.length > 3,
-						responsive: [
-							{
-								breakpoint: 768,
-								settings: {
-									slidesToShow: Math.min(1, visibleSlides.length),
-									slidesToScroll: 1,
-									infinite: visibleSlides.length > 1,
-									arrows: visibleSlides.length > 1,
-									dots: visibleSlides.length > 1
-								}
-							}
-						]
-					});
-					console.log('Slick rebuilt successfully');
-				} catch (e) {
-					console.log('Error rebuilding slick:', e);
-				}
-			}, 200);
-
-		} catch (error) {
-			console.error('Error in rebuildSlider:', error);
-			this.tracking('error rebuildSlider');
-		}
 	},
 
 	updateCounter: function () {
