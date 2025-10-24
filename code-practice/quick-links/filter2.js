@@ -167,7 +167,9 @@ let DCP15834OBJ = {
                     dtContainer.classList.add('section-hidden');
                 }
             });
-
+            const visiblePlans = document.querySelectorAll('.slick-track > .slick-slide:not(.section-hidden)');
+            console.log("visible plans:",visiblePlans);
+            
             // Handle carousel based on filters
             this.handleCarousel(activeFilters.length > 0);
         }
