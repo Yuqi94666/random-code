@@ -204,7 +204,7 @@ var DCP16910Templates = {
 
   srcset: function (url) {
     var base = 'https://www.vodafone.com.au/_next/image?url=' + encodeURIComponent(url);
-    return base + '&w=256&q=75,\n                  ' + base + '&w=384&q=75 2x';
+    return base + '&w=256&q=75,\n' + base + '&w=384&q=75 2x';
   },
 
   deviceCard: function (d) {
