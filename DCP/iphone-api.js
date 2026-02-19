@@ -21,7 +21,6 @@ const DCP16614CONSTANTS = {
 	DEVICES: [],
 	TARGET_ELEMENT_DESKTOP: '.regular.slider > div',
 	TARGET_ELEMENT_MOBILE: '.slick-track > div',
-	SAVINGS_AMOUNTS: ['Save $1,314', 'Save $800', 'Save $700'],
 	TEMPLATE_INJECT_TYPE: 'before',
 	CUSTOM_CSS: `
   .ghEqK .slick-slide > div{
@@ -210,7 +209,9 @@ let DCP16614OBJ = {
 				DCP16614CONSTANTS.DEVICES = devices.map(device => ({
 					name: device.name,
 					recurringCharge: device.recurringCharge,
-					discountedRecurringCharge: device.discountedRecurringCharge || null
+					discountedRecurringCharge: device.discountedRecurringCharge || null,
+					manufacturer: device.manufacturer || null,
+					imageUrl: device.imageUrl || null,
 				}));
 			})
 			.catch(error => {
