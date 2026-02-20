@@ -212,10 +212,10 @@ var DCP16910Fn = {
 
 		deviceSet: function (id, devices) {
 			return `
-        <div class="deviceSet" id="${id}">
-          ${devices.map(DCP16910Fn.templates.generateDeviceCard).join('')}
-        </div>
-      `;
+			<div class="deviceSet" id="${id}">
+				${devices.map(DCP16910Fn.templates.generateDeviceCard).join('')}
+			</div>
+			`;
 		},
 
 		phonesContent: function () {
@@ -245,7 +245,7 @@ var DCP16910Fn = {
 	// INIT (重构后更清晰)
 	// ─────────────────────────────────────────────
 	init: function (s) {
-
+  console.log('###### DCP16910Fn init ######', s);
 		if (!DCP16910Fn.config.targetPaths.includes(window.location.pathname)) return;
 		if ($('#tabs-popular-offers').length > 0) return;
 

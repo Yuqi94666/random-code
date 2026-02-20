@@ -132,30 +132,49 @@ var DCP16910Templates = {
   },
 
   deviceCard: function (d) {
-    var wasHtml = d.wasPrice
-      ? '<span class="device-was-price">$' + d.wasPrice + '</span>'
-      : '';
-    return [
-      '<a class="deviceCard itemCard" title="' + d.title + '" href="' + d.href + '" aria-hidden="false">',
-        '<div class="device-item">',
-          '<div class="device-item-device">',
-            '<div class="device-item-badge">' + DCP16910Templates.badges(d.badges) + '</div>',
-            '<img alt="' + d.title + '" srcset="' + DCP16910Templates.srcset(d.image) + '" />',
-            '<p class="brand">' + d.brand + '</p>',
-            '<p class="device-name">' + d.title + '</p>',
-            '<p class="device-prefix">Device from</p>',
-            '<p class="device-price">',
-              '<span class="dollar">$</span>',
-              '<span class="device-recurringCharge">' + d.recurringCharge + '</span>',
-              wasHtml,
-              '<span class="mth">per month</span>',
-            '</p>',
-            '<p class="device-mincost">' + d.mincost + '</p>',
-            '<div class="primaryBtn">Shop now</div>',
-          '</div>',
-        '</div>',
-      '</a>',
-    ].join('');
+    let minCost = (d.wasPrice - d.recurringCharge) * 36;
+    return`
+    <a class="deviceCard itemCard" title="${d.title}" href="${d.href}" aria-hidden="false">
+	<div class="device-item">
+		<div class="device-item-device">
+			<div class="device-item-badge">
+				<img src="https://www.vodafone.com.au/images/icons/5g.svg" />
+				<img src="https://www.vodafone.com.au/images/icons/e-sim-logo.svg" />
+			</div>
+			<img alt="${d.title}" srcset="${DCP16910Fn.templates.srcset(d.image)}" />
+			<p class="brand">${d.brand}</p>
+			<p class="device-name">${d.title}</p>
+			<p class="device-prefix">Device from</p>
+			<p class="device-price"><span class="dollar">$</span><span class="device-recurringCharge">
+					${d.recurringCharge}</span><span class="mth">per month</span>
+			</p>
+			<p class="device-mincost">${d.mincost}</p>
+			<div class="primaryBtn">Shop now</div>
+		</div>
+	</div>
+</a>
+    `
+    //   return [
+    //   '<a class="deviceCard itemCard" title="' + d.title + '" href="' + d.href + '" aria-hidden="false">',
+    //     '<div class="device-item">',
+    //       '<div class="device-item-device">',
+    //         '<div class="device-item-badge"><img src="https://www.vodafone.com.au/images/icons/5g.svg" /><img src="https://www.vodafone.com.au/images/icons/e-sim-logo.svg" /></div>',
+    //         '<img alt="' + d.title + '" srcset="' + DCP16910Templates.srcset(d.image) + '" />',
+    //         '<p class="brand">' + d.brand + '</p>',
+    //         '<p class="device-name">' + d.title + '</p>',
+    //         '<p class="device-prefix">Device from</p>',
+    //         '<p class="device-price">',
+    //           '<span class="dollar">$</span>',
+    //           '<span class="device-recurringCharge">' + d.recurringCharge + '</span>',
+        
+    //           '<span class="mth">per month</span>',
+    //         '</p>',
+    //         '<p class="device-mincost">' + d.mincost + '</p>',
+    //         '<div class="primaryBtn">Shop now</div>',
+    //       '</div>',
+    //     '</div>',
+    //   '</a>',
+    // ].join('');
   },
 
   planCard: function (p) {

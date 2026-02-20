@@ -175,7 +175,7 @@ var DCP16910Fn = {
 
   config: {
     checkingKey: '',
-    targetPaths: ['/', '/agents/DCP-16910/', '/cro-demo'],
+    targetPaths: ['/', '/agents/DCP-16910/', '/cro-demo','/iframe/popular-products'],
     cssCode: `/* Slider */
 .slick-slider {
 	position: relative;
@@ -941,7 +941,9 @@ div.modal p.term {
     console.log('###### DCP16910Fn init ######', s);
     if (DCP16910Fn.config.targetPaths.includes(window.location.pathname) && $('#tabs-popular-offers').length == 0) {
       // Insert CSS
-      $('<style>' + DCP16910Fn.config.cssCode + '</style>').appendTo('head');
+      let styleElement = document.createElement('style');
+      styleElement.textContent = DCP16910Fn.config.cssCode;
+      document.head.appendChild(styleElement);
       // Insert HTML
       $('vha-popular-products').before(DCP16910Fn.config.htmlCode);
 
