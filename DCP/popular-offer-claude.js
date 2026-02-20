@@ -1,8 +1,5 @@
 window.DCP16910DeviceCohort = 'popularDevices'; // popularDevices || appleDevices || androidDevices
 
-// ─────────────────────────────────────────────
-// DATA LAYER — 只改这里来维护内容
-// ─────────────────────────────────────────────
 var DCP16910Data = {
   phones: {
     popularDevices: [
@@ -191,7 +188,7 @@ var DCP16910Badges = {
 };
 
 // ─────────────────────────────────────────────
-// TEMPLATE BUILDERS — 生成与原 hard-code 完全相同的 HTML 结构
+// TEMPLATE BUILDERS 
 // ─────────────────────────────────────────────
 var DCP16910Templates = {
 
@@ -262,7 +259,7 @@ var DCP16910Templates = {
       '</div>';
   },
 
-  // 生成 phones tab 下的三组 deviceSet
+  // generate phones tab deviceSet
   phonesContent: function () {
     var p = DCP16910Data.phones;
     return DCP16910Templates.deviceSet('popularDevices',  p.popularDevices) +
@@ -270,21 +267,21 @@ var DCP16910Templates = {
            DCP16910Templates.deviceSet('androidDevices',  p.androidDevices);
   },
 
-  // 生成 plan 类 tab 的卡片列表
+  // generate plan tab card list
   planContent: function (plans) {
     return plans.map(DCP16910Templates.planCard).join('');
   },
 };
 
 // ─────────────────────────────────────────────
-// 原始 CSS + HTML 骨架（结构完全不变，只清空内容区让 JS 填入）
+// Original CSS + HTML skeleton (structure remains unchanged, only content area is cleared for JS to fill)
 // ─────────────────────────────────────────────
 var DCP16910Fn = {
   aid: 'DCP-16910',
   config: {
     checkingKey: '',
     targetPaths: ['/', '/agents/DCP-16910/', '/cro-demo'],
-    // ★ 与原代码唯一区别：内容区占位符由 JS 动态填充，CSS 和 HTML 骨架原样保留
+    // ★ Only difference from original code: content area placeholder is dynamically filled by JS, CSS and HTML skeleton remain unchanged
     htmlCode: `<style>
         /* Slider */
 .slick-slider {
@@ -940,7 +937,7 @@ div.modal p.term {
         if ($('#DCP16910Wrapper').length > 0 && jQuery.fn.slick) {
           clearInterval(DCP16910WrapperWatch);
 
-          // ★ 核心改动：注入动态内容到各 tab 容器
+          // insert content into HTML skeleton
           DCP16910Fn.renderContent();
 
           $('.DCP16910Wrapper_tabItem .deviceSet').removeClass('active');
@@ -954,9 +951,9 @@ div.modal p.term {
     }
   },
 
-  // ★ 新增：把数据渲染进各 tab 占位容器
+  // fill the content area with generated HTML based on templates and data, called during init
   renderContent: function () {
-    // phones tab — 填入三个 deviceSet
+    // phones tab — 3 deviceSet
     $('[data-cat="phones"].deviceCardContainer').html(
       DCP16910Templates.phonesContent()
     );

@@ -76,17 +76,17 @@ var DCP16910Fn = {
         tcTooltip: null,
       },
     ],
-    homeinternet: [
+    Accessories: [
       {
         title: '5G Home Internet',
         href: 'https://www.vodafone.com.au/home-internet/4g-5g-plans',
         image: 'https://www.vodafone.com.au/images/merch/1403-summer-switch-5g-tile.webp',
         imageAlt: '5G Home Internet',
         onlineExclusive: false,
-        heading: 'High-speed 5G $55/mth for a year.',
-        subheading: 'Save $180 over 12 months when you have a mobile plan with us.',
-        tc: 'Ends 04/03 (unless extended). New connections in select areas only.',
-        tcTooltip: '5G Premium - 100Mbps (max and typical evening speed 7-11pm). Speeds vary. Reverts to $65/mth. Min cost $195 (1 mth plan fee + $140 mesh) if you return the modem. New connections in select areas only. Additional mesh ($144 over 36 mths) may be required. Ends 04/03 (unless extended). T&C apply.',
+        heading: 'New Samsung Galaxy Buds4 Pro. Save $160.',
+        subheading: 'When you pre-order and stay connected to an Accessories Payment Plan over 24 or 36 months.',
+        tc: 'Postpaid plan costs additional. Ends 08/04 (unless extended). T&C apply.',
+        tcTooltip: null,
       },
       {
         title: 'nbn® Home Fast+',
@@ -94,20 +94,18 @@ var DCP16910Fn = {
         image: 'https://www.vodafone.com.au/images/merch/fwa-nbn-offer-04-11/1400-nbn-tile.webp',
         imageAlt: 'nbn® Home Fast+',
         onlineExclusive: false,
-        heading: '500Mbps nbn® $74/mth for a year.',
-        subheading: 'When you have a mobile plan with us. Save $180 over 12 months.',
-        tc: 'Ends 25/02 (unless extended). New connections in select areas only.',
-        tcTooltip: 'New FTTP/HFC connections only. Reverts to $89/mth. nbn® Essential+ plan with speed upgrade to 500Mbps (typical evening speed 7-11pm). Speeds vary. High speed compatible modem required (fee may apply). Min cost $548 (1 month plan fees + $336 modem + $138 mesh). Ends 25/02. T&C apply.',
+        heading: '5New Samsung Galaxy Buds4. Save $100.',
+        subheading: 'When you pre-order and stay connected to an Accessories Payment Plan over 24 or 36 months.',
+        tc: 'Postpaid plan costs additional. Ends 08/04 (unless extended). T&C apply.',
+        tcTooltip: null,
       },
     ],
   },
 
-  // ─────────────────────────────────────────────
   // TEMPLATE BUILDERS
-  // ─────────────────────────────────────────────
   templates: {
     srcset: function (url) {
-      var base = 'https://www.vodafone.com.au/_next/image?url=' + encodeURIComponent(url);
+      let base = 'https://www.vodafone.com.au/_next/image?url=' + encodeURIComponent(url);
       return base + '&w=256&q=75,\n' + base + '&w=384&q=75 2x';
     },
 
@@ -138,24 +136,23 @@ var DCP16910Fn = {
        `
     },
 
-    planCard: function (p) {
-      var exclusiveClass = p.onlineExclusive ? 'onlineExclusive' : 'XonlineExclusive';
-      var tooltipHtml = p.tcTooltip
+    generatePlanCard: function (p) {
+      let exclusiveClass = p.onlineExclusive ? 'onlineExclusive' : 'XonlineExclusive';
+      let tooltipHtml = p.tcTooltip
         ? '<tooltip copy="' + p.tcTooltip.replace(/"/g, '&quot;') + '">T&amp;C apply.</tooltip>'
         : '';
-      return [
-        '<a class="planCard itemCard ' + exclusiveClass + '" title="' + p.title + '" href="' + p.href + '" aria-hidden="false">',
-        '<div class="plan-item">',
-        '<img src="' + p.image + '" alt="' + (p.imageAlt || '') + '" />',
-        '<div class="plan-text">',
-        '<h3 class="plan-heading">' + p.heading + '</h3>',
-        '<p class="plan-subheading">' + p.subheading + '</p>',
-        '<p class="plan-tc">' + p.tc + ' ' + tooltipHtml + '</p>',
-        '<p class="plan-link">Shop now</p>',
-        '</div>',
-        '</div>',
-        '</a>',
-      ].join('');
+      return `
+      <a class="planCard itemCard${exclusiveClass}" title="${p.title}" href="${p.href}" aria-hidden="false">
+        <div class="plan-item">
+          <img src="${p.image}" alt="${p.imageAlt || ''}" />
+          <div class="plan-text">
+            <h3 class="plan-heading">${p.heading}</h3>
+            <p class="plan-subheading">${p.subheading}</p>
+            <p class="plan-tc">${p.tc} ${tooltipHtml}</p>
+            <p class="plan-link">Shop now</p>
+          </div>
+      </a>
+      `
     },
 
     deviceSet: function (id, devices) {
@@ -165,14 +162,14 @@ var DCP16910Fn = {
     },
 
     phonesContent: function () {
-      var p = DCP16910Fn.data.phones;
+      let p = DCP16910Fn.data.phones;
       return DCP16910Fn.templates.deviceSet('popularDevices', p.popularDevices) +
         DCP16910Fn.templates.deviceSet('appleDevices', p.appleDevices) +
         DCP16910Fn.templates.deviceSet('androidDevices', p.androidDevices);
     },
 
     planContent: function (plans) {
-      return plans.map(DCP16910Fn.templates.planCard).join('');
+      return plans.map(DCP16910Fn.templates.generatePlanCard).join('');
     },
   },
 
@@ -900,7 +897,7 @@ div.modal p.term {
 			<li data-cat="phones" tabindex="0" class="active">Phones</li>
 			<li data-cat="simonly" tabindex="0">SIM only</li>
 			<li data-cat="prepaid" tabindex="0">Prepaid</li>
-			<li data-cat="homeinternet" tabindex="0">Home internet</li>
+			<li data-cat="Accessories" tabindex="0">Home internet</li>
 		</ul>
 	</div>
 	<div id="DCP16910Wrapper_tabContents">
@@ -909,7 +906,7 @@ div.modal p.term {
 
 		<div class="DCP16910Wrapper_tabItem planCardContainer" data-cat="simonly"></div>
 		<div class="DCP16910Wrapper_tabItem planCardContainer" data-cat="prepaid"></div>
-		<div class="DCP16910Wrapper_tabItem planCardContainer" data-cat="homeinternet"></div>
+		<div class="DCP16910Wrapper_tabItem planCardContainer" data-cat="Accessories"></div>
 		<div class="modal">
 			<div class="tooltip">
 				<div class="text">
@@ -948,7 +945,7 @@ div.modal p.term {
       // Insert HTML
       $('vha-popular-products').before(DCP16910Fn.config.htmlCode);
 
-      var DCP16910WrapperWatch = setInterval(function () {
+      let DCP16910WrapperWatch = setInterval(function () {
         if ($('#DCP16910Wrapper').length > 0 && jQuery.fn.slick) {
           clearInterval(DCP16910WrapperWatch);
 
@@ -967,13 +964,9 @@ div.modal p.term {
     }
   },
 
-  // ─────────────────────────────────────────────
-  // API HELPERS — Split for better readability
-  // ─────────────────────────────────────────────
-
   // Create a name-to-device lookup map from API devices
   createApiMap: function (apiDevices) {
-    var apiMap = {};
+    let apiMap = {};
     apiDevices.forEach(function (device) {
       apiMap[device.name] = device;
     });
@@ -983,7 +976,7 @@ div.modal p.term {
   // Build a device cohort from whitelist and API data
   buildCohort: function (whitelist, apiMap) {
     return whitelist.reduce(function (acc, config) {
-      var apiDevice = apiMap[config.name];
+      let apiDevice = apiMap[config.name];
 
       if (!apiDevice) {
         console.warn('[DCP16910] Device not found in API:', config.name);
@@ -1043,8 +1036,8 @@ div.modal p.term {
         return response.json();
       })
       .then(function (json) {
-        var apiDevices = (json.deviceListing && json.deviceListing.devices) || [];
-        var apiMap = DCP16910Fn.createApiMap(apiDevices);
+        let apiDevices = (json.deviceListing && json.deviceListing.devices) || [];
+        let apiMap = DCP16910Fn.createApiMap(apiDevices);
         DCP16910Fn.populatePhoneCohorts(apiMap, false);
       })
       .catch(function (err) {
@@ -1066,14 +1059,14 @@ div.modal p.term {
     $('[data-cat="prepaid"].planCardContainer').html(
       DCP16910Fn.templates.planContent(DCP16910Fn.data.prepaid)
     );
-    $('[data-cat="homeinternet"].planCardContainer').html(
-      DCP16910Fn.templates.planContent(DCP16910Fn.data.homeinternet)
+    $('[data-cat="Accessories"].planCardContainer').html(
+      DCP16910Fn.templates.planContent(DCP16910Fn.data.Accessories)
     );
   },
 
   openModal: function (copyText) {
     DCP16910Fn.closeModal();
-    var modal = document.querySelector('#DCP16910Wrapper .modal');
+    let modal = document.querySelector('#DCP16910Wrapper .modal');
     if (modal && copyText) {
       modal.querySelector('.copy').innerHTML = copyText;
       modal.style.display = 'flex';
@@ -1081,7 +1074,7 @@ div.modal p.term {
   },
 
   closeModal: function () {
-    var modal = document.querySelector('#DCP16910Wrapper .modal');
+    let modal = document.querySelector('#DCP16910Wrapper .modal');
     if (modal) {
       modal.querySelector('.copy').innerHTML = '';
       modal.style.display = 'none';
@@ -1100,7 +1093,7 @@ div.modal p.term {
       croWD.utils.launchTracking('DCP16910 BF:Popular Phones Expansion', 'Item Click - ' + $(this).attr('title'));
     });
 
-    var tabs = document.querySelectorAll('#DCP16910Wrapper_tabs ul li');
+    let tabs = document.querySelectorAll('#DCP16910Wrapper_tabs ul li');
     tabs.forEach(function (tab) {
       tab.addEventListener('keydown', function (event) {
         if (event.key === 'Enter') {
@@ -1110,17 +1103,17 @@ div.modal p.term {
       });
     });
 
-    var tooltips = document.querySelectorAll('#DCP16910Wrapper tooltip');
+    let tooltips = document.querySelectorAll('#DCP16910Wrapper tooltip');
     tooltips.forEach(function (el) {
       el.addEventListener('click', function (event) {
         event.stopPropagation();
         event.preventDefault();
-        var copyText = el.getAttribute('copy') || '';
+        let copyText = el.getAttribute('copy') || '';
         if (copyText) DCP16910Fn.openModal(copyText);
       });
     });
 
-    var closeLink = document.querySelector('#DCP16910Wrapper .modal .close-link');
+    let closeLink = document.querySelector('#DCP16910Wrapper .modal .close-link');
     if (closeLink) {
       closeLink.addEventListener('click', function (event) {
         event.stopPropagation();
@@ -1129,7 +1122,7 @@ div.modal p.term {
       });
     }
 
-    var modalOverlay = document.querySelector('#DCP16910Wrapper .modal');
+    let modalOverlay = document.querySelector('#DCP16910Wrapper .modal');
     if (modalOverlay) {
       modalOverlay.addEventListener('click', function (event) {
         if (event.target === modalOverlay) DCP16910Fn.closeModal();
@@ -1184,12 +1177,12 @@ div.modal p.term {
   },
 };
 
-var crowdMaxDCP16910 = 100;
-var crowdFinderDCP16910 = setInterval(function () {
+let crowdMaxDCP16910 = 100;
+let crowdFinderDCP16910 = setInterval(function () {
   crowdMaxDCP16910--;
   try {
     if (croWD && jQuery && $('vha-popular-products').length > 0) {
-      var slickScript = document.createElement('script');
+      let slickScript = document.createElement('script');
       slickScript.setAttribute('src', 'https://www.vodafone.com.au/content/dam/vha/croassets/slick.min.js');
       document.body.appendChild(slickScript);
       clearInterval(crowdFinderDCP16910);

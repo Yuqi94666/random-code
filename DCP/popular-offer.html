@@ -443,26 +443,32 @@
 	</div>
 </div>
 
-
-<a class="deviceCard itemCard" title="${d.title} " href="${d.href}" aria-hidden="false">
+<a class="itemCard" title="${d.title}" href="${d.href}">
 	<div class="device-item">
-		<div class="device-item-device">
-			<div class="device-item-badge">
-				<img alt="5G approved device" src="https://www.vodafone.com.au/images/icons/5g.svg">
-				<img alt="eSIM-enabled device" src="https://www.vodafone.com.au/images/icons/e-sim-logo.svg">
-			</div>
-			<img alt="${d.title}" srcset="${DCP16910Fn.templates.srcset(d.image)}" />
-			<p class="brand">${d.brand}</p>
-			<p class="device-name">${d.title}</p>
-			<p class="device-prefix">Device from</p>
-			<p class="device-price">
-				<span class="dollar">$</span>
-				<span class="device-recurringCharge">${d.recurringCharge}</span>
-				${wasHtml}
-				<span class="mth">per month</span>
-			</p>
-			<p class="device-mincost">${d.mincost}</p>
-			<div class="primaryBtn">Shop now</div>
-		</div>
+		<img alt="${d.title}" srcset="${DCP16910Fn.templates.srcset(d.image)}" />
+		<p class="brand">${d.brand}</p>
+		<p class="device-name">${d.title}</p>
+		<p class="device-prefix">Device from</p>
+		<p class="device-price">
+			<span class="dollar">$</span>
+			<span class="device-recurringCharge">${d.recurringCharge}</span>
+			${d.wasPrice ? `<span class="device-was-price">${d.wasPrice}</span>` : ''}
+			<span class="mth">per month</span>
+			p>
+			${minCost ? `
+		<p class="device-mincost">Min cost $${minCost} over 36 months. Plan cost additional.
+		</p>` : ''}
+		<div class="primaryBtn">Shop now</div>
 	</div>
+</a>
+
+<a class="planCard itemCard${exclusiveClass}" title="${p.title}" href="${p.href}" aria-hidden="false">
+	<div class="plan-item">
+		<img src="${p.image}" alt="${p.imageAlt || ''}" />
+		<div class="plan-text">
+			<h3 class="plan-heading">${p.heading}</h3>
+			<p class="plan-subheading">${p.subheading}</p>
+			<p class="plan-tc">${p.tc} ${tooltipHtml}</p>
+			<p class="plan-link">Shop now</p>
+		</div>
 </a>
