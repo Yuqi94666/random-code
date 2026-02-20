@@ -9,7 +9,7 @@ var DCP16910Fn = {
 		checkingKey: '',
 		targetPaths: ['/', '/agents/DCP-16910/', '/cro-demo'],
 		popularProductsTitle: 'All the best deals, on all the best dvices',
-		htmlCode: `<style>
+		 customCss: `<style>
         /* Slider */
 .slick-slider {
   position: relative;
@@ -1176,7 +1176,7 @@ div.modal p.term {
 	init: function (s) {
 		console.log('###### DCP16910Fn init ######', s);
 		if (DCP16910Fn.config.targetPaths.includes(window.location.pathname) && $('#tabs-popular-offers').length == 0) {
-			$('vha-popular-products').before(DCP16910Fn.config.htmlCode);
+			$('vha-popular-products').before(DCP16910Fn.config.customCss);
 			var DCP16910WrapperWatch = setInterval(function () {
 				if ($('#DCP16910Wrapper').length > 0 && jQuery.fn.slick) {
 					clearInterval(DCP16910WrapperWatch);

@@ -2,8 +2,7 @@ window.DCP16910DeviceCohort = 'popularDevices'; // popularDevices || appleDevice
 
 // ─────────────────────────────────────────────
 // PHONE WHITELIST CONFIG
-// 只需维护这里：指定每个 cohort 显示哪些设备（按 API name 字段匹配），
-// 以及每台设备的静态补充字段（href、badges、mincost）
+// Only this object need to be updated in the future
 // ─────────────────────────────────────────────
 var DCP16910PhoneConfig = {
   popularDevices: [
@@ -26,7 +25,7 @@ var DCP16910PhoneConfig = {
 };
 
 // ─────────────────────────────────────────────
-// DATA LAYER — phones.* 由 API 填充，其余静态
+// DATA LAYER — phones.* phones come from api
 // ─────────────────────────────────────────────
 var DCP16910Data = {
   phones: {
@@ -210,9 +209,8 @@ var DCP16910Fn = {
   config: {
     checkingKey: '',
     targetPaths: ['/', '/agents/DCP-16910/', '/cro-demo'],
-    // ★ 与原代码唯一区别：内容区占位符由 JS 动态填充，CSS 和 HTML 骨架原样保留
-    htmlCode: `<style>
-        /* Slider */
+
+    cssCode: `/* Slider */
 .slick-slider {
   position: relative;
   display: block;
@@ -808,9 +806,8 @@ div.modal p.term {
     div.modal .tooltip { width: 100%; margin: 0; border-radius: 0; padding: 24px 16px 32px }
     div.modal .close-link { margin-top: -10px; margin-right: -10px }
     div.modal h3 { margin-bottom: 16px }
-}
-        </style>
-       <div id="DCP16910Wrapper">
+}`,
+    htmlCode: `<div id="DCP16910Wrapper">
 	<h2 id="DCP16910WrapperHeading">Popular offers for you</h2>
 	<div id="DCP16910Wrapper_tabs">
 		<ul>
@@ -821,9 +818,9 @@ div.modal p.term {
 		</ul>
 	</div>
 	<div id="DCP16910Wrapper_tabContents">
-		<!-- ★ phones tab: deviceSets 由 JS 填入 -->
+
 		<div class="DCP16910Wrapper_tabItem deviceCardContainer active" data-cat="phones"></div>
-		<!-- ★ plan tabs: 卡片由 JS 填入 -->
+
 		<div class="DCP16910Wrapper_tabItem planCardContainer" data-cat="simonly"></div>
 		<div class="DCP16910Wrapper_tabItem planCardContainer" data-cat="prepaid"></div>
 		<div class="DCP16910Wrapper_tabItem planCardContainer" data-cat="homeinternet"></div>
@@ -860,6 +857,9 @@ div.modal p.term {
   init: function (s) {
     console.log('###### DCP16910Fn init ######', s);
     if (DCP16910Fn.config.targetPaths.includes(window.location.pathname) && $('#tabs-popular-offers').length == 0) {
+      // Insert CSS
+      $('<style>' + DCP16910Fn.config.cssCode + '</style>').appendTo('head');
+      // Insert HTML
       $('vha-popular-products').before(DCP16910Fn.config.htmlCode);
 
       var DCP16910WrapperWatch = setInterval(function () {

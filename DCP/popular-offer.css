@@ -1,0 +1,712 @@
+.slick-slider {
+	position: relative;
+	display: block;
+	box-sizing: border-box;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-touch-callout: none;
+	-khtml-user-select: none;
+	-ms-touch-action: pan-y;
+	touch-action: pan-y;
+	-webkit-tap-highlight-color: transparent;
+}
+
+.slick-list {
+	position: relative;
+	display: block;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+.slick-list:focus {
+	outline: none;
+}
+
+.slick-list.dragging {
+	cursor: pointer;
+	cursor: hand;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+	-webkit-transform: translate3d(0, 0, 0);
+	-moz-transform: translate3d(0, 0, 0);
+	-ms-transform: translate3d(0, 0, 0);
+	-o-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+
+.slick-track {
+	position: relative;
+	top: 0;
+	left: 0;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.slick-track:before,
+.slick-track:after {
+	display: table;
+	content: "";
+}
+
+.slick-track:after {
+	clear: both;
+}
+
+.slick-loading .slick-track {
+	visibility: hidden;
+}
+
+.slick-slide {
+	display: none;
+	float: left;
+	height: auto;
+	min-height: 1px;
+}
+
+[dir="rtl"] .slick-slide {
+	float: right;
+}
+
+.slick-slide img {
+	display: block;
+}
+
+.slick-slide.slick-loading img {
+	display: none;
+}
+
+.slick-slide.dragging img {
+	pointer-events: none;
+}
+
+.slick-initialized .slick-slide {
+	display: block;
+}
+
+.slick-loading .slick-slide {
+	visibility: hidden;
+}
+
+.slick-vertical .slick-slide {
+	display: block;
+	height: auto;
+	border: 1px solid transparent;
+}
+
+.slick-arrow.slick-hidden {
+	display: none;
+}
+
+.slick-arrow {
+	z-index: 2;
+	text-indent: -99999px;
+	cursor: pointer;
+	border: 2px solid #333333;
+	top: 126px;
+	width: 48px;
+	height: 48px;
+	border-radius: 24px;
+	box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.08);
+	position: absolute;
+	background-color: rgb(255, 255, 255) !important;
+}
+
+.slick-arrow.slick-prev {
+	left: -10px;
+}
+
+.slick-arrow.slick-prev:before {
+	display: block;
+	content: "";
+	width: 36px;
+	height: 36px;
+	position: absolute;
+	left: 1px;
+	top: 24px;
+	transform: translateY(-50%) rotate(90deg);
+	background-image: url("data:image/svg+xml, %3Csvg width='36' height='36' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' style='stroke-width:2px' fill-rule='evenodd'%3E%3Cpath fill='none' d='M32 0H0v32h32z' /%3E%3Cpath stroke='%23333333' stroke-linecap='round' stroke-linejoin='round' d='M4.667 11.333L16 22.667l11.333-11.334' /%3E%3C/g%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right center;
+	background-size: contain;
+}
+
+.slick-arrow.slick-next {
+	right: -10px;
+}
+
+.slick-arrow.slick-next:before {
+	display: block;
+	content: "";
+	width: 36px;
+	height: 36px;
+	position: absolute;
+	left: 6px;
+	top: 20px;
+	transform: translateY(-50%) rotate(270deg);
+	background-image: url("data:image/svg+xml, %3Csvg width='36' height='36' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' style='stroke-width:2px' fill-rule='evenodd'%3E%3Cpath fill='none' d='M32 0H0v32h32z' /%3E%3Cpath stroke='%23333333' stroke-linecap='round' stroke-linejoin='round' d='M4.667 11.333L16 22.667l11.333-11.334' /%3E%3C/g%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right center;
+	background-size: contain;
+}
+
+.slick-arrow:hover {
+	border: 2px solid #333333;
+	background-color: #333333 !important;
+}
+
+.slick-arrow:focus {
+	border: 2px solid #007C92;
+	background-color: #333333 !important;
+}
+
+.slick-arrow.slick-prev:hover:before,
+.slick-arrow.slick-prev:focus:before {
+	background-image: url("data:image/svg+xml, %3Csvg width='36' height='36' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' style='stroke-width:2px' fill-rule='evenodd'%3E%3Cpath fill='none' d='M32 0H0v32h32z' /%3E%3Cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' d='M4.667 11.333L16 22.667l11.333-11.334' /%3E%3C/g%3E%3C/svg%3E");
+}
+
+.slick-arrow.slick-next:hover:before,
+.slick-arrow.slick-next:focus:before {
+	background-image: url("data:image/svg+xml, %3Csvg width='36' height='36' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' style='stroke-width:2px' fill-rule='evenodd'%3E%3Cpath fill='none' d='M32 0H0v32h32z' /%3E%3Cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' d='M4.667 11.333L16 22.667l11.333-11.334' /%3E%3C/g%3E%3C/svg%3E");
+}
+
+.slick-arrow.slick-disabled {
+	display: none !important;
+}
+
+#DCP16910Wrapper {
+	padding: 60px 0px 0px 0px;
+	background: #f4f4f4;
+
+	@media (max-width: 768px) {
+		padding: 30px 0px 0px 0px;
+	}
+}
+
+#DCP16910Wrapper h2#DCP16910WrapperHeading {
+	color: #25282B;
+	text-align: center;
+	font-size: 44px;
+	font-weight: 300;
+	line-height: 52px;
+	font-family: VodafoneLight, Arial, sans-serif;
+	margin: 0;
+
+	@media (max-width: 768px) {
+		font-size: 32px;
+		line-height: 40px;
+	}
+}
+
+#DCP16910Wrapper_tabs ul {
+	display: flex;
+	gap: 20px;
+	justify-content: center;
+	border-bottom: 1px solid #CCCCCC;
+	margin: 48px 0;
+	overflow: auto;
+
+	@media (max-width: 768px) {
+		margin: 24px 0;
+	}
+}
+
+#DCP16910Wrapper_tabs ul li {
+	list-style: none;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 24px;
+	padding: 16px 0;
+	min-width: 110px;
+	max-width: 200px;
+	text-align: center;
+	cursor: pointer;
+}
+
+#DCP16910Wrapper_tabs ul li.active {
+	border-bottom: 2px solid red;
+}
+
+@media (max-width: 1280px) {
+	.planCardContainer .planCard .plan-item {
+		min-height: 550px;
+	}
+}
+
+@media (max-width: 1024px) {
+	.planCardContainer .planCard .plan-item {
+		min-height: 530px;
+	}
+}
+
+@media (max-width: 768px) {
+	.planCardContainer .planCard .plan-item {
+		min-height: auto;
+	}
+
+	#DCP16910Wrapper_tabs ul {
+		padding: 0;
+		justify-content: flex-start;
+		margin: 24px 0;
+	}
+}
+
+.deviceCardModule {
+	margin: 50px auto;
+}
+
+.deviceCardContainer {
+	max-width: 1180px;
+	margin: auto;
+}
+
+.deviceCardContainer .deviceCard {
+	text-decoration: none;
+	margin: 0 10px;
+}
+
+.DCP16910Wrapper_tabItem .itemCard {
+	padding: 10px 0;
+}
+
+.DCP16910Wrapper_tabItem .itemCard.onlineExclusive:before {
+	content: 'Online exclusive';
+	background: #9C2AA0;
+	padding: 6px 18px;
+	bottom: 6px;
+	position: relative;
+	color: #fff;
+	font-size: 16px;
+	line-height: 22px;
+	border-radius: 6px 6px 6px 0;
+}
+
+.DCP16910Wrapper_tabItem .itemCard.XonlineExclusive:before {
+	content: ' ';
+	background: none;
+	padding: 6px 18px;
+	bottom: 6px;
+	position: relative;
+	color: #fff;
+	font-size: 16px;
+	line-height: 22px;
+	border-radius: 6px 6px 6px 0;
+}
+
+.deviceCardContainer .deviceCard .device-item {
+	color: rgb(51, 51, 51);
+	padding: 20px 16px 26px 16px;
+	background-color: #fff;
+	border-radius: 6px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 8px 0px;
+}
+
+.deviceCardContainer .deviceCard .device-item .device-item-badge img {
+	margin: 0;
+}
+
+@keyframes SeniorEntered {
+	100% {
+		background-position: left center
+	}
+}
+
+.deviceCardContainer .deviceCard .device-item .device-saving {
+	height: 24px;
+	width: fit-content;
+	padding: 5px 10px;
+	margin: 5px 0px;
+	background: linear-gradient(to right, rgb(156, 42, 160) 50%, white 50%) right center / 200% 200%;
+	animation: 1s ease 0s 1 normal forwards running SeniorEntered;
+	font-size: 14px;
+	line-height: 1;
+	letter-spacing: normal;
+	text-align: center;
+	color: rgb(255, 255, 255);
+	white-space: nowrap;
+	font-family: VodafoneRegular, Arial, sans-serif;
+}
+
+.deviceCardContainer .deviceCard .device-item .device-item-badge img {
+	width: 45px;
+	height: 45px;
+	display: inline-block;
+}
+
+.deviceCardContainer .deviceCard .device-item img {
+	width: 168px;
+	height: auto;
+	margin: 20px auto;
+	display: block;
+}
+
+.deviceCardContainer .deviceCard .device-item p {
+	margin: 0;
+}
+
+.deviceCardContainer .deviceCard .device-item .brand {
+	font-size: 14px;
+	line-height: 18px;
+	font-family: VodafoneRegular, Arial, sans-serif;
+}
+
+.deviceCardContainer .deviceCard .device-item .device-name {
+	margin-bottom: 0px;
+	color: rgb(51, 51, 51);
+	font-family: VodafoneRegularBold, Arial, sans-serif;
+	margin-bottom: 16px;
+	font-size: 18px;
+	line-height: 24px;
+}
+
+.deviceCardContainer .deviceCard .device-item .device-prefix {
+	font-size: 14px;
+	line-height: 18px;
+	padding-top: 10px;
+}
+
+.deviceCardContainer .deviceCard .device-item .device-price {
+	position: relative;
+}
+
+.deviceCardContainer .deviceCard .device-item .device-price .dollar {
+	font-family: VodafoneRegularBold, Arial, sans-serif;
+	display: inline-block;
+	vertical-align: top;
+	font-size: 18px;
+	line-height: 36px;
+}
+
+.deviceCardContainer .deviceCard .device-item .device-price .device-recurringCharge {
+	font-family: VodafoneRegularBold, Arial, sans-serif;
+	font-size: 40px;
+	line-height: 48px;
+	padding-right: 0px;
+}
+
+.deviceCardContainer .deviceCard .device-item .device-price .device-was-price {
+	font-size: 14px;
+	line-height: 18px;
+	padding: 3px 0px 0px 2px;
+	text-decoration: line-through;
+	position: absolute;
+	top: 3px;
+}
+
+.deviceCardContainer .deviceCard .device-item .device-price .mth {
+	display: inline-block;
+	font-size: 14px;
+	line-height: 18px;
+	padding: 3px 0px 0px 2px;
+}
+
+.deviceCardContainer .deviceCard .device-item .device-mincost {
+	margin-top: 12px;
+	font-size: 14px;
+	line-height: 18px;
+}
+
+.deviceCardContainer .deviceCard .device-item .primaryBtn {
+	width: 100%;
+	height: auto;
+	margin: 30px auto 0 auto;
+	border-radius: 6px;
+	padding: 8px 24px;
+	line-height: 24px;
+	font-family: "VodafoneLight", Arial, sans-serif;
+	font-size: 18px;
+	font-kerning: none;
+	text-align: center;
+	text-overflow: ellipsis;
+	text-decoration: none;
+	outline: none;
+	pointer-events: auto;
+	user-select: none;
+	white-space: nowrap;
+	vertical-align: middle;
+	box-sizing: border-box;
+	border-color: #e60000;
+	background: #e60000;
+	color: rgb(255, 255, 255);
+}
+
+.deviceCardContainer .deviceCard .device-item .primaryBtn:hover {
+	background: #900;
+	border-color: #900;
+}
+
+.deviceCardContainer .deviceCard .device-item .device-item-offer {
+	display: flex;
+	padding: 0px 16px;
+	background-color: rgb(244, 244, 244);
+	min-height: 36px;
+	align-content: center;
+	-webkit-box-align: center;
+	align-items: center;
+	box-sizing: unset;
+	flex-direction: row;
+	width: 100%;
+	border-bottom-left-radius: inherit;
+	border-bottom-right-radius: inherit;
+	margin: 20px 0px -16px -16px;
+}
+
+.deviceCardContainer .deviceCard .device-item .device-item-offer img {
+	margin-right: 12px;
+	width: 24px;
+	height: 24px;
+	flex-grow: 1;
+}
+
+.deviceCardContainer .deviceCard .device-item .device-item-offer p {
+	margin: 0px;
+	font-size: 14px;
+	line-height: 18px;
+	color: rgb(51, 51, 51);
+	max-width: 780px;
+	flex-grow: 4;
+}
+
+.planCardContainer {
+	max-width: 1180px;
+	margin: auto;
+}
+
+.planCardContainer .planCard {
+	text-decoration: none;
+	margin: 0 10px;
+}
+
+.planCardContainer .planCard .plan-item {
+	border-radius: 16px;
+	border: 2px solid #000;
+	background: #FEF1F1;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 8px 0px;
+	overflow: hidden;
+	padding-bottom: 50px;
+}
+
+.planCardContainer .planCard .plan-item img {
+	width: 100%;
+	width: -moz-available;
+	width: -webkit-fill-available;
+	width: stretch;
+	margin: 32px 32px 0 32px;
+	border: 2px solid #000;
+	border-radius: 16px;
+
+	@media (max-width: 1024px) {
+		margin: 24px 24px 0 24px;
+	}
+
+	@media (max-width: 768px) {
+		margin: 16px 16px 0 16px;
+		border-radius: 14px;
+	}
+}
+
+.planCardContainer .planCard .plan-item .plan-text {
+	padding: 24px 30px;
+	color: #333;
+}
+
+.planCardContainer .planCard .plan-item .plan-text .plan-heading {
+	margin: 0;
+	font-size: 24px;
+	line-height: 30px;
+	font-weight: 700;
+	font-family: VodafoneRegularBold, Arial, sans-serif !important;
+}
+
+.planCardContainer .planCard .plan-item .plan-text .plan-subheading {
+	margin: 16px 0;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 24px;
+}
+
+.planCardContainer .planCard .plan-item .plan-text .plan-tc {
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 18px;
+	margin-bottom: 0;
+	;
+}
+
+.planCardContainer .planCard .plan-item .plan-text .plan-tc tooltip {
+	text-decoration: underline;
+	cursor: pointer;
+	color: #E60000;
+	position: relative;
+	z-index: 1;
+
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+.planCardContainer .planCard .plan-item .plan-text .plan-link {
+	margin-top: 24px;
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 24px;
+	color: #EA1A1A;
+	padding-right: 30px;
+	position: absolute;
+	display: inline-block;
+	margin-bottom: 0;
+}
+
+.planCardContainer .planCard .plan-item .plan-text .plan-link:after {
+	display: block;
+	content: '';
+	width: 20px;
+	height: 20px;
+	top: 3px;
+	right: 8px;
+	position: absolute;
+	transform: rotate(270deg);
+	background-image: url("data:image/svg+xml, %3Csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath fill='none' d='M32 0H0v32h32z' /%3E%3Cpath stroke='%23EA1A1A' style='stroke-width:2px' stroke-linecap='round' stroke-linejoin='round' d='M4.667 11.333L16 22.667l11.333-11.334' /%3E%3C/g%3E%3C/svg%3E");
+	background-size: 100%;
+	transition: all 0.2s ease-in-out 0s;
+}
+
+.planCardContainer .planCard .plan-item .plan-text .plan-link:hover::after {
+	transition: all 0.2s ease-in-out;
+	right: 0;
+}
+
+#DCP16910Wrapper_tabContents {
+	position: relative;
+	width: 90%;
+	max-width: 1180px;
+	margin: 0 auto;
+	min-height: 600px;
+
+	@media (max-width: 768px) {
+		min-height: 550px;
+	}
+}
+
+.DCP16910Wrapper_tabItem {
+	left: -99999px;
+	position: absolute;
+	width: 100%;
+}
+
+.DCP16910Wrapper_tabItem.active {
+	left: 0px;
+}
+
+.DCP16910Wrapper_tabItem .deviceSet {
+	left: -99999px;
+	position: absolute;
+	width: 100%;
+}
+
+.DCP16910Wrapper_tabItem .deviceSet.active {
+	left: 0px;
+}
+
+div.modal {
+	display: none;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 830;
+	background-color: rgba(0, 0, 0, .5);
+	align-items: center;
+	justify-content: center
+}
+
+div.modal .tooltip {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	background-color: #fff;
+	width: 80%;
+	max-height: 95%;
+	overflow-y: auto;
+	color: #333;
+	padding: 40px 60px 48px;
+	border-radius: 6px;
+	margin: 0px 16px;
+	max-width: 768px
+}
+
+div.modal .close-link {
+	border: none;
+	margin: 0px;
+	padding: 0px;
+	width: auto;
+	background: rgba(0, 0, 0, 0);
+	line-height: normal;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	align-self: flex-end;
+	cursor: pointer;
+	z-index: 10;
+	position: fixed;
+	margin-top: -30px;
+	margin-right: -50px
+}
+
+div.modal .close-link svg.close-icon {
+	position: relative;
+	color: #333;
+	display: block;
+	height: 24px;
+	width: 24px
+}
+
+div.modal h3 {
+	margin-bottom: 24px;
+	font-size: 40px;
+	line-height: 48px
+}
+
+div.modal p.text {
+	font-size: 18px;
+	line-height: 24px
+}
+
+div.modal p.term {
+	font-size: 12px;
+	line-height: 16px
+}
+
+@media(max-width: 768px) {
+	div.modal h3 {
+		font-size: 24px;
+		line-height: 30px
+	}
+
+	div.modal p.text {
+		font-size: 16px;
+		line-height: 22px
+	}
+
+	div.modal .tooltip {
+		width: 100%;
+		margin: 0;
+		border-radius: 0;
+		padding: 24px 16px 32px
+	}
+
+	div.modal .close-link {
+		margin-top: -10px;
+		margin-right: -10px
+	}
+
+	div.modal h3 {
+		margin-bottom: 16px
+	}
+}
