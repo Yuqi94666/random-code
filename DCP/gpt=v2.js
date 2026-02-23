@@ -1,26 +1,27 @@
+'use strict';
 window.DCP16910DeviceCohort = 'popularDevices'; // popularDevices || appleDevices || androidDevices
 
 // ═══════════════════════════════════════════════════════════
 // 1. PHONE WHITELIST CONFIG
 //    Only this section needs to be updated in the future
-// ═══════════════════════════════════════════════════════════
 var DCP16910PhoneConfig = {
   popularDevices: [
-    { name: 'iPhone Air',              href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-air',                badges: ['5g', 'esim'], mincost: 'Min cost $1,198.80 over 36 months. Plan cost additional.' },
-    { name: 'iPhone 17 Pro Max',       href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro-max',         badges: ['5g', 'esim'], mincost: 'Min cost $2,198.88 over 36 months. Plan cost additional.' },
-    { name: 'iPhone 17 Pro',           href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro',             badges: ['5g', 'esim'], mincost: 'Min cost $1,998.72 over 36 months. Plan cost additional.' },
-    { name: 'Samsung Galaxy S25 FE',   href: 'https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-s25-fe',   badges: ['5g', 'esim'], mincost: 'Min cost $748.44 over 36 months. Plan cost additional.' },
+    { name: 'Samsung Galaxy S25 Ultra', href: 'https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-s25-ultra', },
+    { name: 'Samsung Galaxy S25 FE', href: 'https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-s25-fe', },
+    { name: 'iPhone 17 Pro', href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro', },
+    { name: 'iPhone 17 Pro Max', href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro-max', },
   ],
   appleDevices: [
-    { name: 'iPhone 17 Pro Max',       href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro-max',         badges: ['5g', 'esim'], mincost: 'Min cost $2,198.88 over 36 months. Plan cost additional.' },
-    { name: 'iPhone 17 Pro',           href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro',             badges: ['5g', 'esim'], mincost: 'Min cost $1,998.72 over 36 months. Plan cost additional.' },
-    { name: 'iPhone 17',               href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17',                 badges: ['5g', 'esim'], mincost: 'Min cost $1,398.96 over 36 months. Plan cost additional.' },
+    { name: 'iPhone 16e', href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-16e', },
+    { name: 'iPhone 17 Pro Max', href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro-max', },
+    { name: 'iPhone 17 Pro', href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro', },
+    { name: 'iPhone 17', href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17', },
   ],
   androidDevices: [
-    { name: 'Samsung Galaxy S25 Ultra',href: 'https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-s25-ultra',badges: ['5g', 'esim'], mincost: 'Min cost $1,548.72 over 36 months. Plan cost additional.' },
-    { name: 'Samsung Galaxy Z Fold7',  href: 'https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-z-fold7',  badges: ['5g', 'esim'], mincost: 'Min cost $2,298.60 over 36 months. Plan cost additional.' },
-    { name: 'Samsung Galaxy S25 FE',   href: 'https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-s25-fe',   badges: ['5g', 'esim'], mincost: 'Min cost $698.40 over 36 months. Plan cost additional.' },
-    { name: 'Samsung Galaxy A36 5G',   href: 'https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-a36-5g',   badges: ['5g', 'esim'], mincost: 'Min cost $144.00 over 36 months. Plan cost additional.' },
+    { name: 'Samsung Galaxy S25 Ultra', href: 'https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-s25-ultra', },
+    { name: 'Samsung Galaxy Z Fold7', href: 'https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-z-fold7', },
+    { name: 'Samsung Galaxy S25 FE', href: 'https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-s25-fe', },
+    { name: 'Samsung Galaxy A36 5G', href: 'https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-a36-5g', },
   ],
 };
 
@@ -78,62 +79,44 @@ var DCP16910PlanData = {
       tcTooltip: null,
     },
   ],
-  homeinternet: [
+  accessories: [
     {
-      title: '5G Home Internet',
-      href: 'https://www.vodafone.com.au/home-internet/4g-5g-plans',
-      image: 'https://www.vodafone.com.au/images/merch/1403-summer-switch-5g-tile.webp',
-      imageAlt: '5G Home Internet',
+      title: 'Samsung Galaxy Buds4 Pro',
+      href: 'https://www.vodafone.com.au/accessories/buds/samsung-galaxy-buds4-pro',
+      image: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-buds-4-pro/1417-samsung-galaxy-buds4-pro-tile.webp',
+      imageAlt: 'Samsung Galaxy Buds4 Pro',
       onlineExclusive: false,
-      heading: 'High-speed 5G $55/mth for a year.',
-      subheading: 'Save $180 over 12 months when you have a mobile plan with us.',
-      tc: 'Ends 04/03 (unless extended). New connections in select areas only.',
-      tcTooltip: '5G Premium - 100Mbps (max and typical evening speed 7-11pm). Speeds vary. Reverts to $65/mth. Min cost $195 (1 mth plan fee + $140 mesh) if you return the modem. New connections in select areas only. Additional mesh ($144 over 36 mths) may be required. Ends 04/03 (unless extended). T&C apply.',
+      heading: 'New Samsung Galaxy Buds4 Pro. Save $160.',
+      subheading: 'When you pre-order and stay connected to an Accessories Payment Plan over 24 or 36 months.',
+      tc: 'Postpaid plan costs additional. Ends 08/04 (unless extended). T&C apply.',
+      tcTooltip: null,
     },
     {
-      title: 'nbn® Home Fast+',
-      href: 'https://www.vodafone.com.au/home-internet/nbn',
-      image: 'https://www.vodafone.com.au/images/merch/fwa-nbn-offer-04-11/1400-nbn-tile.webp',
-      imageAlt: 'nbn® Home Fast+',
+      title: 'Samsung Galaxy Buds4',
+      href: 'https://www.vodafone.com.au/accessories/buds/samsung-galaxy-buds4',
+      image: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-buds-4/1417-samsung-galaxy-buds4-tile.webp',
+      imageAlt: 'Samsung Galaxy Buds4',
       onlineExclusive: false,
-      heading: '500Mbps nbn® $74/mth for a year.',
-      subheading: 'When you have a mobile plan with us. Save $180 over 12 months.',
-      tc: 'Ends 25/02 (unless extended). New connections in select areas only.',
-      tcTooltip: 'New FTTP/HFC connections only. Reverts to $89/mth. nbn® Essential+ plan with speed upgrade to 500Mbps (typical evening speed 7-11pm). Speeds vary. High speed compatible modem required (fee may apply). Min cost $548 (1 month plan fees + $336 modem + $138 mesh). Ends 25/02. T&C apply.',
+      heading: 'New Samsung Galaxy Buds4. Save $100.',
+      subheading: 'When you pre-order and stay connected to an Accessories Payment Plan over 24 or 36 months.',
+      tc: 'Postpaid plan costs additional. Ends 08/04 (unless extended). T&C apply.',
+      tcTooltip: null,
     },
   ],
 };
-
-
-// ═══════════════════════════════════════════════════════════
-// 3. BADGE CONFIG
-// ═══════════════════════════════════════════════════════════
-var DCP16910Badges = {
-  '5g':   { alt: '5G approved device',  src: 'https://www.vodafone.com.au/images/icons/5g.svg' },
-  'esim': { alt: 'eSIM-enabled device', src: 'https://www.vodafone.com.au/images/icons/e-sim-logo.svg' },
-};
-
 
 // ═══════════════════════════════════════════════════════════
 // 4. TEMPLATE BUILDERS
 // ═══════════════════════════════════════════════════════════
 var DCP16910Templates = {
-
-  badges: function (keys) {
-    return (keys || []).map(function (k) {
-      var b = DCP16910Badges[k];
-      return b ? '<img alt="' + b.alt + '" src="' + b.src + '" />' : '';
-    }).join('');
-  },
-
   srcset: function (url) {
     var base = 'https://www.vodafone.com.au/_next/image?url=' + encodeURIComponent(url);
     return base + '&w=256&q=75,\n                  ' + base + '&w=384&q=75 2x';
   },
 
-  deviceCard: function (d) {
-    let minCost = (d.wasPrice - d.recurringCharge) * 36;
-    return`
+  generateDeviceCard: function (d) {
+    let minCost = (d.recurringCharge * 36).toFixed(2);
+    return `
     <a class="deviceCard itemCard" title="${d.title}" href="${d.href}" aria-hidden="false">
 	<div class="device-item">
 		<div class="device-item-device">
@@ -141,76 +124,57 @@ var DCP16910Templates = {
 				<img src="https://www.vodafone.com.au/images/icons/5g.svg" />
 				<img src="https://www.vodafone.com.au/images/icons/e-sim-logo.svg" />
 			</div>
-			<img alt="${d.title}" srcset="${DCP16910Fn.templates.srcset(d.image)}" />
+			<img alt="${d.title}" srcset="${DCP16910Templates.srcset(d.image)}" />
 			<p class="brand">${d.brand}</p>
 			<p class="device-name">${d.title}</p>
 			<p class="device-prefix">Device from</p>
-			<p class="device-price"><span class="dollar">$</span><span class="device-recurringCharge">
-					${d.recurringCharge}</span><span class="mth">per month</span>
+			<p class="device-price"><span class="dollar">$</span>
+      <span class="device-recurringCharge">${d.recurringCharge}</span>
+      ${d.wasPrice ? `<span class="device-was-price">${d.wasPrice}</span>` : ''}
+      <span class="mth">per month</span>
 			</p>
-			<p class="device-mincost">${d.mincost}</p>
+			<p class="device-mincost">Min cost $${minCost} over 36 months. Plan cost additional.</p>
 			<div class="primaryBtn">Shop now</div>
 		</div>
 	</div>
 </a>
     `
-    //   return [
-    //   '<a class="deviceCard itemCard" title="' + d.title + '" href="' + d.href + '" aria-hidden="false">',
-    //     '<div class="device-item">',
-    //       '<div class="device-item-device">',
-    //         '<div class="device-item-badge"><img src="https://www.vodafone.com.au/images/icons/5g.svg" /><img src="https://www.vodafone.com.au/images/icons/e-sim-logo.svg" /></div>',
-    //         '<img alt="' + d.title + '" srcset="' + DCP16910Templates.srcset(d.image) + '" />',
-    //         '<p class="brand">' + d.brand + '</p>',
-    //         '<p class="device-name">' + d.title + '</p>',
-    //         '<p class="device-prefix">Device from</p>',
-    //         '<p class="device-price">',
-    //           '<span class="dollar">$</span>',
-    //           '<span class="device-recurringCharge">' + d.recurringCharge + '</span>',
-        
-    //           '<span class="mth">per month</span>',
-    //         '</p>',
-    //         '<p class="device-mincost">' + d.mincost + '</p>',
-    //         '<div class="primaryBtn">Shop now</div>',
-    //       '</div>',
-    //     '</div>',
-    //   '</a>',
-    // ].join('');
   },
 
-  planCard: function (p) {
+  generatePlanCard: function (p) {
     var exclusiveClass = p.onlineExclusive ? 'onlineExclusive' : 'XonlineExclusive';
     var tooltipHtml = p.tcTooltip
       ? '<tooltip copy="' + p.tcTooltip.replace(/"/g, '&quot;') + '">T&amp;C apply.</tooltip>'
       : '';
-    return [
-      '<a class="planCard itemCard ' + exclusiveClass + '" title="' + p.title + '" href="' + p.href + '" aria-hidden="false">',
-        '<div class="plan-item">',
-          '<img src="' + p.image + '" alt="' + (p.imageAlt || '') + '" />',
-          '<div class="plan-text">',
-            '<h3 class="plan-heading">' + p.heading + '</h3>',
-            '<p class="plan-subheading">' + p.subheading + '</p>',
-            '<p class="plan-tc">' + p.tc + ' ' + tooltipHtml + '</p>',
-            '<p class="plan-link">Shop now</p>',
-          '</div>',
-        '</div>',
-      '</a>',
-    ].join('');
+    return `
+    <a class="planCard itemCard ${exclusiveClass}" title="${p.title}" href="${p.href}" aria-hidden="false">
+	<div class="plan-item">
+		<img src="${p.image}" alt="${p.imageAlt || ''}" />
+		<div class="plan-text">
+			<h3 class="plan-heading">${p.heading}</h3>
+			<p class="plan-subheading">${p.subheading}</p>
+			<p class="plan-tc">${p.tc} ${tooltipHtml}</p>
+			<p class="plan-link">Shop now</p>
+		</div>
+	</div>
+</a>
+    `
   },
 
   deviceSet: function (id, devices) {
     return '<div class="deviceSet" id="' + id + '">' +
-      devices.map(DCP16910Templates.deviceCard).join('') +
+      devices.map(DCP16910Templates.generateDeviceCard).join('') +
       '</div>';
   },
 
   phonesContent: function (phones) {
     return DCP16910Templates.deviceSet('popularDevices', phones.popularDevices) +
-           DCP16910Templates.deviceSet('appleDevices',   phones.appleDevices) +
-           DCP16910Templates.deviceSet('androidDevices', phones.androidDevices);
+      DCP16910Templates.deviceSet('appleDevices', phones.appleDevices) +
+      DCP16910Templates.deviceSet('androidDevices', phones.androidDevices);
   },
 
   planContent: function (plans) {
-    return plans.map(DCP16910Templates.planCard).join('');
+    return plans.map(DCP16910Templates.generatePlanCard).join('');
   },
 };
 
@@ -428,21 +392,21 @@ div.modal p.term { font-size: 12px; line-height: 16px; }
 // ═══════════════════════════════════════════════════════════
 // 6. HTML SKELETON
 // ═══════════════════════════════════════════════════════════
-var DCP16910HTML = `<div id="DCP16910Wrapper">
+var DCP16910TABHTML = `<div id="DCP16910Wrapper">
   <h2 id="DCP16910WrapperHeading">Popular offers for you</h2>
   <div id="DCP16910Wrapper_tabs">
     <ul>
       <li data-cat="phones" tabindex="0" class="active">Phones</li>
       <li data-cat="simonly" tabindex="0">SIM only</li>
       <li data-cat="prepaid" tabindex="0">Prepaid</li>
-      <li data-cat="homeinternet" tabindex="0">Home internet</li>
+      <li data-cat="accessories" tabindex="0">Accessories</li>
     </ul>
   </div>
   <div id="DCP16910Wrapper_tabContents">
     <div class="DCP16910Wrapper_tabItem deviceCardContainer active" data-cat="phones"></div>
     <div class="DCP16910Wrapper_tabItem planCardContainer" data-cat="simonly"></div>
     <div class="DCP16910Wrapper_tabItem planCardContainer" data-cat="prepaid"></div>
-    <div class="DCP16910Wrapper_tabItem planCardContainer" data-cat="homeinternet"></div>
+    <div class="DCP16910Wrapper_tabItem planCardContainer" data-cat="accessories"></div>
     <div class="modal">
       <div class="tooltip">
         <div class="text"><p class="copy"></p></div>
@@ -465,10 +429,9 @@ var DCP16910HTML = `<div id="DCP16910Wrapper">
 // ═══════════════════════════════════════════════════════════
 var DCP16910Fn = {
   aid: 'DCP-16910',
-
   config: {
     checkingKey: '',
-    targetPaths: ['/', '/agents/DCP-16910/', '/cro-demo','/iframe/popular-products'],
+    targetPaths: ['/', '/agents/DCP-16910/', '/cro-demo',],
   },
 
   // ── Observe ──────────────────────────────────
@@ -488,7 +451,7 @@ var DCP16910Fn = {
     console.log('###### DCP16910Fn init ######', s);
     if (DCP16910Fn.config.targetPaths.includes(window.location.pathname) && $('#DCP16910Wrapper').length === 0) {
       $('<style>' + DCP16910CSS + '</style>').appendTo('head');
-      $('vha-popular-products').before(DCP16910HTML);
+      $('vha-popular-products').before(DCP16910TABHTML);
 
       var watch = setInterval(function () {
         if ($('#DCP16910Wrapper').length > 0 && jQuery.fn.slick) {
@@ -529,7 +492,7 @@ var DCP16910Fn = {
   buildAllCohorts: function (apiMap, useFallback) {
     return {
       popularDevices: DCP16910Fn.buildCohort(DCP16910PhoneConfig.popularDevices, apiMap, useFallback),
-      appleDevices:   DCP16910Fn.buildCohort(DCP16910PhoneConfig.appleDevices,   apiMap, useFallback),
+      appleDevices: DCP16910Fn.buildCohort(DCP16910PhoneConfig.appleDevices, apiMap, useFallback),
       androidDevices: DCP16910Fn.buildCohort(DCP16910PhoneConfig.androidDevices, apiMap, useFallback),
     };
   },
@@ -543,14 +506,14 @@ var DCP16910Fn = {
       var api = apiMap[cfg.name];
       if (!api) { console.warn('[DCP16910] Device not found in API:', cfg.name); return acc; }
       acc.push({
-        title:           api.name,
-        brand:           api.manufacturer || '',
-        image:           api.imageUrl || '',
+        title: api.name,
+        brand: api.manufacturer || '',
+        image: api.imageUrl || '',
         recurringCharge: api.discountedRecurringCharge || api.recurringCharge || '',
-        wasPrice:        api.discountedRecurringCharge ? api.recurringCharge : null,
-        href:            cfg.href,
-        badges:          cfg.badges,
-        mincost:         cfg.mincost,
+        wasPrice: api.discountedRecurringCharge ? api.recurringCharge : null,
+        href: cfg.href,
+        badges: cfg.badges,
+        mincost: cfg.mincost,
       });
       return acc;
     }, []);
@@ -561,7 +524,7 @@ var DCP16910Fn = {
     $('[data-cat="phones"].deviceCardContainer').html(DCP16910Templates.phonesContent(phones));
     $('[data-cat="simonly"].planCardContainer').html(DCP16910Templates.planContent(DCP16910PlanData.simonly));
     $('[data-cat="prepaid"].planCardContainer').html(DCP16910Templates.planContent(DCP16910PlanData.prepaid));
-    $('[data-cat="homeinternet"].planCardContainer').html(DCP16910Templates.planContent(DCP16910PlanData.homeinternet));
+    $('[data-cat="accessories"].planCardContainer').html(DCP16910Templates.planContent(DCP16910PlanData.accessories));
   },
 
   // ── Modal ─────────────────────────────────────
@@ -628,8 +591,8 @@ var DCP16910Fn = {
       dots: false, infinite: false, speed: 300, slidesToShow: 4, adaptiveHeight: true,
       responsive: [
         { breakpoint: 1170, settings: { slidesToShow: 3 } },
-        { breakpoint: 870,  settings: { slidesToShow: 2 } },
-        { breakpoint: 550,  settings: { slidesToShow: 1 } },
+        { breakpoint: 870, settings: { slidesToShow: 2 } },
+        { breakpoint: 550, settings: { slidesToShow: 1 } },
       ],
     };
     var planOpts = {
@@ -668,5 +631,5 @@ var crowdFinderDCP16910 = setInterval(function () {
       clearInterval(crowdFinderDCP16910);
       crowdFinderDCP16910 = null;
     }
-  } catch (e) {}
+  } catch (e) { }
 }, 100);

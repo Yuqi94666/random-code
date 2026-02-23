@@ -482,7 +482,7 @@
 	</div>
 </a>
 
-<a class="planCard itemCard${exclusiveClass}" title="${p.title}" href="${p.href}" aria-hidden="false">
+<a class="planCard itemCard ${exclusiveClass}" title="${p.title}" href="${p.href}" aria-hidden="false">
 	<div class="plan-item">
 		<img src="${p.image}" alt="${p.imageAlt || ''}" />
 		<div class="plan-text">
@@ -491,4 +491,20 @@
 			<p class="plan-tc">${p.tc} ${tooltipHtml}</p>
 			<p class="plan-link">Shop now</p>
 		</div>
+	</div>
 </a>
+
+[
+'<a class="planCard itemCard ' + exclusiveClass + '" title="' + p.title + '" href="' + p.href + '"
+	aria-hidden="false">',
+	'<div class="plan-item">',
+		'<img src="' + p.image + '" alt="' + (p.imageAlt || '') + '" />',
+		'<div class="plan-text">',
+			'<h3 class="plan-heading">' + p.heading + '</h3>',
+			'<p class="plan-subheading">' + p.subheading + '</p>',
+			'<p class="plan-tc">' + p.tc + ' ' + tooltipHtml + '</p>',
+			'<p class="plan-link">Shop now</p>',
+			'</div>',
+		'</div>',
+	'</a>',
+].join('');
