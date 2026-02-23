@@ -1,38 +1,131 @@
 window.DCP16910DeviceCohort = 'popularDevices'; // popularDevices || appleDevices || androidDevices
 
 // ─────────────────────────────────────────────
-// PHONE WHITELIST CONFIG
-// Only this object need to be updated in the future
-// ─────────────────────────────────────────────
-var DCP16910PhoneConfig = {
-  popularDevices: [
-    { name: 'iPhone Air',          href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-air',            badges: ['5g', 'esim'], mincost: 'Min cost $1,198.80 over 36 months. Plan cost additional.' },
-    { name: 'iPhone 17 Pro Max',   href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro-max',     badges: ['5g', 'esim'], mincost: 'Min cost $2,198.88 over 36 months. Plan cost additional.' },
-    { name: 'iPhone 17 Pro',       href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro',         badges: ['5g', 'esim'], mincost: 'Min cost $1,998.72 over 36 months. Plan cost additional.' },
-    { name: 'Samsung Galaxy S25 FE', href: 'https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-s25-fe', badges: ['5g', 'esim'], mincost: 'Min cost $748.44 over 36 months. Plan cost additional.' },
-  ],
-  appleDevices: [
-    { name: 'iPhone 17 Pro Max',   href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro-max',     badges: ['5g', 'esim'], mincost: 'Min cost $2,198.88 over 36 months. Plan cost additional.' },
-    { name: 'iPhone 17 Pro',       href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro',         badges: ['5g', 'esim'], mincost: 'Min cost $1,998.72 over 36 months. Plan cost additional.' },
-    { name: 'iPhone 17',           href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17',             badges: ['5g', 'esim'], mincost: 'Min cost $1,398.96 over 36 months. Plan cost additional.' },
-  ],
-  androidDevices: [
-    { name: 'Samsung Galaxy S25 Ultra', href: 'https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-s25-ultra', badges: ['5g', 'esim'], mincost: 'Min cost $1,548.72 over 36 months. Plan cost additional.' },
-    { name: 'Samsung Galaxy Z Fold7',   href: 'https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-z-fold7',   badges: ['5g', 'esim'], mincost: 'Min cost $2,298.60 over 36 months. Plan cost additional.' },
-    { name: 'Samsung Galaxy S25 FE',    href: 'https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-s25-fe',    badges: ['5g', 'esim'], mincost: 'Min cost $698.40 over 36 months. Plan cost additional.' },
-    { name: 'Samsung Galaxy A36 5G',    href: 'https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-a36-5g',    badges: ['5g', 'esim'], mincost: 'Min cost $144.00 over 36 months. Plan cost additional.' },
-  ],
-};
-
-// ─────────────────────────────────────────────
-// DATA LAYER — phones.* phones come from api
+// DATA LAYER  —  edit here, never touch the HTML
 // ─────────────────────────────────────────────
 var DCP16910Data = {
+
+  // ── PHONES tab ────────────────────────────────────────────────────────────
   phones: {
-    popularDevices: [],
-    appleDevices:   [],
-    androidDevices: [],
+    popularDevices: [
+      {
+        title: 'iPhone Air',
+        href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-air',
+        brand: 'Apple',
+        badges: ['5g', 'esim'],
+        image: 'https://www.vodafone.com.au/images/devices/apple/iphone-air/iphone-air-sky-blue-01-m.webp',
+        recurringCharge: '33.30',
+        wasPrice: '49.94',
+        mincost: 'Min cost $1,198.80 over 36 months. Plan cost additional.',
+      },
+      {
+        title: 'iPhone 17 Pro Max',
+        href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro-max',
+        brand: 'Apple',
+        badges: ['5g', 'esim'],
+        image: 'https://www.vodafone.com.au/images/devices/apple/iphone-17-pro-max/iphone-17-pro-max-cosmic-orange-01-m.webp',
+        recurringCharge: '61.08',
+        wasPrice: null,
+        mincost: 'Min cost $2,198.88 over 36 months. Plan cost additional.',
+      },
+      {
+        title: 'iPhone 17 Pro',
+        href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro',
+        brand: 'Apple',
+        badges: ['5g', 'esim'],
+        image: 'https://www.vodafone.com.au/images/devices/apple/iphone-17-pro/iphone-17-pro-cosmic-orange-01-m.webp',
+        recurringCharge: '55.52',
+        wasPrice: null,
+        mincost: 'Min cost $1,998.72 over 36 months. Plan cost additional.',
+      },
+      {
+        title: 'Samsung Galaxy S25 FE',
+        href: 'https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-s25-fe',
+        brand: 'Samsung',
+        badges: ['5g', 'esim'],
+        image: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-s25-fe/samsung-galaxy-s25-fe-navy-01-m.webp',
+        recurringCharge: '20.79',
+        wasPrice: '30.52',
+        mincost: 'Min cost $748.44 over 36 months. Plan cost additional.',
+      },
+    ],
+    appleDevices: [
+      {
+        title: 'iPhone 17 Pro Max',
+        href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro-max',
+        brand: 'Apple',
+        badges: ['5g', 'esim'],
+        image: 'https://www.vodafone.com.au/images/devices/apple/iphone-17-pro-max/iphone-17-pro-max-cosmic-orange-01-m.webp',
+        recurringCharge: '61.08',
+        wasPrice: null,
+        mincost: 'Min cost $2,198.88 over 36 months. Plan cost additional.',
+      },
+      {
+        title: 'iPhone 17 Pro',
+        href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro',
+        brand: 'Apple',
+        badges: ['5g', 'esim'],
+        image: 'https://www.vodafone.com.au/images/devices/apple/iphone-17-pro/iphone-17-pro-cosmic-orange-01-m.webp',
+        recurringCharge: '55.52',
+        wasPrice: null,
+        mincost: 'Min cost $1,998.72 over 36 months. Plan cost additional.',
+      },
+      {
+        title: 'iPhone 17',
+        href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17',
+        brand: 'Apple',
+        badges: ['5g', 'esim'],
+        image: 'https://www.vodafone.com.au/images/devices/apple/iphone-17/iphone-17-lavender-01-m.webp',
+        recurringCharge: '38.86',
+        wasPrice: null,
+        mincost: 'Min cost $1,398.96 over 36 months. Plan cost additional.',
+      },
+    ],
+    androidDevices: [
+      {
+        title: 'Samsung Galaxy S25 Ultra',
+        href: 'https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-s25-ultra',
+        brand: 'Samsung',
+        badges: ['5g', 'esim'],
+        image: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-s25/samsung-galaxy-s25-ultra-titanium-whitesilver-01-m.webp',
+        recurringCharge: '43.02',
+        wasPrice: '59.69',
+        mincost: 'Min cost $1,548.72 over 36 months. Plan cost additional.',
+      },
+      {
+        title: 'Samsung Galaxy Z Fold7',
+        href: 'https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-z-fold7',
+        brand: 'Samsung',
+        badges: ['5g', 'esim'],
+        image: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-zfold7/samsung-galaxy-z-fold7-blue-shadow-ai-m.webp',
+        recurringCharge: '63.85',
+        wasPrice: '80.52',
+        mincost: 'Min cost $2,298.60 over 36 months. Plan cost additional.',
+      },
+      {
+        title: 'Samsung Galaxy S25 FE',
+        href: 'https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-s25-fe',
+        brand: 'Samsung',
+        badges: ['5g', 'esim'],
+        image: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-s25-fe/samsung-galaxy-s25-fe-navy-01-m.webp',
+        recurringCharge: '30.52',
+        wasPrice: '15.25',
+        mincost: 'Min cost $698.40 over 36 months. Plan cost additional.',
+      },
+      {
+        title: 'Samsung Galaxy A36 5G',
+        href: 'https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-a36-5g',
+        brand: 'Samsung',
+        badges: ['5g', 'esim'],
+        image: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-a36-5g/samsung-galaxy-a36-5g-awesome-lavender-01-m.webp',
+        recurringCharge: '4.00',
+        wasPrice: '15.25',
+        mincost: 'Min cost $144.00 over 36 months. Plan cost additional.',
+      },
+    ],
   },
+
+  // ── SIM ONLY tab ──────────────────────────────────────────────────────────
   simonly: [
     {
       title: 'Small SIM Only Plan',
@@ -57,6 +150,8 @@ var DCP16910Data = {
       tcTooltip: 'Reverts to standard pricing after 12 months. T&C apply.',
     },
   ],
+
+  // ── PREPAID tab ───────────────────────────────────────────────────────────
   prepaid: [
     {
       title: '$200 Prepaid Plus Starter Pack',
@@ -81,6 +176,8 @@ var DCP16910Data = {
       tcTooltip: null,
     },
   ],
+
+  // ── HOME INTERNET tab ─────────────────────────────────────────────────────
   homeinternet: [
     {
       title: '5G Home Internet',
@@ -111,38 +208,40 @@ var DCP16910Data = {
 // BADGE CONFIG
 // ─────────────────────────────────────────────
 var DCP16910Badges = {
-  '5g':   { alt: '5G approved device',  src: 'https://www.vodafone.com.au/images/icons/5g.svg' },
+  '5g':  { alt: '5G approved device',   src: 'https://www.vodafone.com.au/images/icons/5g.svg' },
   'esim': { alt: 'eSIM-enabled device', src: 'https://www.vodafone.com.au/images/icons/e-sim-logo.svg' },
 };
 
 // ─────────────────────────────────────────────
-// TEMPLATE BUILDERS — 生成与原 hard-code 完全相同的 HTML 结构
+// TEMPLATE BUILDERS
 // ─────────────────────────────────────────────
 var DCP16910Templates = {
 
-  badges: function (keys) {
-    return (keys || []).map(function (k) {
-      var b = DCP16910Badges[k];
+  /** Badge img tags */
+  badges: function (badgeKeys) {
+    return (badgeKeys || []).map(function (key) {
+      var b = DCP16910Badges[key];
       return b ? '<img alt="' + b.alt + '" src="' + b.src + '" />' : '';
     }).join('');
   },
 
-  srcset: function (url) {
-    var base = 'https://www.vodafone.com.au/_next/image?url=' + encodeURIComponent(url);
-    return base + '&w=256&q=75,\n                  ' + base + '&w=384&q=75 2x';
+  /** Responsive srcset from a single image URL */
+  srcset: function (imageUrl) {
+    var base = 'https://www.vodafone.com.au/_next/image?url=' + encodeURIComponent(imageUrl);
+    return base + '&w=256&q=75, ' + base + '&w=384&q=75 2x';
   },
 
+  /** Single device card */
   deviceCard: function (d) {
     var wasHtml = d.wasPrice
       ? '<span class="device-was-price">$' + d.wasPrice + '</span>'
       : '';
+
     return [
       '<a class="deviceCard itemCard" title="' + d.title + '" href="' + d.href + '" aria-hidden="false">',
         '<div class="device-item">',
           '<div class="device-item-device">',
-            '<div class="device-item-badge">',
-              DCP16910Templates.badges(d.badges),
-            '</div>',
+            '<div class="device-item-badge">' + DCP16910Templates.badges(d.badges) + '</div>',
             '<img alt="' + d.title + '" srcset="' + DCP16910Templates.srcset(d.image) + '" />',
             '<p class="brand">' + d.brand + '</p>',
             '<p class="device-name">' + d.title + '</p>',
@@ -161,11 +260,13 @@ var DCP16910Templates = {
     ].join('');
   },
 
+  /** Single plan card (SIM only / Prepaid / Home Internet) */
   planCard: function (p) {
     var exclusiveClass = p.onlineExclusive ? 'onlineExclusive' : 'XonlineExclusive';
     var tooltipHtml = p.tcTooltip
-      ? '<tooltip copy="' + p.tcTooltip.replace(/"/g, '&quot;') + '">T&amp;C apply.</tooltip>'
+      ? ' <tooltip copy="' + p.tcTooltip.replace(/"/g, '&quot;') + '">T&amp;C apply.</tooltip>'
       : '';
+
     return [
       '<a class="planCard itemCard ' + exclusiveClass + '" title="' + p.title + '" href="' + p.href + '" aria-hidden="false">',
         '<div class="plan-item">',
@@ -173,7 +274,7 @@ var DCP16910Templates = {
           '<div class="plan-text">',
             '<h3 class="plan-heading">' + p.heading + '</h3>',
             '<p class="plan-subheading">' + p.subheading + '</p>',
-            '<p class="plan-tc">' + p.tc + ' ' + tooltipHtml + '</p>',
+            '<p class="plan-tc">' + p.tc + tooltipHtml + '</p>',
             '<p class="plan-link">Shop now</p>',
           '</div>',
         '</div>',
@@ -181,666 +282,179 @@ var DCP16910Templates = {
     ].join('');
   },
 
-  deviceSet: function (id, devices) {
-    return '<div class="deviceSet" id="' + id + '">' +
-      devices.map(DCP16910Templates.deviceCard).join('') +
-      '</div>';
+  /** Phone deviceSet group (one cohort: popularDevices / appleDevices / androidDevices) */
+  deviceSet: function (cohortId, devices) {
+    return [
+      '<div class="deviceSet" id="' + cohortId + '">',
+        devices.map(DCP16910Templates.deviceCard).join(''),
+      '</div>',
+    ].join('');
   },
 
-  // 生成 phones tab 下的三组 deviceSet
-  phonesContent: function () {
-    var p = DCP16910Data.phones;
-    return DCP16910Templates.deviceSet('popularDevices',  p.popularDevices) +
-           DCP16910Templates.deviceSet('appleDevices',    p.appleDevices) +
-           DCP16910Templates.deviceSet('androidDevices',  p.androidDevices);
+  /** Full tab content for plan-type tabs */
+  planTabContent: function (cat, plans) {
+    return [
+      '<div class="DCP16910Wrapper_tabItem planCardContainer" data-cat="' + cat + '">',
+        plans.map(DCP16910Templates.planCard).join(''),
+      '</div>',
+    ].join('');
   },
 
-  // 生成 plan 类 tab 的卡片列表
-  planContent: function (plans) {
-    return plans.map(DCP16910Templates.planCard).join('');
+  /** Full tab content for the phones tab (contains three cohort deviceSets) */
+  phonesTabContent: function () {
+    var phonesData = DCP16910Data.phones;
+    return [
+      '<div class="DCP16910Wrapper_tabItem deviceCardContainer" data-cat="phones">',
+        DCP16910Templates.deviceSet('popularDevices',  phonesData.popularDevices),
+        DCP16910Templates.deviceSet('appleDevices',    phonesData.appleDevices),
+        DCP16910Templates.deviceSet('androidDevices',  phonesData.androidDevices),
+      '</div>',
+    ].join('');
+  },
+
+  /** Tab nav items */
+  tabNav: function (tabs) {
+    return tabs.map(function (t, i) {
+      return '<li data-cat="' + t.cat + '" tabindex="0"' + (i === 0 ? ' class="active"' : '') + '>' + t.label + '</li>';
+    }).join('');
+  },
+
+  /** Modal shell (static) */
+  modal: function () {
+    return [
+      '<div class="modal">',
+        '<div class="tooltip">',
+          '<div class="text"><p class="copy"></p></div>',
+          '<div class="close-link">',
+            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="presentation" class="close-icon">',
+              '<g fill="none" fill-rule="evenodd">',
+                '<path d="M0 0h24v24H0z"></path>',
+                '<path d="M20 4L4 20M4 4l16 16" stroke="currentColor" stroke-linecap="round"></path>',
+              '</g>',
+            '</svg>',
+          '</div>',
+        '</div>',
+      '</div>',
+    ].join('');
+  },
+
+  /** Assemble the full widget HTML */
+  build: function () {
+    var tabs = [
+      { cat: 'phones',       label: 'Phones'        },
+      { cat: 'simonly',      label: 'SIM only'       },
+      { cat: 'prepaid',      label: 'Prepaid'        },
+      { cat: 'homeinternet', label: 'Home internet'  },
+    ];
+
+    return [
+      '<div id="DCP16910Wrapper">',
+        '<h2 id="DCP16910WrapperHeading">Popular offers for you</h2>',
+        '<div id="DCP16910Wrapper_tabs">',
+          '<ul>' + DCP16910Templates.tabNav(tabs) + '</ul>',
+        '</div>',
+        '<div id="DCP16910Wrapper_tabContents">',
+          DCP16910Templates.phonesTabContent(),
+          DCP16910Templates.planTabContent('simonly',      DCP16910Data.simonly),
+          DCP16910Templates.planTabContent('prepaid',      DCP16910Data.prepaid),
+          DCP16910Templates.planTabContent('homeinternet', DCP16910Data.homeinternet),
+          DCP16910Templates.modal(),
+        '</div>',
+      '</div>',
+    ].join('');
   },
 };
 
 // ─────────────────────────────────────────────
-// 原始 CSS + HTML 骨架（结构完全不变，只清空内容区让 JS 填入）
+// CSS (unchanged from original)
+// ─────────────────────────────────────────────
+var DCP16910CSS = `<style>
+/* Slider */
+.slick-slider{position:relative;display:block;box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none;-khtml-user-select:none;-ms-touch-action:pan-y;touch-action:pan-y;-webkit-tap-highlight-color:transparent}.slick-list{position:relative;display:block;overflow:hidden;margin:0;padding:0}.slick-list:focus{outline:none}.slick-list.dragging{cursor:pointer;cursor:hand}.slick-slider .slick-track,.slick-slider .slick-list{-webkit-transform:translate3d(0,0,0);-moz-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);-o-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}.slick-track{position:relative;top:0;left:0;display:block;margin-left:auto;margin-right:auto}.slick-track:before,.slick-track:after{display:table;content:""}.slick-track:after{clear:both}.slick-loading .slick-track{visibility:hidden}.slick-slide{display:none;float:left;height:auto;min-height:1px}[dir="rtl"] .slick-slide{float:right}.slick-slide img{display:block}.slick-slide.slick-loading img{display:none}.slick-slide.dragging img{pointer-events:none}.slick-initialized .slick-slide{display:block}.slick-loading .slick-slide{visibility:hidden}.slick-vertical .slick-slide{display:block;height:auto;border:1px solid transparent}.slick-arrow.slick-hidden{display:none}
+.slick-arrow{z-index:2;text-indent:-99999px;cursor:pointer;border:2px solid #333;top:126px;width:48px;height:48px;border-radius:24px;box-shadow:0 2px 12px 0 rgba(0,0,0,.08);position:absolute;background-color:#fff!important}.slick-arrow.slick-prev{left:-10px}.slick-arrow.slick-prev:before{display:block;content:"";width:36px;height:36px;position:absolute;left:1px;top:24px;transform:translateY(-50%) rotate(90deg);background-image:url("data:image/svg+xml, %3Csvg width='36' height='36' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' style='stroke-width:2px' fill-rule='evenodd'%3E%3Cpath fill='none' d='M32 0H0v32h32z' /%3E%3Cpath stroke='%23333333' stroke-linecap='round' stroke-linejoin='round' d='M4.667 11.333L16 22.667l11.333-11.334' /%3E%3C/g%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right center;background-size:contain}.slick-arrow.slick-next{right:-10px}.slick-arrow.slick-next:before{display:block;content:"";width:36px;height:36px;position:absolute;left:6px;top:20px;transform:translateY(-50%) rotate(270deg);background-image:url("data:image/svg+xml, %3Csvg width='36' height='36' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' style='stroke-width:2px' fill-rule='evenodd'%3E%3Cpath fill='none' d='M32 0H0v32h32z' /%3E%3Cpath stroke='%23333333' stroke-linecap='round' stroke-linejoin='round' d='M4.667 11.333L16 22.667l11.333-11.334' /%3E%3C/g%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right center;background-size:contain}.slick-arrow:hover{border:2px solid #333;background-color:#333!important}.slick-arrow:focus{border:2px solid #007c92;background-color:#333!important}.slick-arrow.slick-prev:hover:before,.slick-arrow.slick-prev:focus:before{background-image:url("data:image/svg+xml, %3Csvg width='36' height='36' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' style='stroke-width:2px' fill-rule='evenodd'%3E%3Cpath fill='none' d='M32 0H0v32h32z' /%3E%3Cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' d='M4.667 11.333L16 22.667l11.333-11.334' /%3E%3C/g%3E%3C/svg%3E")}.slick-arrow.slick-next:hover:before,.slick-arrow.slick-next:focus:before{background-image:url("data:image/svg+xml, %3Csvg width='36' height='36' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' style='stroke-width:2px' fill-rule='evenodd'%3E%3Cpath fill='none' d='M32 0H0v32h32z' /%3E%3Cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' d='M4.667 11.333L16 22.667l11.333-11.334' /%3E%3C/g%3E%3C/svg%3E")}.slick-arrow.slick-disabled{display:none!important}
+
+#DCP16910Wrapper{padding:60px 0 0;background:#f4f4f4}
+@media(max-width:768px){#DCP16910Wrapper{padding:30px 0 0}}
+#DCP16910Wrapper h2#DCP16910WrapperHeading{color:#25282b;text-align:center;font-size:44px;font-weight:300;line-height:52px;font-family:VodafoneLight,Arial,sans-serif;margin:0}
+@media(max-width:768px){#DCP16910Wrapper h2#DCP16910WrapperHeading{font-size:32px;line-height:40px}}
+#DCP16910Wrapper_tabs ul{display:flex;gap:20px;justify-content:center;border-bottom:1px solid #ccc;margin:48px 0;overflow:auto}
+@media(max-width:768px){#DCP16910Wrapper_tabs ul{margin:24px 0;padding:0;justify-content:flex-start}}
+#DCP16910Wrapper_tabs ul li{list-style:none;font-size:18px;font-weight:400;line-height:24px;padding:16px 0;min-width:110px;max-width:200px;text-align:center;cursor:pointer}
+#DCP16910Wrapper_tabs ul li.active{border-bottom:2px solid red}
+@media(max-width:1280px){.planCardContainer .planCard .plan-item{min-height:550px}}
+@media(max-width:1024px){.planCardContainer .planCard .plan-item{min-height:530px}}
+@media(max-width:768px){.planCardContainer .planCard .plan-item{min-height:auto}}
+.deviceCardContainer{max-width:1180px;margin:auto}
+.deviceCardContainer .deviceCard{text-decoration:none;margin:0 10px}
+.DCP16910Wrapper_tabItem .itemCard.onlineExclusive:before{content:'Online exclusive';background:#9c2aa0;padding:6px 18px;bottom:6px;position:relative;color:#fff;font-size:16px;line-height:22px;border-radius:6px 6px 6px 0}
+.DCP16910Wrapper_tabItem .itemCard.XonlineExclusive:before{content:' ';background:none;padding:6px 18px;bottom:6px;position:relative;color:#fff;font-size:16px;line-height:22px;border-radius:6px 6px 6px 0}
+.deviceCardContainer .deviceCard .device-item{color:#333;padding:20px 16px 26px;background-color:#fff;border-radius:6px;box-shadow:rgba(0,0,0,.16) 0 2px 8px 0}
+.deviceCardContainer .deviceCard .device-item .device-item-badge img{margin:0;width:45px;height:45px;display:inline-block}
+@keyframes SeniorEntered{100%{background-position:left center}}
+.deviceCardContainer .deviceCard .device-item .device-saving{height:24px;width:fit-content;padding:5px 10px;margin:5px 0;background:linear-gradient(to right,#9c2aa0 50%,#fff 50%) right center/200% 200%;animation:1s ease 0s 1 normal forwards running SeniorEntered;font-size:14px;line-height:1;text-align:center;color:#fff;white-space:nowrap;font-family:VodafoneRegular,Arial,sans-serif}
+.deviceCardContainer .deviceCard .device-item img{width:168px;height:auto;margin:20px auto;display:block}
+.deviceCardContainer .deviceCard .device-item p{margin:0}
+.deviceCardContainer .deviceCard .device-item .brand{font-size:14px;line-height:18px;font-family:VodafoneRegular,Arial,sans-serif}
+.deviceCardContainer .deviceCard .device-item .device-name{margin-bottom:16px;color:#333;font-family:VodafoneRegularBold,Arial,sans-serif;font-size:18px;line-height:24px}
+.deviceCardContainer .deviceCard .device-item .device-prefix{font-size:14px;line-height:18px;padding-top:10px}
+.deviceCardContainer .deviceCard .device-item .device-price{position:relative}
+.deviceCardContainer .deviceCard .device-item .device-price .dollar{font-family:VodafoneRegularBold,Arial,sans-serif;display:inline-block;vertical-align:top;font-size:18px;line-height:36px}
+.deviceCardContainer .deviceCard .device-item .device-price .device-recurringCharge{font-family:VodafoneRegularBold,Arial,sans-serif;font-size:40px;line-height:48px}
+.deviceCardContainer .deviceCard .device-item .device-price .device-was-price{font-size:14px;line-height:18px;padding:3px 0 0 2px;text-decoration:line-through;position:absolute;top:3px}
+.deviceCardContainer .deviceCard .device-item .device-price .mth{display:inline-block;font-size:14px;line-height:18px;padding:3px 0 0 2px}
+.deviceCardContainer .deviceCard .device-item .device-mincost{margin-top:12px;font-size:14px;line-height:18px}
+.deviceCardContainer .deviceCard .device-item .primaryBtn{width:100%;height:auto;margin:30px auto 0;border-radius:6px;padding:8px 24px;line-height:24px;font-family:VodafoneLight,Arial,sans-serif;font-size:18px;text-align:center;text-decoration:none;outline:none;white-space:nowrap;box-sizing:border-box;border-color:#e60000;background:#e60000;color:#fff;display:block}
+.deviceCardContainer .deviceCard .device-item .primaryBtn:hover{background:#900;border-color:#900}
+.deviceCardContainer .deviceCard .device-item .device-item-offer{display:flex;padding:0 16px;background-color:#f4f4f4;min-height:36px;align-items:center;flex-direction:row;width:100%;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;margin:20px 0 -16px -16px}
+.deviceCardContainer .deviceCard .device-item .device-item-offer img{margin-right:12px;width:24px;height:24px;flex-grow:1}
+.deviceCardContainer .deviceCard .device-item .device-item-offer p{margin:0;font-size:14px;line-height:18px;color:#333;max-width:780px;flex-grow:4}
+.planCardContainer{max-width:1180px;margin:auto}
+.planCardContainer .planCard{text-decoration:none;margin:0 10px}
+.planCardContainer .planCard .plan-item{border-radius:16px;border:2px solid #000;background:#fef1f1;box-shadow:rgba(0,0,0,.16) 0 2px 8px 0;overflow:hidden;padding-bottom:50px}
+.planCardContainer .planCard .plan-item img{width:100%;width:-moz-available;width:-webkit-fill-available;width:stretch;margin:32px 32px 0;border:2px solid #000;border-radius:16px}
+@media(max-width:1024px){.planCardContainer .planCard .plan-item img{margin:24px 24px 0}}
+@media(max-width:768px){.planCardContainer .planCard .plan-item img{margin:16px 16px 0;border-radius:14px}}
+.planCardContainer .planCard .plan-item .plan-text{padding:24px 30px;color:#333}
+.planCardContainer .planCard .plan-item .plan-text .plan-heading{margin:0;font-size:24px;line-height:30px;font-weight:700;font-family:VodafoneRegularBold,Arial,sans-serif!important}
+.planCardContainer .planCard .plan-item .plan-text .plan-subheading{margin:16px 0;font-size:18px;font-weight:400;line-height:24px}
+.planCardContainer .planCard .plan-item .plan-text .plan-tc{font-size:14px;font-weight:400;line-height:18px;margin-bottom:0}
+.planCardContainer .planCard .plan-item .plan-text .plan-tc tooltip{text-decoration:underline;cursor:pointer;color:#e60000;position:relative;z-index:1}
+.planCardContainer .planCard .plan-item .plan-text .plan-tc tooltip:hover{text-decoration:none}
+.planCardContainer .planCard .plan-item .plan-text .plan-link{margin-top:24px;font-size:18px;font-weight:700;line-height:24px;color:#ea1a1a;padding-right:30px;position:absolute;display:inline-block;margin-bottom:0}
+.planCardContainer .planCard .plan-item .plan-text .plan-link:after{display:block;content:'';width:20px;height:20px;top:3px;right:8px;position:absolute;transform:rotate(270deg);background-image:url("data:image/svg+xml, %3Csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath fill='none' d='M32 0H0v32h32z' /%3E%3Cpath stroke='%23EA1A1A' style='stroke-width:2px' stroke-linecap='round' stroke-linejoin='round' d='M4.667 11.333L16 22.667l11.333-11.334' /%3E%3C/g%3E%3C/svg%3E");background-size:100%;transition:all .2s ease-in-out}
+.planCardContainer .planCard .plan-item .plan-text .plan-link:hover::after{transition:all .2s ease-in-out;right:0}
+#DCP16910Wrapper_tabContents{position:relative;width:90%;max-width:1180px;margin:0 auto;min-height:600px}
+@media(max-width:768px){#DCP16910Wrapper_tabContents{min-height:550px}}
+.DCP16910Wrapper_tabItem{left:-99999px;position:absolute;width:100%}
+.DCP16910Wrapper_tabItem.active{left:0}
+.DCP16910Wrapper_tabItem .deviceSet{left:-99999px;position:absolute;width:100%}
+.DCP16910Wrapper_tabItem .deviceSet.active{left:0}
+div.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:830;background-color:rgba(0,0,0,.5);align-items:center;justify-content:center}
+div.modal .tooltip{position:relative;display:flex;flex-direction:column;background-color:#fff;width:80%;max-height:95%;overflow-y:auto;color:#333;padding:40px 60px 48px;border-radius:6px;margin:0 16px;max-width:768px}
+div.modal .close-link{border:none;margin:0;padding:0;width:auto;background:rgba(0,0,0,0);line-height:normal;-webkit-appearance:none;-moz-appearance:none;appearance:none;align-self:flex-end;cursor:pointer;z-index:10;position:fixed;margin-top:-30px;margin-right:-50px}
+div.modal .close-link svg.close-icon{position:relative;color:#333;display:block;height:24px;width:24px}
+div.modal h3{margin-bottom:24px;font-size:40px;line-height:48px}
+div.modal h4{font-family:VodafoneRegular,Arial,sans-serif;margin-bottom:15px}
+div.modal ol{margin:-10px 0 20px;padding:0 0 0 16px}
+div.modal ol.list2{margin:-10px 0 20px;padding:0 0 0 1px!important;list-style:disc;margin-left:16px}
+.list2 li{padding:8px 0}
+div.modal p.text{font-size:18px;line-height:24px}
+div.modal p.term{font-size:12px;line-height:16px}
+@media(max-width:768px){div.modal h3{font-size:24px;line-height:30px}div.modal p.text{font-size:16px;line-height:22px}div.modal .tooltip{width:100%;margin:0;border-radius:0;padding:24px 16px 32px}div.modal .close-link{margin-top:-10px;margin-right:-10px}div.modal h3{margin-bottom:16px}}
+</style>`;
+
+// ─────────────────────────────────────────────
+// MAIN CONTROLLER  (logic unchanged from original)
 // ─────────────────────────────────────────────
 var DCP16910Fn = {
   aid: 'DCP-16910',
   config: {
     checkingKey: '',
     targetPaths: ['/', '/agents/DCP-16910/', '/cro-demo'],
-
-    cssCode: `/* Slider */
-.slick-slider {
-  position: relative;
-  display: block;
-  box-sizing: border-box;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-touch-callout: none;
-  -khtml-user-select: none;
-  -ms-touch-action: pan-y;
-  touch-action: pan-y;
-  -webkit-tap-highlight-color: transparent;
-}
-.slick-list {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-}
-.slick-list:focus {
-  outline: none;
-}
-.slick-list.dragging {
-  cursor: pointer;
-  cursor: hand;
-}
-.slick-slider .slick-track,
-.slick-slider .slick-list {
-  -webkit-transform: translate3d(0, 0, 0);
-  -moz-transform: translate3d(0, 0, 0);
-  -ms-transform: translate3d(0, 0, 0);
-  -o-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-}
-.slick-track {
-  position: relative;
-  top: 0;
-  left: 0;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-.slick-track:before,
-.slick-track:after {
-  display: table;
-  content: "";
-}
-.slick-track:after {
-  clear: both;
-}
-.slick-loading .slick-track {
-  visibility: hidden;
-}
-.slick-slide {
-  display: none;
-  float: left;
-  height: auto;
-  min-height: 1px;
-}
-[dir="rtl"] .slick-slide {
-  float: right;
-}
-.slick-slide img {
-  display: block;
-}
-.slick-slide.slick-loading img {
-  display: none;
-}
-.slick-slide.dragging img {
-  pointer-events: none;
-}
-.slick-initialized .slick-slide {
-  display: block;
-}
-.slick-loading .slick-slide {
-  visibility: hidden;
-}
-.slick-vertical .slick-slide {
-  display: block;
-  height: auto;
-  border: 1px solid transparent;
-}
-.slick-arrow.slick-hidden {
-  display: none;
-}
-
-.slick-arrow {
-  z-index: 2;
-  text-indent: -99999px;
-  cursor: pointer;
-  border: 2px solid #333333;
-  top: 126px;
-  width: 48px;
-  height: 48px;
-  border-radius: 24px;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.08);
-  position: absolute;
-  background-color: rgb(255, 255, 255) !important;
-}
-.slick-arrow.slick-prev {
-  left: -10px;
-}
-.slick-arrow.slick-prev:before {
-  display: block;
-  content: "";
-  width: 36px;
-  height: 36px;
-  position: absolute;
-  left: 1px;
-  top: 24px;
-  transform: translateY(-50%) rotate(90deg);
-  background-image: url("data:image/svg+xml, %3Csvg width='36' height='36' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' style='stroke-width:2px' fill-rule='evenodd'%3E%3Cpath fill='none' d='M32 0H0v32h32z' /%3E%3Cpath stroke='%23333333' stroke-linecap='round' stroke-linejoin='round' d='M4.667 11.333L16 22.667l11.333-11.334' /%3E%3C/g%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right center;
-  background-size: contain;
-}
-.slick-arrow.slick-next {
-  right: -10px;
-}
-.slick-arrow.slick-next:before {
-  display: block;
-  content: "";
-  width: 36px;
-  height: 36px;
-  position: absolute;
-  left: 6px;
-  top: 20px;
-  transform: translateY(-50%) rotate(270deg);
-  background-image: url("data:image/svg+xml, %3Csvg width='36' height='36' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' style='stroke-width:2px' fill-rule='evenodd'%3E%3Cpath fill='none' d='M32 0H0v32h32z' /%3E%3Cpath stroke='%23333333' stroke-linecap='round' stroke-linejoin='round' d='M4.667 11.333L16 22.667l11.333-11.334' /%3E%3C/g%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right center;
-  background-size: contain;
-}
-.slick-arrow:hover{
-  border: 2px solid #333333;
-  background-color: #333333 !important;
-}
-.slick-arrow:focus {
-  border: 2px solid #007C92;
-  background-color: #333333 !important;
-}
-.slick-arrow.slick-prev:hover:before, .slick-arrow.slick-prev:focus:before{
-    background-image: url("data:image/svg+xml, %3Csvg width='36' height='36' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' style='stroke-width:2px' fill-rule='evenodd'%3E%3Cpath fill='none' d='M32 0H0v32h32z' /%3E%3Cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' d='M4.667 11.333L16 22.667l11.333-11.334' /%3E%3C/g%3E%3C/svg%3E");
-}
-.slick-arrow.slick-next:hover:before, .slick-arrow.slick-next:focus:before {
-    background-image: url("data:image/svg+xml, %3Csvg width='36' height='36' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' style='stroke-width:2px' fill-rule='evenodd'%3E%3Cpath fill='none' d='M32 0H0v32h32z' /%3E%3Cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' d='M4.667 11.333L16 22.667l11.333-11.334' /%3E%3C/g%3E%3C/svg%3E");
-}
-.slick-arrow.slick-disabled {
-  display: none !important;
-}
-
-#DCP16910Wrapper{
-    padding: 60px 0px 0px 0px;
-    background: #f4f4f4;
-        @media (max-width: 768px) {
-                padding: 30px 0px 0px 0px;
-        }
-}
-#DCP16910Wrapper h2#DCP16910WrapperHeading{
-    color:  #25282B;
-    text-align: center;
-    font-size: 44px;
-    font-weight: 300;
-    line-height: 52px;
-    font-family: VodafoneLight, Arial, sans-serif;
-    margin: 0;
-    @media (max-width: 768px) {
-        font-size: 32px;
-        line-height: 40px;
-    }
-}
-#DCP16910Wrapper_tabs ul{
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    border-bottom: 1px solid #CCCCCC;
-    margin: 48px 0;
-    overflow: auto;
-    @media (max-width: 768px) {
-        margin: 24px 0;
-    }
-}
-#DCP16910Wrapper_tabs ul li{
-    list-style: none;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 24px;
-    padding: 16px 0;
-    min-width: 110px;
-    max-width: 200px;
-    text-align: center;
-    cursor: pointer;
-}
-#DCP16910Wrapper_tabs ul li.active{
-    border-bottom: 2px solid red;
-}
-@media (max-width: 1280px) {
-    .planCardContainer .planCard .plan-item {
-        min-height: 550px;
-    }
-}
-@media (max-width: 1024px) {
-    .planCardContainer .planCard .plan-item {
-        min-height: 530px;
-    }
-}
-@media (max-width: 768px) {
-    .planCardContainer .planCard .plan-item {
-        min-height: auto;
-    }
-    #DCP16910Wrapper_tabs ul{
-        padding: 0;
-        justify-content: flex-start;
-        margin: 24px 0;
-    }
-}
-.deviceCardModule{
-    margin: 50px auto;
-}
-.deviceCardContainer{
-    max-width: 1180px;
-    margin: auto;
-}
-.deviceCardContainer .deviceCard{
-    text-decoration: none;
-    margin:0 10px;
-}
-.DCP16910Wrapper_tabItem .itemCard{
-    padding: 10px 0;
-}
-.DCP16910Wrapper_tabItem .itemCard.onlineExclusive:before{
-    content: 'Online exclusive';
-    background: #9C2AA0;
-    padding: 6px 18px;
-    bottom: 6px;
-    position: relative;
-    color: #fff;
-    font-size: 16px;
-    line-height: 22px;
-    border-radius: 6px 6px 6px 0;
-}
-.DCP16910Wrapper_tabItem .itemCard.XonlineExclusive:before{
-    content: ' ';
-    background: none;
-    padding: 6px 18px;
-    bottom: 6px;
-    position: relative;
-    color: #fff;
-    font-size: 16px;
-    line-height: 22px;
-    border-radius: 6px 6px 6px 0;
-}
-.deviceCardContainer .deviceCard .device-item {
-    color: rgb(51, 51, 51);
-    padding: 20px 16px 26px 16px;
-    background-color: #fff;
-    border-radius: 6px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 8px 0px;
-}
-.deviceCardContainer .deviceCard .device-item .device-item-badge img{
-    margin: 0;
-}
-@keyframes SeniorEntered {
-    100% {
-        background-position: left center
-    }
-}
-.deviceCardContainer .deviceCard .device-item .device-saving{
-    height: 24px;
-    width: fit-content;
-    padding: 5px 10px;
-    margin: 5px 0px;
-    background: linear-gradient(to right, rgb(156, 42, 160) 50%, white 50%) right center / 200% 200%;
-    animation: 1s ease 0s 1 normal forwards running SeniorEntered;
-    font-size: 14px;
-    line-height: 1;
-    letter-spacing: normal;
-    text-align: center;
-    color: rgb(255, 255, 255);
-    white-space: nowrap;
-    font-family: VodafoneRegular, Arial, sans-serif;
-}
-.deviceCardContainer .deviceCard .device-item .device-item-badge img {
-    width: 45px;
-    height: 45px;
-    display: inline-block;
-}
-.deviceCardContainer .deviceCard .device-item img {
-    width: 168px;
-    height: auto;
-    margin: 20px auto;
-    display: block;
-}
-.deviceCardContainer .deviceCard .device-item p {
-    margin: 0;
-}
-.deviceCardContainer .deviceCard .device-item .brand {
-    font-size: 14px;
-    line-height: 18px;
-    font-family: VodafoneRegular, Arial, sans-serif;
-}
-.deviceCardContainer .deviceCard .device-item .device-name {
-    margin-bottom: 0px;
-    color: rgb(51, 51, 51);
-    font-family: VodafoneRegularBold, Arial, sans-serif;
-    margin-bottom: 16px;
-    font-size: 18px;
-    line-height: 24px;
-}
-.deviceCardContainer .deviceCard .device-item .device-prefix {
-    font-size: 14px;
-    line-height: 18px;
-    padding-top:10px;
-}
-.deviceCardContainer .deviceCard .device-item .device-price {
-    position: relative;
-}
-.deviceCardContainer .deviceCard .device-item .device-price .dollar {
-    font-family: VodafoneRegularBold, Arial, sans-serif;
-    display: inline-block;
-    vertical-align: top;
-    font-size: 18px;
-    line-height: 36px;
-}
-.deviceCardContainer .deviceCard .device-item .device-price .device-recurringCharge {
-    font-family: VodafoneRegularBold, Arial, sans-serif;
-    font-size: 40px;
-    line-height: 48px;
-    padding-right: 0px;
-}
-.deviceCardContainer .deviceCard .device-item .device-price .device-was-price {
-    font-size: 14px;
-    line-height: 18px;
-    padding: 3px 0px 0px 2px;
-    text-decoration: line-through;
-    position: absolute;
-    top: 3px;
-}
-.deviceCardContainer .deviceCard .device-item .device-price .mth {
-    display: inline-block;
-    font-size: 14px;
-    line-height: 18px;
-    padding: 3px 0px 0px 2px;
-}
-.deviceCardContainer .deviceCard .device-item .device-mincost {
-    margin-top: 12px;
-    font-size: 14px;
-    line-height: 18px;
-}
-.deviceCardContainer .deviceCard .device-item .primaryBtn {
-    width: 100%;
-    height: auto;
-    margin: 30px auto 0 auto;
-    border-radius: 6px;
-    padding: 8px 24px;
-    line-height: 24px;
-    font-family: "VodafoneLight", Arial, sans-serif;
-    font-size: 18px;
-    font-kerning: none;
-    text-align: center;
-    text-overflow: ellipsis;
-    text-decoration: none;
-    outline: none;
-    pointer-events: auto;
-    user-select: none;
-    white-space: nowrap;
-    vertical-align: middle;
-    box-sizing: border-box;
-    border-color: #e60000;
-    background: #e60000;
-    color: rgb(255, 255, 255);
-}
-.deviceCardContainer .deviceCard .device-item .primaryBtn:hover {
-    background: #900;
-    border-color: #900;
-}
-.deviceCardContainer .deviceCard .device-item .device-item-offer {
-    display: flex;
-    padding: 0px 16px;
-    background-color: rgb(244, 244, 244);
-    min-height: 36px;
-    align-content: center;
-    -webkit-box-align: center;
-    align-items: center;
-    box-sizing: unset;
-    flex-direction: row;
-    width: 100%;
-    border-bottom-left-radius: inherit;
-    border-bottom-right-radius: inherit;
-    margin: 20px 0px -16px -16px;
-}
-.deviceCardContainer .deviceCard .device-item .device-item-offer img{
-    margin-right: 12px;
-    width: 24px;
-    height: 24px;
-    flex-grow: 1;
-}
-.deviceCardContainer .deviceCard .device-item .device-item-offer p{
-    margin: 0px;
-    font-size: 14px;
-    line-height: 18px;
-    color: rgb(51, 51, 51);
-    max-width: 780px;
-    flex-grow: 4;
-}
-.planCardContainer{
-    max-width: 1180px;
-    margin: auto;
-}
-.planCardContainer .planCard{
-    text-decoration: none;
-    margin:0 10px;
-}
-.planCardContainer .planCard .plan-item{
-    border-radius: 16px;
-    border: 2px solid #000;
-    background: #FEF1F1;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 8px 0px;
-    overflow: hidden;
-    padding-bottom: 50px;
-}
-.planCardContainer .planCard .plan-item img{
-    width: 100%;
-    width: -moz-available;
-    width: -webkit-fill-available;
-    width: stretch;
-    margin: 32px 32px 0 32px;
-    border: 2px solid #000;
-    border-radius: 16px;
-    @media (max-width: 1024px) {
-        margin: 24px 24px 0 24px;
-    }
-    @media (max-width: 768px) {
-        margin: 16px 16px 0 16px;
-        border-radius: 14px;
-    }
-}
-.planCardContainer .planCard .plan-item .plan-text{
-    padding: 24px 30px;
-    color: #333;
-}
-.planCardContainer .planCard .plan-item .plan-text .plan-heading{
-    margin: 0;
-    font-size: 24px;
-    line-height: 30px;
-    font-weight: 700;
-    font-family: VodafoneRegularBold, Arial, sans-serif !important;
-}
-.planCardContainer .planCard .plan-item .plan-text  .plan-subheading{
-    margin:16px 0;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 24px;
-}
-.planCardContainer .planCard .plan-item .plan-text  .plan-tc{
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 18px;
-    margin-bottom: 0;;
-}
-.planCardContainer .planCard .plan-item .plan-text .plan-tc tooltip{
-    text-decoration: underline;
-    cursor: pointer;
-    color: #E60000;
-    position: relative;
-    z-index: 1;
-    &:hover {
-        text-decoration: none;
-    }
-}
-.planCardContainer .planCard .plan-item .plan-text  .plan-link{
-    margin-top:24px;
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 24px;
-    color:#EA1A1A;
-    padding-right: 30px;
-    position: absolute;
-    display: inline-block;
-    margin-bottom: 0;
-}
-.planCardContainer .planCard .plan-item .plan-text  .plan-link:after{
-    display: block;
-    content: '';
-    width: 20px;
-    height: 20px;
-    top: 3px;
-    right: 8px;
-    position: absolute;
-    transform: rotate(270deg);
-    background-image: url("data:image/svg+xml, %3Csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath fill='none' d='M32 0H0v32h32z' /%3E%3Cpath stroke='%23EA1A1A' style='stroke-width:2px' stroke-linecap='round' stroke-linejoin='round' d='M4.667 11.333L16 22.667l11.333-11.334' /%3E%3C/g%3E%3C/svg%3E");
-    background-size: 100%;
-    transition: all 0.2s ease-in-out 0s;
-}
-.planCardContainer .planCard .plan-item .plan-text  .plan-link:hover::after {
-    transition: all 0.2s ease-in-out;
-    right: 0;
-}
-#DCP16910Wrapper_tabContents{
-    position: relative;
-    width: 90%;
-    max-width: 1180px;
-    margin: 0 auto;
-    min-height: 600px;
-    @media (max-width: 768px) {
-        min-height: 550px;
-    }
-}
-.DCP16910Wrapper_tabItem{
-    left: -99999px;
-    position: absolute;
-    width: 100%;
-}
-.DCP16910Wrapper_tabItem.active{
-    left: 0px;
-}
-.DCP16910Wrapper_tabItem .deviceSet{
-    left: -99999px;
-    position: absolute;
-    width: 100%;
-}
-.DCP16910Wrapper_tabItem .deviceSet.active{
-    left: 0px;
-}
-div.modal {
-    display: none;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    z-index: 830;
-    background-color: rgba(0, 0, 0, .5);
-    align-items: center;
-    justify-content: center
-}
-div.modal .tooltip {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    width: 80%;
-    max-height: 95%;
-    overflow-y: auto;
-    color: #333;
-    padding: 40px 60px 48px;
-    border-radius: 6px;
-    margin: 0px 16px;
-    max-width: 768px
-}
-div.modal .close-link {
-    border: none;
-    margin: 0px;
-    padding: 0px;
-    width: auto;
-    background: rgba(0, 0, 0, 0);
-    line-height: normal;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    align-self: flex-end;
-    cursor: pointer;
-    z-index: 10;
-    position: fixed;
-    margin-top: -30px;
-    margin-right: -50px
-}
-div.modal .close-link svg.close-icon {
-    position: relative;
-    color: #333;
-    display: block;
-    height: 24px;
-    width: 24px
-}
-div.modal h3 {
-    margin-bottom: 24px;
-    font-size: 40px;
-    line-height: 48px
-}
-div.modal p.text {
-    font-size: 18px;
-    line-height: 24px
-}
-div.modal p.term {
-    font-size: 12px;
-    line-height: 16px
-}
-@media(max-width: 768px) {
-    div.modal h3 { font-size: 24px; line-height: 30px }
-    div.modal p.text { font-size: 16px; line-height: 22px }
-    div.modal .tooltip { width: 100%; margin: 0; border-radius: 0; padding: 24px 16px 32px }
-    div.modal .close-link { margin-top: -10px; margin-right: -10px }
-    div.modal h3 { margin-bottom: 16px }
-}`,
-    htmlCode: `<div id="DCP16910Wrapper">
-	<h2 id="DCP16910WrapperHeading">Popular offers for you</h2>
-	<div id="DCP16910Wrapper_tabs">
-		<ul>
-			<li data-cat="phones" tabindex="0" class="active">Phones</li>
-			<li data-cat="simonly" tabindex="0">SIM only</li>
-			<li data-cat="prepaid" tabindex="0">Prepaid</li>
-			<li data-cat="homeinternet" tabindex="0">Home internet</li>
-		</ul>
-	</div>
-	<div id="DCP16910Wrapper_tabContents">
-
-		<div class="DCP16910Wrapper_tabItem deviceCardContainer active" data-cat="phones"></div>
-
-		<div class="DCP16910Wrapper_tabItem planCardContainer" data-cat="simonly"></div>
-		<div class="DCP16910Wrapper_tabItem planCardContainer" data-cat="prepaid"></div>
-		<div class="DCP16910Wrapper_tabItem planCardContainer" data-cat="homeinternet"></div>
-		<div class="modal">
-			<div class="tooltip">
-				<div class="text">
-					<p class="copy"></p>
-				</div>
-				<div class="close-link">
-					<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="presentation" class="close-icon">
-						<g fill="none" fill-rule="evenodd">
-							<path d="M0 0h24v24H0z"></path>
-							<path d="M20 4L4 20M4 4l16 16" stroke="currentColor" stroke-linecap="round"></path>
-						</g>
-					</svg>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>`,
+    // HTML is now assembled dynamically — no more giant htmlCode string
+    get htmlCode() {
+      return DCP16910CSS + DCP16910Templates.build();
+    },
   },
 
   observe: function () {
@@ -856,103 +470,24 @@ div.modal p.term {
 
   init: function (s) {
     console.log('###### DCP16910Fn init ######', s);
-    if (DCP16910Fn.config.targetPaths.includes(window.location.pathname) && $('#tabs-popular-offers').length == 0) {
-      // Insert CSS
-      $('<style>' + DCP16910Fn.config.cssCode + '</style>').appendTo('head');
-      // Insert HTML
+    if (
+      DCP16910Fn.config.targetPaths.includes(window.location.pathname) &&
+      $('#tabs-popular-offers').length === 0
+    ) {
       $('vha-popular-products').before(DCP16910Fn.config.htmlCode);
 
       var DCP16910WrapperWatch = setInterval(function () {
         if ($('#DCP16910Wrapper').length > 0 && jQuery.fn.slick) {
           clearInterval(DCP16910WrapperWatch);
-
-          // ★ 先拉 API，数据回来后再渲染 + 初始化 slick
-          DCP16910Fn.fetchDevices().then(function () {
-            DCP16910Fn.renderContent();
-            $('.DCP16910Wrapper_tabItem .deviceSet').removeClass('active');
-            $('.DCP16910Wrapper_tabItem #' + DCP16910DeviceCohort).addClass('active');
-            DCP16910Fn.applySlick();
-            DCP16910Fn.assignClicks();
-          });
+          $('.DCP16910Wrapper_tabItem .deviceSet').removeClass('active');
+          $('.DCP16910Wrapper_tabItem #' + DCP16910DeviceCohort).addClass('active');
+          DCP16910Fn.applySlick();
+          DCP16910Fn.assignClicks();
         }
       }, 200);
 
       croWD.utils.launchTracking('DCP16910 BF:Popular Phones Expansion', 'Solution initialised');
     }
-  },
-
-  // ★ 新增：从 API 拉取设备数据，按白名单过滤并合并静态字段，填充 DCP16910Data.phones
-  fetchDevices: function () {
-    return fetch('https://api.vodafone.com.au/device/postpaid?serviceType=New')
-      .then(function (response) {
-        if (!response.ok) throw new Error('Network error: ' + response.status);
-        return response.json();
-      })
-      .then(function (json) {
-        var apiDevices = (json.deviceListing && json.deviceListing.devices) || [];
-
-        // 建立 name → API device 的快速查找 map
-        var apiMap = {};
-        apiDevices.forEach(function (d) {
-          apiMap[d.name] = d;
-        });
-
-        // 按白名单顺序，把 API 字段合并进静态配置
-        function buildCohort(whitelist) {
-          return whitelist.reduce(function (acc, cfg) {
-            var api = apiMap[cfg.name];
-            if (!api) {
-              console.warn('[DCP16910] Device not found in API:', cfg.name);
-              return acc; // API 里没有就跳过，不显示
-            }
-            acc.push({
-              title:           api.name,
-              brand:           api.manufacturer || '',
-              image:           api.imageUrl || '',
-              recurringCharge: api.discountedRecurringCharge || api.recurringCharge || '',
-              wasPrice:        api.discountedRecurringCharge ? api.recurringCharge : null,
-              // 以下字段 API 没有，继续用白名单配置维护
-              href:    cfg.href,
-              badges:  cfg.badges,
-              mincost: cfg.mincost,
-            });
-            return acc;
-          }, []);
-        }
-
-        DCP16910Data.phones.popularDevices = buildCohort(DCP16910PhoneConfig.popularDevices);
-        DCP16910Data.phones.appleDevices   = buildCohort(DCP16910PhoneConfig.appleDevices);
-        DCP16910Data.phones.androidDevices = buildCohort(DCP16910PhoneConfig.androidDevices);
-      })
-      .catch(function (err) {
-        console.error("[DCP16910] fetchDevices failed, falling back to config:", err);
-        function buildFallbackCohort(whitelist) {
-          return whitelist.map(function (cfg) {
-            return { title: cfg.name, brand: "", image: "", recurringCharge: "", wasPrice: null, href: cfg.href, badges: cfg.badges, mincost: cfg.mincost };
-          });
-        }
-        DCP16910Data.phones.popularDevices = buildFallbackCohort(DCP16910PhoneConfig.popularDevices);
-        DCP16910Data.phones.appleDevices   = buildFallbackCohort(DCP16910PhoneConfig.appleDevices);
-        DCP16910Data.phones.androidDevices = buildFallbackCohort(DCP16910PhoneConfig.androidDevices);
-      });
-  },
-
-  // ★ 把数据渲染进各 tab 占位容器
-  renderContent: function () {
-    // phones tab — 填入三个 deviceSet
-    $('[data-cat="phones"].deviceCardContainer').html(
-      DCP16910Templates.phonesContent()
-    );
-    // plan tabs
-    $('[data-cat="simonly"].planCardContainer').html(
-      DCP16910Templates.planContent(DCP16910Data.simonly)
-    );
-    $('[data-cat="prepaid"].planCardContainer').html(
-      DCP16910Templates.planContent(DCP16910Data.prepaid)
-    );
-    $('[data-cat="homeinternet"].planCardContainer').html(
-      DCP16910Templates.planContent(DCP16910Data.homeinternet)
-    );
   },
 
   openModal: function (copyText) {
@@ -980,6 +515,7 @@ div.modal p.term {
       $('.DCP16910Wrapper_tabItem[data-cat=\'' + $(this).attr('data-cat') + '\']').addClass('active');
       croWD.utils.launchTracking('DCP16910 BF:Popular Phones Expansion', 'Tab Click - ' + $(this).attr('data-cat'));
     });
+
     $('html').on('click', '.DCP16910Wrapper_tabItem a', function () {
       croWD.utils.launchTracking('DCP16910 BF:Popular Phones Expansion', 'Item Click - ' + $(this).attr('title'));
     });
@@ -1035,41 +571,32 @@ div.modal p.term {
 
   applySlick: function () {
     console.log('#### applySlick');
+    var slickDeviceOpts = {
+      dots: false, infinite: false, speed: 300, slidesToShow: 4, adaptiveHeight: true,
+      responsive: [
+        { breakpoint: 1170, settings: { slidesToShow: 3 } },
+        { breakpoint: 870,  settings: { slidesToShow: 2 } },
+        { breakpoint: 550,  settings: { slidesToShow: 1 } },
+      ],
+    };
+    var slickPlanOpts = {
+      dots: false, infinite: false, speed: 300, slidesToShow: 2, adaptiveHeight: true,
+      responsive: [{ breakpoint: 550, settings: { slidesToShow: 1 } }],
+    };
+
     try {
-      jQuery('.DCP16910Wrapper_tabItem.deviceCardContainer .deviceSet').slick({
-        dots: false, infinite: false, speed: 300, slidesToShow: 4, adaptiveHeight: true,
-        responsive: [
-          { breakpoint: 1170, settings: { slidesToShow: 3 } },
-          { breakpoint: 870,  settings: { slidesToShow: 2 } },
-          { breakpoint: 550,  settings: { slidesToShow: 1 } },
-        ],
-      });
-      jQuery('.DCP16910Wrapper_tabItem.planCardContainer').slick({
-        dots: false, infinite: false, speed: 300, slidesToShow: 2, adaptiveHeight: true,
-        responsive: [{ breakpoint: 550, settings: { slidesToShow: 1 } }],
-      });
+      jQuery('.DCP16910Wrapper_tabItem.deviceCardContainer .deviceSet').slick(slickDeviceOpts);
+      jQuery('.DCP16910Wrapper_tabItem.planCardContainer').slick(slickPlanOpts);
     } catch (e) {
       console.log('####', e);
-      jQuery('.DCP16910Wrapper_tabItem.deviceCardContainer .deviceSet').slick('unslick');
-      jQuery('.DCP16910Wrapper_tabItem.deviceCardContainer .deviceSet').slick({
-        dots: false, infinite: false, speed: 300, slidesToShow: 4, adaptiveHeight: true,
-        responsive: [
-          { breakpoint: 1170, settings: { slidesToShow: 3 } },
-          { breakpoint: 870,  settings: { slidesToShow: 2 } },
-          { breakpoint: 550,  settings: { slidesToShow: 1 } },
-        ],
-      });
-      jQuery('.DCP16910Wrapper_tabItem.planCardContainer').slick('unslick');
-      jQuery('.DCP16910Wrapper_tabItem.planCardContainer').slick({
-        dots: false, infinite: false, speed: 300, slidesToShow: 2, adaptiveHeight: true,
-        responsive: [{ breakpoint: 550, settings: { slidesToShow: 1 } }],
-      });
+      jQuery('.DCP16910Wrapper_tabItem.deviceCardContainer .deviceSet').slick('unslick').slick(slickDeviceOpts);
+      jQuery('.DCP16910Wrapper_tabItem.planCardContainer').slick('unslick').slick(slickPlanOpts);
     }
   },
 };
 
 // ─────────────────────────────────────────────
-// BOOTSTRAP — 原样保留
+// BOOTSTRAP
 // ─────────────────────────────────────────────
 var crowdMaxDCP16910 = 100;
 var crowdFinderDCP16910 = setInterval(function () {
@@ -1088,5 +615,5 @@ var crowdFinderDCP16910 = setInterval(function () {
       clearInterval(crowdFinderDCP16910);
       crowdFinderDCP16910 = null;
     }
-  } catch (e) {}
+  } catch (e) { }
 }, 100);
