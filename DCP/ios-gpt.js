@@ -1,17 +1,17 @@
 'use strict';
-window.DCP17133DeviceCohort = 'popularDevices'; // popularDevices || appleDevices
+window.DCP16910DeviceCohort = 'appleDevices'; // popularDevices || appleDevices || androidDevices
 
-// 1. Only this section needs to be updated in the future, phones come from api, we only need to update target phone name and href. if api fails, we need to update image, brand, recurringCharge, wasPrice
-var DCP17133PhoneConfig = {
-  popularDevices: [
-    { name: 'iPhone 17e', href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17e', cta: 'Pre-order now', image: '', brand: 'Apple', recurringCharge: 61.08, wasPrice: 0 },
-    { name: 'iPhone 17 Pro Max', href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro-max', image: '', brand: 'Apple', recurringCharge: 61.08, wasPrice: 0 },
-    { name: 'iPhone 17 Pro', href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro', image: '', brand: 'Apple', recurringCharge: 61.08, wasPrice: 0 },
-    { name: 'Samsung Galaxy S26 Ultra', href: 'https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-s26-ultra', cta: 'Pre-order now', image: '', brand: 'Samsung', recurringCharge: 41.63, wasPrice: 61.08 },
+// 1. Only this section needs to be updated in the future, phones come from api, we only need to update target phone name and pdp link.
+var DCP16910PhoneConfig = {
+  appleDevices: [
+    { name: 'iPhone 16e', href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-16e', },
+    { name: 'iPhone 17 Pro Max', href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro-max', },
+    { name: 'iPhone 17 Pro', href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro', },
+    { name: 'iPhone 17', href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17', },
   ],
 };
 
-var DCP17133PlanData = {
+var DCP16910PlanData = {
   simonly: [
     {
       title: 'Small SIM Only Plan',
@@ -67,11 +67,10 @@ var DCP17133PlanData = {
       image: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-buds-4-pro/1417-samsung-galaxy-buds4-pro-tile.webp',
       imageAlt: 'Samsung Galaxy Buds4 Pro',
       onlineExclusive: false,
-      heading: 'Samsung Galaxy Buds4 Pro. Save $160.',
+      heading: 'New Samsung Galaxy Buds4 Pro. Save $160.',
       subheading: 'When you pre-order and stay connected to an Accessories Payment Plan over 24 or 36 months.',
-      tc: 'Postpaid plan costs additional. Ends 10/03 (unless extended). ',
-      tcTooltip: 'Postpaid plan costs additional. Savings forfeited if cancelled, undiscounted device due in full. Ends 10/03 (unless extended). Min cost and T&C apply.',
-      cta: 'Pre-order now'
+      tc: 'Postpaid plan costs additional. Ends 08/04 (unless extended). ',
+      tcTooltip: 'Savings forfeited if cancelled, undiscounted device due in full. Ends 10/03 (unless extended). Min cost and T&C apply.',
     },
     {
       title: 'Samsung Galaxy Buds4',
@@ -79,41 +78,40 @@ var DCP17133PlanData = {
       image: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-buds-4/1417-samsung-galaxy-buds4-tile.webp',
       imageAlt: 'Samsung Galaxy Buds4',
       onlineExclusive: false,
-      heading: 'Samsung Galaxy Buds4. Save $100.',
+      heading: 'New Samsung Galaxy Buds4. Save $100.',
       subheading: 'When you pre-order and stay connected to an Accessories Payment Plan over 24 or 36 months.',
-      tc: 'Postpaid plan costs additional. Ends 10/03 (unless extended). ',
-      tcTooltip: 'Postpaid plan costs additional. Savings forfeited if cancelled, undiscounted device due in full. Ends 10/03 (unless extended). Min cost and T&C apply.',
-      cta: 'Pre-order now'
+      tc: 'Postpaid plan costs additional. Ends 08/04 (unless extended). ',
+      tcTooltip: 'Savings forfeited if cancelled, undiscounted device due in full. Ends 10/03 (unless extended). Min cost and T&C apply.',
     },
   ],
 };
 
 // 2. build poplular offers template dynamically
-var DCP17133Templates = {
+var DCP16910Templates = {
   generateDeviceCard: function (d) {
     let minCost = (d.recurringCharge * 36).toFixed(2);
     return `
-            <a class="deviceCard itemCard" title="${d.deviceName}" href="${d.href}" aria-hidden="false">
-            <div class="device-item">
-                <div class="device-item-device">
-                    <div class="device-item-badge">
-                        <img src="https://www.vodafone.com.au/images/icons/5g.svg" />
-                        <img src="https://www.vodafone.com.au/images/icons/e-sim-logo.svg" />
-                    </div>
-                    <img alt="${d.deviceName}" src="${d.image}" />
-                    <p class="brand">${d.brand}</p>
-                    <p class="device-name">${d.deviceName}</p>
-                    <p class="device-prefix">Device from</p>
-                    <p class="device-price"><span class="dollar">$</span>
-            <span class="device-recurringCharge">${d.recurringCharge.toFixed(2)}</span>
-            ${d.wasPrice ? `<span class="device-was-price">$${d.wasPrice}</span>` : ''}
-            <span class="mth">per month</span>
-                    </p>
-                    <p class="device-mincost">Min cost $${minCost} over 36 months. Plan cost additional.</p>
-                    <div class="primaryBtn">${d.cta ? d.cta : `Shop now`}</div>
-                </div>
-            </div>
-        </a>
+    <a class="deviceCard itemCard" title="${d.deviceName}" href="${d.href}" aria-hidden="false">
+	<div class="device-item">
+		<div class="device-item-device">
+			<div class="device-item-badge">
+				<img src="https://www.vodafone.com.au/images/icons/5g.svg" />
+				<img src="https://www.vodafone.com.au/images/icons/e-sim-logo.svg" />
+			</div>
+			<img alt="${d.deviceName}" src="${d.image}" />
+			<p class="brand">${d.brand}</p>
+			<p class="device-name">${d.deviceName}</p>
+			<p class="device-prefix">Device from</p>
+			<p class="device-price"><span class="dollar">$</span>
+      <span class="device-recurringCharge">${d.recurringCharge.toFixed(2)}</span>
+      ${d.wasPrice ? `<span class="device-was-price">${d.wasPrice}</span>` : ''}
+      <span class="mth">per month</span>
+			</p>
+			<p class="device-mincost">Min cost $${minCost} over 36 months. Plan cost additional.</p>
+			<div class="primaryBtn">Shop now</div>
+		</div>
+	</div>
+</a>
     `
   },
 
@@ -123,45 +121,45 @@ var DCP17133Templates = {
       ? '<tooltip copy="' + p.tcTooltip.replace(/"/g, '&quot;') + '">T&amp;C apply.</tooltip>'
       : '';
     return `
-            <a class="planCard itemCard ${exclusiveClass}" title="${p.title}" href="${p.href}" aria-hidden="false">
-                <div class="plan-item">
-                    <img src="${p.image}" alt="${p.imageAlt || ''}" />
-                    <div class="plan-text">
-                        <h3 class="plan-heading">${p.heading}</h3>
-                        <p class="plan-subheading">${p.subheading}</p>
-                        <p class="plan-tc">${p.tc} ${tooltipHtml}</p>
-                        <p class="plan-link">${p.cta ? p.cta : `Shop now`}</p>
-                    </div>
-                </div>
-            </a>
-                `
+    <a class="planCard itemCard ${exclusiveClass}" title="${p.title}" href="${p.href}" aria-hidden="false">
+	<div class="plan-item">
+		<img src="${p.image}" alt="${p.imageAlt || ''}" />
+		<div class="plan-text">
+			<h3 class="plan-heading">${p.heading}</h3>
+			<p class="plan-subheading">${p.subheading}</p>
+			<p class="plan-tc">${p.tc} ${tooltipHtml}</p>
+			<p class="plan-link">Shop now</p>
+		</div>
+	</div>
+</a>
+    `
   },
 
   deviceSet: function (id, devices) {
     return '<div class="deviceSet" id="' + id + '">' +
-      devices.map(DCP17133Templates.generateDeviceCard).join('') +
+      devices.map(DCP16910Templates.generateDeviceCard).join('') +
       '</div>';
   },
 
   phonesContent: function (phones) {
-    return DCP17133Templates.deviceSet('popularDevices', phones.popularDevices);
+    return DCP16910Templates.deviceSet('appleDevices', phones.appleDevices);
   },
 
   planContent: function (plans) {
-    return plans.map(DCP17133Templates.generatePlanCard).join('');
+    return plans.map(DCP16910Templates.generatePlanCard).join('');
   },
 };
 
 // 3. main controller for tab
-var DCP17133Fn = {
-  aid: 'DCP-17133',
+var DCP16910Fn = {
+  aid: 'DCP-16910',
   config: {
     checkingKey: '',
-    targetPaths: ['/', '/agents/DCP-17133/', '/cro-demo',],
-    DCP17133TABHTML: `
-    <div id="DCP17133Wrapper">
-        <h2 id="DCP17133WrapperHeading">Popular offers for you</h2>
-        <div id="DCP17133Wrapper_tabs">
+    targetPaths: ['/', '/agents/DCP-16910/', '/cro-demo',],
+    DCP16910TABHTML: `
+    <div id="DCP16910Wrapper">
+        <h2 id="DCP16910WrapperHeading">Popular offers for you</h2>
+        <div id="DCP16910Wrapper_tabs">
           <ul>
             <li data-cat="phones" tabindex="0" class="active">Phones</li>
             <li data-cat="simonly" tabindex="0">SIM only</li>
@@ -169,11 +167,11 @@ var DCP17133Fn = {
             <li data-cat="accessories" tabindex="0">Accessories</li>
           </ul>
         </div>
-        <div id="DCP17133Wrapper_tabContents">
-          <div class="DCP17133Wrapper_tabItem deviceCardContainer active" data-cat="phones"></div>
-          <div class="DCP17133Wrapper_tabItem planCardContainer" data-cat="simonly"></div>
-          <div class="DCP17133Wrapper_tabItem planCardContainer" data-cat="prepaid"></div>
-          <div class="DCP17133Wrapper_tabItem planCardContainer" data-cat="accessories"></div>
+        <div id="DCP16910Wrapper_tabContents">
+          <div class="DCP16910Wrapper_tabItem deviceCardContainer active" data-cat="phones"></div>
+          <div class="DCP16910Wrapper_tabItem planCardContainer" data-cat="simonly"></div>
+          <div class="DCP16910Wrapper_tabItem planCardContainer" data-cat="prepaid"></div>
+          <div class="DCP16910Wrapper_tabItem planCardContainer" data-cat="accessories"></div>
           <div class="modal">
             <div class="tooltip">
               <div class="text"><p class="copy"></p></div>
@@ -189,8 +187,8 @@ var DCP17133Fn = {
           </div>
         </div>
       </div>
-        `,
-    DCP17133CSS: `/* ── Slick core ── */
+      `,
+    DCP16910CSS: `/* ── Slick core ── */
       .slick-slider {
         position: relative; display: block; box-sizing: border-box;
         -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
@@ -252,43 +250,43 @@ var DCP17133Fn = {
       .slick-arrow.slick-disabled { display: none !important; }
 
       /* ── Wrapper & heading ── */
-      #DCP17133Wrapper { padding: 60px 0 0 0; background: #f4f4f4; }
-      #DCP17133Wrapper h2#DCP17133WrapperHeading {
+      #DCP16910Wrapper { padding: 60px 0 0 0; background: #f4f4f4; }
+      #DCP16910Wrapper h2#DCP16910WrapperHeading {
         color: #25282B; text-align: center;
         font-size: 44px; font-weight: 300; line-height: 52px;
         font-family: VodafoneLight, Arial, sans-serif; margin: 0;
       }
 
       /* ── Tabs ── */
-      #DCP17133Wrapper_tabs ul {
+      #DCP16910Wrapper_tabs ul {
         display: flex; gap: 20px; justify-content: center;
         border-bottom: 1px solid #CCC; margin: 48px 0; overflow: auto;
       }
-      #DCP17133Wrapper_tabs ul li {
+      #DCP16910Wrapper_tabs ul li {
         list-style: none; font-size: 18px; font-weight: 400; line-height: 24px;
         padding: 16px 0; min-width: 110px; max-width: 200px; text-align: center; cursor: pointer;
       }
-      #DCP17133Wrapper_tabs ul li.active { border-bottom: 2px solid red; }
+      #DCP16910Wrapper_tabs ul li.active { border-bottom: 2px solid red; }
 
       /* ── Tab contents ── */
-      #DCP17133Wrapper_tabContents {
+      #DCP16910Wrapper_tabContents {
         position: relative; width: 90%; max-width: 1180px; margin: 0 auto; min-height: 600px;
       }
-      .DCP17133Wrapper_tabItem { left: -99999px; position: absolute; width: 100%;}
-      .DCP17133Wrapper_tabItem.active { left: 0; }
-      .DCP17133Wrapper_tabItem .deviceSet { left: -99999px; position: absolute; width: 100%; }
-      .DCP17133Wrapper_tabItem .deviceSet.active { left: 0; }
+      .DCP16910Wrapper_tabItem { left: -99999px; position: absolute; width: 100%; }
+      .DCP16910Wrapper_tabItem.active { left: 0; }
+      .DCP16910Wrapper_tabItem .deviceSet { left: -99999px; position: absolute; width: 100%; }
+      .DCP16910Wrapper_tabItem .deviceSet.active { left: 0; }
 
       /* ── Device cards ── */
       .deviceCardContainer { max-width: 1180px; margin: auto; }
       .deviceCardContainer .deviceCard { text-decoration: none; margin: 0 10px; }
-      .DCP17133Wrapper_tabItem .itemCard { padding: 10px 0; }
-      .DCP17133Wrapper_tabItem .itemCard.onlineExclusive:before {
+      .DCP16910Wrapper_tabItem .itemCard { padding: 10px 0; }
+      .DCP16910Wrapper_tabItem .itemCard.onlineExclusive:before {
         content: 'Online exclusive'; background: #9C2AA0; padding: 6px 18px;
         bottom: 6px; position: relative; color: #fff; font-size: 16px;
         line-height: 22px; border-radius: 6px 6px 6px 0;
       }
-      .DCP17133Wrapper_tabItem .itemCard.XonlineExclusive:before {
+      .DCP16910Wrapper_tabItem .itemCard.XonlineExclusive:before {
         content: ' '; background: none; padding: 6px 18px; bottom: 6px;
         position: relative; color: #fff; font-size: 16px; line-height: 22px; border-radius: 6px 6px 6px 0;
       }
@@ -340,7 +338,7 @@ var DCP17133Fn = {
       .planCardContainer .planCard .plan-item .plan-text .plan-heading { margin: 0; font-size: 28px; line-height: 34px; font-weight: 300; font-family: VodafoneRegular, Arial, sans-serif !important; }
       .planCardContainer .planCard .plan-item .plan-text .plan-subheading { margin: 16px 0; font-size: 18px; font-weight: 400; line-height: 24px; }
       .planCardContainer .planCard .plan-item .plan-text .plan-tc { font-size: 14px; font-weight: 400; line-height: 18px; margin-bottom: 0; }
-      .planCardContainer .planCard .plan-item .plan-text .plan-tc tooltip { text-decoration: underline; cursor: pointer; position: relative; z-index: 1; }
+      .planCardContainer .planCard .plan-item .plan-text .plan-tc tooltip { text-decoration: underline; cursor: pointer; color: #E60000; position: relative; z-index: 1; }
       .planCardContainer .planCard .plan-item .plan-text .plan-tc tooltip:hover { text-decoration: none; }
       .planCardContainer .planCard .plan-item .plan-text .plan-link {
         margin-top: 24px; font-size: 18px; font-weight: 700; line-height: 24px;
@@ -381,15 +379,15 @@ var DCP17133Fn = {
       }
       @media (max-width: 1024px) {
         .planCardContainer .planCard .plan-item { min-height: 530px; }
-        
+        .planCardContainer .planCard .plan-item img { margin: 24px 24px 0; }
       }
       @media (max-width: 768px) {
-        #DCP17133Wrapper { padding: 30px 0 0 0; }
-        #DCP17133Wrapper h2#DCP17133WrapperHeading { font-size: 32px; line-height: 40px; }
-        #DCP17133Wrapper_tabs ul { padding: 0; justify-content: flex-start; margin: 24px 0; }
-        #DCP17133Wrapper_tabContents { min-height: 570px; }
+        #DCP16910Wrapper { padding: 30px 0 0 0; }
+        #DCP16910Wrapper h2#DCP16910WrapperHeading { font-size: 32px; line-height: 40px; }
+        #DCP16910Wrapper_tabs ul { padding: 0; justify-content: flex-start; margin: 24px 0; }
+        #DCP16910Wrapper_tabContents { min-height: 550px; }
         .planCardContainer .planCard .plan-item { min-height: auto; }
-        .planCardContainer .planCard .plan-item img { border-radius: 6px 6px 0 0 }
+        .planCardContainer .planCard .plan-item img { margin: 16px 16px 0; border-radius: 14px; }
         div.modal h3 { font-size: 24px; line-height: 30px; margin-bottom: 16px; }
         div.modal p.text { font-size: 16px; line-height: 22px; }
         div.modal .tooltip { width: 100%; margin: 0; border-radius: 0; padding: 24px 16px 32px; }
@@ -398,36 +396,36 @@ var DCP17133Fn = {
   },
 
   observe: function () {
-    console.log('###### DCP17133Fn observe ######');
+    console.log('###### DCP16910Fn observe ######');
     croWD.hotbed.listen('croPageTrack', function (observable, eventType, data) {
       console.log('#########croPageTrack DATA####:', data);
-      DCP17133Fn.init('1');
+      DCP16910Fn.init('1');
     });
-    if (DCP17133Fn.config.targetPaths.includes(window.location.pathname)) {
-      DCP17133Fn.init('0');
+    if (DCP16910Fn.config.targetPaths.includes(window.location.pathname)) {
+      DCP16910Fn.init('0');
     }
   },
 
   init: function (s) {
-    console.log('###### DCP17133Fn init ######', s);
-    if (DCP17133Fn.config.targetPaths.includes(window.location.pathname) && $('#DCP17133Wrapper').length === 0) {
-      $('<style>' + DCP17133Fn.config.DCP17133CSS + '</style>').appendTo('head');
-      $('vha-popular-products').before(DCP17133Fn.config.DCP17133TABHTML);
+    console.log('###### DCP16910Fn init ######', s);
+    if (DCP16910Fn.config.targetPaths.includes(window.location.pathname) && $('#DCP16910Wrapper').length === 0) {
+      $('<style>' + DCP16910Fn.config.DCP16910CSS + '</style>').appendTo('head');
+      $('vha-popular-products').before(DCP16910Fn.config.DCP16910TABHTML);
 
       var watch = setInterval(function () {
-        if ($('#DCP17133Wrapper').length > 0 && jQuery.fn.slick) {
+        if ($('#DCP16910Wrapper').length > 0 && jQuery.fn.slick) {
           clearInterval(watch);
-          DCP17133Fn.fetchDevices().then(function (phones) {
-            DCP17133Fn.renderContent(phones);
-            $('.DCP17133Wrapper_tabItem .deviceSet').removeClass('active');
-            $('.DCP17133Wrapper_tabItem #' + DCP17133DeviceCohort).addClass('active');
-            DCP17133Fn.applySlick();
-            DCP17133Fn.assignClicks();
+          DCP16910Fn.fetchDevices().then(function (phones) {
+            DCP16910Fn.renderContent(phones);
+            $('.DCP16910Wrapper_tabItem .deviceSet').removeClass('active');
+            $('.DCP16910Wrapper_tabItem #' + DCP16910DeviceCohort).addClass('active');
+            DCP16910Fn.applySlick();
+            DCP16910Fn.assignClicks();
           });
         }
       }, 200);
 
-      croWD.utils.launchTracking('DCP17133:Popular Phones Expansion', 'Solution initialised');
+      croWD.utils.launchTracking('DCP16910:Popular Phones Expansion', 'Solution initialised');
     }
   },
 
@@ -441,151 +439,105 @@ var DCP17133Fn = {
       .then(function (json) {
         var apiDevices = (json.deviceListing && json.deviceListing.devices) || [];
         var apiMap = {};
-
-        // ✅ Force fallback if shape is wrong or empty
-        if (!apiDevices || apiDevices.length === 0) {
-          throw new Error('Unexpected API shape or empty device list');
-        }
-
         apiDevices.forEach(function (d) { apiMap[d.name] = d; });
-        return DCP17133Fn.buildAllCohorts(apiMap, false);
+        return DCP16910Fn.buildAllCohorts(apiMap, false);
       })
       .catch(function (err) {
-        console.error('[DCP17133] fetchDevices failed, using fallback:', err);
-        return DCP17133Fn.buildAllCohorts(null, true);
+        console.error('[DCP16910] fetchDevices failed, using fallback:', err);
+        return DCP16910Fn.buildAllCohorts(null, true);
       });
   },
 
   buildAllCohorts: function (apiMap, useFallback) {
-    console.log("apiMap:", apiMap);
-    console.log("DCP17133PhoneConfig.popularDevices:", DCP17133PhoneConfig.popularDevices);
     return {
-      popularDevices: DCP17133Fn.buildCohort(DCP17133PhoneConfig.popularDevices, apiMap, useFallback),
-
-
+      appleDevices: DCP16910Fn.buildCohort(DCP16910PhoneConfig.appleDevices, apiMap, useFallback),
     };
   },
 
   buildCohort: function (whitelist, apiMap, useFallback) {
     return whitelist.reduce(function (acc, cfg) {
-
-      // Global fallback (API failed completely)
       if (useFallback) {
-        console.warn('[DCP17133] GLOBAL FALLBACK push:', cfg.name);
-        acc.push({
-          deviceName: cfg.name,
-          brand: cfg.brand,
-          image: cfg.image,
-          recurringCharge: cfg.recurringCharge,
-          wasPrice: cfg.wasPrice,
-          href: cfg.href,
-          cta: cfg.cta || null
-        });
+        acc.push({ title: cfg.name, brand: '', image: '', recurringCharge: '', wasPrice: null, href: cfg.href, badges: cfg.badges, mincost: cfg.mincost });
         return acc;
       }
-
-      // API path
-      var key = DCP17133_normName(cfg.name);
-      var api = apiMap && apiMap[key];
-
-      // ✅ Per-device fallback if API is missing this specific phone
-      if (!api) {
-        console.warn('[DCP17133] PER-DEVICE FALLBACK (missing in API):', cfg.name, 'key=', key);
-        acc.push({
-          deviceName: cfg.name,
-          brand: cfg.brand,
-          image: cfg.image,
-          recurringCharge: cfg.recurringCharge,
-          wasPrice: cfg.wasPrice,
-          href: cfg.href,
-          cta: cfg.cta || null
-        });
-        return acc;
-      }
-
-      // Normal API build
-      var recurring = api.discountedRecurringCharge || api.recurringCharge || 0;
-      var was = api.discountedRecurringCharge ? api.recurringCharge : null;
-
-      var built = {
+      var api = apiMap[cfg.name];
+      if (!api) { console.warn('[DCP16910] Device not found in API:', cfg.name); return acc; }
+      acc.push({
         deviceName: api.name,
         brand: api.manufacturer || '',
         image: api.imageUrl || '',
-        recurringCharge: recurring,
-        wasPrice: was,
+        recurringCharge: api.discountedRecurringCharge || api.recurringCharge || '',
+        wasPrice: api.discountedRecurringCharge ? api.recurringCharge : null,
         href: cfg.href,
-        cta: cfg.cta || null,
-      };
-
-      console.log('[DCP17133] API match OK:', cfg.name, '->', built.deviceName);
-      acc.push(built);
+        badges: cfg.badges,
+        mincost: cfg.mincost,
+      });
       return acc;
-
     }, []);
   },
 
   // ── Render ────────────────────────────────────
   renderContent: function (phones) {
-    $('[data-cat="phones"].deviceCardContainer').html(DCP17133Templates.phonesContent(phones));
-    $('[data-cat="simonly"].planCardContainer').html(DCP17133Templates.planContent(DCP17133PlanData.simonly));
-    $('[data-cat="prepaid"].planCardContainer').html(DCP17133Templates.planContent(DCP17133PlanData.prepaid));
-    $('[data-cat="accessories"].planCardContainer').html(DCP17133Templates.planContent(DCP17133PlanData.accessories));
+    $('[data-cat="phones"].deviceCardContainer').html(DCP16910Templates.phonesContent(phones));
+    $('[data-cat="simonly"].planCardContainer').html(DCP16910Templates.planContent(DCP16910PlanData.simonly));
+    $('[data-cat="prepaid"].planCardContainer').html(DCP16910Templates.planContent(DCP16910PlanData.prepaid));
+    $('[data-cat="accessories"].planCardContainer').html(DCP16910Templates.planContent(DCP16910PlanData.accessories));
   },
 
   openModal: function (copyText) {
-    DCP17133Fn.closeModal();
-    var modal = document.querySelector('#DCP17133Wrapper .modal');
+    DCP16910Fn.closeModal();
+    var modal = document.querySelector('#DCP16910Wrapper .modal');
     if (modal && copyText) { modal.querySelector('.copy').innerHTML = copyText; modal.style.display = 'flex'; }
   },
 
   closeModal: function () {
-    var modal = document.querySelector('#DCP17133Wrapper .modal');
+    var modal = document.querySelector('#DCP16910Wrapper .modal');
     if (modal) { modal.querySelector('.copy').innerHTML = ''; modal.style.display = 'none'; }
   },
 
   // ── Events ────────────────────────────────────
   assignClicks: function () {
-    $('html').on('click', '#DCP17133Wrapper_tabs ul li', function () {
-      $('#DCP17133Wrapper_tabs ul li').removeClass('active');
-      $('.DCP17133Wrapper_tabItem').removeClass('active');
+    $('html').on('click', '#DCP16910Wrapper_tabs ul li', function () {
+      $('#DCP16910Wrapper_tabs ul li').removeClass('active');
+      $('.DCP16910Wrapper_tabItem').removeClass('active');
       $(this).addClass('active');
-      $('.DCP17133Wrapper_tabItem[data-cat="' + $(this).attr('data-cat') + '"]').addClass('active');
-      croWD.utils.launchTracking('DCP-17133 :Popular Phones Expansion', 'Tab Click - ' + $(this).attr('data-cat'));
+      $('.DCP16910Wrapper_tabItem[data-cat="' + $(this).attr('data-cat') + '"]').addClass('active');
+      croWD.utils.launchTracking('DCP-16910 :Popular Phones Expansion', 'Tab Click - ' + $(this).attr('data-cat'));
     });
 
-    $('html').on('click', '.DCP17133Wrapper_tabItem a', function () {
-      croWD.utils.launchTracking('DCP-17133:Popular Phones Expansion', 'Item Click - ' + $(this).attr('title'));
+    $('html').on('click', '.DCP16910Wrapper_tabItem a', function () {
+      croWD.utils.launchTracking('DCP-16910:Popular Phones Expansion', 'Item Click - ' + $(this).attr('title'));
     });
 
-    document.querySelectorAll('#DCP17133Wrapper_tabs ul li').forEach(function (tab) {
+    document.querySelectorAll('#DCP16910Wrapper_tabs ul li').forEach(function (tab) {
       tab.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') { e.preventDefault(); DCP17133Fn.tabClick(tab.dataset.cat); }
+        if (e.key === 'Enter') { e.preventDefault(); DCP16910Fn.tabClick(tab.dataset.cat); }
       });
     });
 
-    document.querySelectorAll('#DCP17133Wrapper tooltip').forEach(function (el) {
+    document.querySelectorAll('#DCP16910Wrapper tooltip').forEach(function (el) {
       el.addEventListener('click', function (e) {
         e.stopPropagation(); e.preventDefault();
         var copy = el.getAttribute('copy') || '';
-        if (copy) DCP17133Fn.openModal(copy);
+        if (copy) DCP16910Fn.openModal(copy);
       });
     });
 
-    var closeLink = document.querySelector('#DCP17133Wrapper .modal .close-link');
-    if (closeLink) closeLink.addEventListener('click', function (e) { e.stopPropagation(); e.preventDefault(); DCP17133Fn.closeModal(); });
+    var closeLink = document.querySelector('#DCP16910Wrapper .modal .close-link');
+    if (closeLink) closeLink.addEventListener('click', function (e) { e.stopPropagation(); e.preventDefault(); DCP16910Fn.closeModal(); });
 
-    var overlay = document.querySelector('#DCP17133Wrapper .modal');
-    if (overlay) overlay.addEventListener('click', function (e) { if (e.target === overlay) DCP17133Fn.closeModal(); });
+    var overlay = document.querySelector('#DCP16910Wrapper .modal');
+    if (overlay) overlay.addEventListener('click', function (e) { if (e.target === overlay) DCP16910Fn.closeModal(); });
 
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') DCP17133Fn.closeModal(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') DCP16910Fn.closeModal(); });
   },
 
   tabClick: function (val) {
-    $('#DCP17133Wrapper_tabs ul li').removeClass('active');
-    $('.DCP17133Wrapper_tabItem').removeClass('active');
-    $('#DCP17133Wrapper_tabs ul li[data-cat="' + val + '"]').addClass('active');
-    $('.DCP17133Wrapper_tabItem[data-cat="' + val + '"]').addClass('active');
-    croWD.utils.launchTracking('DCP-17133:Popular Phones Expansion', 'Tab Click - ' + val);
+    $('#DCP16910Wrapper_tabs ul li').removeClass('active');
+    $('.DCP16910Wrapper_tabItem').removeClass('active');
+    $('#DCP16910Wrapper_tabs ul li[data-cat="' + val + '"]').addClass('active');
+    $('.DCP16910Wrapper_tabItem[data-cat="' + val + '"]').addClass('active');
+    croWD.utils.launchTracking('DCP-16910:Popular Phones Expansion', 'Tab Click - ' + val);
   },
 
   // ── Slick ─────────────────────────────────────
@@ -604,32 +556,32 @@ var DCP17133Fn = {
       responsive: [{ breakpoint: 550, settings: { slidesToShow: 1 } }],
     };
     try {
-      jQuery('.DCP17133Wrapper_tabItem.deviceCardContainer .deviceSet').slick(deviceOpts);
-      jQuery('.DCP17133Wrapper_tabItem.planCardContainer').slick(planOpts);
+      jQuery('.DCP16910Wrapper_tabItem.deviceCardContainer .deviceSet').slick(deviceOpts);
+      jQuery('.DCP16910Wrapper_tabItem.planCardContainer').slick(planOpts);
     } catch (e) {
       console.log('#### slick retry', e);
-      jQuery('.DCP17133Wrapper_tabItem.deviceCardContainer .deviceSet').slick('unslick').slick(deviceOpts);
-      jQuery('.DCP17133Wrapper_tabItem.planCardContainer').slick('unslick').slick(planOpts);
+      jQuery('.DCP16910Wrapper_tabItem.deviceCardContainer .deviceSet').slick('unslick').slick(deviceOpts);
+      jQuery('.DCP16910Wrapper_tabItem.planCardContainer').slick('unslick').slick(planOpts);
     }
   },
 };
 
-var crowdMaxDCP17133 = 100;
-var crowdFinderDCP17133 = setInterval(function () {
-  crowdMaxDCP17133--;
+var crowdMaxDCP16910 = 100;
+var crowdFinderDCP16910 = setInterval(function () {
+  crowdMaxDCP16910--;
   try {
     if (croWD && jQuery && $('vha-popular-products').length > 0) {
       var slickScript = document.createElement('script');
       slickScript.setAttribute('src', 'https://www.vodafone.com.au/content/dam/vha/croassets/slick.min.js');
       document.body.appendChild(slickScript);
-      clearInterval(crowdFinderDCP17133);
-      crowdFinderDCP17133 = null;
+      clearInterval(crowdFinderDCP16910);
+      crowdFinderDCP16910 = null;
       $('vha-popular-products').hide();
-      DCP17133Fn.observe();
+      DCP16910Fn.observe();
     }
-    if (crowdMaxDCP17133 <= 0) {
-      clearInterval(crowdFinderDCP17133);
-      crowdFinderDCP17133 = null;
+    if (crowdMaxDCP16910 <= 0) {
+      clearInterval(crowdFinderDCP16910);
+      crowdFinderDCP16910 = null;
     }
   } catch (e) { }
 }, 100);

@@ -2,8 +2,8 @@
 window.DCP16910DeviceCohort = 'popularDevices'; // popularDevices || appleDevices || androidDevices
 
 // ═══════════════════════════════════════════════════════════
-// 1. PHONE WHITELIST CONFIG
-//    Only this section needs to be updated in the future
+// 1. DATA CONFIG
+// Only this section needs to be updated in the future, phones come from api, we only need to update target phone name and href.
 var DCP16910PhoneConfig = {
   popularDevices: [
     { name: 'Samsung Galaxy S25 Ultra', href: 'https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-s25-ultra', },
@@ -25,11 +25,6 @@ var DCP16910PhoneConfig = {
   ],
 };
 
-
-// ═══════════════════════════════════════════════════════════
-// 2. PLAN & HOME INTERNET DATA
-//    Update content here when offers change
-// ═══════════════════════════════════════════════════════════
 var DCP16910PlanData = {
   simonly: [
     {
@@ -89,7 +84,7 @@ var DCP16910PlanData = {
       heading: 'New Samsung Galaxy Buds4 Pro. Save $160.',
       subheading: 'When you pre-order and stay connected to an Accessories Payment Plan over 24 or 36 months.',
       tc: 'Postpaid plan costs additional. Ends 08/04 (unless extended). T&C apply.',
-      tcTooltip: null,
+      tcTooltip: 'Savings forfeited if cancelled, undiscounted device due in full. Ends 10/03 (unless extended). Min cost and T&C apply.',
     },
     {
       title: 'Samsung Galaxy Buds4',
@@ -99,8 +94,8 @@ var DCP16910PlanData = {
       onlineExclusive: false,
       heading: 'New Samsung Galaxy Buds4. Save $100.',
       subheading: 'When you pre-order and stay connected to an Accessories Payment Plan over 24 or 36 months.',
-      tc: 'Postpaid plan costs additional. Ends 08/04 (unless extended). T&C apply.',
-      tcTooltip: null,
+      tc: 'Postpaid plan costs additional. Ends 08/04 (unless extended). ',
+      tcTooltip: 'Savings forfeited if cancelled, undiscounted device due in full. Ends 10/03 (unless extended). Min cost and T&C apply.',
     },
   ],
 };
@@ -129,7 +124,7 @@ var DCP16910Templates = {
 			<p class="device-name">${d.title}</p>
 			<p class="device-prefix">Device from</p>
 			<p class="device-price"><span class="dollar">$</span>
-      <span class="device-recurringCharge">${d.recurringCharge}</span>
+      <span class="device-recurringCharge">${d.recurringCharge.toFixed(2)}</span>
       ${d.wasPrice ? `<span class="device-was-price">${d.wasPrice}</span>` : ''}
       <span class="mth">per month</span>
 			</p>
@@ -321,12 +316,12 @@ var DCP16910CSS = `/* ── Slick core ── */
 .planCardContainer { max-width: 1180px; margin: auto; }
 .planCardContainer .planCard { text-decoration: none; margin: 0 10px; }
 .planCardContainer .planCard .plan-item {
-  border-radius: 16px; border: 2px solid #000; background: #FEF1F1;
+  border-radius: 6px;
   box-shadow: rgba(0,0,0,0.16) 0px 2px 8px 0px; overflow: hidden; padding-bottom: 50px;
 }
 .planCardContainer .planCard .plan-item img {
   width: 100%; width: -moz-available; width: -webkit-fill-available; width: stretch;
-  margin: 32px 32px 0; border: 2px solid #000; border-radius: 16px;
+  border-radius: 6px 6px 0 0;
 }
 .planCardContainer .planCard .plan-item .plan-text { padding: 24px 30px; color: #333; }
 .planCardContainer .planCard .plan-item .plan-text .plan-heading { margin: 0; font-size: 24px; line-height: 30px; font-weight: 700; font-family: VodafoneRegularBold, Arial, sans-serif !important; }
