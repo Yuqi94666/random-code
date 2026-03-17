@@ -1,587 +1,245 @@
-'use strict';
-window.DCP16910DeviceCohort = 'appleDevices'; // popularDevices || appleDevices || androidDevices
-
-// 1. Only this section needs to be updated in the future, phones come from api, we only need to update target phone name and pdp link.
-var DCP16910PhoneConfig = {
-  appleDevices: [
-    { name: 'iPhone 16e', href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-16e', },
-    { name: 'iPhone 17 Pro Max', href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro-max', },
-    { name: 'iPhone 17 Pro', href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro', },
-    { name: 'iPhone 17', href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17', },
-  ],
-};
-
-var DCP16910PlanData = {
-  simonly: [
-    {
-      title: 'Small SIM Only Plan',
-      href: 'https://www.vodafone.com.au/mobile/sim-only-phone-plans',
-      image: 'https://www.vodafone.com.au/images/merch/1412-simonly-small-tile.webp',
-      imageAlt: 'Small SIM Only Plan',
-      onlineExclusive: false,
-      heading: 'Save $14/mth on plan fees.',
-      subheading: 'For the first 12 months on a Small SIM Only plan.',
-      tc: 'New connections only. Ends 02/03/26 (unless extended).',
-      tcTooltip: 'Reverts to standard pricing after 12 months. T&C apply.',
-    },
-    {
-      title: 'Medium SIM Only Plan',
-      href: 'https://www.vodafone.com.au/mobile/sim-only-phone-plans',
-      image: 'https://www.vodafone.com.au/images/merch/1412-simonly-medium-tile.webp',
-      imageAlt: 'Medium SIM Only Plan',
-      onlineExclusive: false,
-      heading: 'Save $14/mth on plan fees.',
-      subheading: 'For the first 12 months on a Medium SIM Only plan.',
-      tc: 'New connections only. Ends 02/03/26 (unless extended).',
-      tcTooltip: 'Reverts to standard pricing after 12 months. T&C apply.',
-    },
-  ],
-  prepaid: [
-    {
-      title: '$200 Prepaid Plus Starter Pack',
-      href: 'https://www.vodafone.com.au/prepaid/plans/320-plus',
-      image: 'https://www.vodafone.com.au/images/merch/1415-feb-offers-starter-pack-250-tile.webp',
-      imageAlt: '$200 Prepaid Starter Pack',
-      onlineExclusive: false,
-      heading: 'Get our $320 Prepaid Plus SIM for $199. Online only.',
-      subheading: "That's 300GB on activation only. 220GB thereafter.",
-      tc: 'Ends 14/04 (unless extended). T&C apply',
-      tcTooltip: null,
-    },
-    {
-      title: '$35 Prepaid Plus Starter Pack',
-      href: 'https://www.vodafone.com.au/prepaid/plans/45-plus',
-      image: 'https://www.vodafone.com.au/images/merch/1415-feb-offers-starter-pack-35-tile.webp',
-      imageAlt: '$35 Prepaid Starter Pack',
-      onlineExclusive: false,
-      heading: 'Get our $45 Prepaid Plus SIM for $15. Online only.',
-      subheading: "That's 100GB for your first 3 recharges. 35GB thereafter.",
-      tc: 'Ends 14/04 (unless extended). T&C apply.',
-      tcTooltip: null,
-    },
-  ],
-  accessories: [
-    {
-      title: 'Samsung Galaxy Buds4 Pro',
-      href: 'https://www.vodafone.com.au/accessories/buds/samsung-galaxy-buds4-pro',
-      image: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-buds-4-pro/1417-samsung-galaxy-buds4-pro-tile.webp',
-      imageAlt: 'Samsung Galaxy Buds4 Pro',
-      onlineExclusive: false,
-      heading: 'New Samsung Galaxy Buds4 Pro. Save $160.',
-      subheading: 'When you pre-order and stay connected to an Accessories Payment Plan over 24 or 36 months.',
-      tc: 'Postpaid plan costs additional. Ends 08/04 (unless extended). ',
-      tcTooltip: 'Savings forfeited if cancelled, undiscounted device due in full. Ends 10/03 (unless extended). Min cost and T&C apply.',
-    },
-    {
-      title: 'Samsung Galaxy Buds4',
-      href: 'https://www.vodafone.com.au/accessories/buds/samsung-galaxy-buds4',
-      image: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-buds-4/1417-samsung-galaxy-buds4-tile.webp',
-      imageAlt: 'Samsung Galaxy Buds4',
-      onlineExclusive: false,
-      heading: 'New Samsung Galaxy Buds4. Save $100.',
-      subheading: 'When you pre-order and stay connected to an Accessories Payment Plan over 24 or 36 months.',
-      tc: 'Postpaid plan costs additional. Ends 08/04 (unless extended). ',
-      tcTooltip: 'Savings forfeited if cancelled, undiscounted device due in full. Ends 10/03 (unless extended). Min cost and T&C apply.',
-    },
-  ],
-};
-
-// 2. build poplular offers template dynamically
-var DCP16910Templates = {
-  generateDeviceCard: function (d) {
-    let minCost = (d.recurringCharge * 36).toFixed(2);
-    return `
-    <a class="deviceCard itemCard" title="${d.deviceName}" href="${d.href}" aria-hidden="false">
-	<div class="device-item">
-		<div class="device-item-device">
-			<div class="device-item-badge">
-				<img src="https://www.vodafone.com.au/images/icons/5g.svg" />
-				<img src="https://www.vodafone.com.au/images/icons/e-sim-logo.svg" />
-			</div>
-			<img alt="${d.deviceName}" src="${d.image}" />
-			<p class="brand">${d.brand}</p>
-			<p class="device-name">${d.deviceName}</p>
-			<p class="device-prefix">Device from</p>
-			<p class="device-price"><span class="dollar">$</span>
-      <span class="device-recurringCharge">${d.recurringCharge.toFixed(2)}</span>
-      ${d.wasPrice ? `<span class="device-was-price">${d.wasPrice}</span>` : ''}
-      <span class="mth">per month</span>
-			</p>
-			<p class="device-mincost">Min cost $${minCost} over 36 months. Plan cost additional.</p>
-			<div class="primaryBtn">Shop now</div>
-		</div>
-	</div>
-</a>
-    `
-  },
-
-  generatePlanCard: function (p) {
-    var exclusiveClass = p.onlineExclusive ? 'onlineExclusive' : 'XonlineExclusive';
-    var tooltipHtml = p.tcTooltip
-      ? '<tooltip copy="' + p.tcTooltip.replace(/"/g, '&quot;') + '">T&amp;C apply.</tooltip>'
-      : '';
-    return `
-    <a class="planCard itemCard ${exclusiveClass}" title="${p.title}" href="${p.href}" aria-hidden="false">
-	<div class="plan-item">
-		<img src="${p.image}" alt="${p.imageAlt || ''}" />
-		<div class="plan-text">
-			<h3 class="plan-heading">${p.heading}</h3>
-			<p class="plan-subheading">${p.subheading}</p>
-			<p class="plan-tc">${p.tc} ${tooltipHtml}</p>
-			<p class="plan-link">Shop now</p>
-		</div>
-	</div>
-</a>
-    `
-  },
-
-  deviceSet: function (id, devices) {
-    return '<div class="deviceSet" id="' + id + '">' +
-      devices.map(DCP16910Templates.generateDeviceCard).join('') +
-      '</div>';
-  },
-
-  phonesContent: function (phones) {
-    return DCP16910Templates.deviceSet('appleDevices', phones.appleDevices);
-  },
-
-  planContent: function (plans) {
-    return plans.map(DCP16910Templates.generatePlanCard).join('');
-  },
-};
-
-// 3. main controller for tab
-var DCP16910Fn = {
-  aid: 'DCP-16910',
-  config: {
-    checkingKey: '',
-    targetPaths: ['/', '/agents/DCP-16910/', '/cro-demo',],
-    DCP16910TABHTML: `
-    <div id="DCP16910Wrapper">
-        <h2 id="DCP16910WrapperHeading">Popular offers for you</h2>
-        <div id="DCP16910Wrapper_tabs">
-          <ul>
-            <li data-cat="phones" tabindex="0" class="active">Phones</li>
-            <li data-cat="simonly" tabindex="0">SIM only</li>
-            <li data-cat="prepaid" tabindex="0">Prepaid</li>
-            <li data-cat="accessories" tabindex="0">Accessories</li>
-          </ul>
-        </div>
-        <div id="DCP16910Wrapper_tabContents">
-          <div class="DCP16910Wrapper_tabItem deviceCardContainer active" data-cat="phones"></div>
-          <div class="DCP16910Wrapper_tabItem planCardContainer" data-cat="simonly"></div>
-          <div class="DCP16910Wrapper_tabItem planCardContainer" data-cat="prepaid"></div>
-          <div class="DCP16910Wrapper_tabItem planCardContainer" data-cat="accessories"></div>
-          <div class="modal">
-            <div class="tooltip">
-              <div class="text"><p class="copy"></p></div>
-              <div class="close-link">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="presentation" class="close-icon">
-                  <g fill="none" fill-rule="evenodd">
-                    <path d="M0 0h24v24H0z"></path>
-                    <path d="M20 4L4 20M4 4l16 16" stroke="currentColor" stroke-linecap="round"></path>
-                  </g>
-                </svg>
-              </div>
+const DCP17201CONSTANTS = {
+    EXPERIMENT_ID: '17201', // Experiment ID
+    PAGES_INCLUDE: [], // ['iphone16'] // pages to be included, if empty observe is not used
+    PAGES_EXCLUDE: [], //pages to be excluded
+    EXPERIMENT_VARIANT: 'personalisation', // possible values: variant|control|personalisation
+    TARGET_ELEMENT: 'DIV[data-testid="Upgrade-hub"]', // Target element to be modified
+    TEMPLATE_HTML: `<div class="upgrade-options">
+    <div class="main-container">
+        <div class="hi-fi-dark-price-promise">
+          
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <g clip-path="url(#clip0_16165_30753)">
+    <path d="M31.7299 58.6668C29.2869 58.663 26.9417 57.7063 25.1932 56.0001C22.8493 56.5165 20.3966 56.119 18.3357 54.8888C16.2749 53.6586 14.7611 51.6884 14.1032 49.3801C11.8145 48.6565 9.88835 47.0865 8.7181 44.9908C7.54785 42.895 7.22182 40.4315 7.80658 38.1034C6.18931 36.3313 5.30888 34.009 5.34481 31.6101C5.38073 29.2112 6.33031 26.9163 7.99991 25.1934C7.48239 22.8503 7.87857 20.398 9.10758 18.3371C10.3366 16.2761 12.3058 14.7619 14.6132 14.1034C15.3382 11.8149 16.909 9.8892 19.0051 8.71911C21.1012 7.54902 23.5648 7.22272 25.8932 7.80677C27.6644 6.1869 29.987 5.30418 32.3869 5.33888C34.7869 5.37357 37.083 6.32305 38.8066 7.99343C41.1505 7.47703 43.6032 7.87448 45.6641 9.1047C47.725 10.3349 49.2388 12.3052 49.8966 14.6134C52.1853 15.337 54.1115 16.907 55.2817 19.0028C56.452 21.0986 56.778 23.562 56.1932 25.8901C57.8131 27.6612 58.6958 29.9839 58.6611 32.3838C58.6264 34.7837 57.677 37.0799 56.0066 38.8034C56.5238 41.1474 56.1267 43.6005 54.8964 45.6616C53.666 47.7227 51.6953 49.2363 49.3866 49.8934C48.663 52.1829 47.0925 54.1096 44.996 55.2799C42.8994 56.4503 40.4351 56.7758 38.1066 56.1901C37.119 57.0955 35.948 57.7776 34.6732 58.1901C33.7234 58.503 32.73 58.6639 31.7299 58.6668Z" fill="#E60000"/>
+    <g opacity="0.06">
+      <path d="M56.0229 41.949C55.6731 43.6283 54.8694 45.1795 53.6992 46.4337C52.5291 47.6879 51.0373 48.5971 49.3862 49.0624C48.6627 51.3518 47.0921 53.2785 44.9956 54.4489C42.8991 55.6192 40.4348 55.9447 38.1062 55.359C37.1186 56.2644 35.9476 56.9465 34.6729 57.359C33.7227 57.6697 32.7293 57.8284 31.7296 57.829C29.2865 57.8253 26.9414 56.8686 25.1929 55.1624C22.849 55.6788 20.3963 55.2813 18.3354 54.0511C16.2745 52.8209 14.7607 50.8506 14.1029 48.5424C12.2654 47.9614 10.6502 46.8308 9.47541 45.3031C8.30058 43.7754 7.62259 41.9241 7.53289 39.999C7.44001 42.0711 8.03359 44.1158 9.22152 45.8161C10.4095 47.5163 12.1253 48.7769 14.1029 49.4024C14.7648 51.7067 16.2805 53.672 18.341 54.8977C20.4016 56.1234 22.852 56.5172 25.1929 55.999C26.9414 57.7052 29.2865 58.662 31.7296 58.6657C32.7293 58.665 33.7227 58.5064 34.6729 58.1957C35.9476 57.7832 37.1186 57.1011 38.1062 56.1957C40.4348 56.7814 42.8991 56.4558 44.9956 55.2855C47.0921 54.1152 48.6627 52.1885 49.3862 49.899C51.4206 49.3194 53.2008 48.0722 54.4403 46.358C55.6798 44.6439 56.3065 42.5626 56.2196 40.449C56.1941 40.9535 56.1283 41.4551 56.0229 41.949Z" fill="black"/>
+      <path d="M56 37.9732C56.05 38.2032 56.09 38.4366 56.1233 38.6699C56.9844 37.7573 57.6532 36.6809 58.0901 35.5048C58.527 34.3286 58.7231 33.0767 58.6667 31.8232C58.5641 34.1314 57.6147 36.3208 56 37.9732Z" fill="black"/>
+      <path d="M7.80585 37.273C6.90007 36.2844 6.21793 35.1123 5.80585 33.8363C5.53702 33.0268 5.37783 32.1848 5.33252 31.333C5.28528 32.4624 5.43993 33.5912 5.78919 34.6663C6.18333 35.8767 6.82211 36.9932 7.66585 37.9463C7.70252 37.7197 7.74919 37.4963 7.80585 37.273Z" fill="black"/>
+    </g>
+    <path d="M31.0559 38.8361C30.7792 38.8134 30.511 38.7295 30.2707 38.5906C30.0303 38.4517 29.8237 38.2612 29.6659 38.0328L24.7192 32.5595V32.5428L24.6192 32.4195L24.5892 32.3795C24.3707 32.0921 24.2534 31.7405 24.2559 31.3795C24.2568 30.958 24.4246 30.5541 24.7226 30.2561C25.0206 29.9581 25.4245 29.7903 25.8459 29.7895C26.0712 29.7946 26.2931 29.8454 26.4982 29.9388C26.7034 30.0322 26.8874 30.1662 27.0392 30.3328L30.6659 33.4928L38.5526 23.4928C38.68 23.2597 38.8653 23.0633 39.0907 22.9226C39.316 22.7819 39.5738 22.7016 39.8392 22.6895C40.2247 22.6895 40.5943 22.8426 40.8669 23.1151C41.1394 23.3877 41.2926 23.7573 41.2926 24.1428C41.2794 24.4786 41.163 24.8022 40.9592 25.0695L34.2659 35.3028L32.5426 37.8395C32.3326 38.1728 31.8592 38.8361 31.0559 38.8361Z" fill="#EBEBEB"/>
+    <path opacity="0.12" d="M40.9668 24.3793L34.2735 34.6126L32.5501 37.1493C32.3201 37.4826 31.8601 38.1493 31.0568 38.1493C30.7789 38.1255 30.5098 38.0398 30.2693 37.8984C30.0288 37.7571 29.8229 37.5638 29.6668 37.3326L24.7201 31.8726V31.856L24.6201 31.7326L24.5901 31.6926C24.4484 31.494 24.3527 31.2663 24.3101 31.026C24.2863 31.1355 24.274 31.2472 24.2735 31.3593C24.271 31.7203 24.3882 32.072 24.6068 32.3593L24.6368 32.3993L24.7368 32.5226V32.5393L29.6668 38.0326C29.8252 38.263 30.0331 38.4551 30.2754 38.5947C30.5176 38.7342 30.788 38.8178 31.0668 38.8393C31.8701 38.8393 32.3301 38.1726 32.5601 37.8393L34.2835 35.3026L40.9768 25.0693C41.1806 24.8021 41.297 24.4785 41.3101 24.1426C41.3073 24.0198 41.2894 23.8978 41.2568 23.7793C41.2028 23.9972 41.104 24.2016 40.9668 24.3793Z" fill="black"/>
+    <g opacity="0.06">
+      <path d="M32.0007 50.6663C28.3087 50.6663 24.6997 49.5716 21.63 47.5204C18.5603 45.4693 16.1677 42.554 14.7549 39.1431C13.3421 35.7322 12.9724 31.979 13.6927 28.358C14.4129 24.737 16.1908 21.4109 18.8013 18.8004C21.4119 16.1898 24.738 14.4119 28.359 13.6917C31.98 12.9714 35.7332 13.3411 39.1441 14.7539C42.555 16.1668 45.4703 18.5593 47.5214 21.629C49.5725 24.6988 50.6673 28.3078 50.6673 31.9997C50.6673 36.9504 48.7007 41.6983 45.2 45.199C41.6993 48.6997 36.9514 50.6663 32.0007 50.6663ZM32.0007 14.6663C28.5724 14.6663 25.2212 15.6829 22.3708 17.5875C19.5203 19.4922 17.2987 22.1993 15.9867 25.3665C14.6748 28.5338 14.3316 32.0189 15.0004 35.3812C15.6692 38.7436 17.32 41.8321 19.7441 44.2562C22.1683 46.6803 25.2568 48.3312 28.6191 49C31.9814 49.6688 35.4666 49.3255 38.6338 48.0136C41.8011 46.7017 44.5082 44.48 46.4128 41.6296C48.3174 38.7791 49.334 35.4279 49.334 31.9997C49.334 27.4026 47.5078 22.9938 44.2572 19.7432C41.0065 16.4925 36.5977 14.6663 32.0007 14.6663Z" fill="black"/>
+    </g>
+    <g opacity="0.06">
+      <path d="M32.0007 13.9997C36.8941 13.9989 41.5923 15.9197 45.0835 19.3486C48.5748 22.7776 50.5799 27.4403 50.6673 32.333V31.9997C50.6673 27.049 48.7007 22.301 45.2 18.8003C41.6993 15.2997 36.9514 13.333 32.0007 13.333C27.0499 13.333 22.302 15.2997 18.8013 18.8003C15.3006 22.301 13.334 27.049 13.334 31.9997V32.333C13.4214 27.4403 15.4265 22.7776 18.9178 19.3486C22.409 15.9197 27.1072 13.9989 32.0007 13.9997Z" fill="black"/>
+    </g>
+  </g>
+  <defs>
+    <clipPath id="clip0_16165_30753">
+      <rect width="64" height="64" fill="white"/>
+    </clipPath>
+  </defs>
+</svg>
+            <div class="frame-838">
+                <div class="online-exclusive">$300 bonus credit</div>
+                <div class="save-300-when-you-upgrade-online">Log in to claim your bonus credit, which will be applied on your first bill. Ends 14/04.</div>
             </div>
-          </div>
         </div>
-      </div>
-      `,
-    DCP16910CSS: `/* ── Slick core ── */
-      .slick-slider {
-        position: relative; display: block; box-sizing: border-box;
-        -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
-        -webkit-touch-callout: none; -khtml-user-select: none;
-        -ms-touch-action: pan-y; touch-action: pan-y;
-        -webkit-tap-highlight-color: transparent;
-      }
-      .slick-list { position: relative; display: block; overflow: hidden; margin: 0; padding: 0; }
-      .slick-list:focus { outline: none; }
-      .slick-list.dragging { cursor: pointer; cursor: hand; }
-      .slick-slider .slick-track,
-      .slick-slider .slick-list {
-        -webkit-transform: translate3d(0,0,0); -moz-transform: translate3d(0,0,0);
-        -ms-transform: translate3d(0,0,0); -o-transform: translate3d(0,0,0); transform: translate3d(0,0,0);
-      }
-      .slick-track { position: relative; top: 0; left: 0; display: block; margin-left: auto; margin-right: auto; }
-      .slick-track:before, .slick-track:after { display: table; content: ""; }
-      .slick-track:after { clear: both; }
-      .slick-loading .slick-track { visibility: hidden; }
-      .slick-slide { display: none; float: left; height: auto; min-height: 1px; }
-      [dir="rtl"] .slick-slide { float: right; }
-      .slick-slide img { display: block; }
-      .slick-slide.slick-loading img { display: none; }
-      .slick-slide.dragging img { pointer-events: none; }
-      .slick-initialized .slick-slide { display: block; }
-      .slick-loading .slick-slide { visibility: hidden; }
-      .slick-vertical .slick-slide { display: block; height: auto; border: 1px solid transparent; }
-      .slick-arrow.slick-hidden { display: none; }
-
-      /* ── Slick arrows ── */
-      .slick-arrow {
-        z-index: 2; text-indent: -99999px; cursor: pointer;
-        border: 2px solid #333; top: 126px; width: 48px; height: 48px;
-        border-radius: 24px; box-shadow: 0 2px 12px 0 rgba(0,0,0,0.08);
-        position: absolute; background-color: #fff !important;
-      }
-      .slick-arrow.slick-prev { left: -10px; }
-      .slick-arrow.slick-next { right: -10px; }
-      .slick-arrow.slick-prev:before {
-        display: block; content: ""; width: 36px; height: 36px;
-        position: absolute; left: 1px; top: 24px;
-        transform: translateY(-50%) rotate(90deg);
-        background-image: url("data:image/svg+xml, %3Csvg width='36' height='36' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' style='stroke-width:2px' fill-rule='evenodd'%3E%3Cpath fill='none' d='M32 0H0v32h32z' /%3E%3Cpath stroke='%23333333' stroke-linecap='round' stroke-linejoin='round' d='M4.667 11.333L16 22.667l11.333-11.334' /%3E%3C/g%3E%3C/svg%3E");
-        background-repeat: no-repeat; background-position: right center; background-size: contain;
-      }
-      .slick-arrow.slick-next:before {
-        display: block; content: ""; width: 36px; height: 36px;
-        position: absolute; left: 6px; top: 20px;
-        transform: translateY(-50%) rotate(270deg);
-        background-image: url("data:image/svg+xml, %3Csvg width='36' height='36' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' style='stroke-width:2px' fill-rule='evenodd'%3E%3Cpath fill='none' d='M32 0H0v32h32z' /%3E%3Cpath stroke='%23333333' stroke-linecap='round' stroke-linejoin='round' d='M4.667 11.333L16 22.667l11.333-11.334' /%3E%3C/g%3E%3C/svg%3E");
-        background-repeat: no-repeat; background-position: right center; background-size: contain;
-      }
-      .slick-arrow:hover, .slick-arrow:focus { border: 2px solid #333; background-color: #333 !important; }
-      .slick-arrow:focus { border-color: #007C92; }
-      .slick-arrow.slick-prev:hover:before, .slick-arrow.slick-prev:focus:before,
-      .slick-arrow.slick-next:hover:before, .slick-arrow.slick-next:focus:before {
-        background-image: url("data:image/svg+xml, %3Csvg width='36' height='36' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' style='stroke-width:2px' fill-rule='evenodd'%3E%3Cpath fill='none' d='M32 0H0v32h32z' /%3E%3Cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' d='M4.667 11.333L16 22.667l11.333-11.334' /%3E%3C/g%3E%3C/svg%3E");
-      }
-      .slick-arrow.slick-disabled { display: none !important; }
-
-      /* ── Wrapper & heading ── */
-      #DCP16910Wrapper { padding: 60px 0 0 0; background: #f4f4f4; }
-      #DCP16910Wrapper h2#DCP16910WrapperHeading {
-        color: #25282B; text-align: center;
-        font-size: 44px; font-weight: 300; line-height: 52px;
-        font-family: VodafoneLight, Arial, sans-serif; margin: 0;
-      }
-
-      /* ── Tabs ── */
-      #DCP16910Wrapper_tabs ul {
-        display: flex; gap: 20px; justify-content: center;
-        border-bottom: 1px solid #CCC; margin: 48px 0; overflow: auto;
-      }
-      #DCP16910Wrapper_tabs ul li {
-        list-style: none; font-size: 18px; font-weight: 400; line-height: 24px;
-        padding: 16px 0; min-width: 110px; max-width: 200px; text-align: center; cursor: pointer;
-      }
-      #DCP16910Wrapper_tabs ul li.active { border-bottom: 2px solid red; }
-
-      /* ── Tab contents ── */
-      #DCP16910Wrapper_tabContents {
-        position: relative; width: 90%; max-width: 1180px; margin: 0 auto; min-height: 600px;
-      }
-      .DCP16910Wrapper_tabItem { left: -99999px; position: absolute; width: 100%; }
-      .DCP16910Wrapper_tabItem.active { left: 0; }
-      .DCP16910Wrapper_tabItem .deviceSet { left: -99999px; position: absolute; width: 100%; }
-      .DCP16910Wrapper_tabItem .deviceSet.active { left: 0; }
-
-      /* ── Device cards ── */
-      .deviceCardContainer { max-width: 1180px; margin: auto; }
-      .deviceCardContainer .deviceCard { text-decoration: none; margin: 0 10px; }
-      .DCP16910Wrapper_tabItem .itemCard { padding: 10px 0; }
-      .DCP16910Wrapper_tabItem .itemCard.onlineExclusive:before {
-        content: 'Online exclusive'; background: #9C2AA0; padding: 6px 18px;
-        bottom: 6px; position: relative; color: #fff; font-size: 16px;
-        line-height: 22px; border-radius: 6px 6px 6px 0;
-      }
-      .DCP16910Wrapper_tabItem .itemCard.XonlineExclusive:before {
-        content: ' '; background: none; padding: 6px 18px; bottom: 6px;
-        position: relative; color: #fff; font-size: 16px; line-height: 22px; border-radius: 6px 6px 6px 0;
-      }
-      .deviceCardContainer .deviceCard .device-item {
-        color: rgb(51,51,51); padding: 20px 16px 26px; background-color: #fff;
-        border-radius: 6px; box-shadow: rgba(0,0,0,0.16) 0px 2px 8px 0px;
-      }
-      .deviceCardContainer .deviceCard .device-item .device-item-badge img { margin: 0; width: 45px; height: 45px; display: inline-block; }
-      .deviceCardContainer .deviceCard .device-item img { width: 168px; height: auto; margin: 20px auto; display: block; }
-      .deviceCardContainer .deviceCard .device-item p { margin: 0; }
-      .deviceCardContainer .deviceCard .device-item .brand { font-size: 14px; line-height: 18px; font-family: VodafoneRegular, Arial, sans-serif; }
-      .deviceCardContainer .deviceCard .device-item .device-name { color: rgb(51,51,51); font-family: VodafoneRegularBold, Arial, sans-serif; margin-bottom: 16px; font-size: 18px; line-height: 24px; }
-      .deviceCardContainer .deviceCard .device-item .device-prefix { font-size: 14px; line-height: 18px; padding-top: 10px; }
-      .deviceCardContainer .deviceCard .device-item .device-price { position: relative; }
-      .deviceCardContainer .deviceCard .device-item .device-price .dollar { font-family: VodafoneRegularBold, Arial, sans-serif; display: inline-block; vertical-align: top; font-size: 18px; line-height: 36px; }
-      .deviceCardContainer .deviceCard .device-item .device-price .device-recurringCharge { font-family: VodafoneRegularBold, Arial, sans-serif; font-size: 40px; line-height: 48px; }
-      .deviceCardContainer .deviceCard .device-item .device-price .device-was-price { font-size: 14px; line-height: 18px; padding: 3px 0 0 2px; text-decoration: line-through; position: absolute; top: 3px; }
-      .deviceCardContainer .deviceCard .device-item .device-price .mth { display: inline-block; font-size: 14px; line-height: 18px; padding: 3px 0 0 2px; }
-      .deviceCardContainer .deviceCard .device-item .device-mincost { margin-top: 12px; font-size: 14px; line-height: 18px; }
-      .deviceCardContainer .deviceCard .device-item .primaryBtn {
-        width: 100%; height: auto; margin: 30px auto 0; border-radius: 6px;
-        padding: 8px 24px; line-height: 24px; font-family: VodafoneLight, Arial, sans-serif;
-        font-size: 18px; text-align: center; text-decoration: none; outline: none;
-        pointer-events: auto; user-select: none; white-space: nowrap; vertical-align: middle;
-        box-sizing: border-box; border-color: #e60000; background: #e60000; color: #fff;
-      }
-      .deviceCardContainer .deviceCard .device-item .primaryBtn:hover { background: #900; border-color: #900; }
-      @keyframes SeniorEntered { 100% { background-position: left center; } }
-      .deviceCardContainer .deviceCard .device-item .device-saving {
-        height: 24px; width: fit-content; padding: 5px 10px; margin: 5px 0;
-        background: linear-gradient(to right, rgb(156,42,160) 50%, white 50%) right center / 200% 200%;
-        animation: 1s ease 0s 1 normal forwards running SeniorEntered;
-        font-size: 14px; line-height: 1; text-align: center; color: #fff;
-        white-space: nowrap; font-family: VodafoneRegular, Arial, sans-serif;
-      }
-
-      /* ── Plan cards ── */
-      .planCardContainer { max-width: 1180px; margin: auto; }
-      .planCardContainer .planCard { text-decoration: none; margin: 0 10px; }
-      .planCardContainer .planCard .plan-item {
-        border-radius: 6px;
-        box-shadow: rgba(0,0,0,0.16) 0px 2px 8px 0px; overflow: hidden; padding-bottom: 50px;
-      }
-      .planCardContainer .planCard .plan-item img {
-        width: 100%; width: -moz-available; width: -webkit-fill-available; width: stretch;
-        border-radius: 6px 6px 0 0;
-      }
-      .planCardContainer .planCard .plan-item .plan-text { padding: 24px 30px; color: #333; }
-      .planCardContainer .planCard .plan-item .plan-text .plan-heading { margin: 0; font-size: 28px; line-height: 34px; font-weight: 300; font-family: VodafoneRegular, Arial, sans-serif !important; }
-      .planCardContainer .planCard .plan-item .plan-text .plan-subheading { margin: 16px 0; font-size: 18px; font-weight: 400; line-height: 24px; }
-      .planCardContainer .planCard .plan-item .plan-text .plan-tc { font-size: 14px; font-weight: 400; line-height: 18px; margin-bottom: 0; }
-      .planCardContainer .planCard .plan-item .plan-text .plan-tc tooltip { text-decoration: underline; cursor: pointer; color: #E60000; position: relative; z-index: 1; }
-      .planCardContainer .planCard .plan-item .plan-text .plan-tc tooltip:hover { text-decoration: none; }
-      .planCardContainer .planCard .plan-item .plan-text .plan-link {
-        margin-top: 24px; font-size: 18px; font-weight: 700; line-height: 24px;
-        color: #EA1A1A; padding-right: 30px; position: absolute; display: inline-block; margin-bottom: 0;
-      }
-      .planCardContainer .planCard .plan-item .plan-text .plan-link:after {
-        display: block; content: ''; width: 20px; height: 20px; top: 3px; right: 8px;
-        position: absolute; transform: rotate(270deg);
-        background-image: url("data:image/svg+xml, %3Csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath fill='none' d='M32 0H0v32h32z' /%3E%3Cpath stroke='%23EA1A1A' style='stroke-width:2px' stroke-linecap='round' stroke-linejoin='round' d='M4.667 11.333L16 22.667l11.333-11.334' /%3E%3C/g%3E%3C/svg%3E");
-        background-size: 100%; transition: all 0.2s ease-in-out;
-      }
-      .planCardContainer .planCard .plan-item .plan-text .plan-link:hover::after { right: 0; }
-
-      /* ── Modal ── */
-      div.modal {
-        display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        z-index: 830; background-color: rgba(0,0,0,0.5); align-items: center; justify-content: center;
-      }
-      div.modal .tooltip {
-        position: relative; display: flex; flex-direction: column; background-color: #fff;
-        width: 80%; max-height: 95%; overflow-y: auto; color: #333;
-        padding: 40px 60px 48px; border-radius: 6px; margin: 0 16px; max-width: 768px;
-      }
-      div.modal .close-link {
-        border: none; margin: 0; padding: 0; width: auto; background: rgba(0,0,0,0);
-        line-height: normal; -webkit-appearance: none; -moz-appearance: none; appearance: none;
-        align-self: flex-end; cursor: pointer; z-index: 10; position: fixed;
-        margin-top: -30px; margin-right: -50px;
-      }
-      div.modal .close-link svg.close-icon { position: relative; color: #333; display: block; height: 24px; width: 24px; }
-      div.modal h3 { margin-bottom: 24px; font-size: 40px; line-height: 48px; }
-      div.modal p.text { font-size: 18px; line-height: 24px; }
-      div.modal p.term { font-size: 12px; line-height: 16px; }
-
-      /* ── Responsive ── */
-      @media (max-width: 1280px) {
-        .planCardContainer .planCard .plan-item { min-height: 550px; }
-      }
-      @media (max-width: 1024px) {
-        .planCardContainer .planCard .plan-item { min-height: 530px; }
-        .planCardContainer .planCard .plan-item img { margin: 24px 24px 0; }
-      }
-      @media (max-width: 768px) {
-        #DCP16910Wrapper { padding: 30px 0 0 0; }
-        #DCP16910Wrapper h2#DCP16910WrapperHeading { font-size: 32px; line-height: 40px; }
-        #DCP16910Wrapper_tabs ul { padding: 0; justify-content: flex-start; margin: 24px 0; }
-        #DCP16910Wrapper_tabContents { min-height: 550px; }
-        .planCardContainer .planCard .plan-item { min-height: auto; }
-        .planCardContainer .planCard .plan-item img { margin: 16px 16px 0; border-radius: 14px; }
-        div.modal h3 { font-size: 24px; line-height: 30px; margin-bottom: 16px; }
-        div.modal p.text { font-size: 16px; line-height: 22px; }
-        div.modal .tooltip { width: 100%; margin: 0; border-radius: 0; padding: 24px 16px 32px; }
-        div.modal .close-link { margin-top: -10px; margin-right: -10px; }
-      }`
-  },
-
-  observe: function () {
-    console.log('###### DCP16910Fn observe ######');
-    croWD.hotbed.listen('croPageTrack', function (observable, eventType, data) {
-      console.log('#########croPageTrack DATA####:', data);
-      DCP16910Fn.init('1');
-    });
-    if (DCP16910Fn.config.targetPaths.includes(window.location.pathname)) {
-      DCP16910Fn.init('0');
-    }
-  },
-
-  init: function (s) {
-    console.log('###### DCP16910Fn init ######', s);
-    if (DCP16910Fn.config.targetPaths.includes(window.location.pathname) && $('#DCP16910Wrapper').length === 0) {
-      $('<style>' + DCP16910Fn.config.DCP16910CSS + '</style>').appendTo('head');
-      $('vha-popular-products').before(DCP16910Fn.config.DCP16910TABHTML);
-
-      var watch = setInterval(function () {
-        if ($('#DCP16910Wrapper').length > 0 && jQuery.fn.slick) {
-          clearInterval(watch);
-          DCP16910Fn.fetchDevices().then(function (phones) {
-            DCP16910Fn.renderContent(phones);
-            $('.DCP16910Wrapper_tabItem .deviceSet').removeClass('active');
-            $('.DCP16910Wrapper_tabItem #' + DCP16910DeviceCohort).addClass('active');
-            DCP16910Fn.applySlick();
-            DCP16910Fn.assignClicks();
-          });
-        }
-      }, 200);
-
-      croWD.utils.launchTracking('DCP16910:Popular Phones Expansion', 'Solution initialised');
-    }
-  },
-
-  // ── API fetch ─────────────────────────────────
-  fetchDevices: function () {
-    return fetch('https://api.vodafone.com.au/device/postpaid?serviceType=New')
-      .then(function (response) {
-        if (!response.ok) throw new Error('Network error: ' + response.status);
-        return response.json();
-      })
-      .then(function (json) {
-        var apiDevices = (json.deviceListing && json.deviceListing.devices) || [];
-        var apiMap = {};
-        apiDevices.forEach(function (d) { apiMap[d.name] = d; });
-        return DCP16910Fn.buildAllCohorts(apiMap, false);
-      })
-      .catch(function (err) {
-        console.error('[DCP16910] fetchDevices failed, using fallback:', err);
-        return DCP16910Fn.buildAllCohorts(null, true);
-      });
-  },
-
-  buildAllCohorts: function (apiMap, useFallback) {
-    return {
-      appleDevices: DCP16910Fn.buildCohort(DCP16910PhoneConfig.appleDevices, apiMap, useFallback),
-    };
-  },
-
-  buildCohort: function (whitelist, apiMap, useFallback) {
-    return whitelist.reduce(function (acc, cfg) {
-      if (useFallback) {
-        acc.push({ title: cfg.name, brand: '', image: '', recurringCharge: '', wasPrice: null, href: cfg.href, badges: cfg.badges, mincost: cfg.mincost });
-        return acc;
-      }
-      var api = apiMap[cfg.name];
-      if (!api) { console.warn('[DCP16910] Device not found in API:', cfg.name); return acc; }
-      acc.push({
-        deviceName: api.name,
-        brand: api.manufacturer || '',
-        image: api.imageUrl || '',
-        recurringCharge: api.discountedRecurringCharge || api.recurringCharge || '',
-        wasPrice: api.discountedRecurringCharge ? api.recurringCharge : null,
-        href: cfg.href,
-        badges: cfg.badges,
-        mincost: cfg.mincost,
-      });
-      return acc;
-    }, []);
-  },
-
-  // ── Render ────────────────────────────────────
-  renderContent: function (phones) {
-    $('[data-cat="phones"].deviceCardContainer').html(DCP16910Templates.phonesContent(phones));
-    $('[data-cat="simonly"].planCardContainer').html(DCP16910Templates.planContent(DCP16910PlanData.simonly));
-    $('[data-cat="prepaid"].planCardContainer').html(DCP16910Templates.planContent(DCP16910PlanData.prepaid));
-    $('[data-cat="accessories"].planCardContainer').html(DCP16910Templates.planContent(DCP16910PlanData.accessories));
-  },
-
-  openModal: function (copyText) {
-    DCP16910Fn.closeModal();
-    var modal = document.querySelector('#DCP16910Wrapper .modal');
-    if (modal && copyText) { modal.querySelector('.copy').innerHTML = copyText; modal.style.display = 'flex'; }
-  },
-
-  closeModal: function () {
-    var modal = document.querySelector('#DCP16910Wrapper .modal');
-    if (modal) { modal.querySelector('.copy').innerHTML = ''; modal.style.display = 'none'; }
-  },
-
-  // ── Events ────────────────────────────────────
-  assignClicks: function () {
-    $('html').on('click', '#DCP16910Wrapper_tabs ul li', function () {
-      $('#DCP16910Wrapper_tabs ul li').removeClass('active');
-      $('.DCP16910Wrapper_tabItem').removeClass('active');
-      $(this).addClass('active');
-      $('.DCP16910Wrapper_tabItem[data-cat="' + $(this).attr('data-cat') + '"]').addClass('active');
-      croWD.utils.launchTracking('DCP-16910 :Popular Phones Expansion', 'Tab Click - ' + $(this).attr('data-cat'));
-    });
-
-    $('html').on('click', '.DCP16910Wrapper_tabItem a', function () {
-      croWD.utils.launchTracking('DCP-16910:Popular Phones Expansion', 'Item Click - ' + $(this).attr('title'));
-    });
-
-    document.querySelectorAll('#DCP16910Wrapper_tabs ul li').forEach(function (tab) {
-      tab.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') { e.preventDefault(); DCP16910Fn.tabClick(tab.dataset.cat); }
-      });
-    });
-
-    document.querySelectorAll('#DCP16910Wrapper tooltip').forEach(function (el) {
-      el.addEventListener('click', function (e) {
-        e.stopPropagation(); e.preventDefault();
-        var copy = el.getAttribute('copy') || '';
-        if (copy) DCP16910Fn.openModal(copy);
-      });
-    });
-
-    var closeLink = document.querySelector('#DCP16910Wrapper .modal .close-link');
-    if (closeLink) closeLink.addEventListener('click', function (e) { e.stopPropagation(); e.preventDefault(); DCP16910Fn.closeModal(); });
-
-    var overlay = document.querySelector('#DCP16910Wrapper .modal');
-    if (overlay) overlay.addEventListener('click', function (e) { if (e.target === overlay) DCP16910Fn.closeModal(); });
-
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') DCP16910Fn.closeModal(); });
-  },
-
-  tabClick: function (val) {
-    $('#DCP16910Wrapper_tabs ul li').removeClass('active');
-    $('.DCP16910Wrapper_tabItem').removeClass('active');
-    $('#DCP16910Wrapper_tabs ul li[data-cat="' + val + '"]').addClass('active');
-    $('.DCP16910Wrapper_tabItem[data-cat="' + val + '"]').addClass('active');
-    croWD.utils.launchTracking('DCP-16910:Popular Phones Expansion', 'Tab Click - ' + val);
-  },
-
-  // ── Slick ─────────────────────────────────────
-  applySlick: function () {
-    console.log('#### applySlick');
-    var deviceOpts = {
-      dots: false, infinite: false, speed: 300, slidesToShow: 4, adaptiveHeight: true,
-      responsive: [
-        { breakpoint: 1170, settings: { slidesToShow: 3 } },
-        { breakpoint: 870, settings: { slidesToShow: 2 } },
-        { breakpoint: 550, settings: { slidesToShow: 1 } },
-      ],
-    };
-    var planOpts = {
-      dots: false, infinite: false, speed: 300, slidesToShow: 2, adaptiveHeight: true,
-      responsive: [{ breakpoint: 550, settings: { slidesToShow: 1 } }],
-    };
-    try {
-      jQuery('.DCP16910Wrapper_tabItem.deviceCardContainer .deviceSet').slick(deviceOpts);
-      jQuery('.DCP16910Wrapper_tabItem.planCardContainer').slick(planOpts);
-    } catch (e) {
-      console.log('#### slick retry', e);
-      jQuery('.DCP16910Wrapper_tabItem.deviceCardContainer .deviceSet').slick('unslick').slick(deviceOpts);
-      jQuery('.DCP16910Wrapper_tabItem.planCardContainer').slick('unslick').slick(planOpts);
-    }
-  },
+        <div class="content-container">
+            <div class="cta">
+                <div class="content">
+                    <a href="https://www.vodafone.com.au/upgrade` + window.location.pathname + window.location.search + `" class="button cta-upgrade"> Log in to upgrade </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>`, // HTML template to be injected
+    TEMPLATE_INJECT_TYPE: 'replace', // possible values: replace|before|prepend|after|append
+    CUSTOM_CSS: `.upgrade-options, .upgrade-options * { box-sizing: border-box } .upgrade-options { background: #fff; border-radius: 6px; border-style: solid; border-color: #666; border-width: 1px; padding: 24px; display: flex; flex-direction: column; gap: 24px; align-items: flex-start; justify-content: flex-start; flex-shrink: 0; position: relative } .main-container { display: flex; flex-direction: row; gap: 15px; align-items: center; justify-content: flex-start; align-self: stretch; flex-shrink: 0; position: relative } @media screen and (max-width: 1160px) { .main-container { align-items: start; flex-direction: column } } .hi-fi-dark-price-promise { flex-shrink: 0; position: relative; overflow: hidden; display: flex; align-items: center; } @media screen and (max-width: 1160px) { .hi-fi-dark-price-promise { align-items: start } } .hi-fi-dark-price-promise-image { width: 64px; display: block } .content-container { display: flex; flex-direction: row; gap: 16px; align-items: center; justify-content: right; flex: 1; position: relative } @media screen and (max-width: 1160px) { .content-container { gap: 24px; justify-content: center; width: 100% } } .frame-838 { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; justify-content: flex-start; flex: 1; position: relative; padding-left: 15px } .online-exclusive { color: #333; text-align: left; font-family: "Vodafone-Bold", sans-serif; font-size: 20px; line-height: 28px; font-weight: 700; position: relative } @media screen and (max-width: 1160px) { .online-exclusive { font-size: 18px; line-height: 24px } } .save-300-when-you-upgrade-online { color: #333; text-align: left; font-family: "Vodafone-Regular", sans-serif; font-size: 18px; line-height: 24px; font-weight: 400; position: relative; align-self: stretch; display: flex; overflow-wrap: break-word; max-width: 261px } @media screen and (max-width: 1160px) { .save-300-when-you-upgrade-online { font-size: 16px; line-height: 22px; max-width: 100% } } .save-300-when-you-upgrade-online.upgrade { max-width: 100% } .cta { background: #333; border-radius: 6px; padding: 15px 20px 15px 20px; display: flex; flex-direction: column; gap: 8px; align-items: center; justify-content: center; flex-shrink: 0; height: 50px; position: relative; cursor: pointer } .cta:hover { background: #666 } @media screen and (max-width: 1160px) { .cta { width: 100% } } .content { display: flex; flex-direction: row; gap: 4px; align-items: center; justify-content: center; align-self: stretch; flex-shrink: 0; height: 24px; position: relative } .button { color: #fff; text-align: center; font-family: "Vodafone-Regular", sans-serif; font-size: 20px; line-height: 24px; font-weight: 400; position: relative; display: flex; align-items: center; justify-content: center; text-decoration: none } @media screen and (max-width: 1160px) { .button { font-size: 18px } }`,
+    // CSS to be injected
+    INIT_RETRY_INTERVAL: 500, // milliseconds for init retry
+    INIT_MAX_RETRIES: 20, // max retries for init
+    ELEMENT_EVENT_PAIRS: [
+        '.cta-upgrade:click' // Example of an element event pair, format 'selector:eventType'
+    ]
 };
 
-var crowdMaxDCP16910 = 100;
-var crowdFinderDCP16910 = setInterval(function () {
-  crowdMaxDCP16910--;
-  try {
-    if (croWD && jQuery && $('vha-popular-products').length > 0) {
-      var slickScript = document.createElement('script');
-      slickScript.setAttribute('src', 'https://www.vodafone.com.au/content/dam/vha/croassets/slick.min.js');
-      document.body.appendChild(slickScript);
-      clearInterval(crowdFinderDCP16910);
-      crowdFinderDCP16910 = null;
-      $('vha-popular-products').hide();
-      DCP16910Fn.observe();
+let DCP17201OBJ = {
+  applyChanges: function (el) {
+      try {
+
+        this.buildCSS(); // Build and inject CSS
+        this.buildTemplate();
+
+        // Check if the digitalExclusiveCLM is already stored in sessionStorage
+        // if (!sessionStorage.getItem(DCP17201CONSTANTS.EXPERIMENT_ID)) {
+        //     sessionStorage.setItem(DCP17201CONSTANTS.EXPERIMENT_ID, true);
+        // }
+
+        // Retrieve and display the stored digitalExclusiveCLM
+        const EXPERIMENT_ID = sessionStorage.getItem(DCP17201CONSTANTS.EXPERIMENT_ID);
+        console.log('Session variable created:', EXPERIMENT_ID);
+
+      } catch (error) {
+          console.error('Error in applyChanges function:', error);
+          DCP17201OBJ.tracking('error applyChanges');
+      }
+  },
+  tracking: function (value) {
+      try {
+          if (typeof dataLayer !== 'undefined' && dataLayer) { // Check if dataLayer exists
+            croWD.utils.launchTracking(
+              DCP17201CONSTANTS.EXPERIMENT_ID,
+              value,
+              DCP17201CONSTANTS.EXPERIMENT_VARIANT,
+              ''
+          );
+          } else {
+              console.warn('dataLayer is not defined. Tracking event:', value, 'was not sent.');
+          }
+      } catch (error) {
+          console.error('Error in tracking function:', error);
+      }
+  },
+  buildCSS: function () {
+      try {
+          const styleSheet = document.createElement('style');
+          styleSheet.setAttribute('type', 'text/css');
+          styleSheet.setAttribute('id', `${DCP17201CONSTANTS.EXPERIMENT_ID}-styles`);
+          
+          // Remove any existing stylesheet with the same ID
+          const existingStyle = document.getElementById(`${DCP17201CONSTANTS.EXPERIMENT_ID}-styles`);
+          if (existingStyle) {
+              existingStyle.remove();
+          }
+
+          // Append stylesheet to head
+          const css = DCP17201CONSTANTS.CUSTOM_CSS;
+          styleSheet.appendChild(document.createTextNode(css));
+          document.head.appendChild(styleSheet);
+      } catch (error) {
+          console.error('Error in buildCSS function:', error);
+          DCP17201OBJ.tracking('error buildCSS');
+      }
+  },
+  buildTemplate: function () {
+      try {
+          let template = document.createElement('div');
+          template.innerHTML = DCP17201CONSTANTS.TEMPLATE_HTML; // Use the constant template HTML
+          template.id = 'wrapper-' + DCP17201CONSTANTS.EXPERIMENT_ID;
+
+          let mainElement = document.querySelector(DCP17201CONSTANTS.TARGET_ELEMENT);
+          if (!mainElement) {
+              throw new Error('Template location element not found');
+          }
+          
+          // Remove any existing template with the same ID
+          const existingTemplate = document.getElementById(`${DCP17201CONSTANTS.EXPERIMENT_ID}`);
+          if (existingTemplate) {
+              existingTemplate.remove();
+          }
+          switch (DCP17201CONSTANTS.TEMPLATE_INJECT_TYPE) {
+              case 'replace':
+                mainElement.insertAdjacentHTML('afterend', template.outerHTML);
+                mainElement.remove(); // Remove the original element after replacing
+                break;
+              case 'before':
+                mainElement.insertAdjacentHTML('beforebegin', template.outerHTML);
+                break;
+              case 'prepend':
+                mainElement.insertBefore(template, mainElement.firstChild);
+                break;
+              case 'after':
+                mainElement.insertAdjacentHTML('afterend', template.outerHTML);
+                break;
+              default:
+                //case 'append'
+                mainElement.appendChild(template);
+                break;
+            }
+      } catch (error) {
+          console.error('Error in buildTemplate function:', error);
+          DCP17201OBJ.tracking('error buildTemplate');
+      }
+  },
+  addEventListener: function () {
+    try {
+        const elementEventPairs = DCP17201CONSTANTS.ELEMENT_EVENT_PAIRS || [];
+        elementEventPairs.forEach(pair => {
+            const [selector, eventType] = pair.split(':');
+            const el = document.querySelector(selector);
+            if (el) {
+                el.addEventListener(eventType, () => {
+                    DCP17201OBJ.tracking(eventType + ' ' + el.innerText);
+                });
+            } else {
+                console.warn(`Element not found for selector: ${selector}`);
+            }
+        });
+    } catch (error) {
+        console.error('Error in addEventListener function:', error);
+        DCP17201OBJ.tracking('error addEventListener');
     }
-    if (crowdMaxDCP16910 <= 0) {
-      clearInterval(crowdFinderDCP16910);
-      crowdFinderDCP16910 = null;
-    }
-  } catch (e) { }
-}, 100);
+},
+  observe: function () {
+      try {
+          // Define the array of URLs to check against
+          const includeUrls = DCP17201CONSTANTS.PAGES_INCLUDE;
+
+          // Define the array of URLs to be excluded
+          const excludedUrls = DCP17201CONSTANTS.PAGES_EXCLUDE;
+
+          croWD.hotbed.listen('croPageTrack', function (observable, eventType, data) {
+              const currentUrl = window.location.href;
+
+              // Check if the current URL exists in the array and not in the excluded list
+              const matchedUrl = includeUrls.find(url => {
+                  const isMatch = currentUrl.toLowerCase().includes(url.toLowerCase());
+                  const isExcluded = excludedUrls.some(excludedUrl =>
+                      currentUrl.toLowerCase().includes(excludedUrl.toLowerCase())
+                  );
+                  return isMatch && !isExcluded;
+              });
+                  
+              if (matchedUrl) {
+                  DCP17201OBJ.waitForElement();
+              }
+          });
+
+      } catch (error) {
+          console.error('Error in observe function:', error);
+          DCP17201OBJ.tracking('error observe');
+      }
+  },
+  waitForElement: function () {
+      try {
+          let rC = 0;
+          let int = setInterval(() => {
+
+            const el = DCP17201CONSTANTS.TARGET_ELEMENT;
+
+            if (el && croWD) {
+                clearInterval(int);
+                int = null;
+                DCP17201OBJ.applyChanges(el);
+            } else {
+                rC++;
+                if (rC >= DCP17201CONSTANTS.INIT_MAX_RETRIES) {
+                    clearInterval(int);
+                    int = null;
+                    console.error('Element not found after max retries. DCP17201OBJ');
+                    DCP17201OBJ.tracking('error elementsNotFound');
+                }
+            }
+          }, DCP17201CONSTANTS.INIT_RETRY_INTERVAL);
+
+      } catch (error) {
+          console.error('Error in waitForElement function:', error);
+          DCP17201OBJ.tracking('error waitForElement');
+      }
+  },
+  init: function () {
+      if (DCP17201CONSTANTS.PAGES_INCLUDE.length === 0) {
+          DCP17201OBJ.waitForElement();
+      }
+      else if(DCP17201CONSTANTS.PAGES_INCLUDE.includes(window.location.pathname)){
+        DCP17201OBJ.waitForElement();
+      } else {
+          DCP17201OBJ.observe();
+      }
+  }
+
+};
+
+DCP17201OBJ.init();
