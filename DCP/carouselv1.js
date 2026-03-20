@@ -185,11 +185,22 @@ let DCP16880OBJ = {
         try {
             document.querySelectorAll('#primaryPlans #carousel-block-view-primaryPlans [id^="plan-card"]').forEach((card) => {
                 const fiberNode = croWD.utils.getReactFiber(card);
-				console.log('fiberNode',fiberNode);
 				
                 if (fiberNode.memoizedProps.children[2].props.children[2].props.isOpen === false) {
                     fiberNode.memoizedProps.children[2].props.children[0].props.onClick();
                 }
+
+                // Disable accordion toggle so it cannot be clicked by the user
+                setTimeout(() => {
+                    const accordionContent = card.querySelector('[data-testid="accordion-item"]');     
+                    if (accordionContent) {
+                        const accordionTrigger = accordionContent.previousElementSibling;
+                        if (accordionTrigger) {
+                            accordionTrigger.style.pointerEvents = 'none';
+                            accordionTrigger.style.cursor = 'default';
+                        }
+                    }
+                }, 200);
             });
 
             const container = document.querySelectorAll('#carousel-block-view-primaryPlans .slick-slide');

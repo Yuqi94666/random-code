@@ -29,21 +29,12 @@
     const style = document.createElement("style");
     style.id = STYLE_ID;
     style.textContent = `
-      .cross { position: relative !important; opacity: 0.55 !important; }
-      .cross::before, .cross::after {
-        content: "" !important;
-        position: absolute !important;
-        left: 10% !important;
-        top: 50% !important;
-        width: 80% !important;
-        height: 2px !important;
-        background: #111 !important;
-        z-index: 9999 !important;
-        pointer-events: none !important;
-        transform-origin: center !important;
-      }
-      .cross::before { transform: translateY(-50%) rotate(45deg) !important; }
-      .cross::after  { transform: translateY(-50%) rotate(-45deg) !important; }
+      .cross { position: relative !important; opacity: 0.55 !important; pointer-events: none !important; overflow: hidden;}
+.cross::after {
+  content: "" !important; position: absolute !important; left: 10% !important;
+  top: 50% !important; width: 80% !important; height: 2px !important;
+  background: #111 !important; transform: translateY(-50%) rotate(-45deg) !important;
+  z-index: 2 !important; pointer-events: none !important;
     `;
     document.head.appendChild(style);
     vlog("Injected CSS");
