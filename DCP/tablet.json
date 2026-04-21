@@ -1,0 +1,615 @@
+{
+  "pageHeaderData": {
+    "experienceFragments": [
+      [
+        {
+          "fragmentId": "countdown-timer",
+          "fragmentHtml": "&lt;div class=&quot;aem-Grid aem-Grid--12 aem-Grid--default--12 &quot;&gt;        &lt;div class=&quot;countdowntimer aem-GridColumn aem-GridColumn--default--12&quot;&gt;    &lt;script src=&quot;/etc.clientlibs/vha/components/content/countdowntimer/clientlibs.min.js&quot;&gt;&lt;/script&gt;&lt;vha-countdown countdownEndDate=&quot;2025-12-04T23:59:59.000+11:00&quot; description=&quot;Hurry, Black Friday deals end in:&quot; bgcolour=&quot;grey&quot; showInfoPostCountDown=&quot;false&quot; id=&quot;v576e56386fb1a08ce112048452ffb7bba9915aa479397c4018a14a117281ce46&quot;&gt;&lt;/vha-countdown&gt;     &lt;/div&gt;    &lt;/div&gt;"
+        }
+      ],
+      []
+    ],
+    "metaTags": "&lt;link rel=&quot;canonical&quot; href=&quot;https://www.vodafone.com.au/mobile/tablets&quot;/&gt;&lt;meta name=&quot;description&quot; content=&quot;Get the latest tablet with an interest-free repayment period of 12, 24 or 36 months. Perfect for surfing the internet, streaming movies, reading eBooks, playing games and more. Buy online today.&quot; /&gt; &lt;meta property=&quot;og:title&quot; content=&quot;Tablets.&quot; /&gt;&lt;meta property=&quot;og:type&quot; content=&quot;product.group&quot; /&gt;&lt;meta property=&quot;og:url&quot; content=&quot;https://www.vodafone.com.au/mobile/tablets&quot; /&gt;&lt;meta property=&quot;og:image&quot; content=&quot;https://www.vodafone.com.au/images/meta/tablets-og.jpg&quot; /&gt;&lt;meta name=&quot;cludo:image&quot; content=&quot;https://www.vodafone.com.au/images/meta/tablets-thumbnail.jpg&quot; /&gt;&lt;meta property=&quot;og:description&quot; content=&quot;Get the latest tablet with an interest-free repayment period of 12, 24 or 36 months.&quot; /&gt;&lt;meta property=&quot;og:site_name&quot; content=&quot;Vodafone Australia&quot;/&gt;&lt;meta name=&quot;twitter:card&quot; content=&quot;summary&quot; /&gt;&lt;meta name=&quot;twitter:site&quot; content=&quot;@VodafoneAU&quot; /&gt;&lt;meta name=&quot;twitter:title&quot; content=&quot;Tablets&quot; /&gt;&lt;meta name=&quot;twitter:description&quot; content=&quot;Get the latest tablet with an interest-free repayment period of 12, 24 or 36 months.&quot; /&gt;&lt;meta name=&quot;twitter:image&quot; content=&quot;https://www.vodafone.com.au/images/meta/tablets-twitter.jpg&quot; /&gt;",
+    "seoTitle": "Tablets | Vodafone Australia",
+    "seoData": [
+      "{ \"@context\": \"https://schema.org\", \"@type\": \"ItemList\", \"@id\": \"https://www.vodafone.com.au/mobile/tablets\", \"name\": \"Tablets\", \"description\": \"With large screens and fast connectivity, tablets are perfect for surfing the internet, streaming movies, reading eBooks and playing games. At Vodafone, you can pay for your new tablet interest free over 12, 24 or 36 months, and get a Vodafone Infinite Data plan with a no lock-in contract.\", \"numberOfItems\": 5, \"itemListElement\": [ { \"@type\": \"ListItem\", \"position\": 1, \"item\": { \"@type\": \"AggregateOffer\", \"@id\": \"https://www.vodafone.com.au/mobile/tablets/apple/ipad-a16\", \"name\": \"iPad (A16)\", \"url\": \"https://www.vodafone.com.au/mobile/tablets/apple/ipad-a16\", \"image\": \"https://www.vodafone.com.au/_next/image?url=https://www.vodafone.com.au/images/devices/apple/ipad-(a16)/ipad-a16-chip-blue-feature1-l.webp\", \"highPrice\": \"848.88\", \"lowPrice\": \"1\", \"areaServed\": \"AU\", \"availability\": \"https://schema.org/InStock\", \"priceCurrency\": \"AUD\" } },{ \"@type\": \"ListItem\", \"position\": 2, \"item\": { \"@type\": \"AggregateOffer\", \"@id\": \"https://www.vodafone.com.au/mobile/tablets/apple/ipad-pro-13-inch-m4\", \"name\": \"iPad Pro 13-inch (M4)\", \"url\": \"https://www.vodafone.com.au/mobile/tablets/apple/ipad-pro-13-inch-m4\", \"image\": \"https://www.vodafone.com.au/_next/image?url=https://www.vodafone.com.au/images/devices/apple/ipad-pro-13-inch-m4/ipad-pro-13-in-m4-space-black-feature1-m.webp\", \"highPrice\": \"2048.76\", \"lowPrice\": \"1\", \"areaServed\": \"AU\", \"availability\": \"https://schema.org/InStock\", \"priceCurrency\": \"AUD\" } },{ \"@type\": \"ListItem\", \"position\": 3, \"item\": { \"@type\": \"AggregateOffer\", \"@id\": \"https://www.vodafone.com.au/mobile/tablets/apple/ipad-pro-11-inch-m4\", \"name\": \"iPad Pro 11-inch (M4)\", \"url\": \"https://www.vodafone.com.au/mobile/tablets/apple/ipad-pro-11-inch-m4\", \"image\": \"https://www.vodafone.com.au/_next/image?url=https://www.vodafone.com.au/images/devices/apple/ipad-pro-11-inch-m4/ipad-pro-11-in-m4-space-black-feature1-l.webp\", \"highPrice\": \"2048.76\", \"lowPrice\": \"1\", \"areaServed\": \"AU\", \"availability\": \"https://schema.org/InStock\", \"priceCurrency\": \"AUD\" } },{ \"@type\": \"ListItem\", \"position\": 4, \"item\": { \"@type\": \"AggregateOffer\", \"@id\": \"https://www.vodafone.com.au/mobile/tablets/samsung/samsung-galaxy-tab-s9-5g\", \"name\": \"Samsung Galaxy Tab S9 5G\", \"url\": \"https://www.vodafone.com.au/mobile/tablets/samsung/samsung-galaxy-tab-s9-5g\", \"image\": \"https://www.vodafone.com.au/_next/image?url=https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-tab-s9/samsung-galaxy-tab-s9-ai-l.webp\", \"highPrice\": \"1548.72\", \"lowPrice\": \"1\", \"areaServed\": \"AU\", \"availability\": \"https://schema.org/BackOrder\", \"priceCurrency\": \"AUD\" } },{ \"@type\": \"ListItem\", \"position\": 5, \"item\": { \"@type\": \"AggregateOffer\", \"@id\": \"https://www.vodafone.com.au/mobile/tablets/samsung/samsung-galaxy-tab-s10-ultra\", \"name\": \"Samsung Galaxy Tab S10 Ultra\", \"url\": \"https://www.vodafone.com.au/mobile/tablets/samsung/samsung-galaxy-tab-s10-ultra\", \"image\": \"https://www.vodafone.com.au/_next/image?url=https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-s10-ultra/samsung-galaxy-tab-s10-ultra-front-l.webp\", \"highPrice\": \"1548.72\", \"lowPrice\": \"1\", \"areaServed\": \"AU\", \"availability\": \"https://schema.org/InStock\", \"priceCurrency\": \"AUD\" } } ] }"
+    ],
+    "altBreadcrumb": "",
+    "defaultTitle": "Tablets with a plan",
+    "defaultDescription": "&lt;p style=&quot;text-align: center;&quot;&gt;With large screens and fast connectivity, tablets are perfect for surfing the internet, streaming movies, reading eBooks and playing games. At Vodafone, you can pay for your new tablet interest free over 12, 24 or 36 months, and get a Vodafone Infinite Data plan with a no lock-in contract. If your Plan is cancelled, you&rsquo;ll need to pay off your tablet on your next bill.&lt;/p&gt;"
+  },
+  "uspItems": {
+    "uspItems": [
+      {
+        "iconUrl": "https://www.vodafone.com.au/images/icons/australia.svg",
+        "description": "&lt;p&gt;National coverage is increasing from around 400,000 to 1,000,000 square kilometres. &lt;a href=&quot;https://www.vodafone.com.au/network/coverage-checker&quot;&gt;Check your coverage&lt;/a&gt;.&lt;/p&gt;",
+        "title": "Additional coverage for regional Australia"
+      },
+      {
+        "iconUrl": "https://www.vodafone.com.au/images/icon/system/grey/like.svg",
+        "description": "&lt;p&gt;You'll love our network or get your money back. Try us for 30 days with our &lt;a href=&quot;https://www.vodafone.com.au/network&quot;&gt;Network Satisfaction Guarantee&lt;/a&gt;. Prepaid excluded. T&amp;amp;C apply.&lt;/p&gt;",
+        "title": "Network Satisfaction Guarantee"
+      },
+      {
+        "iconUrl": "https://www.vodafone.com.au/images/icons/Roaming.svg",
+        "description": "&lt;p&gt;Use your included data, calls and texts in over 100 destinations for $5 extra a day. Excludes speed capped data. Destinations may vary. T&amp;amp;C apply. &lt;a href=&quot;https://www.vodafone.com.au/support/plans/speed-guide&quot;&gt;Find out more&lt;/a&gt;.&lt;/p&gt;",
+        "title": "$5 Roaming"
+      }
+    ],
+    "heading": "Why choose Vodafone?"
+  },
+  "faqs": {
+    "identifier": "CATMBBPOSTPAIDTABLETS",
+    "sectionTitle": "Frequently asked questions",
+    "faqItems": [
+      {
+        "title": "Why should I choose Vodafone to get a tablet?",
+        "description": "&lt;p&gt;&lt;b&gt;Interest free repayment period&lt;/b&gt;&lt;br /&gt;You can get a new tablet on an interest free repayment period of 12, 24 or 36 months with selected plans. If your plan is cancelled, you&rsquo;ll need to pay off your tablet on your next bill.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Repair warranty&lt;/b&gt;&lt;br /&gt;All our tablets come with a 24 month repair warranty for faulty devices.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Great range of tablets&lt;/b&gt;&lt;br /&gt;Vodafone has the latest tablets from some of the world&rsquo;s leading brands to choose from.&lt;/p&gt;"
+      },
+      {
+        "title": "What is an eSIM and why should I use it?",
+        "description": "&lt;p&gt;An eSIM, as opposed to a physical SIM, is a SIM that's already embedded into selected mobile phones and tablets, so you don't need a physical SIM to use your plan. It allows you to have up to five different plans on the same device and you can switch between them as you wish.&lt;/p&gt;&lt;p&gt;If your device has dual-SIM capability, you can use two plans at the same time by having one plan on your physical SIM and the other on your eSIM. For example, you'll be able to use one plan for business and another plan for personal use.&lt;/p&gt;&lt;p&gt;Activating an eSIM is now also faster and simpler, as you no longer need to scan a QR code.&lt;/p&gt;&lt;p&gt;For more on how to manage your eSIM, check out our &lt;a href=&quot;https://www.vodafone.com.au/support/device/esim&quot;&gt;support page&lt;/a&gt;.&lt;/p&gt;"
+      },
+      {
+        "title": "Can I trade-in my old tablet?",
+        "description": "&lt;p&gt;Yes. If your old tablet is eligible for trade-in, you could earn credit which is applied to your selected Vodafone service when you stay connected over 12, 24 or 36 months.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Here&rsquo;s how to trade-in your device.&lt;/b&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;&lt;b&gt;Trade-in credit estimate&lt;/b&gt;&lt;/li&gt;&lt;p&gt;Head to our &lt;a href=&quot;https://tradein.vodafone.com.au/&quot;&gt;trade-in page&lt;/a&gt; and enter the device you&rsquo;d like to trade-in to check eligibility and to get a trade-in credit estimate.&lt;/p&gt;&lt;li&gt;&lt;b&gt;Device condition assessment&lt;/b&gt;&lt;/li&gt;&lt;p&gt;When you have your new device and after you&rsquo;ve obtained a credit estimate, we&rsquo;ll ask questions about the condition of your device you&rsquo;d like to trade-in.&lt;/p&gt;&lt;li&gt;&lt;b&gt;Trade ID information email&lt;/b&gt;&lt;/li&gt;&lt;p&gt;Once you&rsquo;ve completed the device assessment, we&rsquo;ll send you a Trade ID information email with your estimated trade-in credit.&lt;/p&gt;&lt;li&gt;&lt;b&gt;Head to Australia Post or a Vodafone store&lt;/b&gt;&lt;/li&gt;&lt;p&gt;Within 14 days, take your trade-in device and Trade ID information email to a Vodafone store or mail your device to Asurion at an Australia Post office.&lt;/p&gt;&lt;/ol&gt;"
+      },
+      {
+        "title": "Can I transfer my Keep Talking Insurance to my new tablet?",
+        "description": "&lt;p&gt;Unfortunately, we&rsquo;re no longer offering Vodafone Keep Talking Insurance. When you upgrade your device, your current insurance will be automatically removed.&lt;/p&gt;&lt;p&gt;With Vodafone Device Care, you can exchange your device and screen for any reason. Once you&rsquo;ve added your new device to cart, you&rsquo;ll have the option to select Vodafone Device Care as part of your online purchase or you can sign up within 60 days of receiving your device. &lt;a href=&quot;https://www.vodafone.com.au/devicecare&quot;&gt;Find out more&lt;/a&gt;.&lt;/p&gt;"
+      },
+      {
+        "title": "What are my delivery options?",
+        "description": "&lt;p&gt;Regardless of whether you get a tablet online or by giving us a call, we can send your new tablet to an address that suits you or you could collect it from a Vodafone store.&lt;/p&gt;&lt;p&gt;You can find out more about your options on our &lt;a href=&quot;https://www.vodafone.com.au/delivery&quot;&gt;delivery&lt;/a&gt; page.&lt;/p&gt;"
+      }
+    ]
+  },
+  "termsAndConditions": {
+    "termsConditionsDesc": "&lt;p&gt;&lt;b&gt;Apple TV+ Offer&lt;/b&gt;&lt;br&gt;New and qualified returning subscribers only. A$15.99 per month after free trial. Only one offer per Apple ID, and only one offer per family if you&rsquo;re part of a Family Sharing group, regardless of the number of devices you or your family purchase. This offer is not available if you or your family have previously accepted an Apple TV+ one-year or three-month free offer. Offer good for three months after eligible device activation. Plan automatically renews until cancelled. Restrictions and other terms apply; see &lt;a href=&quot;https://www.apple.com/au/promo/&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt; for more information. Apple TV+ requires a subscription.&lt;/p&gt;&lt;p&gt;&lt;b&gt;$5 Roaming&lt;/b&gt;&lt;br&gt;Use your included data, call and text allowances in Eligible Destinations for an additional $5 per day. However data capped at speeds up to 1.5, 2, 10 or 25Mbps is not accessible while $5 Roaming. Eligible Destinations are subject to change, see&#8239;current list and full details here &lt;a href=&quot;https://www.vodafone.com.au/mobile/international-roaming&quot;&gt;https://www.vodafone.com.au/mobile/international-roaming&lt;/a&gt;. Available to eligible customers, see terms for details specific to your plan. $5 Daily Charge is in addition to minimum monthly spend.&amp;nbsp; Once your included data is exhausted, additional data will be automatically added at a charge of $5/GB ($0.005/MB) (&ldquo;Additional Roaming Data&rdquo;). Additional Roaming Data expires at the end of your next billing period, is shareable (excludes plans with unlimited data which do not share data) and can only be used while in Eligible Destinations. Max 90 days of use in any calendar year.&amp;nbsp;Opt-out at any time, visit My Vodafone or call 1555. All roaming services are subject to network availability.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Device Discount&lt;br&gt; &lt;/b&gt;Device Discount is a monthly recurring credit applied against your Mobile Payment Plan (MPP) repayment and is only available to eligible customers which, depending on the eligibility for each specific device discount offer, may include (i) new customers; (ii) existing customers adding an additional service; or (iii) existing customers upgrading their device (collectively, 'Eligible Customer'). To qualify for this offer, Eligible Customers must sign up or upgrade to an eligible Consumer Postpaid Plan ('Eligible Plan'), purchase an eligible device on a Mobile Payment Plan (MPP) and stay connected over 12, 24 or 36 months. Device Discounts may vary depending on the device (as advertised), and some Device Discounts may not be available over a MPP repayment period of 12 months. Not applicable for customers purchasing a device outright. The Device Discount will apply for the length of your chosen MPP repayment period (12, 24 or 36 months). If you cancel your plan or MPP, the Device Discount will be forfeited, and your device will be charged in full on your next bill at the undiscounted rate (i.e., 100% of your remaining undiscounted device repayments x months remaining). Device Discount will be forfeited if you Rate Plan Change (RPC) to an ineligible plan, such as a SIM Only plan. Only one Device Discount can be applied per service at any time. Device Discount is subject to change and not a permanent offer. Device Discount can be used in conjunction with other promotional offers, unless otherwise stated. Not for commercial or resale purposes. Not transferrable or redeemable for cash.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Network Satisfaction Guarantee&lt;/b&gt;&lt;br&gt;If you&rsquo;re a new customer and you&rsquo;ve signed up to any new postpaid mobile, mobile broadband or Home Internet plan and you don't love our network within the first 30 days of sign-up, or in the case of a Vodafone nbn&reg; or Opticomm or Vision plan within the first 30 days of service activation, you&rsquo;re welcome to cancel by calling&#8239;&lt;a href=&quot;tel:1300551198&quot;&gt;1300 551 198&lt;/a&gt;&#8239;(excludes upgrades and rate plan changes). You will only have to pay for those services you&rsquo;ve used or for charges incurred, that are not included in your plan, up until your number or nbn&reg; or Opticomm or Vision service is fully transferred and return your device or modem and equipment in original packaging with proof of purchase returned to a Vodafone (not dealer) store within 10 days of your claim. Where you have an individual plan, you can make one claim per year per person. Where you have multiple shared plans on your account, you can make one claim in relation to each plan, for up to 10 claims per account, per year per person. Accessories not refunded, with the exception of Vodafone Super Wi-Fi Mesh. This guarantee does not affect any other rights or remedies you may have under consumer law. Full terms and conditions on our&#8239;&lt;a href=&quot;https://www.vodafone.com.au/network&quot;&gt;network page.&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Get 3 months Apple TV+ and Apple Music on us&lt;br&gt;&lt;/b&gt;New subscribers only. A$12.99 per month after trial. Offer is available for new Apple Music subscribers with a new eligible device for a limited time only. Offer redemption for eligible audio devices requires connecting or pairing to an Apple device running the latest iOS or iPadOS. Offer redemption for Apple Watch requires connecting or pairing to an iPhone running the latest iOS. Offer good for three months after eligible device activation. Only one offer per Apple Account, regardless of the number of eligible devices you purchase. Plan automatically renews until cancelled. Restrictions and other &lt;a href=&quot;https://www.apple.com/au/promo/&quot; target=&quot;_blank&quot;&gt;terms&lt;/a&gt; apply.&lt;/p&gt;&lt;p&gt;&lt;b&gt;4G&lt;/b&gt;&lt;br&gt;You can use Vodafone 4G in our 4G areas. 4G in selected areas in Australia. Check your device is compatible to the coverage areas you will use. Actual speeds vary due to things like device capability, location &amp;amp; network congestion. See our&amp;nbsp;&lt;a href=&quot;https://www.vodafone.com.au/network/coverage-checker&quot;&gt;coverage checker&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;&lt;b&gt;5G&lt;/b&gt;&lt;br&gt;Vodafone&rsquo;s 5G Network is progressively being rolled out to selected parts of Sydney, Melbourne, Brisbane, Adelaide, Canberra and Perth. 5G approved device required, with an eligible Vodafone plan, in a Vodafone 5G Coverage area to access the 5G Network. In non-5G coverage areas, you&rsquo;ll automatically switch to our 4G networks. Actual speeds vary due to location &amp;amp; network congestion. Check coverage and for updates when 5G is coming to your area on our &lt;a href=&quot;https://www.vodafone.com.au/support/network/5g&quot;&gt;5G network support page&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Vodafone Infinite Data plans&lt;br&gt; &lt;/b&gt;Vodafone Data Plans are available for use with your own compatible device (modem or tablet) or are available if you simultaneously purchase a device (modem/ tablet) from Vodafone under a Mobile Payment Plan (&lsquo;MPP&rsquo;) of 12, 24 or 36 months duration (&ldquo;Commitment Period&rdquo;). For personal use by approved customers only. Inclusions expire after 1 month unless otherwise stated.&lt;/p&gt;&lt;p&gt;Minimum monthly spend is $20 or $40 (depending on your plan). Must connect for minimum one month. Total minimum cost is one month of your plan fees plus 100% of the undiscounted MPP instalments of your chosen device (if any). There is no Early Exit Fee on your Vodafone Infinite Data Plan, however, if you choose to cancel your Vodafone Infinite Data Plan, your MPP will also auto cancel and 100% of the remaining undiscounted device instalments will be applied to your next bill (if applicable). Recurring monthly plan fee charged until the end of the month in which you cancel.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Vodafone Device Care discount&lt;/b&gt;&lt;br&gt;For personal use only. Offer available to eligible Vodafone postpaid customers who purchase a mobile phone or tablet and sign up to Vodafone Device Care as new customers (&lsquo;&lt;b&gt;Eligible Customer&lt;/b&gt;&rsquo;) between 21/03/2025 and 28/08/2026 (&lsquo;&lt;b&gt;Promotional Period&lt;/b&gt;&rsquo;).&lt;br&gt;Eligible customers receive first month of Vodafone Device Care enrolment fees waived (&lsquo;&lt;b&gt;Discount&lt;/b&gt;&rsquo;).&lt;/p&gt;&lt;p&gt;&lt;b&gt;Discount includes&lt;/b&gt;: first month of $14.99 monthly fees for mobile phones and tablets. Discount will be applied as one-off credit for the first month.&lt;/p&gt;&lt;p&gt;Subsequent monthly fees will be charged at the undiscounted Vodafone Device Care fee(s) for your enrolled device(s).&lt;/p&gt;&lt;p&gt;&lt;b&gt;Restrictions:&lt;/b&gt;&amp;nbsp;The Discount only applies to your first month of Vodafone Device Care monthly fees and does not apply to any other Vodafone Device Care fees, including service request fees or any other fees charged in connection with your Vodafone Device Care enrolment.&lt;/p&gt;&lt;p&gt;&lt;b&gt;General:&lt;/b&gt;&amp;nbsp;This offer can be used in conjunction with any other offer. Offer available in-store, and via Customer Care or our online signup form at&amp;nbsp;&lt;a href=&quot;http://www.vodafone.com.au/devicecare&quot;&gt;www.vodafone.com.au/devicecare&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Vodafone Device Care enrolment is subject to eligibility criteria. Offer not for commercial/resale purposes or exchangeable/redeemable for cash. Subject to change.&lt;/p&gt;"
+  },
+  "deviceListing": {
+    "devices": [
+      {
+        "announcementPhase": false,
+        "contractLength": 36,
+        "contractText": "36 months",
+        "id": "11_INCH_IPAD_AIR_M4_2026",
+        "imageUrl": "https://www.vodafone.com.au/images/devices/apple/ipad-air-11-m4/Ipad-air-11-inch-m4-blue-01-m.webp",
+        "manufacturer": "Apple",
+        "name": "iPad Air 11-inch (M4)",
+        "order": 1,
+        "releaseDate": "2026-03-02T13:01:00.000Z",
+        "recurringCharge": 34.69,
+        "heroOffer": "",
+        "isBundleAndSaveEligible": false,
+        "promotions": [
+          {
+            "title": "Get 3 months Apple TV+ and Apple Music",
+            "description": "&lt;p&gt;Get 3 months of complimentary Apple TV+ and Apple Music when you get this device on a selected 12, 24 or 36 month plan. Apple TV+ is $15.99/mth thereafter and Apple Music is $12.99/mth thereafter. New subscribers only. T&amp;amp;C apply&lt;/p&gt;",
+            "promotionCode": "APPLE_TV_MUSIC_IPHONES_IPADS_2024",
+            "adjustmentValue": null,
+            "isASD": false,
+            "isAppOffer": false,
+            "iconUrl": "https://www.vodafone.com.au/images/icons/all-rewards.svg",
+            "endDate": "2030-06-30T14:00:00.000Z",
+            "tradeInAndSave": false,
+            "bonusTradeInCredit": "",
+            "cartOfferText": "",
+            "isDisplayOnly": true,
+            "hideFromCart": false
+          },
+          {
+            "title": "Get your first month of Vodafone Device Care on us",
+            "description": "&lt;p&gt;Sign up to Vodafone Device Care and get the first monthly fee on us (normally $14.99). Plus, you&rsquo;ll get your first phone screen replacement for $0. Just add it to your cart on the SIM and Extras page before checkout. Offer ends 28/08/26. T&amp;amp;C apply.&lt;/p&gt;",
+            "promotionCode": "1MONTH_DEVICE_CARE_FREE_TABLETS_DISPLAY_01",
+            "adjustmentValue": null,
+            "isASD": false,
+            "isAppOffer": false,
+            "iconUrl": "https://www.vodafone.com.au/images/icons/all-rewards.svg",
+            "endDate": "2026-08-28T14:00:00.000Z",
+            "tradeInAndSave": false,
+            "bonusTradeInCredit": "",
+            "cartOfferText": "",
+            "isDisplayOnly": true,
+            "hideFromCart": false
+          }
+        ],
+        "slug": "ipad-air-11-inch-m4",
+        "networkCapability": "5G",
+        "simTypeCompatibility": "e-SIM Only"
+      },
+      {
+        "announcementPhase": false,
+        "contractLength": 36,
+        "contractText": "36 months",
+        "id": "13_INCH_IPAD_AIR_M4_2026",
+        "imageUrl": "https://www.vodafone.com.au/images/devices/apple/ipad-air-13-m4/Ipad-air-13-inch-m4-blue-01-m.webp",
+        "manufacturer": "Apple",
+        "name": "iPad Air 13-inch (M4)",
+        "order": 2,
+        "releaseDate": "2026-03-02T13:01:00.000Z",
+        "recurringCharge": 44.41,
+        "heroOffer": "",
+        "isBundleAndSaveEligible": false,
+        "promotions": [
+          {
+            "title": "Get 3 months Apple TV+ and Apple Music",
+            "description": "&lt;p&gt;Get 3 months of complimentary Apple TV+ and Apple Music when you get this device on a selected 12, 24 or 36 month plan. Apple TV+ is $15.99/mth thereafter and Apple Music is $12.99/mth thereafter. New subscribers only. T&amp;amp;C apply&lt;/p&gt;",
+            "promotionCode": "APPLE_TV_MUSIC_IPHONES_IPADS_2024",
+            "adjustmentValue": null,
+            "isASD": false,
+            "isAppOffer": false,
+            "iconUrl": "https://www.vodafone.com.au/images/icons/all-rewards.svg",
+            "endDate": "2030-06-30T14:00:00.000Z",
+            "tradeInAndSave": false,
+            "bonusTradeInCredit": "",
+            "cartOfferText": "",
+            "isDisplayOnly": true,
+            "hideFromCart": false
+          },
+          {
+            "title": "Get your first month of Vodafone Device Care on us",
+            "description": "&lt;p&gt;Sign up to Vodafone Device Care and get the first monthly fee on us (normally $14.99). Plus, you&rsquo;ll get your first phone screen replacement for $0. Just add it to your cart on the SIM and Extras page before checkout. Offer ends 28/08/26. T&amp;amp;C apply.&lt;/p&gt;",
+            "promotionCode": "1MONTH_DEVICE_CARE_FREE_TABLETS_DISPLAY_01",
+            "adjustmentValue": null,
+            "isASD": false,
+            "isAppOffer": false,
+            "iconUrl": "https://www.vodafone.com.au/images/icons/all-rewards.svg",
+            "endDate": "2026-08-28T14:00:00.000Z",
+            "tradeInAndSave": false,
+            "bonusTradeInCredit": "",
+            "cartOfferText": "",
+            "isDisplayOnly": true,
+            "hideFromCart": false
+          }
+        ],
+        "slug": "ipad-air-13-inch-m4",
+        "networkCapability": "5G",
+        "simTypeCompatibility": "e-SIM Only"
+      },
+      {
+        "announcementPhase": false,
+        "contractLength": 36,
+        "contractText": "36 months",
+        "id": "11_INCH_IPAD_PRO_2025",
+        "imageUrl": "https://www.vodafone.com.au/images/devices/apple/ipad-pro-11-inch/ipad-pro-11-inch-m5-space-black-01-m.webp",
+        "manufacturer": "Apple",
+        "name": "iPad Pro 11-inch (M5)",
+        "order": 3,
+        "releaseDate": "2025-10-15T13:01:00.000Z",
+        "recurringCharge": 56.91,
+        "heroOffer": "APPLE_TV_MUSIC_IPHONES_IPADS_2024",
+        "isBundleAndSaveEligible": false,
+        "promotions": [
+          {
+            "title": "Get 3 months Apple TV+ and Apple Music",
+            "description": "&lt;p&gt;Get 3 months of complimentary Apple TV+ and Apple Music when you get this device on a selected 12, 24 or 36 month plan. Apple TV+ is $15.99/mth thereafter and Apple Music is $12.99/mth thereafter. New subscribers only. T&amp;amp;C apply&lt;/p&gt;",
+            "promotionCode": "APPLE_TV_MUSIC_IPHONES_IPADS_2024",
+            "adjustmentValue": null,
+            "isASD": false,
+            "isAppOffer": false,
+            "iconUrl": "https://www.vodafone.com.au/images/icons/all-rewards.svg",
+            "endDate": "2030-06-30T14:00:00.000Z",
+            "tradeInAndSave": false,
+            "bonusTradeInCredit": "",
+            "cartOfferText": "",
+            "isDisplayOnly": true,
+            "hideFromCart": false
+          },
+          {
+            "title": "Get your first month of Vodafone Device Care on us",
+            "description": "&lt;p&gt;Sign up to Vodafone Device Care and get the first monthly fee on us (normally $14.99). Plus, you&rsquo;ll get your first phone screen replacement for $0. Just add it to your cart on the SIM and Extras page before checkout. Offer ends 28/08/26. T&amp;amp;C apply.&lt;/p&gt;",
+            "promotionCode": "1MONTH_DEVICE_CARE_FREE_TABLETS_DISPLAY_01",
+            "adjustmentValue": null,
+            "isASD": false,
+            "isAppOffer": false,
+            "iconUrl": "https://www.vodafone.com.au/images/icons/all-rewards.svg",
+            "endDate": "2026-08-28T14:00:00.000Z",
+            "tradeInAndSave": false,
+            "bonusTradeInCredit": "",
+            "cartOfferText": "",
+            "isDisplayOnly": true,
+            "hideFromCart": false
+          }
+        ],
+        "slug": "ipad-pro-11-inch-m5",
+        "networkCapability": "5G",
+        "simTypeCompatibility": "e-SIM Only"
+      },
+      {
+        "announcementPhase": false,
+        "contractLength": 36,
+        "contractText": "36 months",
+        "id": "13_INCH_IPAD_PRO_2025",
+        "imageUrl": "https://www.vodafone.com.au/images/devices/apple/ipad-pro-13-inch/ipad-pro-13-inch-m5-space-black-01-m.webp",
+        "manufacturer": "Apple",
+        "name": "iPad Pro 13-inch (M5)",
+        "order": 4,
+        "releaseDate": "2025-10-15T13:01:00.000Z",
+        "recurringCharge": 70.8,
+        "heroOffer": "APPLE_TV_MUSIC_IPHONES_IPADS_2024",
+        "isBundleAndSaveEligible": false,
+        "promotions": [
+          {
+            "title": "Get 3 months Apple TV+ and Apple Music",
+            "description": "&lt;p&gt;Get 3 months of complimentary Apple TV+ and Apple Music when you get this device on a selected 12, 24 or 36 month plan. Apple TV+ is $15.99/mth thereafter and Apple Music is $12.99/mth thereafter. New subscribers only. T&amp;amp;C apply&lt;/p&gt;",
+            "promotionCode": "APPLE_TV_MUSIC_IPHONES_IPADS_2024",
+            "adjustmentValue": null,
+            "isASD": false,
+            "isAppOffer": false,
+            "iconUrl": "https://www.vodafone.com.au/images/icons/all-rewards.svg",
+            "endDate": "2030-06-30T14:00:00.000Z",
+            "tradeInAndSave": false,
+            "bonusTradeInCredit": "",
+            "cartOfferText": "",
+            "isDisplayOnly": true,
+            "hideFromCart": false
+          },
+          {
+            "title": "Get your first month of Vodafone Device Care on us",
+            "description": "&lt;p&gt;Sign up to Vodafone Device Care and get the first monthly fee on us (normally $14.99). Plus, you&rsquo;ll get your first phone screen replacement for $0. Just add it to your cart on the SIM and Extras page before checkout. Offer ends 28/08/26. T&amp;amp;C apply.&lt;/p&gt;",
+            "promotionCode": "1MONTH_DEVICE_CARE_FREE_TABLETS_DISPLAY_01",
+            "adjustmentValue": null,
+            "isASD": false,
+            "isAppOffer": false,
+            "iconUrl": "https://www.vodafone.com.au/images/icons/all-rewards.svg",
+            "endDate": "2026-08-28T14:00:00.000Z",
+            "tradeInAndSave": false,
+            "bonusTradeInCredit": "",
+            "cartOfferText": "",
+            "isDisplayOnly": true,
+            "hideFromCart": false
+          }
+        ],
+        "slug": "ipad-pro-13-inch-m5",
+        "networkCapability": "5G",
+        "simTypeCompatibility": "e-SIM Only"
+      },
+      {
+        "announcementPhase": false,
+        "contractLength": 36,
+        "contractText": "36 months",
+        "id": "IPAD_11_GEN_A16_2025",
+        "imageUrl": "https://www.vodafone.com.au/images/devices/apple/ipad-(a16)/ipad-a16-chip-blue-feature1-m.webp",
+        "manufacturer": "Apple",
+        "name": "iPad (A16)",
+        "order": 5,
+        "releaseDate": "2025-03-04T13:01:00.000Z",
+        "recurringCharge": 23.58,
+        "heroOffer": "APPLE_TV_MUSIC_IPHONES_IPADS_2024",
+        "isBundleAndSaveEligible": false,
+        "promotions": [
+          {
+            "title": "Get 3 months Apple TV+ and Apple Music",
+            "description": "&lt;p&gt;Get 3 months of complimentary Apple TV+ and Apple Music when you get this device on a selected 12, 24 or 36 month plan. Apple TV+ is $15.99/mth thereafter and Apple Music is $12.99/mth thereafter. New subscribers only. T&amp;amp;C apply&lt;/p&gt;",
+            "promotionCode": "APPLE_TV_MUSIC_IPHONES_IPADS_2024",
+            "adjustmentValue": null,
+            "isASD": false,
+            "isAppOffer": false,
+            "iconUrl": "https://www.vodafone.com.au/images/icons/all-rewards.svg",
+            "endDate": "2030-06-30T14:00:00.000Z",
+            "tradeInAndSave": false,
+            "bonusTradeInCredit": "",
+            "cartOfferText": "",
+            "isDisplayOnly": true,
+            "hideFromCart": false
+          },
+          {
+            "title": "Get your first month of Vodafone Device Care on us",
+            "description": "&lt;p&gt;Sign up to Vodafone Device Care and get the first monthly fee on us (normally $14.99). Plus, you&rsquo;ll get your first phone screen replacement for $0. Just add it to your cart on the SIM and Extras page before checkout. Offer ends 28/08/26. T&amp;amp;C apply.&lt;/p&gt;",
+            "promotionCode": "1MONTH_DEVICE_CARE_FREE_TABLETS_DISPLAY_01",
+            "adjustmentValue": null,
+            "isASD": false,
+            "isAppOffer": false,
+            "iconUrl": "https://www.vodafone.com.au/images/icons/all-rewards.svg",
+            "endDate": "2026-08-28T14:00:00.000Z",
+            "tradeInAndSave": false,
+            "bonusTradeInCredit": "",
+            "cartOfferText": "",
+            "isDisplayOnly": true,
+            "hideFromCart": false
+          }
+        ],
+        "slug": "ipad-a16",
+        "networkCapability": "5G",
+        "simTypeCompatibility": "e-SIM Only"
+      },
+      {
+        "announcementPhase": false,
+        "contractLength": 36,
+        "contractText": "36 months",
+        "id": "SAM_GAL_TAB_S11_ULTRA_5G",
+        "imageUrl": "https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-tab-s11-ultra/samsung-galaxy-tab-s11-ultra-01-m.webp",
+        "manufacturer": "Samsung",
+        "name": "Samsung Galaxy Tab S11 Ultra",
+        "order": 6,
+        "releaseDate": "2025-09-24T14:02:00.000Z",
+        "recurringCharge": 65.25,
+        "heroOffer": "",
+        "isBundleAndSaveEligible": false,
+        "promotions": [
+          {
+            "title": "Get your first month of Vodafone Device Care on us",
+            "description": "&lt;p&gt;Sign up to Vodafone Device Care and get the first monthly fee on us (normally $14.99). Plus, you&rsquo;ll get your first phone screen replacement for $0. Just add it to your cart on the SIM and Extras page before checkout. Offer ends 28/08/26. T&amp;amp;C apply.&lt;/p&gt;",
+            "promotionCode": "1MONTH_DEVICE_CARE_FREE_TABLETS_DISPLAY_01",
+            "adjustmentValue": null,
+            "isASD": false,
+            "isAppOffer": false,
+            "iconUrl": "https://www.vodafone.com.au/images/icons/all-rewards.svg",
+            "endDate": "2026-08-28T14:00:00.000Z",
+            "tradeInAndSave": false,
+            "bonusTradeInCredit": "",
+            "cartOfferText": "",
+            "isDisplayOnly": true,
+            "hideFromCart": false
+          }
+        ],
+        "slug": "samsung-galaxy-tab-s11-ultra",
+        "networkCapability": "5G",
+        "simTypeCompatibility": "Physical and e-SIM"
+      },
+      {
+        "announcementPhase": false,
+        "contractLength": 36,
+        "contractText": "36 months",
+        "id": "SAM_GAL_TAB_A11+_5G",
+        "imageUrl": "https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-a11-plus/frontimage/samsung-galaxy-tab-a11-plus-01-m.webp",
+        "manufacturer": "Samsung",
+        "name": "Samsung Galaxy Tab A11+ 5G",
+        "order": 7,
+        "releaseDate": "2025-11-26T13:04:00.000Z",
+        "recurringCharge": 14.69,
+        "discountedRecurringCharge": 9.13,
+        "heroOffer": "PROMO_SDD_DATA_TABLET_DISPLAY",
+        "isBundleAndSaveEligible": false,
+        "promotions": [
+          {
+            "title": "Save on this tablet’s RRP",
+            "description": "&lt;p&gt;That&rsquo;s a saving of $5.56 per month when you stay connected over 36. RRP $529. T&amp;amp;C apply.&lt;/p&gt;",
+            "promotionCode": "PROMO_SDD_DATA_TABLET_DISPLAY",
+            "adjustmentValue": 5.56,
+            "isASD": false,
+            "isAppOffer": false,
+            "iconUrl": "https://www.vodafone.com.au/images/icons/dollar-sign.svg",
+            "endDate": "2099-12-30T13:01:00.000Z",
+            "tradeInAndSave": false,
+            "bonusTradeInCredit": "",
+            "cartOfferText": "",
+            "isDisplayOnly": true,
+            "hideFromCart": false
+          }
+        ],
+        "slug": "samsung-galaxy-tab-a11plus-5g",
+        "networkCapability": "5G",
+        "simTypeCompatibility": "Physical SIM Only"
+      },
+      {
+        "announcementPhase": false,
+        "contractLength": 36,
+        "contractText": "36 months",
+        "id": "13_INCH_IPAD_AIR_M3_2025",
+        "imageUrl": "https://www.vodafone.com.au/images/devices/apple/ipad-air-13-inch-(m3)/ipad-air-13-in-m3-space-grey-feature1-m.webp",
+        "manufacturer": "Apple",
+        "name": "iPad Air 13-inch (M3)",
+        "order": 8,
+        "releaseDate": "2025-03-04T13:02:00.000Z",
+        "recurringCharge": 49.97,
+        "heroOffer": "APPLE_TV_MUSIC_IPHONES_IPADS_2024",
+        "isBundleAndSaveEligible": false,
+        "promotions": [
+          {
+            "title": "Get 3 months Apple TV+ and Apple Music",
+            "description": "&lt;p&gt;Get 3 months of complimentary Apple TV+ and Apple Music when you get this device on a selected 12, 24 or 36 month plan. Apple TV+ is $15.99/mth thereafter and Apple Music is $12.99/mth thereafter. New subscribers only. T&amp;amp;C apply&lt;/p&gt;",
+            "promotionCode": "APPLE_TV_MUSIC_IPHONES_IPADS_2024",
+            "adjustmentValue": null,
+            "isASD": false,
+            "isAppOffer": false,
+            "iconUrl": "https://www.vodafone.com.au/images/icons/all-rewards.svg",
+            "endDate": "2030-06-30T14:00:00.000Z",
+            "tradeInAndSave": false,
+            "bonusTradeInCredit": "",
+            "cartOfferText": "",
+            "isDisplayOnly": true,
+            "hideFromCart": false
+          },
+          {
+            "title": "Get your first month of Vodafone Device Care on us",
+            "description": "&lt;p&gt;Sign up to Vodafone Device Care and get the first monthly fee on us (normally $14.99). Plus, you&rsquo;ll get your first phone screen replacement for $0. Just add it to your cart on the SIM and Extras page before checkout. Offer ends 28/08/26. T&amp;amp;C apply.&lt;/p&gt;",
+            "promotionCode": "1MONTH_DEVICE_CARE_FREE_TABLETS_DISPLAY_01",
+            "adjustmentValue": null,
+            "isASD": false,
+            "isAppOffer": false,
+            "iconUrl": "https://www.vodafone.com.au/images/icons/all-rewards.svg",
+            "endDate": "2026-08-28T14:00:00.000Z",
+            "tradeInAndSave": false,
+            "bonusTradeInCredit": "",
+            "cartOfferText": "",
+            "isDisplayOnly": true,
+            "hideFromCart": false
+          }
+        ],
+        "slug": "ipad-air-13-inch-m3",
+        "networkCapability": "5G",
+        "simTypeCompatibility": "e-SIM Only"
+      },
+      {
+        "announcementPhase": false,
+        "contractLength": 36,
+        "contractText": "36 months",
+        "id": "11_INCH_IPAD_AIR_M3_2025",
+        "imageUrl": "https://www.vodafone.com.au/images/devices/apple/ipad-air-11-inch-(m3)/ipad-air-11-in-m3-space-grey-feature1-m.webp",
+        "manufacturer": "Apple",
+        "name": "iPad Air 11-inch (M3)",
+        "order": 9,
+        "releaseDate": "2025-03-04T13:02:00.000Z",
+        "recurringCharge": 34.69,
+        "heroOffer": "APPLE_TV_MUSIC_IPHONES_IPADS_2024",
+        "isBundleAndSaveEligible": false,
+        "promotions": [
+          {
+            "title": "Get 3 months Apple TV+ and Apple Music",
+            "description": "&lt;p&gt;Get 3 months of complimentary Apple TV+ and Apple Music when you get this device on a selected 12, 24 or 36 month plan. Apple TV+ is $15.99/mth thereafter and Apple Music is $12.99/mth thereafter. New subscribers only. T&amp;amp;C apply&lt;/p&gt;",
+            "promotionCode": "APPLE_TV_MUSIC_IPHONES_IPADS_2024",
+            "adjustmentValue": null,
+            "isASD": false,
+            "isAppOffer": false,
+            "iconUrl": "https://www.vodafone.com.au/images/icons/all-rewards.svg",
+            "endDate": "2030-06-30T14:00:00.000Z",
+            "tradeInAndSave": false,
+            "bonusTradeInCredit": "",
+            "cartOfferText": "",
+            "isDisplayOnly": true,
+            "hideFromCart": false
+          },
+          {
+            "title": "Get your first month of Vodafone Device Care on us",
+            "description": "&lt;p&gt;Sign up to Vodafone Device Care and get the first monthly fee on us (normally $14.99). Plus, you&rsquo;ll get your first phone screen replacement for $0. Just add it to your cart on the SIM and Extras page before checkout. Offer ends 28/08/26. T&amp;amp;C apply.&lt;/p&gt;",
+            "promotionCode": "1MONTH_DEVICE_CARE_FREE_TABLETS_DISPLAY_01",
+            "adjustmentValue": null,
+            "isASD": false,
+            "isAppOffer": false,
+            "iconUrl": "https://www.vodafone.com.au/images/icons/all-rewards.svg",
+            "endDate": "2026-08-28T14:00:00.000Z",
+            "tradeInAndSave": false,
+            "bonusTradeInCredit": "",
+            "cartOfferText": "",
+            "isDisplayOnly": true,
+            "hideFromCart": false
+          }
+        ],
+        "slug": "ipad-air-11-inch-m3",
+        "networkCapability": "5G",
+        "simTypeCompatibility": "e-SIM Only"
+      },
+      {
+        "announcementPhase": false,
+        "contractLength": 36,
+        "contractText": "36 months",
+        "id": "IPAD_MINI_A17_PRO",
+        "imageUrl": "https://www.vodafone.com.au/images/devices/apple/ipad-mini-a17-pro/ipad-mini-a17-pro-space-grey-feature1-s.png",
+        "manufacturer": "Apple",
+        "name": "iPad mini (A17 Pro)",
+        "order": 11,
+        "releaseDate": "2024-10-21T13:00:00.000Z",
+        "recurringCharge": 29.13,
+        "heroOffer": "APPLE_TV_MUSIC_IPHONES_IPADS_2024",
+        "isBundleAndSaveEligible": false,
+        "promotions": [
+          {
+            "title": "Get 3 months Apple TV+ and Apple Music",
+            "description": "&lt;p&gt;Get 3 months of complimentary Apple TV+ and Apple Music when you get this device on a selected 12, 24 or 36 month plan. Apple TV+ is $15.99/mth thereafter and Apple Music is $12.99/mth thereafter. New subscribers only. T&amp;amp;C apply&lt;/p&gt;",
+            "promotionCode": "APPLE_TV_MUSIC_IPHONES_IPADS_2024",
+            "adjustmentValue": null,
+            "isASD": false,
+            "isAppOffer": false,
+            "iconUrl": "https://www.vodafone.com.au/images/icons/all-rewards.svg",
+            "endDate": "2030-06-30T14:00:00.000Z",
+            "tradeInAndSave": false,
+            "bonusTradeInCredit": "",
+            "cartOfferText": "",
+            "isDisplayOnly": true,
+            "hideFromCart": false
+          },
+          {
+            "title": "Get your first month of Vodafone Device Care on us",
+            "description": "&lt;p&gt;Sign up to Vodafone Device Care and get the first monthly fee on us (normally $14.99). Plus, you&rsquo;ll get your first phone screen replacement for $0. Just add it to your cart on the SIM and Extras page before checkout. Offer ends 28/08/26. T&amp;amp;C apply.&lt;/p&gt;",
+            "promotionCode": "1MONTH_DEVICE_CARE_FREE_TABLETS_DISPLAY_01",
+            "adjustmentValue": null,
+            "isASD": false,
+            "isAppOffer": false,
+            "iconUrl": "https://www.vodafone.com.au/images/icons/all-rewards.svg",
+            "endDate": "2026-08-28T14:00:00.000Z",
+            "tradeInAndSave": false,
+            "bonusTradeInCredit": "",
+            "cartOfferText": "",
+            "isDisplayOnly": true,
+            "hideFromCart": false
+          }
+        ],
+        "slug": "ipad-mini-a17-pro",
+        "networkCapability": "5G",
+        "simTypeCompatibility": "e-SIM Only"
+      },
+      {
+        "announcementPhase": false,
+        "contractLength": 36,
+        "contractText": "36 months",
+        "id": "SAM_GAL_TAB_S10_FE_5G",
+        "imageUrl": "https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-tab-s10-fe-5g/samsung-galaxy-tab-s10-fe-5g-01-m.webp",
+        "manufacturer": "Samsung",
+        "name": "Samsung Galaxy Tab S10 FE 5G",
+        "order": 12,
+        "releaseDate": "2025-04-15T14:02:00.000Z",
+        "recurringCharge": 29.13,
+        "heroOffer": "",
+        "isBundleAndSaveEligible": false,
+        "promotions": [],
+        "slug": "samsung-galaxy-tab-s10-fe-5g",
+        "networkCapability": "5G",
+        "simTypeCompatibility": "Physical and e-SIM"
+      },
+      {
+        "announcementPhase": false,
+        "contractLength": 36,
+        "contractText": "36 months",
+        "id": "SAM_GAL_TAB_S10+_FE_5G",
+        "imageUrl": "https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-tab-s10-feplus-5g/samsung-galaxy-tab-s10-fe-plus-5g-01-m.webp",
+        "manufacturer": "Samsung",
+        "name": "Samsung Galaxy Tab S10 FE+ 5G",
+        "order": 13,
+        "releaseDate": "2025-04-15T14:03:00.000Z",
+        "recurringCharge": 36.08,
+        "discountedRecurringCharge": 29.13,
+        "heroOffer": "PROMO_SDD_DATA_TABLET_DISPLAY",
+        "isBundleAndSaveEligible": false,
+        "promotions": [
+          {
+            "title": "Save on this tablet’s RRP",
+            "description": "&lt;p&gt;That&rsquo;s a saving of $6.95 per month when you stay connected over 36. RRP $1299. T&amp;amp;C apply.&lt;/p&gt;",
+            "promotionCode": "PROMO_SDD_DATA_TABLET_DISPLAY",
+            "adjustmentValue": 6.95,
+            "isASD": false,
+            "isAppOffer": false,
+            "iconUrl": "https://www.vodafone.com.au/images/icons/dollar-sign.svg",
+            "endDate": "2099-12-30T13:01:00.000Z",
+            "tradeInAndSave": false,
+            "bonusTradeInCredit": "",
+            "cartOfferText": "",
+            "isDisplayOnly": true,
+            "hideFromCart": false
+          }
+        ],
+        "slug": "samsung-galaxy-tab-s10-feplus-5g",
+        "networkCapability": "5G",
+        "simTypeCompatibility": "Physical and e-SIM"
+      }
+    ],
+    "promos": [
+      {
+        "promoProductCode": "APPLETABLETS",
+        "displayPromoTileOn": "deviceListingPageOnly",
+        "makeTilePersistent": false,
+        "promoTitle": "Get sweet savings with device trade-in",
+        "promoDescription": "Out with the old, in with the new. For less.",
+        "promoCTALabel": "Trade in now",
+        "promoURL": "https://tradein.vodafone.com.au/",
+        "promoImage": "https://www.vodafone.com.au/images/merch/0974-trade-in-promo-tile.webp",
+        "promoTexture": "https://www.vodafone.com.au/images/merch/0974-trade-in-pocket-promo-tile-bg.webp",
+        "variant": "solid-red",
+        "order": 10
+      },
+      {
+        "promoProductCode": "APPLETABLETS",
+        "displayPromoTileOn": "bothDeviceListingPageAndManufacturerPage",
+        "makeTilePersistent": true,
+        "promoTitle": "Compare iPad models",
+        "promoDescription": "Find the right iPad for you",
+        "promoCTALabel": "Compare iPad models",
+        "promoURL": "https://www.vodafone.com.au/mobile/tablets/apple/compare",
+        "promoImage": "https://www.vodafone.com.au/images/devices/apple/ipad-compare-promo-tile.webp",
+        "variant": "solid-red",
+        "order": 14
+      }
+    ]
+  }
+}

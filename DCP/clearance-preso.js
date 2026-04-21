@@ -1,6 +1,6 @@
 'use strict';
 
-var BADGE_CLASS = 'my-purple-badge';
+var BADGE_CLASS = 'pill-extension';
 /**********************
  * config
  **********************/
@@ -16,16 +16,33 @@ function injectStyle() {
     var style = document.createElement('style');
     style.id = 'my-badge-style';
     style.innerHTML = `
-      .${BADGE_CLASS} {
-        display: inline-block;
-        margin-left: 8px;
-        background: purple;
-        color: #fff;
-        padding: 2px 6px;
-        font-size: 12px;
-        border-radius: 4px;
-        vertical-align: middle;
-      }
+      .pill-extension {
+		font-family: VodafoneRegularBold, Arial, sans-serif;
+		font-weight: 700;
+		font-size: 16px;
+		line-height: 18px;
+		display: flex;
+		align-items: center;
+		width: -moz-fit-content;
+		width: fit-content;
+		border-radius: 15px;
+		margin-bottom: 10px
+	}
+
+	.pill-extension:hover {
+		cursor: pointer
+	}
+	.pill-extension .pill-container{
+		display: flex;
+		padding: 4px 12px;
+		border-radius: 500px;
+	}
+	.pill-container img{
+	width:20px;height:20px;margin-right:8px;
+	}
+	.hidden{
+		display: none;
+	}
     `;
     document.head.appendChild(style);
 }
