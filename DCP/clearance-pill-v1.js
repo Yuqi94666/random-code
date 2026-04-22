@@ -9,7 +9,7 @@ let pillCONSTANTS = {
 	PILL_IMAGE: extension.pillImage || '',
 	PILL_SVG_ICON: extension.pillSvgIcon || '',
 	INJECT_TYPE: extension.templateInjectType || '',
-  TARGET_TYPE: extension.targetType || '',
+	TARGET_TYPE: extension.targetType || '',
 	CUSTOM_CSS: `
 	.${extension.id}-extension {
 		display: flex;
@@ -45,10 +45,10 @@ let pillOBJ = {
 	observedDocs: new WeakSet(),
 	lastData: null,
 	renderRaf: null,
-	cachedDocs:null,
+	cachedDocs: null,
 
 	getCandidateDocs: function () {
-		if(pillOBJ.cachedDocs) return pillOBJ.cachedDocs;
+		if (pillOBJ.cachedDocs) return pillOBJ.cachedDocs;
 		let docs = [document];
 		let panels = document.querySelectorAll('vha-tabpanel');
 		panels.forEach(panel => {
@@ -66,50 +66,11 @@ let pillOBJ = {
 		pillOBJ.cachedDocs = docs;
 		return docs;
 	},
-	getTargets: function () {
-		let docs = pillOBJ.getCandidateDocs();
-		let cards = [];
-		docs.forEach(doc => {
-			let root = doc.getElementsByTagName('vha-tabs-open')[0] || doc.body;
-			let foundCards = croWD.utils.getEleFromPage(root, pillCONSTANTS.CARD_SELECTOR, 1);
-			if (foundCards && foundCards.length) {
-				cards = cards.concat(foundCards);
-			}
-		});
-
-		if (cards && cards.length) {
-			return { isListing: true, elements: cards };
-		}
-		let singles = [];
-		docs.forEach(doc => {
-			let root = doc.getElementsByTagName('vha-tabs-open')[0] || doc.body;
-			let foundSingles = croWD.utils.getEleFromPage(root, pillCONSTANTS.NAME_SELECTOR, 1);
-			if (foundSingles && foundSingles.length) {
-				singles = singles.concat(foundSingles);
-			}
-		});
-		console.log(`cards:${cards}, singles:${singles}`);
-		
-		return { isListing: false, elements: singles.length ? singles[0] : [] };
-	},
 
 	findInsideElDeep: function (el, selector) {
 		if (!el || !selector) return null;
 		let results = croWD.utils.getEleFromPage(el, selector, 1);
 		return results.length ? results[0] : null;
-	},
-
-	getTitleEl: function (el) {
-		if (!el) return null;
-
-		if (
-			pillCONSTANTS.CARD_SELECTOR &&
-			pillCONSTANTS.NAME_SELECTOR &&
-			pillCONSTANTS.CARD_SELECTOR !== pillCONSTANTS.NAME_SELECTOR
-		) {
-			return pillOBJ.findInsideElDeep(el, pillCONSTANTS.NAME_SELECTOR);
-		}
-		return el;
 	},
 
 	getName: function (titleEl) {
@@ -128,35 +89,30 @@ let pillOBJ = {
 
 	render: function (data) {
 		try {
-			let targets = pillOBJ.getTargets();
-			let isListing = targets.isListing;
-			let elements = targets.elements;
-			if (!isListing) {
+			if (pillCONSTANTS.TARGET_TYPE === 'isPdp') {
+
 				if (pillOBJ.isPdpInjected) return;
-				let el = elements[0];
-				if (!el) return;
-
-				let titleEl = pillOBJ.getTitleEl(el);
-				let name = pillOBJ.getName(titleEl);
-				if (!name) return;
-
-				if (!data || typeof data.hasDevice !== 'function' || !data.hasDevice(name)) return;
-
-				pillOBJ.injectPill(titleEl);
 				pillOBJ.isPdpInjected = true;
-				return;
-			}
-
-			for (let i = 0; i < elements.length; i++) {
-				let card = elements[i];
-				let title = pillOBJ.getTitleEl(card);
-				if (!title) continue;
-
-				let deviceName = pillOBJ.getName(title);
-				if (!deviceName) continue;
-				if (!data || typeof data.hasDevice !== 'function' || !data.hasDevice(deviceName)) continue;
-
-				pillOBJ.injectPill(card);
+				let targetEl = document.querySelector('[data-testid="mobile-phone-title"]');
+				if (targetEl) {
+					const name = pillOBJ.getName(targetEl);
+					if (!data || typeof data.hasDevice !== 'function' || !data.hasDevice(name)) return;
+					pillOBJ.injectPill(targetEl);
+				}
+			} else if (pillCONSTANTS.TARGET_TYPE === 'isListing') {
+				let targetCards = document.querySelectorAll('[data-testid="device-listing"] > div');
+				if (!targetCards.length) {
+					targetCards = document.querySelectorAll('[data-testid="lean-devices"] > div');
+				}
+				if (targetCards && targetCards.length) {
+					targetCards.forEach(card => {
+						const name = card.querySelector('a h2>div:nth-of-type(2)');
+						const nameText = pillOBJ.getName(name);
+						const injectPosition = card.querySelector('a h2>div:first-child');
+						if (!data || typeof data.hasDevice !== 'function' || !data.hasDevice(nameText)) return;
+						pillOBJ.injectPill(injectPosition);
+					})
+				}
 			}
 		} catch (e) {
 			console.error('[pill] render error:', e);
@@ -165,7 +121,9 @@ let pillOBJ = {
 
 	injectPill: function (targetEl) {
 		if (!targetEl) return;
+		
 		if (targetEl.dataset && targetEl.dataset.pillInjected === 'true') return;
+
 		if (targetEl.querySelector && targetEl.querySelector('.' + extension.id + '-extension')) return;
 
 		let doc = targetEl.ownerDocument || document;
@@ -182,13 +140,12 @@ let pillOBJ = {
 
 		if (targetEl.dataset) targetEl.dataset.pillInjected = 'true';
 
-		let p = targetEl.parentNode;
 		switch (pillCONSTANTS.INJECT_TYPE) {
 			case 'before':
-				if (p) p.insertBefore(pill, targetEl);
+				targetEl.insertAdjacentElement('beforebegin', pill);
 				break;
 			case 'after':
-				if (p) p.insertBefore(pill, targetEl.nextSibling);
+				targetEl.insertAdjacentElement('afterend', pill);
 				break;
 			case 'prepend':
 				targetEl.prepend(pill);
@@ -197,7 +154,7 @@ let pillOBJ = {
 				targetEl.append(pill);
 				break;
 			default:
-				if (p) p.insertBefore(pill, targetEl);
+				targetEl.insertAdjacentElement('beforebegin', pill);
 		}
 	},
 
@@ -253,7 +210,6 @@ let pillOBJ = {
 		pillOBJ.isListenerBound = true;
 
 		croWD.hotbed.listen('targetDevicesReady', function (_, __, data) {
-			console.log('[pill] data received', data);
 			pillOBJ.lastData = data;
 			pillOBJ.buildCSS(document);
 			pillOBJ.observeContexts();
@@ -264,8 +220,6 @@ let pillOBJ = {
 	},
 
 	init: function () {
-		console.log('[pill] init');
-console.log('[pill] checking target type:', pillCONSTANTS.TARGET_TYPE);
 		if (pillOBJ.bindHotbedListener()) return;
 
 		let started = Date.now();
