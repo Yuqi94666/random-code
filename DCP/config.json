@@ -1,0 +1,108 @@
+{
+  "plugin_type": "widget",
+  "name": "clearance-presentation-pill-v1",
+  "edit_page_url": null,
+  "form_schema": [
+    {
+      "label": "What is the page type?",
+      "options": {
+        "choices": [
+          {
+            "value": "isListing",
+            "label": "Listing"
+          },
+          {
+            "value": "isPdp",
+            "label": "PDP"
+          }
+        ]
+      },
+      "default_value": "isListing",
+      "field_type": "dropdown",
+      "name": "targetType"
+    },
+    {
+      "label": "pillCopy",
+      "options": null,
+      "default_value": "",
+      "field_type": "text",
+      "name": "pillCopy"
+    },
+    {
+      "label": "pill Font Color",
+      "options": {
+        "mode": "rgba"
+      },
+      "default_value": "rgba",
+      "field_type": "color",
+      "name": "pillColor"
+    },
+    {
+      "label": "pillBgColor",
+      "options": {
+        "mode": "rgba"
+      },
+      "default_value": "rgba",
+      "field_type": "color",
+      "name": "pillBgColor"
+    },
+    {
+      "label": "pillImage",
+      "options": null,
+      "default_value": "",
+      "field_type": "image",
+      "name": "pillImage"
+    },
+    {
+      "label": "EXPERIMENT_ID",
+      "options": null,
+      "default_value": "",
+      "field_type": "text",
+      "name": "id"
+    },
+    {
+      "label": "templateInjectType",
+      "options": {
+        "choices": [
+          {
+            "value": "before",
+            "label": "before"
+          },
+          {
+            "value": "after",
+            "label": "after"
+          },
+          {
+            "value": "prepend",
+            "label": "prepend"
+          },
+          {
+            "value": "append",
+            "label": "append"
+          },
+          {
+            "value": "replace",
+            "label": "replace"
+          }
+        ]
+      },
+      "default_value": "before",
+      "field_type": "dropdown",
+      "name": "templateInjectType"
+    },
+    {
+      "label": "SVG Icon",
+      "options": null,
+      "default_value": "",
+      "field_type": "html",
+      "name": "pillSvgIcon"
+    }
+  ],
+  "description": "",
+  "options": {
+    "html": "<div id=\"optimizely-extension-{{ extension.$instance }}\" class=\"clearance-presentation\">\n  {{ extension.text }}\n</div>",
+    "css": ".clearance-presentation {\n  background-color: #fff575;\n  border-bottom: 1px solid #e0d769;\n  color: #555;\n  padding: 10px;\n  font-weight: bold;\n  text-align: center;\n  font-size: 20px;\n}",
+    "apply_js": "'use strict';\nlet pillCONSTANTS = {\n\tEXPERIMENT_ID: extension.id,\n\tPILL_COPY: extension.pillCopy || '',\n\tPILL_COLOR: extension.pillColor || '',\n\tPILL_BG_COLOR: extension.pillBgColor || '',\n\tPILL_IMAGE: extension.pillImage || '',\n\tPILL_SVG_ICON: extension.pillSvgIcon || '',\n\tINJECT_TYPE: extension.templateInjectType || '',\n\tTARGET_TYPE: extension.targetType || '',\n\tCUSTOM_CSS: `\n\t.${extension.id}-extension {\n\t\tdisplay: flex;\n\t\tflex-direction: column;\n\t\talign-items: flex-start;\n\t\tmargin-bottom: 10px;\n\t}\n\t.${extension.id}-container {\n\t\tdisplay: flex;\n\t\tpadding: 4px 12px 4px 4px;\n\t\tjustify-content: center;\n\t\talign-items: center;\n\t\tborder-radius: 16px;\n\t}\n\t.${extension.id}-container img,\n\t.${extension.id}-container svg {\n\t\twidth: 20px;\n\t\theight: 20px;\n\t}\n\t.${extension.id}-font {\n\t\tfont-family: 'VodafoneRegular';\n\t\tfont-size: 14px;\n\t\tfont-style: normal;\n\t\tfont-weight: 400;\n\t\tline-height: 20px;\n\t\tmargin-left: 4px;\n\t}`\n};\n\nlet pillOBJ = {\n\taid: 'Ext-clearance-pill-v1',\n\tisPdpInjected: false,\n\n\tgetName: function (titleEl) {\n\t\treturn titleEl && titleEl.textContent ? titleEl.textContent.trim() : '';\n\t},\n\n\trender: function (data) {\n\t\ttry {\n\t\t\tif (pillCONSTANTS.TARGET_TYPE === 'isPdp') {\n\n\t\t\t\tif (pillOBJ.isPdpInjected) return;\n\t\t\t\tlet targetEl = document.querySelector('[data-testid=\"mobile-phone-title\"]');\n\t\t\t\tif (targetEl) {\n\t\t\t\t\tconst name = pillOBJ.getName(targetEl);\n\t\t\t\t\tif (!data || typeof data.hasDevice !== 'function' || !data.hasDevice(name)) return;\n\t\t\t\t\tpillOBJ.injectPill(targetEl);\n\t\t\t\t\tpillOBJ.isPdpInjected = true;\n\t\t\t\t}\n\t\t\t} else if (pillCONSTANTS.TARGET_TYPE === 'isListing') {\n\t\t\t\tlet targetCards = document.querySelectorAll('[data-testid=\"device-listing\"] > div');\n\t\t\t\tif (!targetCards.length) {\n\t\t\t\t\ttargetCards = document.querySelectorAll('[data-testid=\"lean-devices\"] > div');\n\t\t\t\t}\n\t\t\t\tif (targetCards && targetCards.length) {\n\t\t\t\t\ttargetCards.forEach(card => {\n\t\t\t\t\t\tconst name = card.querySelector('a h2>div:nth-of-type(2)');\n\t\t\t\t\t\tconst nameText = pillOBJ.getName(name);\n\t\t\t\t\t\tconst injectPosition = card.querySelector('a h2>div:first-child');\n\t\t\t\t\t\tif (!data || typeof data.hasDevice !== 'function' || !data.hasDevice(nameText)) return;\n\t\t\t\t\t\tpillOBJ.injectPill(injectPosition);\n\t\t\t\t\t})\n\t\t\t\t}\n\t\t\t}\n\t\t} catch (e) {\n\t\t\tconsole.error('[pill] render error:', e);\n\t\t}\n\t},\n\n\tinjectPill: function (targetEl) {\n\t\tif (!targetEl) return;\n\n\t\tif (targetEl.dataset && targetEl.dataset.pillInjected === 'true') return;\n\n\t\tif (targetEl.querySelector && targetEl.querySelector('.' + extension.id + '-extension')) return;\n\n\t\tpillOBJ.buildCSS();\n\n\t\tlet pill = document.createElement('span');\n\t\tpill.className = extension.id + '-extension';\n\t\tpill.innerHTML =\n\t\t\t'<span class=\"' + extension.id + '-container\" style=\"background:' + pillCONSTANTS.PILL_BG_COLOR + '\">' +\n\t\t\t(pillCONSTANTS.PILL_IMAGE ? ('<img src=\"' + pillCONSTANTS.PILL_IMAGE + '\" />') : (pillCONSTANTS.PILL_SVG_ICON || '')) +\n\t\t\t'<span style=\"color:' + pillCONSTANTS.PILL_COLOR + '\" class=\"' + extension.id + '-font\">' +\n\t\t\t(pillCONSTANTS.PILL_COPY || '') +\n\t\t\t'</span></span>';\n\n\t\tif (targetEl.dataset) targetEl.dataset.pillInjected = 'true';\n\n\t\tswitch (pillCONSTANTS.INJECT_TYPE) {\n\t\t\tcase 'before':\n\t\t\t\ttargetEl.insertAdjacentElement('beforebegin', pill);\n\t\t\t\tbreak;\n\t\t\tcase 'after':\n\t\t\t\ttargetEl.insertAdjacentElement('afterend', pill);\n\t\t\t\tbreak;\n\t\t\tcase 'prepend':\n\t\t\t\ttargetEl.prepend(pill);\n\t\t\t\tbreak;\n\t\t\tcase 'append':\n\t\t\t\ttargetEl.append(pill);\n\t\t\t\tbreak;\n\t\t\tdefault:\n\t\t\t\ttargetEl.insertAdjacentElement('beforebegin', pill);\n\t\t}\n\t},\n\n\tbuildCSS: function () {\n\t\tif (!document.head) return;\n\n\t\tlet id = pillCONSTANTS.EXPERIMENT_ID + '-style';\n\t\tif (document.getElementById(id)) return;\n\n\t\tlet style = document.createElement('style');\n\t\tstyle.id = id;\n\t\tstyle.innerHTML = pillCONSTANTS.CUSTOM_CSS;\n\t\tdocument.head.appendChild(style);\n\t},\n\n\tobserve: function () {\n\t\tcroWD.hotbed.listen('targetDevicesReady', function (_, __, data) {\n\t\t\tpillOBJ.buildCSS();\n\t\t\tpillOBJ.render(data);\n\t\t});\n\t}\n};\n\nvar crowdMaxPillCounter = 5;\nvar crowdFinderPill = setInterval(function () {\n\tcrowdMaxPillCounter = crowdMaxPillCounter - 1;\n\tif (typeof croWD !== 'undefined' && croWD.hotbed && typeof croWD.hotbed.listen === 'function') {\n\t\tclearInterval(crowdFinderPill);\n\t\tpillOBJ.observe();\n\t\tif (typeof croWD.cmdr === 'function') {\n\t\t\tcroWD.cmdr(pillOBJ.aid, 'inject');\n\t\t}\n\t}\n\tif (crowdMaxPillCounter <= 0) {\n\t\tclearInterval(crowdFinderPill);\n\t}\n}, 1000);",
+    "undo_js": "/*\n * Editor now supports ES6 compliant code. Note that adding ES6\n * specific code to an experiment will break for users running\n * ES5-only browsers as code entered is not transpiled down to ES5.\n */\n \n  const extensionElement = document.getElementById('optimizely-extension-' + extension.$instance);\n  if (extensionElement) {\n    extensionElement.parentElement.removeChild(extensionElement);\n  }\n"
+  }
+}

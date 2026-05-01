@@ -1,0 +1,26 @@
+.${extension.id}-extension {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+margin-bottom: 10px;
+}
+.${extension.id}-container {
+display: flex;
+padding: 4px 12px 4px 4px;
+justify-content: center;
+align-items: center;
+border-radius: 16px;
+}
+.${extension.id}-container img,
+.${extension.id}-container svg {
+width: 20px;
+height: 20px;
+}
+.${extension.id}-font {
+font-family: 'VodafoneRegular';
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px;
+margin-left: 4px;
+}
