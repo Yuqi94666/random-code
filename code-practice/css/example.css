@@ -1,0 +1,8 @@
+/* Select a div that is immediately followed by an h2.
+The + is the adjacent sibling selector. */
+
+div:has(+ h2) {
+  background-color: lightblue;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
