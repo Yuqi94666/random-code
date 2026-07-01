@@ -6,3 +6,8 @@ div:has(+ h2) {
   padding: 10px;
   border: 1px solid #ccc;
 }
+.test div{}
+.test > div{}
+.test + div{}
+.test ~ div{}
+div[data-id^="DEVICE-"]{}
