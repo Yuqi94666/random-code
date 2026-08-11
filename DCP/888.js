@@ -174,6 +174,7 @@ let tradeAnchorOBJ = {
               });
                   
               if (matchedUrl) {
+				croWD.debug(`[DCP-17827] Matched URL: ${matchedUrl}. Current URL: ${currentUrl}. Proceeding to wait for element.`);
                   tradeAnchorOBJ.waitForElement();
               }
           });

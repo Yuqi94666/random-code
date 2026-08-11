@@ -10,8 +10,8 @@
 		<div class='popular-offers-tabs'>
 			<label class='popular-offers-tab checked' for='tab-SIMO-Small' role='tab' aria-selected='true'
 				aria-controls='panel' tabindex='0'>50GB</label>
-			<label class='popular-offers-tab' for='tab-SIMO-Medium' role='tab' aria-selected='false' aria-controls='panel'
-				tabindex='1'>180GB</label>
+			<label class='popular-offers-tab' for='tab-SIMO-Medium' role='tab' aria-selected='false'
+				aria-controls='panel' tabindex='1'>180GB</label>
 			<label class='popular-offers-tab' for='tab-SIMO-Large' role='tab' aria-selected='false'
 				aria-controls='panel' tabindex='2'>360GB</label>
 		</div>
@@ -32,3 +32,30 @@
 	</div>
 </body>
 </html>
+
+
+<div class="wrapper-modal" hidden aria-hidden="true">
+	<article class="watch-modal" id="offer-breakdown-modal" role="dialog" aria-modal="true"
+		aria-labelledby="offer-breakdown-title" tabindex="-1">
+		<header class="watch-modal__header">
+			<h2 class="watch-modal__title" id="offer-breakdown-title">Offer breakdown</h2>
+			<button type="button" class="watch-modal-close" aria-label="Close offer breakdown modal">
+				<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+					<path
+						d="M23.5282 7.52868C23.7882 7.26843 24.2105 7.26843 24.4705 7.52868C24.7309 7.7891 24.7309 8.21066 24.4705 8.47107L16.9412 15.9994L24.4705 23.5287C24.731 23.7889 24.731 24.2108 24.4705 24.4711C24.3406 24.6011 24.1702 24.6663 23.9998 24.6664C23.8293 24.6664 23.6582 24.6013 23.5282 24.4711L15.9989 16.9418L8.47151 24.4711C8.34137 24.6012 8.17041 24.6663 7.99983 24.6664C7.82919 24.6664 7.65835 24.6013 7.52815 24.4711C7.26789 24.2109 7.26803 23.7889 7.52815 23.5287L15.0565 15.9994L7.52815 8.47107C7.26793 8.21073 7.26807 7.78911 7.52815 7.52868C7.78857 7.26843 8.2111 7.26843 8.47151 7.52868L15.9989 15.057L23.5282 7.52868Z"
+						fill="#333333" />
+				</svg>
+			</button>
+		</header>
+
+		<div class="watch-modal__content">
+			<div class="container">
+				<p class="content-title">$750 savings is based on:</p>
+				<span class="text-wrapper">$500 device discount</span>
+				<span class="text-wrapper">$250 bonus credit by invitation</span>
+				<p class="watch-modal__footnote">Savings forfeited if cancelled and undiscounted device due in full.
+					Ends 07/09 (unless extended). Min cost and T&C apply.</p>
+			</div>
+		</div>
+	</article>
+</div>
