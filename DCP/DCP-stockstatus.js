@@ -1,5 +1,3 @@
-'use strict';
-
 /********************************************************************
  * 1) Constants
  ********************************************************************/
@@ -368,4 +366,32 @@ let DCPstockDisabledOBJ = {
     }
 };
 
-DCPstockDisabledOBJ.init();
+// Optimizely 里有可能脚本在 DOMContentLoaded 前或被包在 sandbox 里，这里做一个通用启动器
+(function () {
+    function runInit() {
+        if (window.__DCPstockDisabledInitDone) {
+            console.log('[cross] init already done, skipping');
+            return;
+        }
+        window.__DCPstockDisabledInitDone = true;
+        console.log('[cross] runInit triggered');
+        DCPstockDisabledOBJ.init();
+    }
+
+    console.log('[cross] DCP-stockstatus script loaded, document.readyState:', document.readyState);
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', runInit);
+    } else {
+        runInit();
+    }
+
+    // 兼容 Optimizely 的监听机制（旧版/新版均可）
+    if (window.optimizely && typeof window.optimizely.push === 'function') {
+        window.optimizely.push({
+            type: 'addListener',
+            filter: { type: 'lifecycle', name: 'campaignActivated' },
+            handler: runInit
+        });
+    }
+})();

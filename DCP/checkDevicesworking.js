@@ -110,7 +110,7 @@
    ********************************************************************/
   function getSelectedColor() {
     const checkedRadio = document.querySelector(`${SETTINGS.COLOR_INPUT_SELECTOR}:checked`);
-    if (checkedRadio?.value) {
+    if (checkedRadio.value) {
       vlog("Selected color from :checked:", checkedRadio.value);
       return checkedRadio.value.trim();
     }
@@ -118,13 +118,13 @@
     const checkedByTestId = document.querySelector(
       'input[name="color"][data-testid$="-checked"], input[data-testid^="color-input-"][data-testid$="-checked"]'
     );
-    if (checkedByTestId?.value) {
+    if (checkedByTestId.value) {
       vlog("Selected color from data-testid *-checked:", checkedByTestId.value, checkedByTestId.getAttribute("data-testid"));
       return checkedByTestId.value.trim();
     }
 
     const labelStrong = document.querySelector('label[for="color"] strong');
-    if (labelStrong?.textContent) {
+    if (labelStrong.textContent) {
       vlog("Selected color from label strong:", labelStrong.textContent);
       return labelStrong.textContent.trim();
     }
@@ -141,7 +141,7 @@
   }
 
   function getLabelForInput(input) {
-    if (!input?.id) return null;
+    if (!input.id) return null;
     return document.querySelector(`label[for="${CSS.escape(input.id)}"]`);
   }
 
@@ -158,7 +158,7 @@
     if (wrapped) targets.push(wrapped);
 
     // C) sibling label in same container
-    const siblingLabel = input.parentElement?.querySelector?.(`label[for="${CSS.escape(input.id)}"]`);
+    const siblingLabel = input.parentElement.querySelector.(`label[for="${CSS.escape(input.id)}"]`);
     if (siblingLabel) targets.push(siblingLabel);
 
     // D) common wrapper
@@ -239,7 +239,7 @@
           class: t.className,
           hidden: t.offsetParent === null,
           hasCross: t.classList.contains("cross"),
-          outerHTML: t.outerHTML?.slice(0, 140) + "…",
+          outerHTML: t.outerHTML.slice(0, 140) + "…",
         });
       });
     });
@@ -249,7 +249,7 @@
    * 5) Apply cross logic (with detailed step logs)
    ********************************************************************/
   function applyCrossForSelectedColor(deviceResult) {
-    if (!deviceResult?.stockStatusByColorCapacity) {
+    if (!deviceResult.stockStatusByColorCapacity) {
       warn("No deviceResult/stockStatusByColorCapacity yet");
       return;
     }

@@ -123,6 +123,8 @@ let DCP17201OBJ = {
   },
 
   init: function () {
+    console.log("coming");
+    
     this.waitForElement();
   }
 };
