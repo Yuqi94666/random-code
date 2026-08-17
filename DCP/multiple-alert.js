@@ -548,4 +548,3 @@ main>header>ul>li.nav-mega-menu>div.nav-mega-onscreen.menu-open {
 };
 
 customerAlertsExt.init();
-undefined
