@@ -1,78 +1,414 @@
+const DCP18154CONSTANTS = {
+	EXPERIMENT_ID: 'DCP18154-call',
+	PAGES_INCLUDE: [
+		'/google/google-pixel-11',
+		'google-pixel-10-pro-xl',
+		'/samsung/samsung-galaxy-z-fold8',
+		'/samsung/samsung-galaxy-z-fold8-ultra',
+		'/samsung/samsung-galaxy-z-flip8',
+		'samsung-galaxy-z-fold7',
+		'samsung-galaxy-z-flip7',
+		'/samsung-galaxy-s26', '/samsung-galaxy-s25', '/oppo-find-n6-5g'
+	],
+	PAGES_EXCLUDE: ['&step=1', '&step=2', 'cart'],
+	EXPERIMENT_VARIANT: 'variant',
+	TARGET_ELEMENT: '.sc-bc292866-6.loTWeO',
+	TEMPLATE_HTML: `
+            <div class="info-container" id="info-container">
+                <div class='title-container'>
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.10156 5.08573C10.3676 3.7533 12.4821 3.69877 13.8145 4.96464C14.0155 5.16509 14.9802 6.30707 15.999 10.6648C16.3388 9.2365 17.206 5.9436 18.1738 4.97733C19.518 3.69999 21.6315 3.75438 22.8975 5.08671C24.1206 6.37419 24.1213 8.39107 22.8984 9.6785C22.8946 9.68254 22.8906 9.68636 22.8867 9.69022C22.7766 9.80044 22.3445 10.1734 21.1455 10.6668H28.667C29.0352 10.6668 29.334 10.9656 29.334 11.3338V15.3338C29.3338 15.7018 29.0351 15.9998 28.667 15.9998H27.9707V27.3338C27.9705 27.7017 27.6717 27.9997 27.3037 27.9998H4.63672C4.26871 27.9997 3.9699 27.7018 3.96973 27.3338V15.9998H3.33398C2.96597 15.9997 2.66716 15.7018 2.66699 15.3338V11.3338C2.66699 10.9656 2.96586 10.6668 3.33398 10.6668H10.8467C10.0996 10.3666 9.45815 10.0346 9.11328 9.68925C9.1094 9.68536 9.10528 9.6815 9.10156 9.67753C7.87867 8.39019 7.87884 6.37318 9.10156 5.08573ZM14.667 26.6668H17.334V15.9998H14.667V26.6668ZM18.667 26.6668H26.6367V15.9998H18.667V26.6668ZM5.30371 26.6668H13.334V15.9998H5.30371V26.6668ZM14.667 14.6668H17.334V11.9998H16.5469C16.5411 11.9999 16.5351 12.0008 16.5293 12.0008C16.526 12.0008 16.5228 11.9998 16.5195 11.9998H14.667V14.6668ZM18.667 14.6668H28.001V11.9998H18.667V14.6668ZM4.00098 14.6668H13.334V11.9998H4.00098V14.6668ZM20.4805 5.38358C19.9857 5.38368 19.4898 5.5655 19.1035 5.93241C18.5949 6.44066 17.8974 8.60678 17.4307 10.4334C19.2512 9.96799 21.4102 9.27161 21.9375 8.7537C22.6652 7.98097 22.6634 6.77503 21.9316 6.00468C21.5392 5.59161 21.0098 5.38358 20.4805 5.38358ZM12.8838 5.91972C12.0961 5.17179 10.8281 5.20445 10.0684 6.0037C9.3366 6.77405 9.33481 7.97995 10.0625 8.75272C10.5901 9.2706 12.7489 9.96609 14.5693 10.4314C14.1023 8.60451 13.4022 6.43744 12.8838 5.91972Z" fill="#E60000"/>
+                    </svg>
+                    <div class="info-container-title">$100 off Android? Yep. Online only.</div>
+                </div>
+                <div class="info-container-des" id="copy1">Save $100 on this device when you stay connected to an eligible plan over 24 or 36 months. Savings forfeited if cancelled, undiscounted device due in full. Ends 07/09. Min cost and T&C apply.</div>
+                <div class="info-container-des" id="copy2">Save an extra $100 on this device when you stay connected to an eligible plan over 24 or 36 months. Total save value shown includes extra $100 device discount. Savings forfeited if cancelled, undiscounted device due in full. Ends 07/09. Min cost and T&C apply.</div>
+
+            </div>
+    `,
+	TEMPLATE_INJECT_TYPE: 'before',
+	CUSTOM_CSS: `
+    .DCP18154-info-extension {
+        font-family:VodafoneRegular,Arial,sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 18px;
+        display: flex;
+        align-items: center;
+        width: -moz-fit-content;
+        width: fit-content;
+        padding: 32px 16px 32px 24px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        border: 1px solid #999;
+    }
+
+    .DCP18154-info-extension .info-container{
+        display: flex;
+        border-radius: 500px;
+        flex-direction: column;
+    }
+    .DCP18154-info-extension .info-container svg{
+        width:32px;
+        height:32px;
+        margin-right:8px;
+    }   
+    .DCP18154-info-extension .title-container{
+        display: flex;
+    }
+    .DCP18154-info-extension .info-container-des{
+        padding: 10px 40px 0;
+        font-size: 18px;
+        line-height: 24px;
+    }
+    .DCP18154-info-extension .info-container-title{
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 34px;
+    }
+    .hidden{
+        display: none;
+    }
+    `,
+	INIT_RETRY_INTERVAL: 500,
+	INIT_MAX_RETRIES: 20,
+	DEVICES_COPY_FIRST: ['Google Pixel 11 Pro XL', 'Samsung Galaxy S26', 'Samsung Galaxy Z Fold7', 'Samsung Galaxy Z Flip7', 'Samsung Galaxy S25 Edge', 'Google Pixel 10 Pro XL',],
+	DEVICES_COPY_SECOND: ['Samsung Galaxy Z Fold8', 'Samsung Galaxy Z Flip8', 'Samsung Galaxy Z Fold8 Ultra', 'Samsung Galaxy S26+', 'Samsung Galaxy S26 Ultra', 'Samsung Galaxy S25 Ultra', 'Samsung Galaxy S25+', 'Google Pixel 10 Pro XL', 'OPPO Find N6 5G', 'Google Pixel 11',]
+	//DEVICES_COPY_THIRD: ['Samsung Galaxy S25 Ultra'],
+};
+
+let DCP18154OBJ = {
+	applyChanges: function (el) {
+		try {
+			DCP18154OBJ.buildCSS();
+			DCP18154OBJ.buildTemplate();
+			DCP18154OBJ.decideCopy();
+		} catch (error) {
+			console.error('Error in applyChanges function:', error);
+			DCP18154OBJ.tracking('error applyChanges');
+		}
+	},
+	tracking: function (value) {
+		try {
+			if (typeof dataLayer !== 'undefined' && dataLayer) {
+				croWD.utils.launchTracking(DCP18154CONSTANTS.EXPERIMENT_ID,
+					value, DCP18154CONSTANTS.EXPERIMENT_VARIANT,
+					''
+				);
+			} else {
+				console.warn('dataLayer is not defined. Tracking event:', value, 'was not sent.');
+			}
+		} catch (error) {
+			console.error('Error in tracking function:', error);
+		}
+	},
+
+	decideCopy: function () {
+		// Get device name and the main wrapper element
+
+		const titleElement = document.querySelector('[data-testid="mobile-phone-title"]');
+		croWD.debug('[DCP18154-call]title element', titleElement);
+		if (!titleElement) {
+			croWD.debug('[DCP18154-call]title not found');
+			return;
+		}
+		const deviceName = titleElement.textContent.trim();
+		const wrapper = document.getElementById(`wrapper-${DCP18154CONSTANTS.EXPERIMENT_ID}-info-extension`);
+		croWD.debug(`[DCP18154-call]: Device name detected: "${deviceName}"`);
+		// Identify the copy elements
+		const copy1 = document.querySelector('#copy1');
+		const copy2 = document.querySelector('#copy2');
+		//const copy3 = document.querySelector('#copy3');
+		if (!copy1 || !copy2 || !wrapper) {
+			return;
+		}
+
+		let isDeviceMatched = false;
+
+		// Logic for Copy 1 devices: Hide Copy 2
+		if (DCP18154CONSTANTS.DEVICES_COPY_FIRST.includes(deviceName)) {
+			copy2.classList.add('hidden');
+			// copy3.classList.add('hidden'); 
+			copy1.classList.remove('hidden');
+			isDeviceMatched = true;
+		}
+		// Logic for Copy 2 devices: Hide Copy 1
+		else if (DCP18154CONSTANTS.DEVICES_COPY_SECOND.includes(deviceName)) {
+			copy1.classList.add('hidden');
+			//copy3.classList.add('hidden'); 
+			copy2.classList.remove('hidden');
+			isDeviceMatched = true;
+		}
+		// Logic for Copy 3 devices: Hide Copy 1,2 
+		//else if (DCP18154CONSTANTS.DEVICES_COPY_THIRD.includes(deviceName)) {
+		// copy1.classList.add('hidden'); 
+		//copy2.classList.add('hidden'); 
+		//copy3.classList.remove('hidden'); 
+		//isDeviceMatched = true;
+		// }
+
+		// The Fix: If no match is found and the wrapper exists, hide the whole feature.
+		if (!isDeviceMatched && wrapper) {
+			wrapper.classList.add('hidden');
+			console.warn(`DCP18154: Device "${deviceName}" not in any list. Hiding entire promotion.`);
+		}
+	},
+
+	buildCSS: function () {
+		try {
+			const styleSheet = document.createElement('style');
+			styleSheet.setAttribute('type', 'text/css');
+			styleSheet.setAttribute('id', `${DCP18154CONSTANTS.EXPERIMENT_ID}-styles`);
+
+			const existingStyle = document.getElementById(`${DCP18154CONSTANTS.EXPERIMENT_ID}-styles`);
+			if (existingStyle) {
+				existingStyle.remove();
+			}
+
+			const css = DCP18154CONSTANTS.CUSTOM_CSS;
+			styleSheet.appendChild(document.createTextNode(css));
+			document.head.appendChild(styleSheet);
+		} catch (error) {
+			console.error('Error in buildCSS function:', error);
+			DCP18154OBJ.tracking('error buildCSS');
+		}
+	},
+	buildTemplate: function () {
+		try {
+			let mainElement = document.querySelector(DCP18154CONSTANTS.TARGET_ELEMENT);
+			if (!mainElement) {
+				throw new Error('Template location element not found');
+			}
+			// Remove any existing template with the same ID
+			const existingTemplate = document.getElementById(`wrapper-${DCP18154CONSTANTS.EXPERIMENT_ID}-info-extension`);
+			if (existingTemplate) {
+				existingTemplate.remove();
+			}
+
+			// Create template as HTML string
+			let templateHTML = `<div id="wrapper-${DCP18154CONSTANTS.EXPERIMENT_ID}-info-extension" class="DCP18154-info-extension">${DCP18154CONSTANTS.TEMPLATE_HTML}</div>`;
+			switch (DCP18154CONSTANTS.TEMPLATE_INJECT_TYPE) {
+				case 'replace':
+					mainElement.insertAdjacentHTML('afterend', templateHTML);
+					mainElement.remove();
+					break;
+				case 'before':
+					mainElement.insertAdjacentHTML('beforebegin', templateHTML);
+					break;
+				case 'prepend':
+					mainElement.insertAdjacentHTML('afterbegin', templateHTML);
+					break;
+				case 'after':
+					mainElement.insertAdjacentHTML('afterend', templateHTML);
+					break;
+				default:
+					mainElement.insertAdjacentHTML('beforeend', templateHTML);
+					break;
+			}
+		} catch (error) {
+			console.error('Error in buildTemplate function:', error);
+			DCP18154OBJ.tracking('error buildTemplate');
+		}
+	},
+
+	observe: function () {
+		let currentUrl = location.href;
+
+		const observer = new MutationObserver(function () {
+
+			if (currentUrl === location.href) {
+				return;
+			}
+
+			currentUrl = location.href;
+			croWD.debug('[DCP18154-call] URL changed:', currentUrl);
+			const existing = document.getElementById(
+				`wrapper-${DCP18154CONSTANTS.EXPERIMENT_ID}-info-extension`
+			);
+
+			if (existing) {
+				existing.remove();
+			}
+
+			const shouldRun =
+				DCP18154CONSTANTS.PAGES_INCLUDE.some(function (url) {
+					return currentUrl.toLowerCase().includes(url.toLowerCase());
+				});
+
+			if (shouldRun) {
+				setTimeout(function () {
+					DCP18154OBJ.waitForElement();
+				}, 500);
+			}
+		});
+
+		observer.observe(document.body, {
+			childList: true,
+			subtree: true
+		});
+	},
+	waitForElement: function () {
+		try {
+			let rC = 0;
+			let int = setInterval(() => {
+				const el = document.querySelector(DCP18154CONSTANTS.TARGET_ELEMENT);
+
+				if (el && typeof croWD !== 'undefined') {
+					clearInterval(int);
+					int = null;
+					DCP18154OBJ.applyChanges(el);
+				} else {
+					rC++;
+					if (rC >= DCP18154CONSTANTS.INIT_MAX_RETRIES) {
+						clearInterval(int);
+						int = null;
+						console.error('Element not found after max retries. DCP18154OBJ');
+						DCP18154OBJ.tracking('error elementsNotFound');
+					}
+				}
+			}, DCP18154CONSTANTS.INIT_RETRY_INTERVAL);
+
+		} catch (error) {
+			console.error('Error in waitForElement function:', error);
+			DCP18154OBJ.tracking('error waitForElement');
+		}
+	},
+	init: function () {
+		const currentUrl = window.location.href.toLowerCase();
+		const shouldRun = DCP18154CONSTANTS.PAGES_INCLUDE.some(function (url) {
+			return currentUrl.includes(url.toLowerCase());
+		});
+
+		if (shouldRun) {
+			DCP18154OBJ.waitForElement();
+		}
+
+		DCP18154OBJ.observe();
+	}
+};
+
+DCP18154OBJ.init();
+
+
 const alertModalCONSTANTS = {
 	EXPERIMENT_ID: 'DCP18154-alert', // unique experiment identifier
-	PAGES_INCLUDE: ['/google/google-pixel-11', '/google/google-pixel-11-pro-xl', '/samsung/samsung-galaxy-z-','/samsung-galaxy-s26','/samsung-galaxy-s25','/oppo-find-n6-5g'], // URL substrings to include (empty = all pages)
-	PAGES_EXCLUDE: ['&step=1', '&step=2', 'cart'], // URL substrings to exclude
+	PAGES_INCLUDE: ['/google/google-pixel-11',
+		'/samsung/samsung-galaxy-z-fold8',
+		'/samsung/samsung-galaxy-z-fold8-ultra',
+		'/samsung/samsung-galaxy-z-flip8',
+		'/samsung-galaxy-s26', '/samsung-galaxy-s25', '/oppo-find-n6-5g'], // URL substrings to include (empty = all pages)
+	PAGES_EXCLUDE: ['&step=1', '&step=2', 'cart', '/google-pixel-11-pro-xl'], // URL substrings to exclude
 	EXPERIMENT_VARIANT: 'variant', // variant|control|personalisation
 	TARGET_ELEMENT: 'body',
 	PRODUCT_OFFERS: [
-		{
-			match: 'pixel 11 pro xl',
-			discountValue: 1504,
-			imageSrc: 'https://www.vodafone.com.au/images/devices/google/google-pixel-11/google-pixel-11-frost-01-l.webp',
-			modalHtml: `
-			<div class="watch-modal__content">
-				<p class="content-title">$1,504 savings is based on:</p>
-				<p class="text-wrapper"><span class="dot">∙</span> $750 device discount</p>
-				<p class="text-wrapper"><span class="dot">∙</span> $14/mth off plan fees over 36 months on eligible plans</p>
-				<p class="text-wrapper"><span class="dot">∙</span> Extra $250 device discount on selected Android devices</p>
-				<p class="watch-modal__footnote">New connections only. Savings forfeited if cancelled and undiscounted device due in full. Ends 02/03 (unless extended). Extra $250 off selected Android devices ends 23/02. Min cost and T&C apply.</p>
-			</div>
-			`
-		},
+		// {
+		// 	match: 'pixel 11 pro xl',
+		// 	discountValue: 1000,
+		// 	imageSrc: 'https://www.vodafone.com.au/images/devices/google/google-pixel-11/google-pixel-11-frost-01-l.webp',
+
+		// },
 		{
 			match: 'pixel 11',
-			discountValue: 7501,
+			discountValue: 750,
 			imageSrc: 'https://www.vodafone.com.au/images/devices/google/google-pixel-11/google-pixel-11-black-01-l.webp',
-			
+			modalHtml: `
+			<div class="watch-modal__content">
+				<p class="content-title">$750 savings is based on:</p>
+				<p class="text-wrapper"><span class="dot">∙</span> $650 device discount</p>
+				<p class="text-wrapper"><span class="dot">∙</span> Extra $100 device discount on selected Android devices</p>
+				<p class="watch-modal__footnote">Online only. Savings forfeited if cancelled and undiscounted device due in full. Ends 30/09 (unless extended). Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
+			</div>
+			`
 		},
 		{
 			match: 'z fold8 ultra',
 			discountValue: 600,
 			imageSrc: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-z-fold8-ultra/samsung-galaxy-z-fold8-ultra-violet-shadow-01-m.webp',
+			modalHtml: `
+			<div class="watch-modal__content">
+				<p class="content-title">$600 savings is based on:</p>
+				<p class="text-wrapper"><span class="dot">∙</span> $500 device discount</p>
+				<p class="text-wrapper"><span class="dot">∙</span> Extra $100 device discount on selected Android devices</p>
+				<p class="watch-modal__footnote">Online only. Savings forfeited if cancelled and undiscounted device due in full. Ends 07/09 (unless extended). Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
+			</div>
+			`
 		},
 		{
 			match: 'z fold8',
 			discountValue: 600,
 			imageSrc: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-z-fold-8/samsung-galaxy-z-fold8-lavender-01-m.webp',
-			
+			modalHtml: `
+			<div class="watch-modal__content">
+				<p class="content-title">$600 savings is based on:</p>
+				<p class="text-wrapper"><span class="dot">∙</span> $500 device discount</p>
+				<p class="text-wrapper"><span class="dot">∙</span> Extra $100 device discount on selected Android devices</p>
+				<p class="watch-modal__footnote">Online only. Savings forfeited if cancelled and undiscounted device due in full. Ends 07/09 (unless extended). Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
+			</div>
+			`
 		},
 		{
 			match: 'z flip8',
 			discountValue: 400,
 			imageSrc: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-z-flip-8/samsung-galaxy-z-flip8-pink-01-m.webp',
-			
+			modalHtml: `
+			<div class="watch-modal__content">
+				<p class="content-title">$400 savings is based on:</p>
+				<p class="text-wrapper"><span class="dot">∙</span> $300 device discount</p>
+				<p class="text-wrapper"><span class="dot">∙</span> Extra $100 device discount on selected Android devices</p>
+				<p class="watch-modal__footnote">Online only. Savings forfeited if cancelled and undiscounted device due in full. Ends 07/09 (unless extended). Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
+			</div>
+			`
 		},
 		{
 			match: 's26+',
 			discountValue: 500,
 			imageSrc: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-s26-plus/samsung-galaxy-s26-plus-cobalt-violet-01-l.webp',
+			modalHtml: `
+			<div class="watch-modal__content">
+				<p class="content-title">$500 savings is based on:</p>
+				<p class="text-wrapper"><span class="dot">∙</span> $400 device discount</p>
+				<p class="text-wrapper"><span class="dot">∙</span> Extra $100 device discount on selected Android devices</p>
+				<p class="watch-modal__footnote">Online only. New connections only. Savings forfeited if cancelled and undiscounted device due in full. Ends 07/09 (unless extended). Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
+			</div>
+			`
 		},
 		{
 			match: 's26 ultra',
 			discountValue: 600,
 			imageSrc: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-s26-ultra/samsung-galaxy-s26-ultra-cobalt-violet-01-l.webp',
+			modalHtml: `
+			<div class="watch-modal__content">
+				<p class="content-title">$600 savings is based on:</p>
+				<p class="text-wrapper"><span class="dot">∙</span> $500 device discount</p>
+				<p class="text-wrapper"><span class="dot">∙</span> Extra $100 device discount on selected Android devices</p>
+				<p class="watch-modal__footnote">Online only. New connections only. Savings forfeited if cancelled and undiscounted device due in full. Ends 07/09 (unless extended). Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
+			</div>
+			`
 		},
 		{
 			match: 's25+',
-			discountValue: 900,
+			discountValue: 800,
 			imageSrc: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-s25-plus/samsung-galaxy-s25-plus-cobalt-violet-01-l.webp',
+			modalHtml: `
+			<div class="watch-modal__content">
+				<p class="content-title">$800 savings is based on:</p>
+				<p class="text-wrapper"><span class="dot">∙</span> $700 device discount</p>
+				<p class="text-wrapper"><span class="dot">∙</span> Extra $100 device discount on selected Android devices</p>
+				<p class="watch-modal__footnote">Online only. Savings forfeited if cancelled and undiscounted device due in full. Available while stock lasts. Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
+			</div>
+			`
 		},
 		{
 			match: 's25 ultra',
 			discountValue: 900,
 			imageSrc: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-s25-ultra/samsung-galaxy-s25-ultra-cobalt-violet-01-l.webp',
-		},
-		{
-			match: 's25 edge',
-			discountValue: 1504,
-			imageSrc: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-s25-edge/samsung-galaxy-s25-edge-cobalt-violet-01-l.webp',
 			modalHtml: `
 			<div class="watch-modal__content">
-				<p class="content-title">$1,504 savings is based on:</p>
-				<p class="text-wrapper"><span class="dot">∙</span> $750 device discount</p>
-				<p class="text-wrapper"><span class="dot">∙</span> $14/mth off plan fees over 36 months on eligible plans</p>
-				<p class="text-wrapper"><span class="dot">∙</span> Extra $250 device discount on selected Android devices</p>
-				<p class="watch-modal__footnote">New connections only. Savings forfeited if cancelled and undiscounted device due in full. Ends 02/03 (unless extended). Extra $250 off selected Android devices ends 23/02. Min cost and T&C apply.</p>
+				<p class="content-title">$900 savings is based on:</p>
+				<p class="text-wrapper"><span class="dot">∙</span> $800 device discount</p>
+				<p class="text-wrapper"><span class="dot">∙</span> Extra $100 device discount on selected Android devices</p>
+				<p class="watch-modal__footnote">Online only. Savings forfeited if cancelled and undiscounted device due in full. Available while stock lasts. Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
 			</div>
 			`
 		},
@@ -86,11 +422,11 @@ const alertModalCONSTANTS = {
 				<p class="text-wrapper"><span class="dot">∙</span> $400 device discount</p>
 				<p class="text-wrapper"><span class="dot">∙</span> $400 bonus trade-in credit</p>
 				<p class="text-wrapper"><span class="dot">∙</span> Extra $100 device discount on selected Android devices</p>
-				<p class="watch-modal__footnote">Savings forfeited if cancelled and undiscounted device (less trade-in value) due in full. Ends 31/08 (unless extended). Trade-in by 14/09. Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
+				<p class="watch-modal__footnote">Online only. Savings forfeited if cancelled and undiscounted device (less trade-in value) due in full. Ends 31/08 (unless extended). Trade-in by 14/09. Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
 			</div>
 			`
 		},
-		
+
 	],
 	TEMPLATE_HTML: `
         <section class="wrapper-component" aria-label="Offer notification">
@@ -101,7 +437,7 @@ const alertModalCONSTANTS = {
                     </svg>
                 </span>
                 <p class="offer-notification__copy">
-                    Save $__TOTAL_SAVING_NO_DECIMALS__ when you upgrade your device and stay connected to an eligible plan over 24 or 36 mths.
+                    Save $__TOTAL_SAVING_NO_DECIMALS__ when you stay connected to an eligible plan over 24 or 36 months.
                     <button type="button" class="bundle-offer-trigger" aria-haspopup="dialog" aria-expanded="false" aria-controls="offer-breakdown-modal">Find out how</button>.
                 </p>
                 <button type="button" class="offer-notification__dismiss" aria-label="Dismiss offer notification">
@@ -330,10 +666,28 @@ const alertModalCONSTANTS = {
 const alertModalOBJ = {
 	lastFocusedElement: null,
 	previousBodyOverflow: '',
+	isValidPage: function () {
+		const url = location.pathname.toLowerCase();
+
+		const isExcluded = alertModalCONSTANTS.PAGES_EXCLUDE.some(function (page) {
+			return url.includes(page.toLowerCase());
+		});
+
+		if (isExcluded) {
+			return false;
+		}
+
+		return alertModalCONSTANTS.PAGES_INCLUDE.some(function (page) {
+			return url.includes(page.toLowerCase());
+		});
+	},
 	applyChanges: function (el) {
 		try {
 			// Add your logic here
-
+			if (!alertModalOBJ.isValidPage()) {
+				document.getElementById('wrapper-alert-modal').remove();
+				return;
+			}
 			alertModalOBJ.buildCSS();
 			alertModalOBJ.buildTemplate(el);
 			alertModalOBJ.bindModalControls();
@@ -363,12 +717,12 @@ const alertModalOBJ = {
 		const titleElement = document.querySelector('h1[data-testid="mobile-phone-title"], h1');
 		const titleText = (titleElement && titleElement.textContent ? titleElement.textContent : '').toLowerCase();
 		const matchedOffer = alertModalCONSTANTS.PRODUCT_OFFERS.find(function (offer) {
-			croWD.debug(`[DCP-18154-alert] MatchedL: ${offer}. Title text: ${titleText}`);
+			croWD.debug(`[DCP-18154-alert] MatchedL: ${JSON.stringify(offer)}. Title text: ${titleText}, Match: ${offer.match}`);
 
 			return titleText.includes(offer.match);
 		});
 
-		return matchedOffer || alertModalCONSTANTS.PRODUCT_OFFERS[0];
+		return matchedOffer || null;
 	},
 	formatMoney: function (value) {
 		return Number(value || 0).toLocaleString('en-AU', {
@@ -383,7 +737,7 @@ const alertModalOBJ = {
 				<p class="content-title">$__DEVICE_DISCOUNT__ savings is based on:</p>
 				<p class="text-wrapper"><span class="dot">∙</span> $__BASE_DEVICE_DISCOUNT__ device discount</p>
 				<p class="text-wrapper"><span class="dot">∙</span> Extra $100 device discount on selected Android devices</p>
-				<p class="watch-modal__footnote">New connections only. Savings forfeited if cancelled and undiscounted device due in full. Ends 07/09 (unless extended). Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
+				<p class="watch-modal__footnote">Online only. New connections only. Savings forfeited if cancelled and undiscounted device due in full. Ends 07/09 (unless extended). Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
 			</div>
 		`;
 		const totalSaving = discountValue;
@@ -668,8 +1022,27 @@ const alertModalOBJ = {
 			alertModalOBJ.tracking('error waitForElement');
 		}
 	},
+
+	observePageChanges: function () {
+		let currentUrl = location.href;
+		const observer = new MutationObserver(function () {
+			if (currentUrl === location.href) {
+				return;
+			}
+			currentUrl = location.href;
+			croWD.debug('[DCP-18154-alert] URL changed', currentUrl);
+
+			alertModalOBJ.applyChanges(document.body);
+		});
+
+		observer.observe(document.body, {
+			childList: true,
+			subtree: true
+		});
+	},
 	init: function () {
 		alertModalOBJ.waitForElement();
+		alertModalOBJ.observePageChanges();
 	}
 };
 

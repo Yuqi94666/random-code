@@ -1,258 +1,497 @@
-const tradeAnchorCONSTANTS = {
-    EXPERIMENT_ID: 'tradeAnchor', // Experiment ID
-    PAGES_INCLUDE: [], // ['iphone16'] // pages to be included, if empty observe is not used
-    PAGES_EXCLUDE: [], //pages to be excluded
-    EXPERIMENT_VARIANT: 'variant', // possible values: variant|control|personalisation
-    TARGET_ELEMENT: 'form > div.sc-a600e772-0.bIvpux > div:nth-child(3)', // Target element to be modified
-    TEMPLATE_HTML: `<div class="preorder-upgrade-options">
-                        <div class="main-container">
-                            <div class="midrenderplaceholder">
-                            </div>
-                            <div class="content-container">
-                                <div class="systemprice-tag-parent">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M28.1667 2.91797C28.4272 2.65755 28.8497 2.65772 29.1101 2.91797C29.3701 3.17832 29.3702 3.60006 29.1101 3.86035L26.4548 6.51562C26.5678 6.76604 26.6326 7.04288 26.6326 7.33496V15.6396C26.6311 16.1722 26.4228 16.6734 26.0457 17.0498L14.906 28.1895C14.7599 28.3355 14.5966 28.4546 14.4226 28.5459C14.3065 28.6069 14.1851 28.6548 14.0613 28.6914C13.8757 28.7462 13.6839 28.7744 13.4919 28.7744L13.3005 28.7656C13.1091 28.7473 12.9197 28.7012 12.739 28.6279C12.679 28.6037 12.6201 28.5762 12.5623 28.5459C12.388 28.4545 12.2241 28.3357 12.0779 28.1895L3.77222 19.8848C3.72364 19.8361 3.67802 19.7856 3.6355 19.7334C3.46493 19.5241 3.34332 19.2877 3.27026 19.04C3.23375 18.9163 3.20917 18.7897 3.19702 18.6621C3.1849 18.5348 3.18491 18.4066 3.19702 18.2793C3.20917 18.1518 3.23375 18.0251 3.27026 17.9014C3.3615 17.592 3.52874 17.3003 3.77222 17.0566L14.9177 5.91992C14.9618 5.87591 15.0081 5.83426 15.0554 5.79492C15.0783 5.77589 15.1021 5.75815 15.1257 5.74023C15.1493 5.72232 15.1727 5.70429 15.197 5.6875C15.2205 5.67123 15.2452 5.6568 15.2693 5.6416C15.3052 5.61899 15.3415 5.59735 15.3787 5.57715C15.391 5.57046 15.4033 5.56404 15.4158 5.55762C15.4556 5.53707 15.4958 5.51778 15.5369 5.5C15.5541 5.49252 15.5712 5.48453 15.5886 5.47754C15.63 5.46099 15.6721 5.44634 15.7146 5.43262C15.7325 5.42682 15.7502 5.42032 15.7683 5.41504C15.8034 5.40481 15.8391 5.39697 15.8748 5.38867C15.9017 5.38239 15.9285 5.37528 15.9558 5.37012C16.0141 5.35909 16.073 5.35058 16.1326 5.34473L16.3318 5.33496H24.6326C24.7014 5.33496 24.7696 5.33791 24.8367 5.34473C24.9712 5.35841 25.1019 5.3857 25.2273 5.4248C25.3338 5.45801 25.4358 5.50111 25.5339 5.55078L28.1667 2.91797ZM16.2009 6.68066C16.0727 6.70605 15.9546 6.76894 15.8601 6.86328L4.71558 18C4.55371 18.1622 4.49345 18.3879 4.53394 18.5977C4.55824 18.7236 4.61837 18.844 4.71558 18.9414L13.0212 27.2471C13.2809 27.5062 13.7029 27.5062 13.9626 27.2471L25.1023 16.1064C25.2282 15.9807 25.2977 15.8147 25.2986 15.6377V7.67285L23.6257 9.3457C23.8537 9.73453 23.9871 10.1856 23.9871 10.668C23.9871 12.1153 22.8094 13.2928 21.3621 13.293C19.9146 13.293 18.7371 12.1154 18.7371 10.668C18.7371 9.22054 19.9146 8.04297 21.3621 8.04297C21.8437 8.04302 22.294 8.17596 22.6824 8.40332L24.4177 6.66797H16.3328L16.2009 6.68066ZM21.3621 9.37598C20.6498 9.37598 20.0701 9.95574 20.0701 10.668C20.0701 11.3802 20.6498 11.96 21.3621 11.96C22.0742 11.9598 22.6531 11.3801 22.6531 10.668C22.6531 10.5608 22.6387 10.457 22.614 10.3574L21.8337 11.1387C21.7036 11.2688 21.5325 11.3339 21.3621 11.334C21.1915 11.334 21.0206 11.2688 20.8904 11.1387C20.63 10.8784 20.6303 10.4567 20.8904 10.1963L21.6707 9.41504C21.5716 9.39063 21.4685 9.376 21.3621 9.37598Z" fill="#9C2AA0"></path></svg>
-                                    <b class="trade-in-and">Trade in and save.</b>
-                                </div>
-                                <div class="frame-parent">
-                                    <div class="find-out-how-much-you-can-save-wrapper">
-                                        <div class="find-out-how">Find out how much you can save when you trade in your phones, tablets, and smart watches in Good Working Order. Plus, you could get a $300 bonus credit when you trade in an eligible device. T&C apply.</div>
-                                    </div>
-                                    <div class="cta">
-                                        <div class="content">
-                                            <img alt="" title="" src="http://vodafone.com.au/images/icon/trade-in-system.svg">
-                                            <div class="button-trade">Check your trade-in estimate</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-    `, // HTML template to be injected
-    TEMPLATE_INJECT_TYPE: 'append', // possible values: replace|before|prepend|after|append
-    CUSTOM_CSS: `#wrapper-tradeAnchor{padding-top:30px}#wrapper-tradeAnchor .preorder-upgrade-options{width:100%;position:relative;border-radius:8px;background-color:rgba(156,42,160,.06);display:flex;flex-direction:column;align-items:flex-start;padding:32px 16px 32px 24px;box-sizing:border-box;text-align:left;font-size:28px;color:#333;font-family:VodafoneRegular,Arial,sans-serif}#wrapper-tradeAnchor .main-container{align-self:stretch;display:flex;align-items:flex-start;gap:15px}#wrapper-tradeAnchor .midrenderplaceholder{height:36px;width:36px;position:relative;overflow:hidden;flex-shrink:0;display:none}#wrapper-tradeAnchor .content-container{flex:1;display:flex;flex-direction:column;align-items:flex-start;gap:16px}#wrapper-tradeAnchor .systemprice-tag-parent{align-self:stretch;display:flex;align-items:flex-start;gap:8px}#wrapper-tradeAnchor .systemprice-tag-icon{height:32px;width:32px;position:relative;-o-object-fit:cover;object-fit:cover}#wrapper-tradeAnchor .trade-in-and{position:relative;line-height:34px;font-family:VodafoneRegularBold,Arial,sans-serif}#wrapper-tradeAnchor .frame-parent{align-self:stretch;display:flex;flex-direction:column;align-items:flex-start;padding:0px 40px;gap:32px;font-size:18px}#wrapper-tradeAnchor .find-out-how-much-you-can-save-wrapper{align-self:stretch;display:flex;align-items:center;justify-content:center;padding:0}#wrapper-tradeAnchor .find-out-how{flex:1;position:relative;line-height:24px}#wrapper-tradeAnchor .cta{height:50px;border-radius:6px;border:1px solid #999;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:15px 40px;min-width:150px;text-align:center;font-size:20px}#wrapper-tradeAnchor .cta:hover{cursor:pointer}#wrapper-tradeAnchor .content{height:24px;display:flex;align-items:center;justify-content:center;gap:4px}#wrapper-tradeAnchor .systemtrade-in-icon{height:24px;width:24px;position:relative;-o-object-fit:cover;object-fit:cover}#wrapper-tradeAnchor .button-trade{position:relative;line-height:24px}#wrapper-tradeAnchor img{height:24px}@media(max-width: 768px){#wrapper-tradeAnchor .find-out-how-much-you-can-save-wrapper{padding:0 40px}#wrapper-tradeAnchor .frame-parent{padding:0px}#wrapper-tradeAnchor .cta{padding:15px 0;width:100%}}`,
-    // CSS to be injected
-    INIT_RETRY_INTERVAL: 500, // milliseconds for init retry
-    INIT_MAX_RETRIES: 20, // max retries for init
-    ELEMENT_EVENT_PAIRS: [
-        // '.cta-upgrade:click' // Example of an element event pair, format 'selector:eventType'
-    ]
-};
+const DCP18154CONSTANTS = {
+	EXPERIMENT_ID: 'DCP18154-call',
+	PAGES_INCLUDE: [
+		'/google/google-pixel-11',
+		'google-pixel-10-pro-xl',
+		'/samsung/samsung-galaxy-z-fold8',
+		'/samsung/samsung-galaxy-z-fold8-ultra',
+		'/samsung/samsung-galaxy-z-flip8',
+		'samsung-galaxy-z-fold7',
+		'samsung-galaxy-z-flip7',
+		'/samsung-galaxy-s26', '/samsung-galaxy-s25', '/oppo-find-n6-5g','/samsung/samsung-galaxy-s25-fe','/motorola/motorola-signature-5g',
+        '/samsung-galaxy-s25-edge',
+        '/samsung-galaxy-z-flip7e'
+	],
+	PAGES_EXCLUDE: ['&step=1', '&step=2', 'cart'],
+	EXPERIMENT_VARIANT: 'variant',
+	TARGET_ELEMENT: '.sc-bc292866-6.loTWeO',
+	TEMPLATE_HTML: `
+            <div class="info-container" id="info-container">
+                <div class='title-container'>
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.10156 5.08573C10.3676 3.7533 12.4821 3.69877 13.8145 4.96464C14.0155 5.16509 14.9802 6.30707 15.999 10.6648C16.3388 9.2365 17.206 5.9436 18.1738 4.97733C19.518 3.69999 21.6315 3.75438 22.8975 5.08671C24.1206 6.37419 24.1213 8.39107 22.8984 9.6785C22.8946 9.68254 22.8906 9.68636 22.8867 9.69022C22.7766 9.80044 22.3445 10.1734 21.1455 10.6668H28.667C29.0352 10.6668 29.334 10.9656 29.334 11.3338V15.3338C29.3338 15.7018 29.0351 15.9998 28.667 15.9998H27.9707V27.3338C27.9705 27.7017 27.6717 27.9997 27.3037 27.9998H4.63672C4.26871 27.9997 3.9699 27.7018 3.96973 27.3338V15.9998H3.33398C2.96597 15.9997 2.66716 15.7018 2.66699 15.3338V11.3338C2.66699 10.9656 2.96586 10.6668 3.33398 10.6668H10.8467C10.0996 10.3666 9.45815 10.0346 9.11328 9.68925C9.1094 9.68536 9.10528 9.6815 9.10156 9.67753C7.87867 8.39019 7.87884 6.37318 9.10156 5.08573ZM14.667 26.6668H17.334V15.9998H14.667V26.6668ZM18.667 26.6668H26.6367V15.9998H18.667V26.6668ZM5.30371 26.6668H13.334V15.9998H5.30371V26.6668ZM14.667 14.6668H17.334V11.9998H16.5469C16.5411 11.9999 16.5351 12.0008 16.5293 12.0008C16.526 12.0008 16.5228 11.9998 16.5195 11.9998H14.667V14.6668ZM18.667 14.6668H28.001V11.9998H18.667V14.6668ZM4.00098 14.6668H13.334V11.9998H4.00098V14.6668ZM20.4805 5.38358C19.9857 5.38368 19.4898 5.5655 19.1035 5.93241C18.5949 6.44066 17.8974 8.60678 17.4307 10.4334C19.2512 9.96799 21.4102 9.27161 21.9375 8.7537C22.6652 7.98097 22.6634 6.77503 21.9316 6.00468C21.5392 5.59161 21.0098 5.38358 20.4805 5.38358ZM12.8838 5.91972C12.0961 5.17179 10.8281 5.20445 10.0684 6.0037C9.3366 6.77405 9.33481 7.97995 10.0625 8.75272C10.5901 9.2706 12.7489 9.96609 14.5693 10.4314C14.1023 8.60451 13.4022 6.43744 12.8838 5.91972Z" fill="#E60000"/>
+                    </svg>
+                    <div class="info-container-title">$100 off Android? Yep. Online only.</div>
+                </div>
+                <div class="info-container-des" id="copy1">Save $100 on this device when you stay connected to an eligible plan over 24 or 36 months. Savings forfeited if cancelled, undiscounted device due in full. Ends 07/09. Min cost and T&C apply.</div>
+                <div class="info-container-des" id="copy2">Save an extra $100 on this device when you stay connected to an eligible plan over 24 or 36 months. Total save value shown includes extra $100 device discount. Savings forfeited if cancelled, undiscounted device due in full. Ends 07/09. Min cost and T&C apply.</div>
 
-let tradeAnchorOBJ = {
-  applyChanges: function (el) {
-      try {
-
-        this.buildCSS(); 
-        this.buildTemplate();
-        
-        tradeAnchorOBJ.tracking('display');
-
-        document.querySelector('#wrapper-tradeAnchor .cta').addEventListener('click', () => {
-            document.querySelector('div[data-testid="tradeIn-card"]').scrollIntoView({ behavior: 'smooth' });
-            tradeAnchorOBJ.tracking('click Check your trade-in estimate');
-        });
-
-      } catch (error) {
-          console.error('Error in applyChanges function:', error);
-          tradeAnchorOBJ.tracking('error applyChanges');
-      }
-  },
-  tracking: function (value) {
-      try {
-          if (typeof dataLayer !== 'undefined' && dataLayer) { // Check if dataLayer exists
-            croWD.utils.launchTracking(
-              tradeAnchorCONSTANTS.EXPERIMENT_ID,
-              value,
-              tradeAnchorCONSTANTS.EXPERIMENT_VARIANT,
-              ''
-          );
-          } else {
-              console.warn('dataLayer is not defined. Tracking event:', value, 'was not sent.');
-          }
-      } catch (error) {
-          console.error('Error in tracking function:', error);
-      }
-  },
-  buildCSS: function () {
-      try {
-          const styleSheet = document.createElement('style');
-          styleSheet.setAttribute('type', 'text/css');
-          styleSheet.setAttribute('id', `${tradeAnchorCONSTANTS.EXPERIMENT_ID}-styles`);
-          
-          // Remove any existing stylesheet with the same ID
-          const existingStyle = document.getElementById(`${tradeAnchorCONSTANTS.EXPERIMENT_ID}-styles`);
-          if (existingStyle) {
-              existingStyle.remove();
-          }
-
-          // Append stylesheet to head
-          const css = tradeAnchorCONSTANTS.CUSTOM_CSS;
-          styleSheet.appendChild(document.createTextNode(css));
-          document.head.appendChild(styleSheet);
-      } catch (error) {
-          console.error('Error in buildCSS function:', error);
-          tradeAnchorOBJ.tracking('error buildCSS');
-      }
-  },
-  buildTemplate: function () {
-      try {
-          let template = document.createElement('div');
-          template.innerHTML = tradeAnchorCONSTANTS.TEMPLATE_HTML;
-          template.id = 'wrapper-' + tradeAnchorCONSTANTS.EXPERIMENT_ID;
-
-          let mainElement = document.querySelector(tradeAnchorCONSTANTS.TARGET_ELEMENT);
-          if (!mainElement) {
-              throw new Error('Template location element not found');
-          }
-          
-          // Remove any existing template with the same ID
-          const existingTemplate = document.getElementById(`${tradeAnchorCONSTANTS.EXPERIMENT_ID}`);
-          if (existingTemplate) {
-              existingTemplate.remove();
-          }
-          switch (tradeAnchorCONSTANTS.TEMPLATE_INJECT_TYPE) {
-              case 'replace':
-                mainElement.insertAdjacentHTML('afterend', template.outerHTML);
-                mainElement.style.display = 'none';// Remove the original element after replacing
-                break;
-              case 'before':
-                mainElement.insertAdjacentHTML('beforebegin', template.outerHTML);
-                break;
-              case 'prepend':
-                mainElement.insertBefore(template, mainElement.firstChild);
-                break;
-              case 'after':
-                mainElement.insertAdjacentHTML('afterend', template.outerHTML);
-                break;
-              default:
-                //case 'append'
-                mainElement.appendChild(template);
-                break;
-            }
-      } catch (error) {
-          console.error('Error in buildTemplate function:', error);
-          tradeAnchorOBJ.tracking('error buildTemplate');
-      }
-  },
-  addEventListener: function () {
-    try {
-        const elementEventPairs = tradeAnchorCONSTANTS.ELEMENT_EVENT_PAIRS || [];
-        elementEventPairs.forEach(pair => {
-            const [selector, eventType] = pair.split(':');
-            const el = document.querySelector(selector);
-            if (el) {
-                el.addEventListener(eventType, () => {
-                    tradeAnchorOBJ.tracking(eventType + ' ' + el.innerText);
-                });
-            } else {
-                console.warn(`Element not found for selector: ${selector}`);
-            }
-        });
-    } catch (error) {
-        console.error('Error in addEventListener function:', error);
-        tradeAnchorOBJ.tracking('error addEventListener');
+            </div>
+    `,
+	TEMPLATE_INJECT_TYPE: 'before',
+	CUSTOM_CSS: `
+    .DCP18154-info-extension {
+        font-family:VodafoneRegular,Arial,sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 18px;
+        display: flex;
+        align-items: center;
+        width: -moz-fit-content;
+        width: fit-content;
+        padding: 32px 16px 32px 24px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        border: 1px solid #999;
     }
-},
-  observe: function () {
-      try {
-          // Define the array of URLs to check against
-          const includeUrls = tradeAnchorCONSTANTS.PAGES_INCLUDE;
 
-          // Define the array of URLs to be excluded
-          const excludedUrls = tradeAnchorCONSTANTS.PAGES_EXCLUDE;
-
-          croWD.hotbed.listen('croPageTrack', function (observable, eventType, data) {
-              const currentUrl = window.location.href;
-
-              // Check if the current URL exists in the array and not in the excluded list
-              const matchedUrl = includeUrls.find(url => {
-                  const isMatch = currentUrl.toLowerCase().includes(url.toLowerCase());
-                  const isExcluded = excludedUrls.some(excludedUrl =>
-                      currentUrl.toLowerCase().includes(excludedUrl.toLowerCase())
-                  );
-                  return isMatch && !isExcluded;
-              });
-                  
-              if (matchedUrl) {
-                  tradeAnchorOBJ.waitForElement();
-              }
-          });
-
-      } catch (error) {
-          console.error('Error in observe function:', error);
-          tradeAnchorOBJ.tracking('error observe');
-      }
-  },
-  waitForElement: function () {
-      try {
-          let rC = 0;
-          let int = setInterval(() => {
-
-              const el = document.querySelector(tradeAnchorCONSTANTS.TARGET_ELEMENT);
-              const croWD = window.croWD;
-
-              if (el && croWD) {
-                  clearInterval(int);
-                  int = null;
-                  tradeAnchorOBJ.applyChanges(el);
-              } else {
-                  rC++;
-                  if (rC >= tradeAnchorCONSTANTS.INIT_MAX_RETRIES) {
-                      clearInterval(int);
-                      int = null;
-                      console.error('Element not found after max retries. tradeAnchorOBJ');
-                      tradeAnchorOBJ.tracking('error elementsNotFound');
-                  }
-              }
-          }, tradeAnchorCONSTANTS.INIT_RETRY_INTERVAL);
-
-      } catch (error) {
-          console.error('Error in waitForElement function:', error);
-          tradeAnchorOBJ.tracking('error waitForElement');
-      }
-  },
-  init: function () {
-      if (tradeAnchorCONSTANTS.PAGES_INCLUDE.length === 0) {
-          tradeAnchorOBJ.waitForElement();
-      } else if (tradeAnchorCONSTANTS.PAGES_INCLUDE.includes(window.location.pathname)) {
-          tradeAnchorOBJ.waitForElement();
-      } else {
-          tradeAnchorOBJ.observe();
-      }
-  }
-
+    .DCP18154-info-extension .info-container{
+        display: flex;
+        border-radius: 500px;
+        flex-direction: column;
+    }
+    .DCP18154-info-extension .info-container svg{
+        width:32px;
+        height:32px;
+        margin-right:8px;
+    }   
+    .DCP18154-info-extension .title-container{
+        display: flex;
+    }
+    .DCP18154-info-extension .info-container-des{
+        padding: 10px 40px 0;
+        font-size: 18px;
+        line-height: 24px;
+    }
+    .DCP18154-info-extension .info-container-title{
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 34px;
+				font-family: 'VodafoneRegularBold';
+    }
+    .hidden{
+        display: none;
+    }
+    `,
+	INIT_RETRY_INTERVAL: 500,
+	INIT_MAX_RETRIES: 20,
+	DEVICES_COPY_FIRST: [ 'Samsung Galaxy S26', 'Samsung Galaxy Z Fold7', 'Samsung Galaxy Z Flip7', 'Samsung Galaxy S25 Edge', 'Google Pixel 10 Pro XL','Motorola signature 5G','Samsung Galaxy S25 FE', 'OPPO Find N6 5G'],
+	DEVICES_COPY_SECOND: ['Samsung Galaxy Z Fold8', 'Samsung Galaxy Z Flip8', 'Samsung Galaxy Z Fold8 Ultra', 'Samsung Galaxy S26+', 'Samsung Galaxy S26 Ultra', 'Samsung Galaxy S25 Ultra', 'Samsung Galaxy S25+', 'Google Pixel 10 Pro XL', 'Google Pixel 11','Google Pixel 11 Pro XL','Samsung Galaxy S25','Samsung Galaxy S25 Edge','Samsung Galaxy Z Flip7e'],
+	//DEVICES_COPY_THIRD: ['Samsung Galaxy S25 Ultra',],
 };
 
-tradeAnchorOBJ.init();
+let DCP18154OBJ = {
+	applyChanges: function (el) {
+		try {
+			DCP18154OBJ.buildCSS();
+			DCP18154OBJ.buildTemplate();
+			DCP18154OBJ.decideCopy();
+		} catch (error) {
+			console.error('Error in applyChanges function:', error);
+			DCP18154OBJ.tracking('error applyChanges');
+		}
+	},
+	tracking: function (value) {
+		try {
+			if (typeof dataLayer !== 'undefined' && dataLayer) {
+				croWD.utils.launchTracking(DCP18154CONSTANTS.EXPERIMENT_ID,
+					value, DCP18154CONSTANTS.EXPERIMENT_VARIANT,
+					''
+				);
+			} else {
+				console.warn('dataLayer is not defined. Tracking event:', value, 'was not sent.');
+			}
+		} catch (error) {
+			console.error('Error in tracking function:', error);
+		}
+	},
 
-//--------------------------------------------
+	decideCopy: function () {
+		// Get device name and the main wrapper element
+
+		const titleElement = document.querySelector('[data-testid="mobile-phone-title"]');
+		croWD.debug('[DCP18154-call]title element', titleElement);
+		if (!titleElement) {
+			croWD.debug('[DCP18154-call]title not found');
+			return;
+		}
+		const deviceName = titleElement.textContent.trim();
+		const wrapper = document.getElementById(`wrapper-${DCP18154CONSTANTS.EXPERIMENT_ID}-info-extension`);
+		croWD.debug(`[DCP18154-call]: Device name detected: "${deviceName}"`);
+		// Identify the copy elements
+		const copy1 = document.querySelector('#copy1');
+		const copy2 = document.querySelector('#copy2');
+		//const copy3 = document.querySelector('#copy3');
+		if (!copy1 || !copy2 || !wrapper) {
+			return;
+		}
+
+		let isDeviceMatched = false;
+
+		// Logic for Copy 1 devices: Hide Copy 2
+		if (DCP18154CONSTANTS.DEVICES_COPY_FIRST.includes(deviceName)) {
+			copy2.classList.add('hidden');
+			// copy3.classList.add('hidden'); 
+			copy1.classList.remove('hidden');
+			isDeviceMatched = true;
+		}
+		// Logic for Copy 2 devices: Hide Copy 1
+		else if (DCP18154CONSTANTS.DEVICES_COPY_SECOND.includes(deviceName)) {
+			copy1.classList.add('hidden');
+			//copy3.classList.add('hidden'); 
+			copy2.classList.remove('hidden');
+			isDeviceMatched = true;
+		}
+		// Logic for Copy 3 devices: Hide Copy 1,2 
+		//else if (DCP18154CONSTANTS.DEVICES_COPY_THIRD.includes(deviceName)) {
+		// copy1.classList.add('hidden'); 
+		//copy2.classList.add('hidden'); 
+		//copy3.classList.remove('hidden'); 
+		//isDeviceMatched = true;
+		// }
+
+		// The Fix: If no match is found and the wrapper exists, hide the whole feature.
+		if (!isDeviceMatched && wrapper) {
+			wrapper.classList.add('hidden');
+			console.warn(`DCP18154: Device "${deviceName}" not in any list. Hiding entire promotion.`);
+		}
+	},
+
+	buildCSS: function () {
+		try {
+			const styleSheet = document.createElement('style');
+			styleSheet.setAttribute('type', 'text/css');
+			styleSheet.setAttribute('id', `${DCP18154CONSTANTS.EXPERIMENT_ID}-styles`);
+
+			const existingStyle = document.getElementById(`${DCP18154CONSTANTS.EXPERIMENT_ID}-styles`);
+			if (existingStyle) {
+				existingStyle.remove();
+			}
+
+			const css = DCP18154CONSTANTS.CUSTOM_CSS;
+			styleSheet.appendChild(document.createTextNode(css));
+			document.head.appendChild(styleSheet);
+		} catch (error) {
+			console.error('Error in buildCSS function:', error);
+			DCP18154OBJ.tracking('error buildCSS');
+		}
+	},
+	buildTemplate: function () {
+		try {
+			let mainElement = document.querySelector(DCP18154CONSTANTS.TARGET_ELEMENT);
+			if (!mainElement) {
+				throw new Error('Template location element not found');
+			}
+			// Remove any existing template with the same ID
+			const existingTemplate = document.getElementById(`wrapper-${DCP18154CONSTANTS.EXPERIMENT_ID}-info-extension`);
+			if (existingTemplate) {
+				existingTemplate.remove();
+			}
+
+			// Create template as HTML string
+			let templateHTML = `<div id="wrapper-${DCP18154CONSTANTS.EXPERIMENT_ID}-info-extension" class="DCP18154-info-extension">${DCP18154CONSTANTS.TEMPLATE_HTML}</div>`;
+			switch (DCP18154CONSTANTS.TEMPLATE_INJECT_TYPE) {
+				case 'replace':
+					mainElement.insertAdjacentHTML('afterend', templateHTML);
+					mainElement.remove();
+					break;
+				case 'before':
+					mainElement.insertAdjacentHTML('beforebegin', templateHTML);
+					break;
+				case 'prepend':
+					mainElement.insertAdjacentHTML('afterbegin', templateHTML);
+					break;
+				case 'after':
+					mainElement.insertAdjacentHTML('afterend', templateHTML);
+					break;
+				default:
+					mainElement.insertAdjacentHTML('beforeend', templateHTML);
+					break;
+			}
+		} catch (error) {
+			console.error('Error in buildTemplate function:', error);
+			DCP18154OBJ.tracking('error buildTemplate');
+		}
+	},
+
+	observe: function () {
+		let currentUrl = location.href;
+
+		const observer = new MutationObserver(function () {
+
+			if (currentUrl === location.href) {
+				return;
+			}
+
+			currentUrl = location.href;
+			croWD.debug('[DCP18154-call] URL changed:', currentUrl);
+			const existing = document.getElementById(
+				`wrapper-${DCP18154CONSTANTS.EXPERIMENT_ID}-info-extension`
+			);
+
+			if (existing) {
+				existing.remove();
+			}
+
+			const shouldRun =
+				DCP18154CONSTANTS.PAGES_INCLUDE.some(function (url) {
+					return currentUrl.toLowerCase().includes(url.toLowerCase());
+				});
+
+			if (shouldRun) {
+				setTimeout(function () {
+					DCP18154OBJ.waitForElement();
+				}, 500);
+			}
+		});
+
+		observer.observe(document.body, {
+			childList: true,
+			subtree: true
+		});
+	},
+	waitForElement: function () {
+		try {
+			let rC = 0;
+			let int = setInterval(() => {
+				const el = document.querySelector(DCP18154CONSTANTS.TARGET_ELEMENT);
+
+				if (el && typeof croWD !== 'undefined') {
+					clearInterval(int);
+					int = null;
+					DCP18154OBJ.applyChanges(el);
+				} else {
+					rC++;
+					if (rC >= DCP18154CONSTANTS.INIT_MAX_RETRIES) {
+						clearInterval(int);
+						int = null;
+						console.error('Element not found after max retries. DCP18154OBJ');
+						DCP18154OBJ.tracking('error elementsNotFound');
+					}
+				}
+			}, DCP18154CONSTANTS.INIT_RETRY_INTERVAL);
+
+		} catch (error) {
+			console.error('Error in waitForElement function:', error);
+			DCP18154OBJ.tracking('error waitForElement');
+		}
+	},
+	init: function () {
+		const currentUrl = window.location.href.toLowerCase();
+		const shouldRun = DCP18154CONSTANTS.PAGES_INCLUDE.some(function (url) {
+			return currentUrl.includes(url.toLowerCase());
+		});
+
+		if (shouldRun) {
+			DCP18154OBJ.waitForElement();
+		}
+
+		DCP18154OBJ.observe();
+	}
+};
+
+DCP18154OBJ.init();
 
 
 const alertModalCONSTANTS = {
-    EXPERIMENT_ID: 'DCP18045', // unique experiment identifier
-    PAGES_INCLUDE: [], // URL substrings to include (empty = all pages)
-    PAGES_EXCLUDE: ['&step=1', '&step=2', 'cart'], // URL substrings to exclude
-    EXPERIMENT_VARIANT: 'variant', // variant|control|personalisation
-    TARGET_ELEMENT: 'body',
-    BONUS_TRADE_IN_VALUE: 300,
-    PRODUCT_OFFERS: [
+	EXPERIMENT_ID: 'DCP18154-alert', // unique experiment identifier
+	PAGES_INCLUDE: ['/google/google-pixel-11',
+		'/samsung/samsung-galaxy-z-fold8',
+		'/samsung/samsung-galaxy-z-fold8-ultra',
+		'/samsung/samsung-galaxy-z-flip8',
+		'/samsung-galaxy-s26', '/samsung-galaxy-s25','/samsung-galaxy-s25-edge','/samsung-galaxy-z-flip7e'], // URL substrings to include (empty = all pages)
+	PAGES_EXCLUDE: ['&step=1', '&step=2', 'cart', '/oppo-find-n6-5g','/samsung/samsung-galaxy-s25-fe'], // URL substrings to exclude
+	EXPERIMENT_VARIANT: 'variant', // variant|control|personalisation
+	TARGET_ELEMENT: 'body',
+	PRODUCT_OFFERS: [
+		{
+			match: 'pixel 11 pro xl',
+			discountValue: 1000,
+			imageSrc: 'https://www.vodafone.com.au/images/devices/google/google-pixel-11/google-pixel-11-frost-01-l.webp',
+			modalHtml: `
+			<div class="watch-modal__content">
+				<p class="content-title">$1,000 savings is based on:</p>
+				<p class="text-wrapper"><span class="dot">∙</span> $900 device discount</p>
+				<p class="text-wrapper"><span class="dot">∙</span> Extra $100 device discount on selected Android devices</p>
+				<p class="watch-modal__footnote">Online only. Savings forfeited if cancelled and undiscounted device due in full. Ends 02/09 (unless extended). Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
+			</div>
+			`
+		},
+		{
+			match: 'pixel 11',
+			discountValue: 750,
+			imageSrc: 'https://www.vodafone.com.au/images/devices/google/google-pixel-11/google-pixel-11-black-01-l.webp',
+			modalHtml: `
+			<div class="watch-modal__content">
+				<p class="content-title">$750 savings is based on:</p>
+				<p class="text-wrapper"><span class="dot">∙</span> $650 device discount</p>
+				<p class="text-wrapper"><span class="dot">∙</span> Extra $100 device discount on selected Android devices</p>
+				<p class="watch-modal__footnote">Online only. Savings forfeited if cancelled and undiscounted device due in full. Ends 30/09 (unless extended). Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
+			</div>
+			`
+		},
+		{
+			match: 'z fold8 ultra',
+			discountValue: 600,
+			imageSrc: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-z-fold8-ultra/samsung-galaxy-z-fold8-ultra-violet-shadow-01-m.webp',
+			modalHtml: `
+			<div class="watch-modal__content">
+				<p class="content-title">$600 savings is based on:</p>
+				<p class="text-wrapper"><span class="dot">∙</span> $500 device discount</p>
+				<p class="text-wrapper"><span class="dot">∙</span> Extra $100 device discount on selected Android devices</p>
+				<p class="watch-modal__footnote">Online only. Savings forfeited if cancelled and undiscounted device due in full. Ends 07/09 (unless extended). Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
+			</div>
+			`
+		},
+		{
+			match: 'z fold8',
+			discountValue: 600,
+			imageSrc: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-z-fold-8/samsung-galaxy-z-fold8-lavender-01-m.webp',
+			modalHtml: `
+			<div class="watch-modal__content">
+				<p class="content-title">$600 savings is based on:</p>
+				<p class="text-wrapper"><span class="dot">∙</span> $500 device discount</p>
+				<p class="text-wrapper"><span class="dot">∙</span> Extra $100 device discount on selected Android devices</p>
+				<p class="watch-modal__footnote">Online only. Savings forfeited if cancelled and undiscounted device due in full. Ends 07/09 (unless extended). Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
+			</div>
+			`
+		},
+		{
+			match: 'z flip8',
+			discountValue: 400,
+			imageSrc: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-z-flip-8/samsung-galaxy-z-flip8-pink-01-m.webp',
+			modalHtml: `
+			<div class="watch-modal__content">
+				<p class="content-title">$400 savings is based on:</p>
+				<p class="text-wrapper"><span class="dot">∙</span> $300 device discount</p>
+				<p class="text-wrapper"><span class="dot">∙</span> Extra $100 device discount on selected Android devices</p>
+				<p class="watch-modal__footnote">Online only. Savings forfeited if cancelled and undiscounted device due in full. Ends 07/09 (unless extended). Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
+			</div>
+			`
+		},
+		{
+			match: 's26+',
+			discountValue: 500,
+			imageSrc: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-s26-plus/samsung-galaxy-s26-plus-cobalt-violet-01-l.webp',
+			modalHtml: `
+			<div class="watch-modal__content">
+				<p class="content-title">$500 savings is based on:</p>
+				<p class="text-wrapper"><span class="dot">∙</span> $400 device discount</p>
+				<p class="text-wrapper"><span class="dot">∙</span> Extra $100 device discount on selected Android devices</p>
+				<p class="watch-modal__footnote">Online only. New connections only. Savings forfeited if cancelled and undiscounted device due in full. Ends 07/09 (unless extended). Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
+			</div>
+			`
+		},
+		{
+			match: 's26 ultra',
+			discountValue: 600,
+			imageSrc: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-s26-ultra/samsung-galaxy-s26-ultra-cobalt-violet-01-l.webp',
+			modalHtml: `
+			<div class="watch-modal__content">
+				<p class="content-title">$600 savings is based on:</p>
+				<p class="text-wrapper"><span class="dot">∙</span> $500 device discount</p>
+				<p class="text-wrapper"><span class="dot">∙</span> Extra $100 device discount on selected Android devices</p>
+				<p class="watch-modal__footnote">Online only. New connections only. Savings forfeited if cancelled and undiscounted device due in full. Ends 07/09 (unless extended). Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
+			</div>
+			`
+		},
+		{
+			match: 's25 ultra',
+			discountValue: 900,
+			imageSrc: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-s25-ultra/samsung-galaxy-s25-ultra-cobalt-violet-01-l.webp',
+			modalHtml: `
+			<div class="watch-modal__content">
+				<p class="content-title">$900 savings is based on:</p>
+				<p class="text-wrapper"><span class="dot">∙</span> $800 device discount</p>
+				<p class="text-wrapper"><span class="dot">∙</span> Extra $100 device discount on selected Android devices</p>
+				<p class="watch-modal__footnote">Online only. Savings forfeited if cancelled and undiscounted device due in full. Available while stock lasts. Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
+			</div>
+			`
+		},
         {
-            match: 'z fold8 ultra',
-            discountValue: 700,
-            imageSrc: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-z-fold8-ultra/samsung-galaxy-z-fold8-ultra-violet-shadow-01-m.webp'
-        },
-        {
-            match: 'z fold8',
-            discountValue: 700,
-            imageSrc: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-z-fold-8/samsung-galaxy-z-fold8-lavender-01-m.webp'
-        },
-        {
-            match: 'z flip8',
-            discountValue: 500,
-            imageSrc: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-z-flip-8/samsung-galaxy-z-flip8-pink-01-m.webp'
-        }
-    ],
-    TEMPLATE_HTML: `
+			match: 'z flip7e',
+			discountValue: 900,
+			imageSrc: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-z-flip-7e/samsung-galaxy-z-flip7e-pink-01-m.webp',
+			modalHtml: `
+			<div class="watch-modal__content">
+				<p class="content-title">$900 savings is based on:</p>
+				<p class="text-wrapper"><span class="dot">∙</span> $800 device discount</p>
+				<p class="text-wrapper"><span class="dot">∙</span> Extra $100 device discount on selected Android devices</p>
+				<p class="watch-modal__footnote">Online only. Savings forfeited if cancelled and undiscounted device due in full. Available while stock lasts. Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
+			</div>
+			`
+		},
+		// {
+		// 	match: 's25 fe',
+		// 	discountValue: 849,
+		// 	imageSrc: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-s25-fe/samsung-galaxy-s25-fe-navy-01-l.webp.webp',
+		// 	modalHtml: `
+		// 	<div class="watch-modal__content">
+		// 		<p class="content-title">$849 savings is based on:</p>
+		// 		<p class="text-wrapper"><span class="dot">∙</span> $749 device discount</p>
+		// 		<p class="text-wrapper"><span class="dot">∙</span> Extra $100 device discount on selected Android devices</p>
+		// 		<p class="watch-modal__footnote">Online only. Savings forfeited if cancelled and undiscounted device due in full. End 31/08 (unless extended). Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.
+		// 		</p>
+		// 	</div>
+		// 	`
+		// },
+		{
+			match: 's25',
+			discountValue: 700,
+			imageSrc: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-s25/samsung-galaxy-s25-navy-01-l.webp.webp',
+			modalHtml: `
+			<div class="watch-modal__content">
+				<p class="content-title">$700 savings is based on:</p>
+				<p class="text-wrapper"><span class="dot">∙</span> $600 device discount</p>
+				<p class="text-wrapper"><span class="dot">∙</span> Extra $100 device discount on selected Android devices</p>
+				<p class="watch-modal__footnote">Online only. Savings forfeited if cancelled and undiscounted device due in full. Available while stock lasts. Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
+			</div>
+			`
+		},
+		{
+			match: 's25+',
+			discountValue: 800,
+			imageSrc: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-s25-plus/samsung-galaxy-s25-plus-cobalt-violet-01-l.webp',
+			modalHtml: `
+			<div class="watch-modal__content">
+				<p class="content-title">$800 savings is based on:</p>
+				<p class="text-wrapper"><span class="dot">∙</span> $700 device discount</p>
+				<p class="text-wrapper"><span class="dot">∙</span> Extra $100 device discount on selected Android devices</p>
+				<p class="watch-modal__footnote">Online only. Savings forfeited if cancelled and undiscounted device due in full. Available while stock lasts. Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
+			</div>
+			`
+		},
+    {
+			match: 's25 edge',
+			discountValue: 600,
+			imageSrc: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-s25-edge/samsung-galaxy-s25-edge-cobalt-violet-01-l.webp',
+			modalHtml: `
+			<div class="watch-modal__content">
+				<p class="content-title">$600 savings is based on:</p>
+				<p class="text-wrapper"><span class="dot">∙</span> $500 device discount</p>
+				<p class="text-wrapper"><span class="dot">∙</span> Extra $100 device discount on selected Android devices</p>
+				<p class="watch-modal__footnote">Online only. Savings forfeited if cancelled and undiscounted device due in full. Available while stock lasts. Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
+			</div>
+			`
+		},
+		// {
+		// 	match: 'find n6',
+		// 	discountValue: 900,
+		// 	imageSrc: 'https://www.vodafone.com.au/images/devices/oppo/oppo-find-n6/oppo-find-n6-cobalt-violet-01-l.webp',
+		// 	modalHtml: `
+		// 	<div class="watch-modal__content">
+		// 		<p class="content-title">$900 savings is based on:</p>
+		// 		<p class="text-wrapper"><span class="dot">∙</span> $400 device discount</p>
+		// 		<p class="text-wrapper"><span class="dot">∙</span> $400 bonus trade-in credit</p>
+		// 		<p class="text-wrapper"><span class="dot">∙</span> Extra $100 device discount on selected Android devices</p>
+		// 		<p class="watch-modal__footnote">Online only. Savings forfeited if cancelled and undiscounted device (less trade-in value) due in full. Ends 31/08 (unless extended). Trade-in by 14/09. Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
+		// 	</div>
+		// 	`
+		// },
+
+	],
+	TEMPLATE_HTML: `
         <section class="wrapper-component" aria-label="Offer notification">
             <div class="offer-notification" role="region" aria-live="polite">
                 <span class="offer-notification__icon" aria-hidden="true">
@@ -261,8 +500,8 @@ const alertModalCONSTANTS = {
                     </svg>
                 </span>
                 <p class="offer-notification__copy">
-                    Save $__TOTAL_SAVING_NO_DECIMALS__ when you pre-order and trade-in an eligible device.
-                    <button type="button" class="bundle-offer-trigger" aria-haspopup="dialog" aria-expanded="false" aria-controls="offer-breakdown-modal">See how it works</button>.
+                    Save $__TOTAL_SAVING_NO_DECIMALS__ when you stay connected to an eligible plan over 24 or 36 months.
+                    <button type="button" class="bundle-offer-trigger" aria-haspopup="dialog" aria-expanded="false" aria-controls="offer-breakdown-modal">Find out how</button>.
                 </p>
                 <button type="button" class="offer-notification__dismiss" aria-label="Dismiss offer notification">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -272,49 +511,28 @@ const alertModalCONSTANTS = {
             </div>
 
             <div class="wrapper-modal" hidden aria-hidden="true">
-                <article class="watch-modal" id="offer-breakdown-modal" role="dialog" aria-modal="true" aria-labelledby="offer-breakdown-title" tabindex="-1">
-                    <header class="watch-modal__header">
-                        <h2 class="watch-modal__title" id="offer-breakdown-title">Offer breakdown</h2>
-                        <button type="button" class="watch-modal-close" aria-label="Close offer breakdown modal">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                                <path d="M23.5282 7.52868C23.7882 7.26843 24.2105 7.26843 24.4705 7.52868C24.7309 7.7891 24.7309 8.21066 24.4705 8.47107L16.9412 15.9994L24.4705 23.5287C24.731 23.7889 24.731 24.2108 24.4705 24.4711C24.3406 24.6011 24.1702 24.6663 23.9998 24.6664C23.8293 24.6664 23.6582 24.6013 23.5282 24.4711L15.9989 16.9418L8.47151 24.4711C8.34137 24.6012 8.17041 24.6663 7.99983 24.6664C7.82919 24.6664 7.65835 24.6013 7.52815 24.4711C7.26789 24.2109 7.26803 23.7889 7.52815 23.5287L15.0565 15.9994L7.52815 8.47107C7.26793 8.21073 7.26807 7.78911 7.52815 7.52868C7.78857 7.26843 8.2111 7.26843 8.47151 7.52868L15.9989 15.057L23.5282 7.52868Z" fill="#333333"/>
-                            </svg>
-                        </button>
-                    </header>
+				<article class="watch-modal" id="offer-breakdown-modal" role="dialog" aria-modal="true"
+					aria-labelledby="offer-breakdown-title" tabindex="-1">
+					<header class="watch-modal__header">
+						<h2 class="watch-modal__title" id="offer-breakdown-title">Offer breakdown</h2>
+						<button type="button" class="watch-modal-close" aria-label="Close offer breakdown modal">
+							<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+								<path
+									d="M23.5282 7.52868C23.7882 7.26843 24.2105 7.26843 24.4705 7.52868C24.7309 7.7891 24.7309 8.21066 24.4705 8.47107L16.9412 15.9994L24.4705 23.5287C24.731 23.7889 24.731 24.2108 24.4705 24.4711C24.3406 24.6011 24.1702 24.6663 23.9998 24.6664C23.8293 24.6664 23.6582 24.6013 23.5282 24.4711L15.9989 16.9418L8.47151 24.4711C8.34137 24.6012 8.17041 24.6663 7.99983 24.6664C7.82919 24.6664 7.65835 24.6013 7.52815 24.4711C7.26789 24.2109 7.26803 23.7889 7.52815 23.5287L15.0565 15.9994L7.52815 8.47107C7.26793 8.21073 7.26807 7.78911 7.52815 7.52868C7.78857 7.26843 8.2111 7.26843 8.47151 7.52868L15.9989 15.057L23.5282 7.52868Z"
+									fill="#333333" />
+							</svg>
+						</button>
+					</header>
 
-                    <div class="watch-modal__content">
-                        <div class="watch-modal__product">
-                            <img src="__PRODUCT_IMAGE_SRC__" alt="Featured Samsung device" class="watch-modal__image" />
-                        </div>
-
-                        <div class="watch-modal__details">
-                            <div class="watch-modal__price-card" role="group" aria-label="Offer prices">
-                                <div class="watch-modal__line-item">
-                                    <span class="watch-modal__item-name">Device discount</span>
-                                    <span class="watch-modal__item-price">$__DEVICE_DISCOUNT__  <span class="watch-modal__item-price-rrp">off RRP</span></span>
-                                </div>
-                                <hr class="watch-modal__divider" />
-                                <div class="watch-modal__line-item">
-                                    <span class="watch-modal__item-name">Bonus trade-in credit</span>
-                                    <span class="watch-modal__item-price">$__TRADE_IN_BONUS__  <span class="watch-modal__item-price-rrp">off RRP</span></span>
-                                </div>
-                            </div>
-
-                            <section class="watch-modal__summary" aria-label="Total saving">
-                                <h3 class="watch-modal__summary-title">Total saving</h3>
-                                <p class="watch-modal__summary-value">$__TOTAL_SAVING__</p>
-                                <p class="watch-modal__summary-note">When you stay connected to an eligible<br />plan over 24 or 36 months.</p>
-                            </section>
-
-                            <p class="watch-modal__footnote">Savings forfeited if cancelled and undiscounted device (less trade-in value) due in full. Ends 13/08, trade in by 27/08. Min cost and T&C apply.</p>
-                        </div>
-                    </div>
-                </article>
-            </div>
+					<div class="watch-modal__content_container">
+						__MODAL_HTML__
+					</div>
+				</article>
+			</div>
         </section>
     `,
-    TEMPLATE_INJECT_TYPE: 'prepend', // replace|before|prepend|after|append
-    CUSTOM_CSS: `
+	TEMPLATE_INJECT_TYPE: 'prepend', // replace|before|prepend|after|append
+	CUSTOM_CSS: `
         #wrapper-alert-modal .wrapper-component {
             background: #9c2aa0;
             color: #ffffff;
@@ -407,19 +625,33 @@ const alertModalCONSTANTS = {
 
         #wrapper-alert-modal .wrapper-component .watch-modal__header {
             display: flex;
-            align-items: flex-start;
             justify-content: space-between;
-            gap: 12px;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         #wrapper-alert-modal .wrapper-component .watch-modal__title {
             margin: 32px 0 0;
-            font-size: 40px;
+            font-size: 24px;
             line-height: 48px;
             font-weight: 300;
             color: #333333;
-            font-family: VodafoneRegularBold, Arial, sans-serif;
+            font-family: VodafoneRegular, Arial, sans-serif;
+        }       
+		#wrapper-alert-modal .wrapper-component .content-title {
+            font-size: 18px;
+            line-height: 24px;
+            font-weight: 700;
+        }
+		#wrapper-alert-modal .wrapper-component .text-wrapper {
+            font-size: 16px;
+            line-height: 22px;
+            font-weight: 400;
+			margin: 0;
+        }
+		#wrapper-alert-modal .wrapper-component .text-wrapper .dot {
+            font-size: 30px;
+			line-height: 1;
+			vertical-align: middle;
         }
 
         #wrapper-alert-modal .wrapper-component .watch-modal-close {
@@ -435,122 +667,16 @@ const alertModalCONSTANTS = {
 
         #wrapper-alert-modal .wrapper-component .watch-modal__content {
             display: flex;
-            gap: 32px;
             align-items: flex-start;
-        }
-
-        #wrapper-alert-modal .wrapper-component .watch-modal__product {
-            width: 200px;
-            flex: 0 0 200px;
-        }
-
-        #wrapper-alert-modal .wrapper-component .watch-modal__image {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        #wrapper-alert-modal .wrapper-component .watch-modal__details {
-            flex: 1 1 auto;
-            min-width: 0;
-            width: 100%;
-        }
-
-        #wrapper-alert-modal .wrapper-component .watch-modal__price-card {
-            border: 1px solid #999999;
-            border-radius: 12px;
-            padding: 24px 16px;
-            margin-bottom: 16px;
-        }
-
-        #wrapper-alert-modal .wrapper-component .watch-modal__line-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 8px;
-            font-size: 16px;
-            line-height: 22px;
-            color: #0d0d0d;
-        }
-
-        #wrapper-alert-modal .wrapper-component .watch-modal__item-name {
-            font-size: 16px;
-            line-height: 22px;
-            font-weight: 400;
-            color: #333333;
-            font-family: VodafoneRegular, Arial, sans-serif;
-        }
-
-        #wrapper-alert-modal .wrapper-component .watch-modal__item-price {
-            text-align: right;
-            font-size: 14px;
-            line-height: 18px;
-            white-space: nowrap;
-        }
-
-        #wrapper-alert-modal .wrapper-component .watch-modal__item-price {
-            font-size: 18px;
-            line-height: 24px;
-            font-weight: 700;
-            letter-spacing: 0;
-            font-family: VodafoneRegularBold, Arial, sans-serif;
-        }
-
-        #wrapper-alert-modal .wrapper-component .watch-modal__item-price-rrp {
-            font-size: 14px;
-            line-height: 18px;
-            font-weight: 400;
-            font-family: VodafoneRegular, Arial, sans-serif;
-        }
-
-        #wrapper-alert-modal .wrapper-component .watch-modal__divider {
-            border: 0;
-            border-top: 1px solid #cccccc;
-            margin: 16px 0;
-        }
-
-        #wrapper-alert-modal .wrapper-component .watch-modal__summary {
-            background: #f2f2f2;
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 16px;
-        }
-
-        #wrapper-alert-modal .wrapper-component .watch-modal__summary-title {
-            margin: 0 0 16px;
-            font-size: 18px;
-            line-height: 24px;
-            font-weight: 400;
-            color: #0d0d0d;
-            font-family: VodafoneRegular, Arial, sans-serif;
-        }
-
-        #wrapper-alert-modal .wrapper-component .watch-modal__summary-value {
-            margin: 0;
-            text-align: right;
-            font-size: 28px;
-            line-height: 34px;
-            font-weight: 700;
-            color: #0d0d0d;
-            font-family: VodafoneRegularBold, Arial, sans-serif;
-     }
-            
-
-        #wrapper-alert-modal .wrapper-component .watch-modal__summary-note {
-            margin: 4px 0 0;
-            text-align: right;
-            font-size: 12px;
-            line-height: 16px;
-            color: #0d0d0d;
-            font-family: VodafoneRegular, Arial, sans-serif;
+			flex-direction: column;
         }
 
         #wrapper-alert-modal .wrapper-component .watch-modal__footnote {
-            margin: 0;
+            margin:20px  0;
             font-size: 12px;
             line-height: 16px;
             color: #333333;
-            
+ 
         }
 
         @media (max-width: 767px) {
@@ -584,27 +710,6 @@ const alertModalCONSTANTS = {
 
             #wrapper-alert-modal .wrapper-component .watch-modal__content {
                 flex-direction: column;
-                gap: 24px;
-            }
-
-            #wrapper-alert-modal .wrapper-component .watch-modal__product {
-                width: 145px;
-                margin: 0 auto;
-                flex: auto;
-            }
-
-            #wrapper-alert-modal .wrapper-component .watch-modal__price-card {
-                margin-bottom: 24px;
-            }
-
-            #wrapper-alert-modal .wrapper-component .watch-modal__item-price strong {
-                font-size: 18px;
-                line-height: 24px;
-            }
-
-            #wrapper-alert-modal .wrapper-component .watch-modal__summary-value {
-                font-size: 20px;
-                line-height: 28px;
             }
 
             #wrapper-alert-modal .wrapper-component .watch-modal__footnote {
@@ -612,1296 +717,408 @@ const alertModalCONSTANTS = {
             }
         }
     `,
-    INIT_RETRY_INTERVAL: 500,
-    INIT_MAX_RETRIES: 20,
-    ELEMENT_EVENT_PAIRS: [
-        '.bundle-offer-trigger:click alert-bar',
-        '.watch-modal-close:click offer-breakdown-close',
-        '.offer-notification__dismiss:click alert-bar-dismiss'
-    ]
+	INIT_RETRY_INTERVAL: 500,
+	INIT_MAX_RETRIES: 20,
+	ELEMENT_EVENT_PAIRS: [
+		'.bundle-offer-trigger:click alert-bar',
+		'.watch-modal-close:click offer-breakdown-close',
+		'.offer-notification__dismiss:click alert-bar-dismiss'
+	]
 };
 
 const alertModalOBJ = {
-    lastFocusedElement: null,
-    previousBodyOverflow: '',
-    applyChanges: function (el) {
-        try {
-            // Add your logic here
+	lastFocusedElement: null,
+	previousBodyOverflow: '',
+	isValidPage: function () {
+		const url = location.pathname.toLowerCase();
 
-            alertModalOBJ.buildCSS();
-            alertModalOBJ.buildTemplate(el);
-            alertModalOBJ.bindModalControls();
-            // alertModalOBJ.addEventListeners();
-        } catch (error) {
-            console.error('Error in applyChanges:', error);
-            alertModalOBJ.tracking('error applyChanges');
-        }
-    },
-    tracking: function (value) {
-        try {
-            if (typeof window.croWD !== 'undefined' && typeof dataLayer !== 'undefined') {
-                window.croWD.utils.launchTracking(
-                    alertModalCONSTANTS.EXPERIMENT_ID,
-                    value,
-                    alertModalCONSTANTS.EXPERIMENT_VARIANT,
-                    ''
-                );
-            } else {
-                console.warn(alertModalCONSTANTS.EXPERIMENT_ID + ' tracking skipped — dependencies not available:', value);
-            }
-        } catch (error) {
-            console.error('Error in tracking:', error);
-        }
-    },
-    getOfferData: function () {
-        const titleElement = document.querySelector('h1[data-testid="mobile-phone-title"], h1');
-        const titleText = (titleElement && titleElement.textContent ? titleElement.textContent : '').toLowerCase();
-        const matchedOffer = alertModalCONSTANTS.PRODUCT_OFFERS.find(function (offer) {
-            return titleText.includes(offer.match);
-        });
+		const isExcluded = alertModalCONSTANTS.PAGES_EXCLUDE.some(function (page) {
+			return url.includes(page.toLowerCase());
+		});
 
-        return matchedOffer || alertModalCONSTANTS.PRODUCT_OFFERS[0];
-    },
-    formatMoney: function (value) {
-        return Number(value || 0).toLocaleString('en-AU', {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        });
-    },
-    buildTemplateHtml: function (offerData) {
-        const discountValue = Number(offerData.discountValue || 0);
-        const tradeInBonus = Number(alertModalCONSTANTS.BONUS_TRADE_IN_VALUE || 0);
-        const totalSaving = discountValue + tradeInBonus;
-        const totalSavingNoDecimals = Number(totalSaving || 0).toLocaleString('en-AU', {
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 0
-        });
-
-        return alertModalCONSTANTS.TEMPLATE_HTML
-            .replaceAll('__PRODUCT_IMAGE_SRC__', offerData.imageSrc)
-            .replaceAll('__DEVICE_DISCOUNT__', alertModalOBJ.formatMoney(discountValue))
-            .replaceAll('__TRADE_IN_BONUS__', alertModalOBJ.formatMoney(tradeInBonus))
-            .replaceAll('__TOTAL_SAVING_NO_DECIMALS__', totalSavingNoDecimals)
-            .replaceAll('__TOTAL_SAVING__', alertModalOBJ.formatMoney(totalSaving));
-    },
-    buildCSS: function () {
-        if (!alertModalCONSTANTS.CUSTOM_CSS) return; // Nothing to inject
-
-        try {
-            const id = 'alertModal-styles';
-
-            // Remove any existing stylesheet with the same ID
-            const existingStyle = document.getElementById(id);
-            if (existingStyle) existingStyle.remove();
-
-            const resolvedCss = alertModalCONSTANTS.CUSTOM_CSS.replaceAll(
-                '#wrapper-alert-modal',
-                '#wrapper-alert-modal'
-            );
-
-            const styleSheet = document.createElement('style');
-            styleSheet.id = id;
-            styleSheet.textContent = resolvedCss;
-            document.body.appendChild(styleSheet);
-        } catch (error) {
-            console.error('Error in buildCSS:', error);
-            alertModalOBJ.tracking('error buildCSS');
-        }
-    },
-    buildTemplate: function (targetEl) {
-        if (!alertModalCONSTANTS.TEMPLATE_HTML) return; // Nothing to inject
-
-        try {
-            const wrapperId = 'wrapper-alert-modal';
-            const offerData = alertModalOBJ.getOfferData();
-
-            // Remove any existing template with the same ID
-            const existingTemplate = document.getElementById(wrapperId);
-            if (existingTemplate) existingTemplate.remove();
-
-            const template = document.createElement('div');
-            template.innerHTML = alertModalOBJ.buildTemplateHtml(offerData);
-            template.id = wrapperId;
-
-            switch (alertModalCONSTANTS.TEMPLATE_INJECT_TYPE) {
-                case 'replace':
-                    targetEl.insertAdjacentElement('afterend', template);
-                    targetEl.remove();
-                    break;
-                case 'before':
-                    targetEl.insertAdjacentElement('beforebegin', template);
-                    break;
-                case 'prepend':
-                    targetEl.prepend(template);
-                    break;
-                case 'after':
-                    targetEl.insertAdjacentElement('afterend', template);
-                    break;
-                default: // append
-                    targetEl.appendChild(template);
-                    break;
-            }
-        } catch (error) {
-            console.error('Error in buildTemplate:', error);
-            alertModalOBJ.tracking('error buildTemplate');
-        }
-    },
-    bindModalControls: function () {
-        try {
-            const wrapper = document.getElementById('wrapper-alert-modal');
-
-            if (!wrapper) {
-                console.warn(alertModalCONSTANTS.EXPERIMENT_ID + ' — wrapper not found');
-                return;
-            }
-
-            const trigger = wrapper.querySelector('.bundle-offer-trigger');
-            const wrapperComponent = wrapper.querySelector('.wrapper-component');
-            const modalWrapper = wrapper.querySelector('.wrapper-modal');
-            const modal = wrapper.querySelector('.watch-modal');
-            const closeButton = wrapper.querySelector('.watch-modal-close');
-            const dismissButton = wrapper.querySelector('.offer-notification__dismiss');
-
-            if (!trigger || !wrapperComponent || !modalWrapper || !modal || !closeButton || !dismissButton) {
-                console.warn(alertModalCONSTANTS.EXPERIMENT_ID + ' — modal controls not found');
-                return;
-            }
-
-            if (!trigger.hasAttribute('data-' + alertModalCONSTANTS.EXPERIMENT_ID + '-modal-open')) {
-                trigger.setAttribute('data-' + alertModalCONSTANTS.EXPERIMENT_ID + '-modal-open', 'true');
-                trigger.addEventListener('click', function () {
-                    alertModalOBJ.openModal(trigger, modalWrapper, modal);
-                });
-                trigger.addEventListener('keydown', function (event) {
-                    if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault();
-                        alertModalOBJ.openModal(trigger, modalWrapper, modal);
-                    }
-                });
-            }
-
-            if (!closeButton.hasAttribute('data-' + alertModalCONSTANTS.EXPERIMENT_ID + '-modal-close')) {
-                closeButton.setAttribute('data-' + alertModalCONSTANTS.EXPERIMENT_ID + '-modal-close', 'true');
-                closeButton.addEventListener('click', function () {
-                    alertModalOBJ.closeModal(trigger, modalWrapper);
-                });
-            }
-
-            if (!dismissButton.hasAttribute('data-' + alertModalCONSTANTS.EXPERIMENT_ID + '-notification-close')) {
-                dismissButton.setAttribute('data-' + alertModalCONSTANTS.EXPERIMENT_ID + '-notification-close', 'true');
-                dismissButton.addEventListener('click', function () {
-                    alertModalOBJ.tracking('click dismiss alert');
-                    alertModalOBJ.hideNotification(wrapperComponent, modalWrapper, trigger);
-                });
-            }
-
-            if (!modalWrapper.hasAttribute('data-' + alertModalCONSTANTS.EXPERIMENT_ID + '-modal-backdrop-close')) {
-                modalWrapper.setAttribute('data-' + alertModalCONSTANTS.EXPERIMENT_ID + '-modal-backdrop-close', 'true');
-                modalWrapper.addEventListener('click', function (event) {
-                    if (event.target === modalWrapper) {
-                        alertModalOBJ.closeModal(trigger, modalWrapper);
-                    }
-                });
-            }
-
-            if (!modal.hasAttribute('data-' + alertModalCONSTANTS.EXPERIMENT_ID + '-modal-trap')) {
-                modal.setAttribute('data-' + alertModalCONSTANTS.EXPERIMENT_ID + '-modal-trap', 'true');
-                modal.addEventListener('keydown', function (event) {
-                    alertModalOBJ.handleModalKeydown(event, trigger, modalWrapper, modal);
-                });
-            }
-        } catch (error) {
-            console.error('Error in bindModalControls:', error);
-            alertModalOBJ.tracking('error bindModalControls');
-        }
-    },
-    openModal: function (trigger, modalWrapper, modal) {
-        alertModalOBJ.lastFocusedElement = document.activeElement || trigger;
-        alertModalOBJ.previousBodyOverflow = document.body.style.overflow;
-        modalWrapper.hidden = false;
-        modalWrapper.setAttribute('aria-hidden', 'false');
-        trigger.setAttribute('aria-expanded', 'true');
-        document.body.style.overflow = 'hidden';
-
-        const focusableElements = alertModalOBJ.getFocusableElements(modal);
-        const firstFocusable = focusableElements[0] || modal;
-        firstFocusable.focus();
-
-        alertModalOBJ.tracking('click open alert modal');
-    },
-    closeModal: function (trigger, modalWrapper) {
-        modalWrapper.hidden = true;
-        modalWrapper.setAttribute('aria-hidden', 'true');
-        trigger.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = alertModalOBJ.previousBodyOverflow;
-
-        if (alertModalOBJ.lastFocusedElement && typeof alertModalOBJ.lastFocusedElement.focus === 'function') {
-            alertModalOBJ.lastFocusedElement.focus();
-        }
-    },
-    hideNotification: function (wrapperComponent, modalWrapper, trigger) {
-        if (modalWrapper && !modalWrapper.hidden) {
-            alertModalOBJ.closeModal(trigger, modalWrapper);
-        }
-
-        wrapperComponent.hidden = true;
-        wrapperComponent.setAttribute('aria-hidden', 'true');
-    },
-    getFocusableElements: function (container) {
-        return Array.prototype.slice.call(
-            container.querySelectorAll('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex]:not([tabindex="-1"]), [contenteditable="true"]')
-        ).filter(function (element) {
-            return !element.hasAttribute('hidden') && element.getAttribute('aria-hidden') !== 'true';
-        });
-    },
-    handleModalKeydown: function (event, trigger, modalWrapper, modal) {
-        if (event.key === 'Escape') {
-            event.preventDefault();
-            alertModalOBJ.closeModal(trigger, modalWrapper);
-            return;
-        }
-
-        if (event.key !== 'Tab') return;
-
-        const focusableElements = alertModalOBJ.getFocusableElements(modal);
-        if (focusableElements.length === 0) {
-            event.preventDefault();
-            modal.focus();
-            return;
-        }
-
-        const firstFocusable = focusableElements[0];
-        const lastFocusable = focusableElements[focusableElements.length - 1];
-
-        if (focusableElements.length === 1) {
-            event.preventDefault();
-            firstFocusable.focus();
-            return;
-        }
-
-        if (event.shiftKey && document.activeElement === firstFocusable) {
-            event.preventDefault();
-            lastFocusable.focus();
-        } else if (!event.shiftKey && document.activeElement === lastFocusable) {
-            event.preventDefault();
-            firstFocusable.focus();
-        }
-    },
-    addEventListeners: function () {
-        try {
-            const wrapper = document.getElementById('wrapper-' + alertModalCONSTANTS.EXPERIMENT_ID);
-            if (!wrapper) {
-                console.warn(alertModalCONSTANTS.EXPERIMENT_ID + ' — wrapper not found for event bindings');
-                return;
-            }
-
-            const pairs = alertModalCONSTANTS.ELEMENT_EVENT_PAIRS || [];
-            pairs.forEach(function (pair) {
-                const parts = pair.split(':');
-                const selector = parts[0];
-                const eventType = parts[1];
-                const elements = wrapper.querySelectorAll(selector);
-
-                if (elements.length === 0) {
-                    console.warn(alertModalCONSTANTS.EXPERIMENT_ID + ' — element not found for: ' + selector);
-                    return;
-                }
-
-                elements.forEach(function (el) {
-                    // Prevent duplicate listeners by marking the element
-                    const flag = 'data-' + alertModalCONSTANTS.EXPERIMENT_ID + '-' + eventType;
-                    if (el.hasAttribute(flag)) return;
-                    el.setAttribute(flag, 'true');
-
-                    el.addEventListener(eventType, function () {
-                        alertModalOBJ.tracking(eventType + ' ' + el.innerText);
-                    });
-                });
-            });
-        } catch (error) {
-            console.error('Error in addEventListeners:', error);
-            alertModalOBJ.tracking('error addEventListeners');
-        }
-    },
-    waitForElement: function () {
-        try {
-            let retryCount = 0;
-            const interval = setInterval(function () {
-                const el = document.querySelector(alertModalCONSTANTS.TARGET_ELEMENT);
-                const hasCroWD = typeof window.croWD !== 'undefined';
-
-                if (el && hasCroWD) {
-                    clearInterval(interval);
-                    alertModalOBJ.applyChanges(el);
-                } else if (++retryCount >= alertModalCONSTANTS.INIT_MAX_RETRIES) {
-                    clearInterval(interval);
-                    console.error(alertModalCONSTANTS.EXPERIMENT_ID + ' — target element not found after max retries');
-                    alertModalOBJ.tracking('error elementsNotFound');
-                }
-            }, alertModalCONSTANTS.INIT_RETRY_INTERVAL);
-        } catch (error) {
-            console.error('Error in waitForElement:', error);
-            alertModalOBJ.tracking('error waitForElement');
-        }
-    },
-    init: function () {
-        alertModalOBJ.waitForElement();
-    }
-};
-
-alertModalOBJ.init();
-
-//--------------------------------------------
-
-
-const tags2CONSTANTS = {    
-    EXPERIMENT_ID: 'DCP17963tag2', // Experiment ID
-    EXPERIMENT_VARIANT: 'personalisation', // possible values: variant|control|personalisation
-    TARGET_ELEMENT: '.dZRKKD', // Target element to be modified
-    TEMPLATE_COPY: `<style>@media (max-width:768px){.badges2{display: flex!important;}}.badges2{display: none;padding: 32px 0 0 0;align-items: center;gap: 4px;margin-bottom: 12px;font-size: 16px;font-family: VodafoneRegular, Arial, sans-serif;color: #333333;}</style><div class="badges2"><span>5G</span> | <span>eSIM</span></div>`, // HTML template to be injected
-    TEMPLATE_INJECT_TYPE: 'before', // possible values: replace|before|prepend|after|append
-    INIT_RETRY_INTERVAL: 500, // milliseconds for init retr
-    INIT_MAX_RETRIES: 20, // max retries for init
-};
-
-let tags2OBJ = {
-    applyChanges: function (el) {
-        try {
-            //Add your logic here
-            tags2OBJ.buildTemplate();
-        } catch (error) {
-            console.error('Error in applyChanges function:', error);
-        }
-    },
-    buildTemplate: function () {
-        try {
-            let eTarget = document.querySelector(tags2CONSTANTS.TARGET_ELEMENT);
-
-            // Check if target element exists
-            if (!eTarget) {
-                console.error('Target element mobile title is not found');
-                return;
-            }
-
-            // Check if tags already exists
-            if (document.querySelector(`#${tags2CONSTANTS.EXPERIMENT_ID}`)) {
-                return;
-            }
-
-            // Create tags element from HTML string
-            let tags = document.createElement('div');
-            tags.id = tags2CONSTANTS.EXPERIMENT_ID;
-            tags.innerHTML = tags2CONSTANTS.TEMPLATE_COPY;
-
-            // Insert based on specified type
-            switch (tags2CONSTANTS.TEMPLATE_INJECT_TYPE) {
-                case 'before':
-                    eTarget.parentNode.insertBefore(tags, eTarget);
-                    break;
-                case 'after':
-                    eTarget.parentNode.insertBefore(tags, eTarget.nextSibling);
-                    break;
-                case 'prepend':
-                    eTarget.prepend(tags);
-                    break;
-                case 'append':
-                    eTarget.append(tags);
-                    break;
-                case 'replace':
-                    eTarget.parentNode.replaceChild(tags, eTarget);
-                    break;
-                default:
-                    eTarget.parentNode.insertBefore(tags, eTarget);
-            }
-
-        } catch (error) {
-            console.error('Error in buildTemplate function:', error);
-            tags2OBJ.tracking('error buildTemplate');
-        }
-    },
-    waitForElement: function () {
-        try {
-            let rC = 0;
-            let int = setInterval(() => {
-                const el = document.querySelector(tags2CONSTANTS.TARGET_ELEMENT);
-                if (el && croWD) {
-                    clearInterval(int);
-                    int = null;
-                    tags2OBJ.applyChanges(el);
-                } else {
-                    rC++;
-                    if (rC >= tags2CONSTANTS.INIT_MAX_RETRIES) {
-                        clearInterval(int);
-                        int = null;
-                        console.error('Element not found after max retries. tags2OBJ');
-                        tags2OBJ.tracking('error elementsNotFound');
-                    }
-                }
-            }, tags2CONSTANTS.INIT_RETRY_INTERVAL);
-
-        } catch (error) {
-            console.error('Error in waitForElement function:', error);
-            tags2OBJ.tracking('error waitForElement');
-        }
-    },
-    init: function () {
-        tags2OBJ.waitForElement();
-    }
-
-};
-
-tags2OBJ.init();
-
-//--------------------------------------------
-
-
-const tagsCONSTANTS = {    
-    EXPERIMENT_ID: 'DCP17963tag', // Experiment ID
-    EXPERIMENT_VARIANT: 'personalisation', // possible values: variant|control|personalisation
-    TARGET_ELEMENT: '.lpfjpa', // Target element to be modified
-    TEMPLATE_COPY: `<style>@media (max-width:768px){.badges{display: none!important;}} .badges{display: flex;padding: 0 0 0 25px;align-items: center;gap: 4px;margin-bottom: 12px;font-size: 16px;font-family: VodafoneRegular, Arial, sans-serif;color: #333333;}</style><div class="badges"><span>5G</span> | <span>eSIM</span></div>`, // HTML template to be injected
-    TEMPLATE_INJECT_TYPE: 'before', // possible values: replace|before|prepend|after|append
-    INIT_RETRY_INTERVAL: 500, // milliseconds for init retr
-    INIT_MAX_RETRIES: 20, // max retries for init
-};
-
-let tagsOBJ = {
-    applyChanges: function (el) {
-        try {
-            //Add your logic here
-            document.querySelector('.kHPnkr').remove();
-            tagsOBJ.buildTemplate();
-        } catch (error) {
-            console.error('Error in applyChanges function:', error);
-        }
-    },
-    buildTemplate: function () {
-        try {
-            let eTarget = document.querySelector(tagsCONSTANTS.TARGET_ELEMENT);
-
-            // Check if target element exists
-            if (!eTarget) {
-                console.error('Target element mobile title is not found');
-                return;
-            }
-
-            // Check if tags already exists
-            if (document.querySelector(`#${tagsCONSTANTS.EXPERIMENT_ID}`)) {
-                return;
-            }
-
-            // Create tags element from HTML string
-            let tags = document.createElement('div');
-            tags.id = tagsCONSTANTS.EXPERIMENT_ID;
-            tags.innerHTML = tagsCONSTANTS.TEMPLATE_COPY;
-
-            // Insert based on specified type
-            switch (tagsCONSTANTS.TEMPLATE_INJECT_TYPE) {
-                case 'before':
-                    eTarget.parentNode.insertBefore(tags, eTarget);
-                    break;
-                case 'after':
-                    eTarget.parentNode.insertBefore(tags, eTarget.nextSibling);
-                    break;
-                case 'prepend':
-                    eTarget.prepend(tags);
-                    break;
-                case 'append':
-                    eTarget.append(tags);
-                    break;
-                case 'replace':
-                    eTarget.parentNode.replaceChild(tags, eTarget);
-                    break;
-                default:
-                    eTarget.parentNode.insertBefore(tags, eTarget);
-            }
-
-        } catch (error) {
-            console.error('Error in buildTemplate function:', error);
-            tagsOBJ.tracking('error buildTemplate');
-        }
-    },
-    waitForElement: function () {
-        try {
-            let rC = 0;
-            let int = setInterval(() => {
-                const el = document.querySelector(tagsCONSTANTS.TARGET_ELEMENT);
-                if (el && croWD) {
-                    clearInterval(int);
-                    int = null;
-                    tagsOBJ.applyChanges(el);
-                } else {
-                    rC++;
-                    if (rC >= tagsCONSTANTS.INIT_MAX_RETRIES) {
-                        clearInterval(int);
-                        int = null;
-                        console.error('Element not found after max retries. tagsOBJ');
-                        tagsOBJ.tracking('error elementsNotFound');
-                    }
-                }
-            }, tagsCONSTANTS.INIT_RETRY_INTERVAL);
-
-        } catch (error) {
-            console.error('Error in waitForElement function:', error);
-            tagsOBJ.tracking('error waitForElement');
-        }
-    },
-    init: function () {
-        tagsOBJ.waitForElement();
-    }
-
-};
-
-tagsOBJ.init();
-
-
-//--------------------------------------------
-
-
-
-const familyDropdownCONSTANTS = {
-	EXPERIMENT_ID: 'DCP18122',
-	PAGES_INCLUDE: [],
-	PAGES_EXCLUDE: [],
-	EXPERIMENT_VARIANT: 'variant',
-	TARGET_ELEMENT: 'h1',
-    
-	TEMPLATE_HTML: `
-        <div id="familyDropdownHolderSamsung">
-            <select id="device-model" name="device-model" aria-hidden="true" tabindex="-1">
-                <option value="galaxy-z-range">Samsung Galaxy Z range</option>
-                <option value="galaxy-z-fold8-ultra">Samsung Galaxy Z Fold8 Ultra</option>
-                <option value="galaxy-z-fold8">Samsung Galaxy Z Fold8</option>
-                <option value="galaxy-z-flip8">Samsung Galaxy Z Flip8</option>
-            </select>
-            <div id="custom-select-wrapper">
-                <div id="custom-select-trigger" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="custom-dropdown" aria-label="Choose Galaxy Z model">
-                    <span id="custom-select-label">Samsung Galaxy Z range</span>
-                    <span class="arrow-icon" aria-hidden="true"></span>
-                </div>
-                <div id="custom-dropdown" role="menu" aria-label="Galaxy Z model options">
-                    <a id="familyDropdown-option-galaxy-z-fold8-ultra" class="custom-dropdown-item" href="https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-z-fold8-ultra" role="menuitem" tabindex="-1">Samsung Galaxy Z Fold8 Ultra</a>
-                    <a id="familyDropdown-option-galaxy-z-fold8" class="custom-dropdown-item" href="https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-z-fold8" role="menuitem" tabindex="-1">Samsung Galaxy Z Fold8</a>
-                    <a id="familyDropdown-option-galaxy-z-flip8" class="custom-dropdown-item" href="https://www.vodafone.com.au/mobile/mobile-phones/samsung/samsung-galaxy-z-flip8" role="menuitem" tabindex="-1">Samsung Galaxy Z Flip8</a>
-                </div>
-            </div>
-        </div>
-    `,
-	TEMPLATE_INJECT_TYPE: 'after',
-	CUSTOM_CSS: `
-    @media (max-width: 767px) {
-        #wrapper-__EXPERIMENT_ID__ {
-            margin: 16px 0 -10px 0 !important;
-            width: 100% !important;
-        }
-        #familyDropdownHolderSamsung {
-            width: 100% !important;
-            margin-top: 0 !important;
-        }
-		#custom-dropdown .custom-dropdown-item {
-			font-size: 16px!important;
+		if (isExcluded) {
+			return false;
 		}
-		#custom-select-label{
-			font-size: 16px!important;
-		}
-    }
-    #wrapper-__EXPERIMENT_ID__ {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        margin-top: 32px;
-        width: max-content;
-    }
-    #familyDropdownHolderSamsung {
-        position: relative;
-        display: inline-block;
-        font-family: 'VodafoneRegular';
-        cursor: pointer;
-        margin-bottom: 16px;
-    }
-    /* hide original select */
-    #familyDropdownHolderSamsung #device-model {
-        display: none;
-    }
-    /* ===== custom dropdown styles ===== */
-    #custom-select-wrapper {
-        position: relative;
-        display: flex;
-        padding: 0 16px;
-        gap: 10px;
-        align-self: stretch;
-        border-radius: 4px;
-        border: 1px solid #7E7E7E;
-        background: #FFF;
-        box-sizing: border-box;
-    }
-    /* blue border when open */
-    #familyDropdownHolderSamsung.open #custom-select-wrapper {
-        outline: 2px solid #00B0CA;
-		border-color: transparent;
-		box-shadow: none;
-		border-radius: 4px 4px 0 0;
-    }
-    /* blue border when keyboard focus is inside */
-    #custom-select-wrapper:focus-within {
-  	box-shadow: 0 0 0 2px #fff, 0 0 0 4px #00B0CA;
-    }
-    #custom-select-trigger {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        user-select: none;
-        color: #0D0D0D;
-        width: 100%;
-        font-family: 'VodafoneRegular';
-        font-size: 18px;
-        min-height: 46px;
-        box-sizing: border-box;
-        min-width: 220px;
-    }
-    #custom-select-trigger[aria-expanded="true"] .arrow-icon {
-        transform: rotate(180deg);
-    }
-    #custom-select-trigger:focus {
-        outline: none;
-    }
-    #custom-select-trigger .arrow-icon {
-        width: 24px;
-        height: 24px;
-        flex: 0 0 24px;
-        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'><path fill-rule='evenodd' clip-rule='evenodd' d='M20.1464 7.39639C20.3415 7.2012 20.6584 7.2012 20.8534 7.39639C21.0487 7.59171 21.0487 7.90813 20.8534 8.10342L12.3534 16.6034C12.2559 16.701 12.1278 16.7499 11.9999 16.7499C11.872 16.7499 11.744 16.701 11.6464 16.6034L3.14639 8.10342C2.95117 7.90814 2.95124 7.59171 3.14639 7.39639C3.3417 7.2012 3.65811 7.2012 3.85342 7.39639L11.9999 15.5429L20.1464 7.39639Z' fill='%23E60000'/></svg>");
-        background-repeat: no-repeat;
-        background-position: center;
-        transition: transform 0.2s ease;
-    }
-    #custom-dropdown {
-        position: absolute;
-        top: calc(100% + 4px);
-        left: 0;
-        min-width: 100%;
-        width: 100%;
-        margin: 0;
-        padding: 16px 0;
-        background: #fff;
-        border-radius: 0 0 4px 4px;
-        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.08);
-        z-index: 9999;
-        display: none;
-        font-size: 18px;
-        line-height: 22px;
-        box-sizing: border-box;
-    }
-    #custom-select-label {
-        padding: 12px 0;
-        font-size: 18px;
-        line-height: 22px;
-    }
-    #custom-dropdown.open {
-        display: block;
-        animation: dropdownFadeIn 0.15s ease;
-        max-height: 208px;
-        overflow: auto;
-    }
-	#custom-dropdown.open .arrow-icon{
-        transform: rotate(180deg);
-    }
-    @keyframes dropdownFadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(-6px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
 
-    #custom-dropdown .custom-dropdown-item {
-        display: block;
-        text-decoration: none;
-        padding: 12px 16px;
-        cursor: pointer;
-        color: #0D0D0D;
-        transition: background 0.1s ease;
-        white-space: nowrap;
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 22px;
-        outline: none;
-  		margin: 0 8px;
-        box-sizing: border-box;
-    }
-    #custom-dropdown .custom-dropdown-item:hover{
-        background: rgba(13, 13, 13, 0.15);
-     	border-radius: var(--form-radius-default, 8px);
-        color: #0D0D0D;
-    }
-	#custom-dropdown .custom-dropdown-item:focus {
-	border-radius: var(--form-radius-default, 4px);
-background: var(--color-states-mono-hovered, rgba(13, 13, 13, 0.15));
-		outline: var(--border-width-focused, 2px) solid var(--color-border-focused, #0096AD);
-	}
-    #custom-dropdown .custom-dropdown-item.selected {
-        background: #EBEBEB;
-    }
-    /* optional custom scrollbar */
-    #custom-dropdown.open::-webkit-scrollbar {
-        width: 16px;
-		height: 57px;
-    }
-    #custom-dropdown.open::-webkit-scrollbar-thumb {
-        background: #C7C7C7;
-        border-radius: 8px;
-		border: 6px solid transparent;
-		background-clip: padding-box;
-		min-height: 57px;
-    }
-    #custom-dropdown.open::-webkit-scrollbar-track {
-        background: transparent;
-    }
-    `,
-	INIT_RETRY_INTERVAL: 500,
-	INIT_MAX_RETRIES: 20
-};
-
-let familyDropdownOBJ = {
-	_outsideClickHandler: null,
-	_focusInHandler: null,
-
-	applyChanges() {
-		try {
-			this.buildCSS();
-			this.buildTemplate();
-			this.triggerCustomDropdown();
-		} catch (error) {
-			console.error('[familyDropdown] Error in applyChanges():', error);
-			this.tracking('error applyChanges');
-		}
+		return alertModalCONSTANTS.PAGES_INCLUDE.some(function (page) {
+			return url.includes(page.toLowerCase());
+		});
 	},
-
-	triggerCustomDropdown() {
+	applyChanges: function (el) {
 		try {
-            const select = document.querySelector('#device-model');
-			const holder = document.querySelector('#familyDropdownHolderSamsung');
-			const trigger = document.querySelector('#custom-select-trigger');
-			const dropdown = document.querySelector('#custom-dropdown');
-			const options = dropdown ? Array.from(dropdown.querySelectorAll('.custom-dropdown-item')) : [];
-
-			if (!select || !holder || !trigger || !dropdown || options.length === 0) {
-				console.warn('[familyDropdown] Required elements not found');
+			// Add your logic here
+			if (!alertModalOBJ.isValidPage()) {
+				document.getElementById('wrapper-alert-modal').remove();
 				return;
 			}
-			if (holder.dataset.familyDropdownBound === 'true') return;
-			holder.dataset.familyDropdownBound = 'true';
-
-			let focusedIndex = -1;
-
-			const isOpen = () => dropdown.classList.contains('open');
-			const openDropdown = () => {
-				dropdown.classList.add('open');
-				holder.classList.add('open');
-				trigger.setAttribute('aria-expanded', 'true');
-			};
-			const closeDropdown = () => {
-				dropdown.classList.remove('open');
-				holder.classList.remove('open');
-				trigger.setAttribute('aria-expanded', 'false');
-				focusedIndex = -1;
-				options.forEach(opt => opt.setAttribute('tabindex', '-1'));
-			};
-
-			const setSelectedUI = (value) => {
-				const matched = options.find(opt => opt.dataset.value === value);
-				if (matched) {
-					select.value = value;
-					options.forEach(opt => opt.classList.remove('selected'));
-					matched.classList.add('selected');
-				}
-			};
-
-			const focusOption = (index) => {
-				if (!options.length) return;
-				if (index < 0) index = options.length - 1;
-				if (index >= options.length) index = 0;
-				focusedIndex = index;
-				options.forEach(opt => opt.setAttribute('tabindex', '-1'));
-				options[focusedIndex].setAttribute('tabindex', '0');
-				options[focusedIndex].focus();
-			};
-
-			const selectAndNavigate = (optionEl) => {
-				const value = optionEl.dataset.value;
-				setSelectedUI(value);
-				//closeDropdown();
-				this.tracking('familyDropdown drop down selected device ' + value);
-				window.location.href = optionEl.href;
-			};
-
-			holder.addEventListener('click', (e) => {
-				const item = e.target.closest('.custom-dropdown-item');
-				if (item) {
-					e.preventDefault();
-					selectAndNavigate(item);
-					return;
-				}
-				if (e.target.closest('#custom-select-wrapper')) {
-					isOpen() ? closeDropdown() : openDropdown();
-				}
-			});
-
-			trigger.addEventListener('keydown', (e) => {
-				const key = e.key;
-				if (key === 'Enter' || key === ' ') {
-					e.preventDefault();
-					isOpen() ? closeDropdown() : openDropdown();
-					return;
-				}
-				if (key === 'ArrowDown' || key === 'ArrowUp') {
-					e.preventDefault();
-					if (!isOpen()) openDropdown();
-					const currentIdx = options.findIndex(opt => opt.classList.contains('selected'));
-					const delta = key === 'ArrowDown' ? 1 : -1;
-					focusOption(currentIdx !== -1 ? currentIdx + delta : (delta === 1 ? 0 : options.length - 1));
-					return;
-				}
-				if (key === 'Home') {
-					e.preventDefault();
-					if (!isOpen()) openDropdown();
-					focusOption(0);
-				} else if (key === 'End') {
-					e.preventDefault();
-					if (!isOpen()) openDropdown();
-					focusOption(options.length - 1);
-				} else if (key === 'Escape') {
-					e.preventDefault();
-					closeDropdown();
-				} else if (key === 'Tab') {
-					closeDropdown();
-				}
-			});
-
-			dropdown.addEventListener('keydown', (e) => {
-				const item = e.target.closest('.custom-dropdown-item');
-				if (!item) return;
-				const key = e.key;
-				const idx = options.indexOf(item);
-				if (key === 'Enter' || key === ' ') {
-					e.preventDefault();
-					selectAndNavigate(item);
-				} else if (key === 'ArrowDown') {
-					e.preventDefault();
-					focusOption(idx + 1);
-				} else if (key === 'ArrowUp') {
-					e.preventDefault();
-					focusOption(idx - 1);
-				} else if (key === 'Home') {
-					e.preventDefault();
-					focusOption(0);
-				} else if (key === 'End') {
-					e.preventDefault();
-					focusOption(options.length - 1);
-				} else if (key === 'Escape') {
-					e.preventDefault();
-					closeDropdown();
-					trigger.focus();
-				} else if (key === 'Tab') {
-					closeDropdown();
-				}
-			});
-
-			if (this._outsideClickHandler) document.removeEventListener('click', this._outsideClickHandler, true);
-			if (this._focusInHandler) document.removeEventListener('focusin', this._focusInHandler, true);
-
-			this._outsideClickHandler = (e) => {
-				const currentHolder = document.querySelector('#familyDropdownHolderSamsung');
-				if (currentHolder && !currentHolder.contains(e.target)) closeDropdown();
-			};
-			this._focusInHandler = (e) => {
-				const currentHolder = document.querySelector('#familyDropdownHolderSamsung');
-				if (currentHolder && !currentHolder.contains(e.target)) closeDropdown();
-			};
-			document.addEventListener('click', this._outsideClickHandler, true);
-			document.addEventListener('focusin', this._focusInHandler, true);
+			alertModalOBJ.buildCSS();
+			alertModalOBJ.buildTemplate(el);
+			alertModalOBJ.bindModalControls();
+			// alertModalOBJ.addEventListeners();
 		} catch (error) {
-			console.error('[familyDropdown] Error in triggerCustomDropdown():', error);
-			this.tracking('error triggerCustomDropdown');
+			console.error('Error in applyChanges:', error);
+			alertModalOBJ.tracking('error applyChanges');
 		}
 	},
-
-	tracking(value) {
+	tracking: function (value) {
 		try {
-			if (typeof dataLayer !== 'undefined' && croWD.utils.launchTracking) {
-				croWD.utils.launchTracking(
-					familyDropdownCONSTANTS.EXPERIMENT_ID,
+			if (typeof window.croWD !== 'undefined' && typeof dataLayer !== 'undefined') {
+				window.croWD.utils.launchTracking(
+					alertModalCONSTANTS.EXPERIMENT_ID,
 					value,
-					familyDropdownCONSTANTS.EXPERIMENT_VARIANT,
+					alertModalCONSTANTS.EXPERIMENT_VARIANT,
 					''
 				);
 			} else {
-				console.warn('[familyDropdown] Tracking not available:', value);
+				console.warn(alertModalCONSTANTS.EXPERIMENT_ID + ' tracking skipped — dependencies not available:', value);
 			}
 		} catch (error) {
-			console.error('[familyDropdown] Error in tracking():', error);
+			console.error('Error in tracking:', error);
 		}
 	},
+	getOfferData: function () {
+	const titleElement = document.querySelector('h1[data-testid="mobile-phone-title"], h1');
+	const titleText = (titleElement && titleElement.textContent ? titleElement.textContent : '').toLowerCase();
 
-	buildCSS() {
+	const matchedOffer = alertModalCONSTANTS.PRODUCT_OFFERS
+		.slice()
+		.sort(function (a, b) {
+			return b.match.length - a.match.length;
+		})
+		.find(function (offer) {
+			croWD.debug(
+				`[DCP-18154-alert] Checking: "${offer.match}" against "${titleText}"`
+			);
+
+			return titleText.includes(offer.match);
+		});
+
+	croWD.debug(
+		`[DCP-18154-alert] Matched Offer: ${matchedOffer ? matchedOffer.match : 'none'}`
+	);
+
+	return matchedOffer || null;
+},
+	formatMoney: function (value) {
+		return Number(value || 0).toLocaleString('en-AU', {
+			minimumFractionDigits: 2,
+			maximumFractionDigits: 2
+		});
+	},
+	buildTemplateHtml: function (offerData) {
+		const discountValue = Number(offerData.discountValue || 0);
+		const modalHtml = offerData.modalHtml || `
+			<div class="watch-modal__content">
+				<p class="content-title">$__DEVICE_DISCOUNT__ savings is based on:</p>
+				<p class="text-wrapper"><span class="dot">∙</span> $__BASE_DEVICE_DISCOUNT__ device discount</p>
+				<p class="text-wrapper"><span class="dot">∙</span> Extra $100 device discount on selected Android devices</p>
+				<p class="watch-modal__footnote">Online only. New connections only. Savings forfeited if cancelled and undiscounted device due in full. Ends 07/09 (unless extended). Extra $100 off selected Android devices ends 07/09. Min cost and T&C apply.</p>
+			</div>
+		`;
+		const totalSaving = discountValue;
+		const totalSavingNoDecimals = Number(totalSaving || 0).toLocaleString('en-AU', {
+			minimumFractionDigits: 0,
+			maximumFractionDigits: 0
+		});
+		const formattedDeviceDiscount = alertModalOBJ.formatMoney(discountValue).replace(/\.00$/, '');
+		const formattedTotalSaving = alertModalOBJ.formatMoney(totalSaving);
+		const formattedBaseDeviceDiscount = alertModalOBJ.formatMoney(discountValue - 100).replace(/\.00$/, '');
+		const resolvedModalHtml = modalHtml
+			.replaceAll('__DEVICE_DISCOUNT__', formattedDeviceDiscount)
+			.replaceAll('__BASE_DEVICE_DISCOUNT__', formattedBaseDeviceDiscount)
+			.replaceAll('__TOTAL_SAVING__', formattedTotalSaving)
+			.replaceAll('__TOTAL_SAVING_NO_DECIMALS__', totalSavingNoDecimals);
+
+		return alertModalCONSTANTS.TEMPLATE_HTML
+			.replaceAll('__PRODUCT_IMAGE_SRC__', offerData.imageSrc)
+			.replaceAll('__DEVICE_DISCOUNT__', formattedDeviceDiscount)
+			.replaceAll('__TOTAL_SAVING_NO_DECIMALS__', totalSavingNoDecimals)
+			.replaceAll('__TOTAL_SAVING__', formattedTotalSaving)
+			.replaceAll('__BASE_DEVICE_DISCOUNT__', formattedBaseDeviceDiscount)
+			.replaceAll('__MODAL_HTML__', resolvedModalHtml);
+	},
+	buildCSS: function () {
+		if (!alertModalCONSTANTS.CUSTOM_CSS) return; // Nothing to inject
+
 		try {
-			const styleId = familyDropdownCONSTANTS.EXPERIMENT_ID + '-styles';
-			const existingStyle = document.getElementById(styleId);
-            if (existingStyle) {
-                existingStyle.remove();
-            }
-            const cssWithExperimentId = familyDropdownCONSTANTS.CUSTOM_CSS.replaceAll(
-                '__EXPERIMENT_ID__',
-                familyDropdownCONSTANTS.EXPERIMENT_ID
-            );
+			const id = 'alertModal-styles';
+
+			// Remove any existing stylesheet with the same ID
+			const existingStyle = document.getElementById(id);
+			if (existingStyle) existingStyle.remove();
+
+			const resolvedCss = alertModalCONSTANTS.CUSTOM_CSS.replaceAll(
+				'#wrapper-alert-modal',
+				'#wrapper-alert-modal'
+			);
+
 			const styleSheet = document.createElement('style');
-            styleSheet.setAttribute('type', 'text/css');
-            styleSheet.setAttribute('id', styleId);
-            styleSheet.appendChild(document.createTextNode(cssWithExperimentId));
-            document.head.appendChild(styleSheet);
+			styleSheet.id = id;
+			styleSheet.textContent = resolvedCss;
+			document.body.appendChild(styleSheet);
 		} catch (error) {
-			console.error('[familyDropdown] Error in buildCSS():', error);
-			this.tracking('error buildCSS');
+			console.error('Error in buildCSS:', error);
+			alertModalOBJ.tracking('error buildCSS');
 		}
 	},
+	buildTemplate: function (targetEl) {
+		if (!alertModalCONSTANTS.TEMPLATE_HTML) return; // Nothing to inject
 
-	buildTemplate() {
 		try {
-			const target = document.querySelector(familyDropdownCONSTANTS.TARGET_ELEMENT);
-			if (!target) throw new Error('[familyDropdown] Target element not found');
-			const wrapperId = 'wrapper-' + familyDropdownCONSTANTS.EXPERIMENT_ID;
-			const existingWrapper = document.getElementById(wrapperId);
-			if (existingWrapper) {
-				existingWrapper.remove();
+			const wrapperId = 'wrapper-alert-modal';
+			const offerData = alertModalOBJ.getOfferData();
+
+			// Remove any existing template with the same ID
+			const existingTemplate = document.getElementById(wrapperId);
+			if (existingTemplate) existingTemplate.remove();
+
+			const template = document.createElement('div');
+			template.innerHTML = alertModalOBJ.buildTemplateHtml(offerData);
+			template.id = wrapperId;
+
+			switch (alertModalCONSTANTS.TEMPLATE_INJECT_TYPE) {
+				case 'replace':
+					targetEl.insertAdjacentElement('afterend', template);
+					targetEl.remove();
+					break;
+				case 'before':
+					targetEl.insertAdjacentElement('beforebegin', template);
+					break;
+				case 'prepend':
+					targetEl.prepend(template);
+					break;
+				case 'after':
+					targetEl.insertAdjacentElement('afterend', template);
+					break;
+				default: // append
+					targetEl.appendChild(template);
+					break;
 			}
-			const wrapper = Object.assign(document.createElement('div'), { id: wrapperId });
-			wrapper.innerHTML = familyDropdownCONSTANTS.TEMPLATE_HTML;
-			const injectType = familyDropdownCONSTANTS.TEMPLATE_INJECT_TYPE;
-			if (injectType === 'replace') {
-				target.insertAdjacentElement('afterend', wrapper);
-				target.remove();
-			} else if (injectType === 'before') {
-				target.insertAdjacentElement('beforebegin', wrapper);
-			} else if (injectType === 'prepend') {
-				target.insertBefore(wrapper, target.firstChild);
-			} else {
-				target.insertAdjacentElement('afterend', wrapper);
-			}
 		} catch (error) {
-			console.error('[familyDropdown] Error in buildTemplate():', error);
-			this.tracking('error buildTemplate');
+			console.error('Error in buildTemplate:', error);
+			alertModalOBJ.tracking('error buildTemplate');
 		}
 	},
-
-	observe() {
+	bindModalControls: function () {
 		try {
-			const { PAGES_INCLUDE: include, PAGES_EXCLUDE: exclude } = familyDropdownCONSTANTS;
-			croWD.hotbed.listen('croPageTrack', () => {
-				const url = location.href.toLowerCase();
-				const isExcluded = exclude.some(e => url.includes(e.toLowerCase()));
-				const isIncluded = include.length === 0 || include.some(i => url.includes(i.toLowerCase()));
-				if (isIncluded && !isExcluded) this.waitForElement();
-			});
-		} catch (error) {
-			console.error('[familyDropdown] Error in observe():', error);
-			this.tracking('error observe');
-		}
-	},
+			const wrapper = document.getElementById('wrapper-alert-modal');
 
-	waitForElement() {
-		try {
-			const check = () => {
-				if (document.querySelector(familyDropdownCONSTANTS.TARGET_ELEMENT) && typeof croWD !== 'undefined') {
-					this.applyChanges();
-					return true;
-				}
-				return false;
-			};
-			if (check()) return;
-			let retries = 0;
-			const max = familyDropdownCONSTANTS.INIT_MAX_RETRIES;
-			const interval = familyDropdownCONSTANTS.INIT_RETRY_INTERVAL;
-			const observer = new MutationObserver(() => check() && observer.disconnect());
-			observer.observe(document.body, { childList: true, subtree: true });
-			const timer = setInterval(() => {
-				if (check() || ++retries >= max) {
-					clearInterval(timer);
-					observer.disconnect();
-					if (retries >= max) console.error('[familyDropdown] Element not found after timeout');
-				}
-			}, interval);
-		} catch (error) {
-			console.error('[familyDropdown] Error in waitForElement():', error);
-			this.tracking('error waitForElement');
-		}
-	},
-
-	init() {
-		try {
-			const url = location.href.toLowerCase();
-			const { PAGES_INCLUDE: include, PAGES_EXCLUDE: exclude } = familyDropdownCONSTANTS;
-			if (exclude.some(e => url.includes(e.toLowerCase()))) {
-				console.warn('[familyDropdown] URL excluded');
+			if (!wrapper) {
+				console.warn(alertModalCONSTANTS.EXPERIMENT_ID + ' — wrapper not found');
 				return;
 			}
-			if (include.length === 0 || include.some(i => url.includes(i.toLowerCase()))) {
-				this.waitForElement();
-			} else {
-				this.observe();
+
+			const trigger = wrapper.querySelector('.bundle-offer-trigger');
+			const wrapperComponent = wrapper.querySelector('.wrapper-component');
+			const modalWrapper = wrapper.querySelector('.wrapper-modal');
+			const modal = wrapper.querySelector('.watch-modal');
+			const closeButton = wrapper.querySelector('.watch-modal-close');
+			const dismissButton = wrapper.querySelector('.offer-notification__dismiss');
+
+			if (!trigger || !wrapperComponent || !modalWrapper || !modal || !closeButton || !dismissButton) {
+				console.warn(alertModalCONSTANTS.EXPERIMENT_ID + ' — modal controls not found');
+				return;
+			}
+
+			if (!trigger.hasAttribute('data-' + alertModalCONSTANTS.EXPERIMENT_ID + '-modal-open')) {
+				trigger.setAttribute('data-' + alertModalCONSTANTS.EXPERIMENT_ID + '-modal-open', 'true');
+				trigger.addEventListener('click', function () {
+					alertModalOBJ.openModal(trigger, modalWrapper, modal);
+				});
+				trigger.addEventListener('keydown', function (event) {
+					if (event.key === 'Enter' || event.key === ' ') {
+						event.preventDefault();
+						alertModalOBJ.openModal(trigger, modalWrapper, modal);
+					}
+				});
+			}
+
+			if (!closeButton.hasAttribute('data-' + alertModalCONSTANTS.EXPERIMENT_ID + '-modal-close')) {
+				closeButton.setAttribute('data-' + alertModalCONSTANTS.EXPERIMENT_ID + '-modal-close', 'true');
+				closeButton.addEventListener('click', function () {
+					alertModalOBJ.closeModal(trigger, modalWrapper);
+				});
+			}
+
+			if (!dismissButton.hasAttribute('data-' + alertModalCONSTANTS.EXPERIMENT_ID + '-notification-close')) {
+				dismissButton.setAttribute('data-' + alertModalCONSTANTS.EXPERIMENT_ID + '-notification-close', 'true');
+				dismissButton.addEventListener('click', function () {
+					alertModalOBJ.tracking('click dismiss alert');
+					alertModalOBJ.hideNotification(wrapperComponent, modalWrapper, trigger);
+				});
+			}
+
+			if (!modalWrapper.hasAttribute('data-' + alertModalCONSTANTS.EXPERIMENT_ID + '-modal-backdrop-close')) {
+				modalWrapper.setAttribute('data-' + alertModalCONSTANTS.EXPERIMENT_ID + '-modal-backdrop-close', 'true');
+				modalWrapper.addEventListener('click', function (event) {
+					if (event.target === modalWrapper) {
+						alertModalOBJ.closeModal(trigger, modalWrapper);
+					}
+				});
+			}
+
+			if (!modal.hasAttribute('data-' + alertModalCONSTANTS.EXPERIMENT_ID + '-modal-trap')) {
+				modal.setAttribute('data-' + alertModalCONSTANTS.EXPERIMENT_ID + '-modal-trap', 'true');
+				modal.addEventListener('keydown', function (event) {
+					alertModalOBJ.handleModalKeydown(event, trigger, modalWrapper, modal);
+				});
 			}
 		} catch (error) {
-			console.error('[familyDropdown] Error in init():', error);
-			this.tracking('error init');
+			console.error('Error in bindModalControls:', error);
+			alertModalOBJ.tracking('error bindModalControls');
 		}
+	},
+	openModal: function (trigger, modalWrapper, modal) {
+		alertModalOBJ.lastFocusedElement = document.activeElement || trigger;
+		alertModalOBJ.previousBodyOverflow = document.body.style.overflow;
+		modalWrapper.hidden = false;
+		modalWrapper.setAttribute('aria-hidden', 'false');
+		trigger.setAttribute('aria-expanded', 'true');
+		document.body.style.overflow = 'hidden';
+
+		const focusableElements = alertModalOBJ.getFocusableElements(modal);
+		const firstFocusable = focusableElements[0] || modal;
+		firstFocusable.focus();
+
+		alertModalOBJ.tracking('click open alert modal');
+	},
+	closeModal: function (trigger, modalWrapper) {
+		modalWrapper.hidden = true;
+		modalWrapper.setAttribute('aria-hidden', 'true');
+		trigger.setAttribute('aria-expanded', 'false');
+		document.body.style.overflow = alertModalOBJ.previousBodyOverflow;
+
+		if (alertModalOBJ.lastFocusedElement && typeof alertModalOBJ.lastFocusedElement.focus === 'function') {
+			alertModalOBJ.lastFocusedElement.focus();
+		}
+	},
+	hideNotification: function (wrapperComponent, modalWrapper, trigger) {
+		if (modalWrapper && !modalWrapper.hidden) {
+			alertModalOBJ.closeModal(trigger, modalWrapper);
+		}
+
+		wrapperComponent.hidden = true;
+		wrapperComponent.setAttribute('aria-hidden', 'true');
+	},
+	getFocusableElements: function (container) {
+		return Array.prototype.slice.call(
+			container.querySelectorAll('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex]:not([tabindex="-1"]), [contenteditable="true"]')
+		).filter(function (element) {
+			return !element.hasAttribute('hidden') && element.getAttribute('aria-hidden') !== 'true';
+		});
+	},
+	handleModalKeydown: function (event, trigger, modalWrapper, modal) {
+		if (event.key === 'Escape') {
+			event.preventDefault();
+			alertModalOBJ.closeModal(trigger, modalWrapper);
+			return;
+		}
+
+		if (event.key !== 'Tab') return;
+
+		const focusableElements = alertModalOBJ.getFocusableElements(modal);
+		if (focusableElements.length === 0) {
+			event.preventDefault();
+			modal.focus();
+			return;
+		}
+
+		const firstFocusable = focusableElements[0];
+		const lastFocusable = focusableElements[focusableElements.length - 1];
+
+		if (focusableElements.length === 1) {
+			event.preventDefault();
+			firstFocusable.focus();
+			return;
+		}
+
+		if (event.shiftKey && document.activeElement === firstFocusable) {
+			event.preventDefault();
+			lastFocusable.focus();
+		} else if (!event.shiftKey && document.activeElement === lastFocusable) {
+			event.preventDefault();
+			firstFocusable.focus();
+		}
+	},
+	addEventListeners: function () {
+		try {
+			const wrapper = document.getElementById('wrapper-' + alertModalCONSTANTS.EXPERIMENT_ID);
+			if (!wrapper) {
+				console.warn(alertModalCONSTANTS.EXPERIMENT_ID + ' — wrapper not found for event bindings');
+				return;
+			}
+
+			const pairs = alertModalCONSTANTS.ELEMENT_EVENT_PAIRS || [];
+			pairs.forEach(function (pair) {
+				const parts = pair.split(':');
+				const selector = parts[0];
+				const eventType = parts[1];
+				const elements = wrapper.querySelectorAll(selector);
+
+				if (elements.length === 0) {
+					console.warn(alertModalCONSTANTS.EXPERIMENT_ID + ' — element not found for: ' + selector);
+					return;
+				}
+
+				elements.forEach(function (el) {
+					// Prevent duplicate listeners by marking the element
+					const flag = 'data-' + alertModalCONSTANTS.EXPERIMENT_ID + '-' + eventType;
+					if (el.hasAttribute(flag)) return;
+					el.setAttribute(flag, 'true');
+
+					el.addEventListener(eventType, function () {
+						alertModalOBJ.tracking(eventType + ' ' + el.innerText);
+					});
+				});
+			});
+		} catch (error) {
+			console.error('Error in addEventListeners:', error);
+			alertModalOBJ.tracking('error addEventListeners');
+		}
+	},
+	waitForElement: function () {
+		try {
+			let retryCount = 0;
+			const interval = setInterval(function () {
+				const el = document.querySelector(alertModalCONSTANTS.TARGET_ELEMENT);
+				const hasCroWD = typeof window.croWD !== 'undefined';
+
+				if (el && hasCroWD) {
+					clearInterval(interval);
+					alertModalOBJ.applyChanges(el);
+				} else if (++retryCount >= alertModalCONSTANTS.INIT_MAX_RETRIES) {
+					clearInterval(interval);
+					console.error(alertModalCONSTANTS.EXPERIMENT_ID + ' — target element not found after max retries');
+					alertModalOBJ.tracking('error elementsNotFound');
+				}
+			}, alertModalCONSTANTS.INIT_RETRY_INTERVAL);
+		} catch (error) {
+			console.error('Error in waitForElement:', error);
+			alertModalOBJ.tracking('error waitForElement');
+		}
+	},
+
+	observePageChanges: function () {
+		let currentUrl = location.href;
+		const observer = new MutationObserver(function () {
+			if (currentUrl === location.href) {
+				return;
+			}
+			currentUrl = location.href;
+			croWD.debug('[DCP-18154-alert] URL changed', currentUrl);
+
+			alertModalOBJ.applyChanges(document.body);
+		});
+
+		observer.observe(document.body, {
+			childList: true,
+			subtree: true
+		});
+	},
+	init: function () {
+		alertModalOBJ.waitForElement();
+		alertModalOBJ.observePageChanges();
 	}
-}
-
-
-
-
-//--------------------------------------------
-
-
-
-const pillCONSTANTS = {
-    
-    // EXPERIMENT_ID: extension.code, // Experiment ID
-    
-    EXPERIMENT_ID: 'DCP17963', // Experiment ID
-    EXPERIMENT_VARIANT: 'personalisation', // possible values: variant|control|personalisation
-    TARGET_ELEMENT: 'h1[data-testid="mobile-phone-title"]', // Target element to be modified
-    PILL_BORDER_COLOR: '#e60000',
-    PILL_FONT_COLOR: '#ffffff',
-    PILL_BG_COLOR: '#e60000',
-    PILL_BG_COLOR_HOVER: '#900',
-    PILL_ICON: 'https://www.vodafone.com.au/images/icon/system/white/price-tag.svg',
-    PILL_LABEL_COPY: 'Introductory offer',
-    TEMPLATE_COPY: `<div class="wrapper-component" aria-label="Promotional offer">
-        <div
-            class="price-tag-pill track-price-tag-pill" aria-label="View EOFY Sale offers">
-            <span class="price-tag-pill__icon-wrap" aria-hidden="true">
-                <span class="price-tag-pill__icon"></span>
-            </span>
-            <span class="price-tag-pill__label-wrap">
-                <span class="price-tag-pill__label"></span>
-            </span>
-        </div>
-    </div>`, // HTML template to be injected
-    TEMPLATE_INJECT_TYPE: 'before', // possible values: replace|before|prepend|after|append
-    CUSTOM_CSS: `.bXgROp{position: relative;}.wrapper-component{display:inline-flex;align-items:center;padding-bottom: 16px;}.wrapper-component .price-tag-pill{font-family:VodafoneRegularBold,Arial,sans-serif;font-weight:700;display:inline-flex;align-items:center;gap:7px;width:-moz-fit-content;width:fit-content;padding:6px 16px;border-radius:999px;border:1px solid var(--pill-border-color,#e60000);background:var(--pill-bg-color,#e60000);color:var(--pill-font-color,#ffffff);cursor:default;transition:background-color .2s ease,border-color .2s ease}.wrapper-component .price-tag-pill.is-interactive{cursor:pointer}.wrapper-component .price-tag-pill.is-interactive:hover{background:var(--pill-bg-hover-color,#900);border-color:var(--pill-bg-hover-color,#900)}.wrapper-component .price-tag-pill.is-interactive:focus-visible{outline:2px solid #111;outline-offset:2px}.wrapper-component .price-tag-pill__icon-wrap{display:flex;align-items:center;justify-content:center;width:20px;height:20px;flex:0 0 20px}.wrapper-component .price-tag-pill__icon{width:20px;height:20px;background-color:var(--pill-font-color,#ffffff);-webkit-mask-image:var(--pill-icon);-webkit-mask-repeat:no-repeat;-webkit-mask-position:center;-webkit-mask-size:contain;mask-image:var(--pill-icon);mask-repeat:no-repeat;mask-position:center;mask-size:contain}.wrapper-component .price-tag-pill__label-wrap{display:flex;align-items:center}.wrapper-component .price-tag-pill__label{display:inline-block;white-space:nowrap;font-size:16px;line-height:22px}@media (max-width:768px){.wrapper-component .price-tag-pill__label{font-size:14px;line-height:20px}}`, // CSS to be injected
-    ELEMENT_EVENT_PAIRS: ['.track-price-tag-pill:click'],
-    // SCROLL_TO_ELEMENT: '*[data-testid="tradeIn-card"]',
-    SCROLL_TO_ELEMENT: '',
-    
-    INIT_RETRY_INTERVAL: 500, // milliseconds for init retr
-    INIT_MAX_RETRIES: 20, // max retries for init
 };
 
-let pillOBJ = {
-    applyChanges: function (el) {
-        try {
-            //Add your logic here
-            familyDropdownOBJ.init();
-            pillOBJ.buildTemplate();
-        } catch (error) {
-            console.error('Error in applyChanges function:', error);
-        }
-    },
-    tracking: function (value) {
-        try {
-            if (typeof dataLayer !== 'undefined' && dataLayer) { // Check if dataLayer exists
-                croWD.utils.launchTracking(
-                    pillCONSTANTS.EXPERIMENT_ID,
-                    value,
-                    pillCONSTANTS.EXPERIMENT_VARIANT,
-                    ''
-                );
-            } else {
-                console.warn('dataLayer is not defined. Tracking event:', value, 'was not sent.');
-            }
-        } catch (error) {
-            console.error('Error in tracking function:', error);
-        }
-    },
-    buildCSS: function () {
-        try {
-            const styleSheet = document.createElement('style');
-            styleSheet.setAttribute('type', 'text/css');
-            styleSheet.setAttribute('id', `${pillCONSTANTS.EXPERIMENT_ID}-styles`);
-
-            // Remove any existing stylesheet with the same ID
-            const existingStyle = document.getElementById(`${pillCONSTANTS.EXPERIMENT_ID}-styles`);
-            if (existingStyle) {
-                existingStyle.remove();
-            }
-
-            // Scope all selectors to this experiment so multiple pills can coexist on one page
-            const css = pillCONSTANTS.CUSTOM_CSS.replaceAll(
-                '.wrapper-component',
-                `#${pillCONSTANTS.EXPERIMENT_ID} .wrapper-component`
-            );
-            styleSheet.appendChild(document.createTextNode(css));
-            return styleSheet;
-        } catch (error) {
-            console.error('Error in buildCSS function:', error);
-            pillOBJ.tracking('error buildCSS');
-            return null;
-        }
-    },
-    buildTemplate: function () {
-        try {
-            let eTarget = document.querySelector(pillCONSTANTS.TARGET_ELEMENT);
-
-            // Check if target element exists
-            if (!eTarget) {
-                console.error('Target element mobile title is not found');
-                return;
-            }
-
-            // Check if pill already exists
-            if (document.querySelector(`#${pillCONSTANTS.EXPERIMENT_ID}`)) {
-                return;
-            }
-
-            // Create pill element from HTML string
-            let pill = document.createElement('div');
-            pill.id = pillCONSTANTS.EXPERIMENT_ID;
-            pill.innerHTML = pillCONSTANTS.TEMPLATE_COPY;
-
-            const styleSheet = pillOBJ.buildCSS();
-
-            const pillButton = pill.querySelector('.price-tag-pill');
-            if (pillButton) {
-                pillButton.style.setProperty('--pill-border-color', pillCONSTANTS.PILL_BORDER_COLOR);
-                pillButton.style.setProperty('--pill-font-color', pillCONSTANTS.PILL_FONT_COLOR);
-                pillButton.style.setProperty('--pill-bg-color', pillCONSTANTS.PILL_BG_COLOR);
-                pillButton.style.setProperty('--pill-bg-hover-color', pillCONSTANTS.PILL_BG_COLOR_HOVER);
-            }
-
-            const pillIcon = pill.querySelector('.price-tag-pill__icon');
-            if (pillIcon) {
-                pillIcon.style.setProperty('--pill-icon', `url('${pillCONSTANTS.PILL_ICON}')`);
-            }
-
-            const pillLabel = pill.querySelector('.price-tag-pill__label');
-            if (pillLabel) {
-                pillLabel.textContent = pillCONSTANTS.PILL_LABEL_COPY;
-            }
-
-            // Insert based on specified type
-            switch (pillCONSTANTS.TEMPLATE_INJECT_TYPE) {
-                case 'before':
-                    if (styleSheet) {
-                        eTarget.parentNode.insertBefore(styleSheet, eTarget);
-                    }
-                    eTarget.parentNode.insertBefore(pill, eTarget);
-                    break;
-                case 'after':
-                    eTarget.parentNode.insertBefore(pill, eTarget.nextSibling);
-                    if (styleSheet) {
-                        eTarget.parentNode.insertBefore(styleSheet, pill);
-                    }
-                    break;
-                case 'prepend':
-                    eTarget.prepend(pill);
-                    if (styleSheet) {
-                        eTarget.insertBefore(styleSheet, pill);
-                    }
-                    break;
-                case 'append':
-                    if (styleSheet) {
-                        eTarget.append(styleSheet);
-                    }
-                    eTarget.append(pill);
-                    break;
-                case 'replace':
-                    if (styleSheet) {
-                        eTarget.parentNode.insertBefore(styleSheet, eTarget);
-                    }
-                    eTarget.parentNode.replaceChild(pill, eTarget);
-                    break;
-                default:
-                    if (styleSheet) {
-                        eTarget.parentNode.insertBefore(styleSheet, eTarget);
-                    }
-                    eTarget.parentNode.insertBefore(pill, eTarget);
-            }
-
-            // Add click event if needed
-            if (pillCONSTANTS.SCROLL_TO_ELEMENT) {
-                if (pillButton) {
-                    pillButton.classList.add('is-interactive');
-                }
-
-                pill.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetElement = document.querySelector(pillCONSTANTS.SCROLL_TO_ELEMENT);
-                    if (!targetElement) { return }
-
-                    const targetPosition = targetElement.getBoundingClientRect().top;
-                    const startPosition = window.pageYOffset;
-                    const duration = 2000;
-                    let startTime = null;
-
-                    const ease = (t, b, c, d) => {
-                        t /= d / 2;
-                        if (t < 1) return (c / 2) * t * t + b;
-                        t--;
-                        return (-c / 2) * (t * (t - 2) - 1) + b;
-                    };
-
-                    const animation = (currentTime) => {
-                        if (startTime === null) startTime = currentTime;
-                        const timeElapsed = currentTime - startTime;
-                        const run = ease(timeElapsed, startPosition, targetPosition, duration);
-                        window.scrollTo(0, run);
-                        if (timeElapsed < duration) requestAnimationFrame(animation);
-                    };
-
-                    requestAnimationFrame(animation);
-
-                    pillOBJ.tracking('pill ' + pillCONSTANTS.TEMPLATE_COPY);
-                });
-            }
-
-        } catch (error) {
-            console.error('Error in buildTemplate function:', error);
-            pillOBJ.tracking('error buildTemplate');
-        }
-    },
-    waitForElement: function () {
-        try {
-            let rC = 0;
-            let int = setInterval(() => {
-                const el = document.querySelector(pillCONSTANTS.TARGET_ELEMENT);
-                if (el && croWD) {
-                    clearInterval(int);
-                    int = null;
-                    pillOBJ.applyChanges(el);
-                } else {
-                    rC++;
-                    if (rC >= pillCONSTANTS.INIT_MAX_RETRIES) {
-                        clearInterval(int);
-                        int = null;
-                        console.error('Element not found after max retries. pillOBJ');
-                        pillOBJ.tracking('error elementsNotFound');
-                    }
-                }
-            }, pillCONSTANTS.INIT_RETRY_INTERVAL);
-
-        } catch (error) {
-            console.error('Error in waitForElement function:', error);
-            pillOBJ.tracking('error waitForElement');
-        }
-    },
-    init: function () {
-        pillOBJ.waitForElement();
-    }
-
-};
-
-pillOBJ.init();
+alertModalOBJ.init();

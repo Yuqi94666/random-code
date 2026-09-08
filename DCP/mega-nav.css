@@ -1,0 +1,289 @@
+.mega-menu {
+	background: var(--color-surface-primary, #ffffff);
+	border-color: var(--color-divider-default, #bebebe);
+	border: none;
+	padding: var(--space-600, 32px) 40px 32px 40px;
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+	justify-content: flex-start;
+	flex-shrink: 0;
+	max-width: 1260px;
+	position: relative
+}
+
+.mega-menu .product-name {
+	display: flex;
+	gap: 8px;
+}
+
+.mega-menu .group-5 {
+	flex-shrink: 0;
+	position: static
+}
+
+.mega-menu .products {
+	display: flex;
+	flex-direction: row;
+	gap: 32px;
+	align-items: anchor-center;
+	justify-content: center;
+	align-content: flex-start;
+	min-width: 968px;
+	position: relative;
+	width: 100%
+}
+
+.mega-menu a {
+	color: var(--palette-light-globaltype-grey-900, #333333);
+	text-align: center;
+	font-family: var(--label-link-button-large-link-button-text-font-family, "VodafoneRegular", sans-serif);
+	font-size: var(--label-link-button-large-link-button-text-font-size, 18px);
+	line-height: var(--label-link-button-large-link-button-text-line-height, 24px);
+	font-weight: var(--label-link-button-large-link-button-text-font-weight, 400);
+	position: relative;
+	align-self: stretch;
+	text-decoration: none;
+	width: 100%
+}
+
+.mega-menu a:hover {
+	color: var(--palette-light-navigationelements-buttons-primary-default, #e60000);
+	text-decoration: underline
+}
+
+.mega-menu .product-category {
+	background: var(--palette-light-brand-primary-white, #ffffff);
+	border-radius: 12px;
+	border-style: solid;
+	border-color: var(--palette-light-brand-monochrome-grey-400, #cccccc);
+	border-width: 1px;
+	padding: 32px 16px 27px 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	align-items: center;
+	justify-content: center;
+	min-width: 15%
+}
+
+.mega-menu .mask-group {
+	flex-shrink: 0;
+	width: 100px;
+	height: 100px;
+	position: relative;
+	overflow: visible
+}
+
+.mega-menu .new-i-phone {
+	color: var(--link-secondary-color-enabled, #333333);
+	text-align: left;
+	font-family: var(--heading-desktop-h4-font-family, "VodafoneLight", sans-serif);
+	font-size: var(--heading-desktop-h4-font-size, 28px);
+	line-height: var(--heading-desktop-h4-line-height, 34px);
+	font-weight: var(--heading-desktop-h4-font-weight, 300);
+	position: absolute;
+	left: 48px;
+	top: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start
+}
+
+.mega-menu .frame-6 {
+	display: flex;
+	flex-direction: row;
+	gap: 38px;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-shrink: 0;
+	width: 1180px;
+	position: relative;
+	left: -9px
+}
+
+.mega-menu .link-button {
+	border-radius: 6px;
+	padding: 4px 12px 4px 12px;
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+	align-items: center;
+	justify-content: flex-start;
+	flex-shrink: 0;
+	position: relative;
+	width: auto
+}
+
+.mega-menu .button {
+	color: var(--light-globaltype-secondary, #e60000);
+	text-align: left;
+	font-family: var(--label-link-button-large-link-button-text-font-family, "VodafoneRegular", sans-serif);
+	font-size: var(--label-link-button-large-link-button-text-font-size, 18px);
+	line-height: var(--label-link-button-large-link-button-text-line-height, 24px);
+	font-weight: var(--label-link-button-large-link-button-text-font-weight, 400);
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start
+}
+
+.mega-menu .system-chevron-right {
+	display: flex;
+	width: var(--size-system-icon-medium, 24px);
+	height: var(--size-system-icon-medium, 24px);
+	justify-content: center;
+	align-items: center;
+}
+
+.mega-menu-footer {
+	display: flex;
+	padding: 20px 40px;
+	align-items: center;
+	gap: 32px;
+	align-self: stretch;
+	background: var(--Palette-Light-Brand-Monochrome-Grey-50, #F4F4F4);
+}
+
+.mega-menu-footer .link-button {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	border-radius: 6px;
+}
+
+.mega-menu-footer a {
+	text-decoration: none;
+	color: var(--link-secondary-color-enabled, #0D0D0D);
+	font-feature-settings: 'liga' off, 'clig' off;
+
+	font-family: var(--typography-font-family-default, VodafoneRegular);
+	font-size: var(--typography-font-size-450, 18px);
+	font-style: normal;
+	font-weight: 400;
+	line-height: var(--typography-line-height-600, 24px);
+	/* 133.333% */
+	letter-spacing: var(--typography-letter-spacing-000, 0);
+}
+
+.apple-icon {
+	flex-shrink: 0;
+	width: 24px;
+	height: 24px;
+	position: relative;
+	overflow: visible;
+}
+
+@media(max-width: 1023px) {
+	.mega-menu-footer {
+		display: flex;
+		padding: 20px 16px;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 20px;
+		align-self: stretch;
+		margin: 0 -20px;
+	}
+
+	.mega-menu {
+		background: var(--color-surface-primary, #ffffff);
+		padding: var(--space-600, 24px) 0px 24px 0px;
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+		justify-content: flex-start;
+		width: 100%;
+		flex-shrink: 0;
+		max-width: 1260px;
+		position: relative
+	}
+
+	.mega-menu .new-i-phone {
+		left: 0;
+		font-size: var(--heading-desktop-h4-font-size, 20px);
+		line-height: var(--heading-desktop-h4-line-height, 28px)
+	}
+
+	.mega-menu .frame-6 {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		align-items: flex-start;
+		justify-content: flex-start;
+		flex-shrink: 0;
+		width: 1180px;
+		position: relative;
+		left: 0;
+		padding: 0
+	}
+
+	.mega-menu .group-5 {
+		flex-shrink: unset;
+		height: unset;
+		position: unset
+	}
+
+	.mega-menu .products {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		align-items: anchor-center;
+		justify-content: center;
+		align-content: flex-start;
+		min-width: unset;
+		position: relative;
+		width: 100%
+	}
+
+	.mega-menu .product-category {
+		background: var(--palette-light-brand-primary-white, #ffffff);
+		border-radius: 6px;
+		border-style: solid;
+		border-color: var(--palette-light-brand-monochrome-grey-400, #cccccc);
+		border-width: 1px;
+		padding: 12px;
+		display: flex;
+		flex-direction: row;
+		gap: 20px;
+		align-items: center;
+		justify-content: flex-start;
+		min-width: 15%;
+		width: 89%
+	}
+
+	.mega-menu .mask-group {
+		flex-shrink: 0;
+		width: 48px;
+		height: 48px;
+		position: relative;
+		overflow: visible
+	}
+
+	.mega-menu a {
+		color: var(--palette-light-globaltype-grey-900, #333333);
+		text-align: left;
+		font-family: var(--label-link-button-small-link-button-text-font-family, "VodafoneRegular", sans-serif);
+		font-size: var(--label-link-button-small-link-button-text-font-size, 16px);
+		line-height: var(--label-link-button-small-link-button-text-line-height, 22px);
+		font-weight: var(--label-link-button-small-link-button-text-font-weight, 400);
+		position: relative;
+		flex: 1
+	}
+
+	.mega-menu .link-button {
+		padding: 4px 12px 4px 12px
+	}
+
+	.mega-menu .button {
+		color: var(--light-globaltype-secondary, #e60000);
+		text-align: left;
+		font-family: var(--label-link-button-large-link-button-text-font-family, "VodafoneRegular", sans-serif);
+		font-size: var(--label-link-button-large-link-button-text-font-size, 16px);
+		line-height: var(--label-link-button-large-link-button-text-line-height, 24px);
+		font-weight: var(--label-link-button-large-link-button-text-font-weight, 400);
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start
+	}
+}

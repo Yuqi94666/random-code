@@ -5,7 +5,7 @@
 	}
 
 	.main .container {
-		width: 70%;
+		width: 100%;
 		gap: 32px;
 		display: flex;
 		flex-direction: column;
@@ -165,8 +165,7 @@
 
 	.main .group {
 		position: relative;
-		width: 1080px;
-		height: 34.43px;
+		width: 100%;
 	}
 
 	.main .unselected {
@@ -183,7 +182,7 @@
 	}
 
 	.main .text {
-		width: 1048px;
+		width: 100%;
 		justify-content: center;
 		gap: 10px;
 		position: absolute;
@@ -215,7 +214,7 @@
 		box-sizing: border-box;
 		display: inline-flex;
 		flex-direction: column;
-		min-width: 150px;
+		width: fit-content;
 		height: 50px;
 		align-items: flex-start;
 		justify-content: center;
@@ -226,6 +225,7 @@
 		box-shadow: 0px 1px 2px #00000066;
 		background: linear-gradient(180deg, rgba(235, 0, 141, 1) 61%, rgba(220, 2, 133, 1) 100%);
 		cursor: pointer;
+		margin-top: 20px;
 	}
 
 	.tpg-CTA-submit {
@@ -244,119 +244,120 @@
 	.tpg-CTA-submit:hover {
 		opacity: 0.95;
 	}
+
+	@media (max-width: 768px) {
+		.main .tpg-CTA {
+			margin-top: 100px;
+		}
+	}
 </style>
 <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
 <div class="main">
 	<div class="container">
-		<div class="div">
-			<div class="frame">
-				<h2 class="h2">How can we help?</h2>
+		<div class="frame">
+			<h2 class="h2">How can we help?</h2>
 
-				<p class="text-wrapper">All fields are mandatory.</p>
-			</div>
+			<p class="text-wrapper">All fields are mandatory.</p>
+		</div>
 
-			<form
-				action="https://vha--uat.sandbox.my.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8&amp;orgId=00D9r00000BATdb"
-				class="form" method="POST">
-				<input name="orgid" type="hidden" value="00D9r00000BATdb" /> 
-				<input name="retURL" type="hidden"
-					value="https://tpgsupport-pre.nonp.tpmwebsite.int.c2.tpgtelecom.com.au/form-submission-success" />
-				
-<!--  ----------------------------------------------------------------------  -->
-<!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
-<!--  these lines if you wish to test in debug mode.                          -->
-<!--  <input type="hidden" name="debug" value=1>                              -->
-<!--  <input type="hidden" name="debugEmail"                                  -->
-<!--  value="yuqi.sui@tpgtelecom.com.au">                                -->
-<!--  ----------------------------------------------------------------------  -->
-				<div class="frame-wrapper">
-					<div class="text-fields"><label class="label">First name (as shown on your ID)</label>
+		<form
+			action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8&orgId=00D200000000GC5"
+			class="form" method="POST"><input name="orgid" type="hidden" value="00D200000000GC5" /> <input name="retURL"
+				type="hidden"
+				value="https://support.tpg.com.au/form-submission-success" />
+			<!--  ----------------------------------------------------------------------  -->
+			<!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
+			<!--  these lines if you wish to test in debug mode.                          -->
+			<!--  <input type="hidden" name="debug" value=1>                              -->
+			<!--  <input type="hidden" name="debugEmail"                                  -->
+			<!--  value="yuqi.sui@tpgtelecom.com.au">                                -->
+			<!--  ----------------------------------------------------------------------  -->
+			<div class="frame-wrapper">
+				<div class="text-fields"><label class="label">First name (as shown on your ID)</label>
 
-						<div class="text-field"><input class="input-text" id="00ND0000003M0Dq" maxlength="255"
-								name="00ND0000003M0Dq" required="" size="20" type="text" /></div>
+					<div class="text-field"><input class="input-text" id="00ND0000003M0Dq" maxlength="255"
+							name="00ND0000003M0Dq" required="" size="20" type="text" /></div>
+				</div>
+
+				<div class="text-fields"><label class="label">Last name (as shown on your ID)</label>
+
+					<div class="text-field"><input class="input-text" id="00ND0000003M0Ds" maxlength="255"
+							name="00ND0000003M0Ds" required="" size="20" type="text" /></div>
+				</div>
+
+				<div class="text-fields"><label class="label" for="email">Email</label>
+
+					<div class="text-field"><input class="input-text" id="email" maxlength="80" name="email" required=""
+							size="20" type="text" /></div>
+
+					<div class="supporting-text">
+						<p class="p">A valid email is required, e.g. <span>yourname@gmail.com</span></p>
+					</div>
+				</div>
+
+				<div class="text-fields"><label class="label">Mobile or customer number</label>
+
+					<div class="text-field"><input class="input-text" id="00ND0000003M0Dt" maxlength="30"
+							name="00ND0000003M0Dt" required="" size="20" type="text" /></div>
+				</div>
+
+				<div class="text-fields"><label class="label">Date of birth</label>
+
+					<div class="text-field"><input class="input-text input-date" id="00ND0000004cqZx" maxlength="20"
+							name="00ND0000004cqZx" required="" size="20" type="date" /></div>
+				</div>
+
+				<div class="text-fields"><label class="label" for="description">Please tell us about why you’re reaching
+						out today</label>
+
+					<div class="text-field"><input class="input-text" maxlength="1000" name="description" required="" />
+					</div>
+				</div>
+
+				<div class="text-fields"><label class="label">What outcome would you like to reach after contacting
+						us?</label>
+
+					<div class="text-field"><input class="input-text" id="00NRE000007Wbd7" maxlength="1000"
+							name="00NRE000007Wbd7" required="" rows="3" type="text" wrap="soft" /></div>
+				</div>
+
+				<div class="frame">
+					<div class="div-wrapper">
+						<p class="text-wrapper-3">We’ll respond to your enquiry within 2 business days.</p>
 					</div>
 
-					<div class="text-fields"><label class="label">Last name (as shown on your ID)</label>
-
-						<div class="text-field"><input class="input-text" id="00ND0000003M0Ds" maxlength="255"
-								name="00ND0000003M0Ds" required="" size="20" type="text" /></div>
+					<div class="div-wrapper">
+						<p class="for-details-on-how"><span class="span">For details on how we resolve customer issues,
+								visit our&nbsp;</span> <a href="https://support.tpg.com.au/complaint-handling-policy"
+								rel="noopener noreferrer" target="_blank"> <span class="text-wrapper-4">Complaints
+									Handling Process.</span></a></p>
 					</div>
 
-					<div class="text-fields"><label class="label" for="email">Email</label>
-
-						<div class="text-field"><input class="input-text" id="email" maxlength="80" name="email"
-								required="" size="20" type="text" /></div>
-
-						<div class="supporting-text">
-							<p class="p">A valid email is required, e.g. <span>yourname@gmail.com</span></p>
-						</div>
+					<div class="div-wrapper">
+						<p class="text-wrapper-3">If the matter is urgent, or you’d prefer to talk with us, call our
+							Customer Care on 13 14 23 (8am - 10pm AET)</p>
 					</div>
+				</div>
 
-					<div class="text-fields"><label class="label">Mobile or customer number</label>
-
-						<div class="text-field"><input class="input-text" id="00ND0000003M0Dt" maxlength="30"
-								name="00ND0000003M0Dt" required="" size="20" type="text" /></div>
-					</div>
-
-					<div class="text-fields"><label class="label">Date of birth</label>
-
-						<div class="text-field"><input class="input-text input-date" id="00ND0000004cqZx" maxlength="20"
-								name="00ND0000004cqZx" required="" size="20" type="date" /></div>
-					</div>
-
-					<div class="text-fields"><label class="label" for="description">Please tell us about why you’re
-							reaching out today</label>
-
-						<div class="text-field"><input class="input-text" name="description" required="" /></div>
-					</div>
-
-					<div class="text-fields"><label class="label">What outcome would you like to reach after contacting
-							us?</label>
-
-						<div class="text-field"><input class="input-text" id="00N9r00000E4Isj" name="00N9r00000E4Isj"
-								required="" rows="3" type="text" wrap="soft" /></div>
-					</div>
-
-					<div class="frame">
-						<div class="div-wrapper">
-							<p class="text-wrapper-3">We’ll respond to your enquiry within 2 business days.</p>
-						</div>
-
-						<div class="div-wrapper">
-							<p class="for-details-on-how"><span class="span">For details on how we resolve customer
-									issues, visit our&nbsp;</span> <a
-									href="https://support.tpg.com.au/complaint-handling-policy"
-									rel="noopener noreferrer" target="_blank"> <span class="text-wrapper-4">Complaints
-										Handling Process.</span></a></p>
-						</div>
-
-						<div class="div-wrapper">
-							<p class="text-wrapper-3">If the matter is urgent, or you’d prefer to talk with us, call our
-								Customer Care on 13 14 23 (8am - 10pm AET)</p>
-						</div>
-					</div>
-
-					<div class="group"><input class="unselected" required="" type="checkbox" />
-						<div class="text">
-							<p class="by-ticking-this-box"><span class="text-wrapper-5">By ticking this box I declare
-									that the information provided is true and accurate at the time of completion. I also
-									acknowledge that the information provided will be used and stored in accordance with
-									the Australian Privacy Act and TPG’s Privacy Policy available at </span> <span
-									class="text-wrapper-6">https://www.tpg.com.au/about-us/legal/privacy</span></p>
-						</div>
+				<div class="group"><input class="unselected" required="" type="checkbox" />
+					<div class="text">
+						<p class="by-ticking-this-box"><span class="text-wrapper-5">By ticking this box I declare that
+								the information provided is true and accurate at the time of completion. I also
+								acknowledge that the information provided will be used and stored in accordance with the
+								Australian Privacy Act and TPG’s Privacy Policy available at </span> <span
+								class="text-wrapper-6">https://www.tpg.com.au/about-us/legal/privacy</span></p>
 					</div>
 				</div>
 				<button class="tpg-CTA"><input class="tpg-CTA-submit" name="Submit" type="submit"
 						value="Submit" /></button>
-				<!-- These html elements are hidden from the UI. but These are getting used to populate some of the important fields Present on Case.-->
-				<!-- Case Subject : eCare: Complaint --> <input id="subject" name="subject" type="hidden"
-					value="eCare: Complaint" /><br />
-				<!-- Record Type : eCare --> <input id="recordType" name="recordType" type="hidden"
-					value="012D0000000QUL0" /> <!-- Brand : TPG --> <input id="00ND0000004bpWH" name="00ND0000004bpWH"
-					type="hidden" value="TPG" /> <!-- Case Origin : TPG Complaints --> <input name="origin"
-					type="hidden" value="TPG Complaints" /> <input id="external" name="external" type="hidden"
-					value="1" />&nbsp;
-			</form>
-		</div>
+			</div>
+			<!-- These html elements are hidden from the UI. but These are getting used to populate some of the important fields Present on Case.-->
+			<!-- Case Subject : eCare: Complaint --> <input id="subject" name="subject" type="hidden"
+				value="eCare: Complaint" /><br />
+			<!-- Record Type : eCare --> <input id="recordType" name="recordType" type="hidden"
+				value="012D0000000QUL0" /> <!-- Brand : TPG --> <input id="00ND0000004bpWH" name="00ND0000004bpWH"
+				type="hidden" value="TPG" /> <!-- Case Origin : TPG Complaints --> <input name="origin" type="hidden"
+				value="TPG Complaints" /> <input id="external" name="external" type="hidden" value="1" />&nbsp;
+		</form>
 	</div>
 </div>
