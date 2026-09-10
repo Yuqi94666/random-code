@@ -1,233 +1,685 @@
-// $(document).ready(function() {
-//   var tabs = [
-//     { title: 'AU12629', testid: 'plan-card-AU12629' },
-//     { title: 'AU12630', testid: 'plan-card-AU12630' },
-//     { title: 'AU12631', testid: 'plan-card-AU12631' }
-//   ];
-//   var style = document.createElement('style');
-//   var styleString = '#popular-offers-container{background-color:#f4f4f4;}';
-//   styleString += '#popular-offers-container .tabs {position: absolute; z-index: -9999; float: none; list-style: none;  margin: 0px auto;  padding:10px 0; text-align: left; max-width:90%; min-height:580px; top: -40px;}';
-//   styleString += '#popular-offers-container .tabs li {  float: left;  display: block;}';
-//   styleString += '#popular-offers-container .tabs input[type="radio"] {  position: absolute;  top: 0;  left: -9999px;}';
-//   styleString += '#popular-offers-container .popular-offers-tabs { max-width:90%; margin:0px auto; z-index:2}';
-//   styleString += '#popular-offers-container label.popular-offers-tab {  display: inline-block;  padding: 5px 20px;  border-radius: 2px 2px 0 0;  font-size: 20px;  font-weight: normal;  cursor: pointer;  position: relative;  top: 4px;  -moz-transition: all 0.2s ease-in-out;  -o-transition: all 0.2s ease-in-out;  -webkit-transition: all 0.2s ease-in-out;  transition: all 0.2s ease-in-out;}';
-//   styleString += '#popular-offers-container label.popular-offers-tab.checked {border-bottom: 5px solid red;}';
-//   styleString += '#popular-offers-container .tabs .tab-content {  z-index: 2;   width: 100%;  font-size: 17px;  line-height: 25px;  padding: 0 0;  position: absolute;  top: 53px;  left: -99999px; }';
-//   styleString += '#popular-offers-container [id^="tab"]:checked + label {border-bottom: 1px solid red;}';
-//   styleString += '#popular-offers-container [id^="tab"]:checked ~ [id^="tab-content"] {left: 0px;}';
-
-//   style.id = 'offerTabsStyle';
-//   style.textContent = styleString;
-//   document.head.append(style);
-
-//   var slickStyle = document.createElement('link');
-//   slickStyle.rel = 'stylesheet';
-//   slickStyle.type = 'text/css';
-//   slickStyle.href = 'https://www.vodafone.com.au/content/dam/vha/croassets/slick.min.css';
-//   document.body.appendChild(slickStyle);
-
-//   var tabsHTML = '<div id=\'popular-offers-container\'>';
-//   tabsHTML += '<div class=\'popular-offers-tabs\'>';
-//   for (var i = 0; i < tabs.length; i++) {
-//     var tabId = 'tab-' + tabs[i].title;
-//     var checked = i === 0 ? 'checked' : '';
-//     tabsHTML += `<label class='popular-offers-tab ${checked}' for='${tabId}' role='tab' aria-selected='${i === 0 ? 'true' : 'false'}' aria-controls='panel' tabindex='${i}'>${tabs[i].title}</label>`;
-//   }
-//   tabsHTML += '</div>';
-//   tabsHTML += '<ul id=\'tabs-popular-offers\' class=\'tabs\' role=\'tablist\'>';
-//   for (var i = 0; i < tabs.length; i++) {
-//     var tabId = 'tab-' + tabs[i].title;
-//     var tabContentId = 'tab-content-' + tabs[i].title;
-//     var checked = i === 0 ? 'checked' : '';
-//     tabsHTML += `<li><input type='radio' name='tabs' id='${tabId}' ${checked} />`;
-//     tabsHTML += `<div id='${tabContentId}' class='tab-content' role='tabpanel' aria-labelledby='${tabId}' aria-hidden='${i === 0 ? 'false' : 'true'}'>`;
-//     tabsHTML += `</div>`;
-//     tabsHTML += '</li>';
-//   }
-//   tabsHTML += '</ul></div>';
-//   // $('[data-testid="plan"]').parents('section').hide();
-//   // $('[data-testid="plan"]').before(tabsHTML);
-//   $('#carousel-block-view-primaryPlans').hide();
-//   $('#carousel-block-view-primaryPlans').before(tabsHTML);
-//   setTimeout(function(){
-//     console.log('Initializing slick...');
-//     jQuery('.popular-offers-tabs').slick({
-//     dots: false,
-//     infinite: false,
-//     speed: 300,
-//     variableWidth: true,
-//     //centerMode: true,
-//     //centerPadding: '20px',
-//     prevArrow: '',
-//     nextArrow: '',
-//     slidesToShow: 5,
-//     adaptiveHeight: true,
-//     responsive: [
+'use strict';
+// if (typeof extension === 'undefined') {
+//   var extension = {
+//     id: 'DCP18198contextual',
+//     subscriber: 'iPhoneNPIEmitter',
+//     devicesList: JSON.stringify([
 //       {
-//       breakpoint: 750,
-//       settings: {
-//         slidesToShow: 4
-//       }
+//         id: 'IPH_17_PRO',
+//         title: 'EOFY deals on iPhone 17 Pro.',
+//         description: 'Take another look and save with our EOFY offers.',
+//         tandc: 'Ends 30/06. T&amp;C apply.',
+//         image: 'https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-inline-desktop.webp',
+//         image_mobile: 'https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-inline-mobile.webp',
+//         cta_text: 'Shop now',
+//         cta_link: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro'
 //       },
 //       {
-//       breakpoint: 540,
-//       settings: {
-//         slidesToShow: 3
+//         id: 'IPH_17_PRO_MAX',
+//         title: 'EOFY deals on iPhone 17 Pro Max.',
+//         description: 'Take another look and save with our EOFY offers.',
+//         tandc: 'Ends 30/06. T&amp;C apply.',
+//         image: 'https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-max-inline-desktop.webp',
+//         image_mobile: 'https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-max-inline-mobile.webp',
+//         cta_text: 'Shop now',
+//         cta_link: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro-max'
 //       }
-//       },
-//       {
-//       breakpoint: 480,
-//       settings: {
-//         slidesToShow: 2
-//       }
-//       }
+//     ])
+//   };
+// }
 
-//     ]
-//     });
-//   },300);
+var extensionRoot = typeof extension !== 'undefined' && extension ? extension : {};
+var extensionId = extensionRoot.id || extensionRoot.extensionID || 'DCP18198contextual';
 
-//   $('.popular-offers-tabs label.popular-offers-tab').on('click', function() {
-//     console.log('Initializing slick...');
-//     jQuery('.tab-content').slick('unslick');
-//     applySlick();
+var CONTEXTUALCONSTANTS = {
+  EXPERIMENT_ID: extensionRoot.extensionID || extensionId,
+  EXPERIMENT_VARIANT: 'extension',
+  TRIGGER_NAME: extensionRoot.subscriber,
+  STORAGE_KEY: 'viewedProducts',
+  TARGET_SELECTOR: 'vha-previously-viewed',
+  BANNER_ID: extensionId + '-extension',
+  DEVICES_LIST: extensionRoot.devicesList,
 
-//     $('.popular-offers-tab.checked').removeClass('checked');
-//     $(this).addClass('checked');
-//   });
+  CUSTOM_CSS: `
+        .${extensionId}-extension {
+            display: block;
+            padding: 48px 16px 32px;
+            background-color: #f4f4f4;
+            box-sizing: border-box;
+        }
 
-//   function applySlick() {
-//     console.log('Initializing slick2...');
-//     jQuery('.tab-content').slick({
-//       dots: false,
-//       infinite: false,
-//       speed: 300,
-//       slidesToShow: 4,
-//       adaptiveHeight: true,
-//       responsive: [
-//         {
-//           breakpoint: 950,
-//           settings: {
-//             slidesToShow: 3
-//           }
-//         },
-//         {
-//           breakpoint: 710,
-//           settings: {
-//             slidesToShow: 2
-//           }
-//         },
-//         {
-//           breakpoint: 480,
-//           settings: {
-//             slidesToShow: 1
-//           }
-//         }
-//       ]
-//     });
-//   }
+        .${extensionId}-extension .inline-banner {
+            display: flex;
+            align-items: stretch;
+            width: 100%;
+            min-height: 140px;
+            max-width: 1180px;
+            margin: auto;
+            padding: 0;
+            overflow: hidden;
+            background: #fff;
+            border: 1px solid #bebebe;
+            border-radius: 16px;
+            box-sizing: border-box;
+        }
 
-//   applySlick();
+        .${extensionId}-extension .inline-banner__image {
+            display: flex;
+            flex: 0 0 280px;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #f3f3f3;
+            border-radius: 16px 0 0 16px;
+        }
 
-//   $('#carousel-block-view-primaryPlans').hide();
+        .${extensionId}-extension .inline-banner__image-cta {
+            position: relative;
+            display: flex;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
 
-//   for (var i = 0; i < tabs.length; i++) {
-//     var tabContentId = 'tab-content-' + tabs[i].title;
-//     var planCard = $(`[data-testid="${tabs[i].testid}"]`);
-//     $(`#${tabContentId}`).append(planCard);
-//   }
-// });
+        .${extensionId}-extension .inline-banner__image-link {
+            display: block;
+            width: 100%;
+            min-height: 140px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .${extensionId}-extension .inline-banner__mobile-image {
+            display: none;
+        }
+
+        .${extensionId}-extension .inline-banner__container {
+            display: flex;
+            flex: 1 1 auto;
+            align-items: center;
+            width: 100%;
+            padding: 32px;
+            color: #333;
+            box-sizing: border-box;
+        }
+
+        .${extensionId}-extension .inline-banner__content {
+            display: flex;
+            flex: 1 1 auto;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 32px;
+        }
+
+        .${extensionId}-extension .inline-banner__title {
+            margin-bottom: 8px;
+            font-family: "VodafoneRegularBold", Arial, sans-serif;
+            font-size: 28px;
+            line-height: 34px;
+        }
+
+        .${extensionId}-extension .inline-banner__description {
+            margin-bottom: 8px;
+            font-family: "VodafoneRegular", Arial, sans-serif;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 24px;
+        }
+
+        .${extensionId}-extension .inline-banner__terms {
+            margin-bottom: 0;
+            font-family: "VodafoneRegular", Arial, sans-serif;
+            font-size: 12px;
+            line-height: 16px;
+        }
+
+        .${extensionId}-extension .inline-banner__cta {
+            display: flex;
+            flex: 0 0 auto;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .${extensionId}-extension .inline-banner__button {
+            display: inline-block;
+            padding: 15px 20px;
+            color: #fff;
+            background: #e60000;
+            border: none;
+            border-radius: 6px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+            font-family: "VodafoneRegular", Arial, sans-serif;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 24px;
+            text-align: center;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .${extensionId}-extension .inline-banner__button:hover {
+            background: #b80000;
+        }
+
+        .${extensionId}-extension .inline-banner__button:focus-visible,
+        .${extensionId}-extension .inline-banner__image-link:focus-visible {
+            outline: 3px solid #007c92;
+            outline-offset: 3px;
+        }
+
+        @media (max-width: 768px) {
+            .${extensionId}-extension {
+                min-width: 235px;
+                margin: auto;
+                padding: 32px 16px;
+            }
+
+            .${extensionId}-extension .inline-banner {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .${extensionId}-extension .inline-banner__image {
+                position: relative;
+                flex: 0 0 180px;
+                width: 100%;
+                border-radius: 16px 16px 0 0;
+            }
+
+            .${extensionId}-extension .inline-banner__image-link {
+                min-height: 180px;
+                background-image: none !important;
+            }
+
+            .${extensionId}-extension .inline-banner__mobile-image {
+                position: absolute;
+                inset: 0;
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .${extensionId}-extension .inline-banner__container {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 24px 16px;
+            }
+
+            .${extensionId}-extension .inline-banner__content {
+                padding-right: 0;
+                text-align: center;
+            }
+
+            .${extensionId}-extension .inline-banner__title {
+                margin-bottom: 8px;
+                font-size: 20px;
+                line-height: 28px;
+            }
+
+            .${extensionId}-extension .inline-banner__description {
+                margin-bottom: 8px;
+                font-size: 16px;
+                line-height: 22px;
+            }
+
+            .${extensionId}-extension .inline-banner__terms {
+                font-size: 12px;
+                line-height: 18px;
+            }
+
+            .${extensionId}-extension .inline-banner__cta {
+                width: 100%;
+                padding-top: 16px;
+            }
+
+            .${extensionId}-extension .inline-banner__button {
+                width: 100%;
+                padding: 15px 18px;
+                font-size: 18px;
+                box-sizing: border-box;
+            }
+        }
+    `
+};
+
+var CONTEXTUALOBJ = {
+  devices: [],
+  observer: null,
+  matchedDevice: null,
+  displayTrackedDeviceId: null,
+
+  normalise: function (value) {
+    return String(value || '').trim().toLowerCase();
+  },
+
+  parseDevicesList: function () {
+    var rawDevices = CONTEXTUALCONSTANTS.DEVICES_LIST;
+    croWD.debug('[contextual] rawDevices:', rawDevices);
+    if (!rawDevices) {
+      croWD.debug('[contextual] devicesList is empty');
+      return [];
+    }
+
+    if (Array.isArray(rawDevices)) {
+      return rawDevices;
+    }
+
+    try {
+      var parsedDevices = JSON.parse(rawDevices);
+      croWD.debug('[contextual] parsedDevices:', parsedDevices);
+      if (!Array.isArray(parsedDevices)) {
+        console.error('[contextual] devicesList is not an array:', parsedDevices);
+        return [];
+      }
+      return parsedDevices;
+    } catch (error) {
+      console.error('[contextual] Failed to parse devicesList:', error, rawDevices);
+      return [];
+    }
+  },
+
+  getViewedProducts: function () {
+    var rawViewedProducts;
+
+    try {
+      rawViewedProducts = localStorage.getItem(CONTEXTUALCONSTANTS.STORAGE_KEY);
+    } catch (error) {
+      console.error('[contextual] Unable to access localStorage:', error);
+      return [];
+    }
+
+    if (!rawViewedProducts) {
+      croWD.debug('[contextual] viewedProducts does not exist');
+      return [];
+    }
+
+    try {
+      var viewedProducts = JSON.parse(rawViewedProducts);
+
+      if (Array.isArray(viewedProducts)) {
+        return viewedProducts;
+      }
+
+      if (viewedProducts && Array.isArray(viewedProducts.products)) {
+        return viewedProducts.products;
+      }
+
+      if (viewedProducts && Array.isArray(viewedProducts.viewedProducts)) {
+        return viewedProducts.viewedProducts;
+      }
+
+      croWD.debug('[contextual] viewedProducts is not an array:', viewedProducts);
+      return [];
+    } catch (error) {
+      console.error('[contextual] Failed to parse viewedProducts:', error, rawViewedProducts);
+      return [];
+    }
+  },
+
+  getViewedProductId: function (product) {
+    if (typeof product === 'string' || typeof product === 'number') {
+      return String(product);
+    }
+
+    if (!product || typeof product !== 'object') {
+      return '';
+    }
+    return (
+      product.id ||
+      product.productId ||
+      product.productID ||
+      product.deviceId ||
+      product.deviceID ||
+      product.sku ||
+      product.code ||
+      product.productCode ||
+      ''
+    );
+  },
+
+  getMatchingDevice: function () {
+    var viewedProducts =CONTEXTUALOBJ.getViewedProducts();
+
+    croWD.debug('[contextual] viewedProducts:', viewedProducts);
+
+    if (
+      !Array.isArray(viewedProducts) ||
+      viewedProducts.length === 0
+    ) {
+      croWD.debug('[contextual] viewedProducts is empty. No banner.');
+      return null;
+    }
+
+    var viewedProductIds = viewedProducts
+      .map(function (product) {
+        return CONTEXTUALOBJ.normalise(
+          CONTEXTUALOBJ.getViewedProductId(
+            product
+          )
+        );
+      })
+      .filter(function (productId) {
+        return Boolean(productId);
+      });
+
+    croWD.debug('[contextual] viewed product IDs:', viewedProductIds);
+
+    var matchedDevice = CONTEXTUALOBJ.devices.find(
+      function (configuredDevice) {
+        if ( !configuredDevice || !configuredDevice.id ) {
+          return false;
+        }
+
+        var configuredDeviceId =CONTEXTUALOBJ.normalise( configuredDevice.id);
+        return (
+          viewedProductIds.indexOf( configuredDeviceId) !== -1
+        );
+      }
+    );
+
+    if (!matchedDevice) {
+      croWD.debug('[contextual] No configured device matched viewedProducts');
+
+      croWD.debug('[contextual] Configured device IDs:', CONTEXTUALOBJ.devices.map(
+        function (device) {
+          return device.id;
+        }
+      )
+      );
+
+      return null;
+    }
+
+    croWD.debug('[contextual] Matched device:', matchedDevice);
+
+    return matchedDevice;
+  },
+
+  buildCSS: function () {
+    var styleId = CONTEXTUALCONSTANTS.EXPERIMENT_ID + '-style';
+
+    if (document.getElementById(styleId)) {
+      return;
+    }
+
+    var style = document.createElement('style');
+
+    style.id = styleId;
+    style.type = 'text/css';
 
 
+    var nonceElement = document.querySelector('style[nonce], script[nonce]');
 
+    if (nonceElement) {
+      var nonce = nonceElement.nonce || nonceElement.getAttribute('nonce');
+      if (nonce) {
+        style.setAttribute('nonce', nonce);
+      }
+    }
 
-$(document).ready(function () {
-  var tabs = [
-    { title: "AU12629", testid: "plan-card-AU12629" },
-    { title: "AU12630", testid: "plan-card-AU12630" },
-    { title: "AU12631", testid: "plan-card-AU12631" },
-  ];
+    style.textContent = CONTEXTUALCONSTANTS.CUSTOM_CSS;
+    document.head.appendChild(style);
+    croWD.debug('[contextual] CSS added');
+  },
+  buildTemplate: function (device) {
+    var banner = document.createElement('section');
 
-  var style = document.createElement("style");
-  var styleString =
-    "#popular-offers-container{background-color:#f4f4f4;}" +
-    "#popular-offers-container .tabs {position: absolute; z-index: -9999; float: none; list-style: none; margin: 0px auto; padding:10px 0; text-align: left; max-width:90%; min-height:580px; top: -40px;}" +
-    "#popular-offers-container .tabs li { float: left; display: block;}" +
-    "#popular-offers-container .tabs input[type='radio'] { position: absolute; top: 0; left: -9999px;}" +
-    "#popular-offers-container .popular-offers-tabs { max-width:90%; margin:0px auto; z-index:2}" +
-    "#popular-offers-container label.popular-offers-tab { display: inline-block; padding: 5px 20px; border-radius: 2px 2px 0 0; font-size: 20px; font-weight: normal; cursor: pointer; position: relative; top: 4px; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out; -webkit-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out;}" +
-    "#popular-offers-container [id^='tab']:checked + label { border-bottom: 5px solid red; }" +
-    "#popular-offers-container .tabs .tab-content { z-index: 2; width: 100%; font-size: 17px; line-height: 25px; padding: 0 0; position: absolute; top: 53px; left: -99999px; }" +
-    "#popular-offers-container [id^='tab']:checked ~ [id^='tab-content'] { left: 0px; }" + 
-    "#popular-offers-container .radio-hidden { position: absolute; top: 0; left: -9999px; background: red}";
+    banner.id = CONTEXTUALCONSTANTS.BANNER_ID;
+    banner.className = CONTEXTUALCONSTANTS.EXPERIMENT_ID + '-extension';
 
-  style.id = "offerTabsStyle";
-  style.textContent = styleString;
-  document.head.append(style);
+    banner.innerHTML = `
+      <div class="inline-banner">
+        <div class="inline-banner__image">
+          <div class="inline-banner__image-cta">
+            <a
+              class="inline-banner__image-link"
+              href="${device.cta_link || '#'}"
+              aria-label="${device.title || 'View offer'}"
+              style="background-image: url('${device.image || ''}')"
+            ></a>
+            <img
+              class="inline-banner__mobile-image"
+              src="${device.image_mobile || ''}"
+              alt="${device.title || ''}"
+            />
+          </div>
+        </div>
 
-  var tabsHTML =
-    `<div id='popular-offers-container'>` +
-    `<div class='popular-offers-tabs'>`;
-  for (var i = 0; i < tabs.length; i++) {
-    var tabId = "tab-" + tabs[i].title;
-    tabsHTML += `<input type='radio' name='tabs' class='radio-hidden' id='${tabId}' ${i === 0 ? "checked" : ""} />`;
-    tabsHTML += `<label class='popular-offers-tab' for='${tabId}'>${tabs[i].title}</label>`;
+        <div class="inline-banner__container">
+          <div class="inline-banner__content">
+            <div class="inline-banner__title">
+              ${device.title || ''}
+            </div>
+
+            <div class="inline-banner__description">
+              ${device.description || ''}
+            </div>
+
+            <div class="inline-banner__terms">
+              ${device.tandc || ''}
+            </div>
+          </div>
+
+          <div class="inline-banner__cta">
+            <a
+              class="inline-banner__button"
+              href="${device.cta_link || '#'}"
+              aria-label="${device.cta_text || 'Shop now'}"
+            >
+              ${device.cta_text || 'Shop now'}
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+
+    var imageLink = banner.querySelector('.inline-banner__image-link');
+    var ctaButton = banner.querySelector('.inline-banner__button');
+
+    if (imageLink) {
+      imageLink.addEventListener('click', function () {
+        CONTEXTUALOBJ.tracking('click image ' + device.id);
+        CONTEXTUALOBJ.pushPromotionDataLayer('select_promotion', device, 'image');
+      });
+    }
+
+    if (ctaButton) {
+      ctaButton.addEventListener('click', function () {
+        CONTEXTUALOBJ.tracking('click cta ' + device.id);
+        CONTEXTUALOBJ.pushPromotionDataLayer('select_promotion', device, 'cta');
+      });
+    }
+
+    return banner;
+  },
+
+  injectBanner: function (device) {
+    var existingBanner = document.getElementById(CONTEXTUALCONSTANTS.BANNER_ID);
+
+    if (existingBanner) {
+      existingBanner.replaceWith(CONTEXTUALOBJ.buildTemplate(device));
+      croWD.debug('[contextual] Existing banner replaced:', device.id);
+      return true;
+    }
+
+    var targetElement = document.querySelector(CONTEXTUALCONSTANTS.TARGET_SELECTOR);
+
+    if (!targetElement) {
+      croWD.debug('[contextual] Target not available yet:', CONTEXTUALCONSTANTS.TARGET_SELECTOR);
+      return false;
+    }
+
+    var banner = CONTEXTUALOBJ.buildTemplate(device);
+    targetElement.replaceWith(banner);
+
+    croWD.debug('[contextual] Replaced previously viewed component:', device.id);
+
+    if (
+      CONTEXTUALOBJ.displayTrackedDeviceId !== device.id) {
+      CONTEXTUALOBJ.displayTrackedDeviceId = device.id;
+
+      CONTEXTUALOBJ.tracking('display ' + device.id);
+      CONTEXTUALOBJ.pushPromotionDataLayer('view_promotion', device, 'display');
+    }
+
+    return true;
+  },
+
+  render: function () {
+    croWD.debug('[contextual] render() called');
+
+    var targetElement = document.querySelector(CONTEXTUALCONSTANTS.TARGET_SELECTOR);
+    if (!targetElement) {
+      croWD.debug('[contextual] Target not present yet. Skipping render.');
+      return;
+    }
+
+    var matchedDevice = CONTEXTUALOBJ.getMatchingDevice();
+    if (!matchedDevice) {
+      return;
+    }
+
+    CONTEXTUALOBJ.matchedDevice = matchedDevice;
+
+    CONTEXTUALOBJ.buildCSS();
+
+    CONTEXTUALOBJ.injectBanner(matchedDevice);
+  },
+
+  pushPromotionDataLayer: function (eventName, device, elementType) {
+    try {
+      if (typeof window === 'undefined') {
+        return;
+      }
+
+      if (!window.dataLayer) {
+        window.dataLayer = [];
+      }
+
+      var promotionId = device && device.id ? device.id : (CONTEXTUALCONSTANTS.EXPERIMENT_ID || 'DCP18198contextual');
+
+      window.dataLayer.push({
+        event: eventName,
+        event_params: {
+          promotion_name: 'Apple-NPI',
+          promotion_id: promotionId,
+          logged_in: false,
+          creative_slot: 'contextual-messaging'
+        }
+      });
+
+      croWD.debug('[contextual] dataLayer push:', {
+        event: eventName,
+        promotionName: 'Apple-NPI',
+        promotionId: promotionId,
+        elementType: elementType,
+        creative_slot: 'contextual-messaging'
+      });
+    } catch (error) {
+      console.error('[contextual] dataLayer push error:', error);
+    }
+  },
+
+  tracking: function (value) {
+    try {
+      if (typeof croWD !== 'undefined' && croWD.utils && typeof croWD.utils.launchTracking === 'function') {
+        croWD.utils.launchTracking(CONTEXTUALCONSTANTS.EXPERIMENT_ID, value, 'personalisation', '');
+
+        return;
+      }
+
+      croWD.debug('[contextual] Tracking unavailable:', value);
+    } catch (error) {
+      console.error('[contextual] Tracking error:', error);
+    }
+  },
+
+  init: function () {
+    CONTEXTUALOBJ.devices = CONTEXTUALOBJ.parseDevicesList();
+
+    croWD.debug('[contextual] Initialising:',
+      {
+        experimentId: CONTEXTUALCONSTANTS.EXPERIMENT_ID,
+        subscriber: CONTEXTUALCONSTANTS.TRIGGER_NAME,
+        storageKey: CONTEXTUALCONSTANTS.STORAGE_KEY,
+        targetSelector: CONTEXTUALCONSTANTS.TARGET_SELECTOR,
+        configuredDevices: CONTEXTUALOBJ.devices
+      }
+    );
+
+    if (!CONTEXTUALOBJ.devices.length) {
+      croWD.debug('[contextual] No valid configured devices');
+
+      return;
+    }
+
+    CONTEXTUALOBJ.render();
+
+    if (CONTEXTUALCONSTANTS.TRIGGER_NAME) {
+      croWD.hotbed.listen(CONTEXTUALCONSTANTS.TRIGGER_NAME, function (
+        observable,
+        eventType,
+        data
+      ) {
+        croWD.debug(
+          '[contextual] Subscriber event received:',
+          {
+            subscriber:
+              CONTEXTUALCONSTANTS.TRIGGER_NAME,
+
+            observable: observable,
+            eventType: eventType,
+            data: data
+          }
+        );
+
+        CONTEXTUALOBJ.render();
+      }
+      );
+
+      croWD.debug('[contextual] Listener registered:', CONTEXTUALCONSTANTS.TRIGGER_NAME);
+    } else {
+      croWD.debug('[contextual] No subscriber configured');
+    }
+  },
+
+  destroy: function () {
+    if (CONTEXTUALOBJ.observer) {
+      CONTEXTUALOBJ.observer.disconnect();
+
+      CONTEXTUALOBJ.observer = null;
+    }
   }
-  tabsHTML += `</div>` +
-    `<ul id='tabs-popular-offers' class='tabs' role='tablist'>`;
-  for (var i = 0; i < tabs.length; i++) {
-    var tabContentId = "tab-content-" + tabs[i].title;
-    tabsHTML += `<li>` +
-      `<div id='${tabContentId}' class='tab-content' role='tabpanel' aria-labelledby='${tabContentId}'></div>` +
-      `</li>`;
-  }
-  tabsHTML += `</ul></div>`;
+};
 
-  if ($("#tabs-popular-offers").length == 0) {
-    console.log('#tabs-popular-offers');
-    
-    // $("#carousel-block-view-primaryPlans").hide();
-    $("#carousel-block-view-primaryPlans").before(tabsHTML);
-  }
+window.CONTEXTUALOBJ = CONTEXTUALOBJ;
 
-  $('.popular-offers-tabs label.popular-offers-tab').on('click', function (event) {
-    event.preventDefault(); 
-    var tabId = $(this).attr('for');
-    $('#' + tabId).prop('checked', true);
-    console.log("Tab clicked:", $(this).text());
-  });
+var crowdMaxCallCounter = 15;
+var crowdFinderCall = setInterval(
+  function () {
+    crowdMaxCallCounter--;
 
-  // Initialize slick slider
-  setTimeout(function () {
-    console.log("Initializing slick...");
-    jQuery(".popular-offers-tabs").slick({
-      dots: false,
-      infinite: false,
-      speed: 300,
-      variableWidth: true,
-      prevArrow: "",
-      nextArrow: "",
-      slidesToShow: 5,
-      adaptiveHeight: true,
-      responsive: [
-        {
-          breakpoint: 750,
-          settings: {
-            slidesToShow: 4,
-          },
-        },
-        {
-          breakpoint: 540,
-          settings: {
-            slidesToShow: 3,
-          },
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 2,
-          },
-        },
-      ],
-    });
-  }, 300);
-});
+    if (typeof croWD !== 'undefined' && croWD.hotbed && typeof croWD.hotbed.listen === 'function') {
+      clearInterval(crowdFinderCall);
+      croWD.debug('[contextual] croWD found');
+      CONTEXTUALOBJ.init();
+      if (typeof croWD.cmdr === 'function') {
+        croWD.cmdr(
+          CONTEXTUALCONSTANTS.EXPERIMENT_ID,
+          'inject'
+        );
+        croWD.debug('[contextual] Inject command sent:', CONTEXTUALCONSTANTS.EXPERIMENT_ID);
+      }
+      return;
+    }
+
+    if (crowdMaxCallCounter <= 0) {
+      clearInterval(crowdFinderCall);
+
+      croWD.debug('[contextual] Finder stopped: maximum retries reached');
+    }
+  },
+  50
+);

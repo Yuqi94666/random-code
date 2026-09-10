@@ -1,0 +1,104 @@
+[
+	{
+		"id": "IPH_17_PRO",
+		"title": "EOFY deals on iPhone 17 Pro.",
+		"description": "Take another look and save with our EOFY offers.",
+		"tandc": "Ends 30/06. T&C apply.",
+		"image": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-inline-desktop.webp",
+		"image_mobile": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-inline-mobile.webp",
+		"cta_text": "Shop now",
+		"cta_link": "https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro"
+	},
+	{
+		"id": "IPH_17_PRO_MAX",
+		"title": "EOFY deals on iPhone 17 Pro Max.",
+		"description": "Take another look and save with our EOFY offers.",
+		"tandc": "Ends 30/06. T&C apply.",
+		"image": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-max-inline-desktop.webp",
+		"image_mobile": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-max-inline-mobile.webp",
+		"cta_text": "Shop now",
+		"cta_link": "https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro-max"
+	}
+],
+[
+	{
+		"id": "IPH_17_PRO",
+		"title": "Still thinking about the Apple Watch Series 12?",
+		"description": "Pre-order now and enjoy our latest offers.",
+		"tandc": "T&C here",
+		"image": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-inline-desktop.webp",
+		"image_mobile": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-inline-mobile.webp",
+		"cta_text": "Pre-order now",
+		"cta_link": "https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro"
+	},
+	{
+		"id": "IPH_17_PRO_MAX",
+		"title": "Still thinking about the Apple Watch Series 12?",
+		"description": "Pre-order now and enjoy our latest offers.",
+		"tandc": "T&C here",
+		"image": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-max-inline-desktop.webp",
+		"image_mobile": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-max-inline-mobile.webp",
+		"cta_text": "Pre-order now",
+		"cta_link": "https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro-max"
+	},
+	{
+		"id": "IPH_18_PRO",
+		"title": "Still thinking about the iPhone 18 Pro?",
+		"description": "Pre-order now and enjoy our latest offers.",
+		"tandc": "T&C here",
+		"image": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-18-pro-inline-desktop.webp",
+		"image_mobile": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-18-pro-inline-mobile.webp",
+		"cta_text": "Pre-order now",
+		"cta_link": "https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-18-pro"
+	},
+	{
+		"id": "IPH_18_PRO_MAX",
+		"title": "Still thinking about the iPhone 18 Pro?",
+		"description": "Pre-order now and enjoy our latest offers.",
+		"tandc": "T&C here",
+		"image": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-18-pro-max-inline-desktop.webp",
+		"image_mobile": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-18-pro-max-inline-mobile.webp",
+		"cta_text": "Pre-order now",
+		"cta_link": "https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-18-pro-max"
+	},
+	{
+		"id": "IPH_18_DUO",
+		"title": "Still thinking about the iPhone 18 Duo?",
+		"description": "Pre-order now and enjoy our latest offers.",
+		"tandc": "T&C here",
+		"image": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-18-duo-inline-desktop.webp",
+		"image_mobile": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-18-duo-inline-mobile.webp",
+		"cta_text": "Pre-order now",
+		"cta_link": "https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-18-duo"
+	},
+	{
+		"id": "AW_SERIES_12",
+		"title": "Still thinking about the Apple Watch Series 12",
+		"description": "Pre-order now and enjoy our latest offers.",
+		"tandc": "T&C here",
+		"image": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-apple-watch-series-12-inline-desktop.webp",
+		"image_mobile": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-apple-watch-series-12-inline-mobile.webp",
+		"cta_text": "Pre-order now",
+		"cta_link": "https://www.vodafone.com.au/mobile/mobile-phones/apple/apple-watch-series-12"
+	},
+	{
+		"id": "AW_ULTRA_4",
+		"title": "Still thinking about the Apple Watch Ultra 4?",
+		"description": "Pre-order now and enjoy our latest offers.",
+		"tandc": "T&C here",
+		"image": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-apple-watch-ultra-4-inline-desktop.webp",
+		"image_mobile": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-apple-watch-ultra-4-inline-mobile.webp",
+		"cta_text": "Pre-order now",
+		"cta_link": "https://www.vodafone.com.au/mobile/mobile-phones/apple/apple-watch-ultra-4"
+	},
+	{
+		"id": "AP_5",
+		"title": "Still thinking about the AirPods 5?",
+		"description": "Pre-order now and enjoy our latest offers.",
+		"tandc": "T&C here",
+		"image": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-airpods-5-inline-desktop.webp",
+		"image_mobile": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-airpods-5-inline-mobile.webp",
+		"cta_text": "Pre-order now",
+		"cta_link": "https://www.vodafone.com.au/mobile/mobile-phones/apple/airpods-5"
+	}
+]
