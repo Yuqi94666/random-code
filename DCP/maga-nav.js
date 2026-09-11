@@ -8,50 +8,50 @@ const NavCONSTANTS = {
 	NETWORK_TITLE_COPY: 'Latest Apple', // top nav label/titleCopy replacement
 	PRODUCT_ITEMS: [
 		{
-			href: 'https://www.vodafone.com.au/mobile/mobile-phones/Apple/Apple-iphone-18-pro-max',
-			className: 'iPhone-18-Pro-Max',
-			titleCopy: 'iPhone 18 Pro Max',
-			imgSrc: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-z-fold-8/samsung-galaxy-z-fold8-lavender-01-m.webp',
-			imgAlt: 'iPhone 18 Pro Max',
-			imgWidth: 100,
-			imgHeight: 100
-		},
-		{
-			href: 'https://www.vodafone.com.au/mobile/mobile-phones/Apple/Apple-iphone-18-pro',
+			href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-18-pro',
 			className: 'iPhone-18-Pro',
 			titleCopy: 'iPhone 18 Pro',
-			imgSrc: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-z-fold-8/samsung-galaxy-z-fold8-lavender-01-m.webp',
+			imgSrc: 'https://www.vodafone.com.au/images/devices/apple/iphone-18-pro/iphone-18-pro-burgundy-01-m.webp',
 			imgAlt: 'iPhone 18 Pro',
 			imgWidth: 100,
 			imgHeight: 100
 		},
 		{
-			href: 'https://www.vodafone.com.au/mobile/mobile-phones/Apple/Apple-iphone-ultra',
-			className: 'iPhone-Ultra',
-			titleCopy: 'iPhone Ultra',
-			imgSrc: 'https://www.vodafone.com.au/images/devices/samsung/samsung-galaxy-z-fold-8/samsung-galaxy-z-fold8-lavender-01-m.webp',
-			imgAlt: 'iPhone Ultra',
+			href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-18-pro-max',
+			className: 'iPhone-18-Pro-Max',
+			titleCopy: 'iPhone 18 Pro Max',
+			imgSrc: 'https://www.vodafone.com.au/images/devices/apple/iphone-18-pro-max/iphone-18-pro-max-burgundy-01-m.webp',
+			imgAlt: 'iPhone 18 Pro Max',
 			imgWidth: 100,
 			imgHeight: 100
 		},
-		// {
-		//     href: 'https://www.vodafone.com.au/accessories/smart-watches/Apple/Apple-galaxy-watch-ultra2',
-		//     className: 'Galaxy-Watch-Ultra2',
-		//     titleCopy: 'Galaxy Watch Ultra2',
-		//     imgSrc: 'https://www.vodafone.com.au/images/devices/Apple/Apple-watch-ultra2/Apple-galaxy-watch-ultra2-titanium-silver-01-m.webp',
-		//     imgAlt: 'Galaxy Watch Ultra2',
-		//     imgWidth: 100,
-		//     imgHeight: 100
-		// },
-		// {
-		//     href: 'https://www.vodafone.com.au/accessories/smart-watches/Apple/Apple-galaxy-watch9',
-		//     className: 'Galaxy-Watch9',
-		//     titleCopy: 'Galaxy Watch9',
-		//     imgSrc: 'https://www.vodafone.com.au/images/devices/Apple/Apple-galaxy-watch9/Apple-galaxy-watch9-40mm-cream-01-m.webp',
-		//     imgAlt: 'Galaxy Watch9',
-		//     imgWidth: 100,
-		//     imgHeight: 100
-		// }
+		{
+			href: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-duo',
+			className: 'iPhone-Duo',
+			titleCopy: 'iPhone Duo',
+			imgSrc: 'https://www.vodafone.com.au/images/devices/apple/iphone-duo/iphone-duo-star-white-01-m.webp',
+			imgAlt: 'iPhone Duo',
+			imgWidth: 100,
+			imgHeight: 100
+		},
+		{
+		    href: 'https://www.vodafone.com.au/accessories/smart-watches/apple/apple-watch-series-12',
+		    className: 'Apple-Watch-Series-12',
+		    titleCopy: 'Apple Watch Series 12',
+		    imgSrc: 'https://www.vodafone.com.au/images/devices/apple/apple-watch-series-12/apple-watch-12-42mm-dark-bronze-aluminium-sport-band-olive-01-m.webp',
+		    imgAlt: 'Apple Watch Series 12',
+		    imgWidth: 100,
+		    imgHeight: 100
+		},
+		{
+		    href: 'https://www.vodafone.com.au/accessories/smart-watches/apple/apple-watch-ultra-4',
+		    className: 'Apple-Watch-Ultra-4',
+		    titleCopy: 'Apple Watch Ultra 4',
+		    imgSrc: 'https://www.vodafone.com.au/images/devices/apple/apple-watch-ultra-4/apple-Watch-Ultra-4-Natural-Titanium-Ocean-Band-Translucent-Grey-01-m.webp',
+		    imgAlt: 'Apple Watch Ultra 4',
+		    imgWidth: 100,
+		    imgHeight: 100
+		}
 	],
 	QUICK_LINK_ITEMS: [
 		{
@@ -323,19 +323,23 @@ const NavCONSTANTS = {
 	}
 
 	.mega-menu .product-category {
-		background: var(--palette-light-brand-primary-white, #ffffff);
-		border-radius: 6px;
-		border-style: solid;
-		border-color: var(--palette-light-brand-monochrome-grey-400, #cccccc);
-		border-width: 1px;
-		padding: 12px;
+		border-radius: 12px;
+		border: 1px solid var(--Palette-Light-Brand-Monochrome-Grey-400, #CCC);
+		background: var(--Palette-Light-Brand-Primary-White, #FFF);
 		display: flex;
-		flex-direction: row;
-		gap: 20px;
+		max-width: 767px;
+		padding: 12px;
 		align-items: center;
-		justify-content: flex-start;
-		min-width: 15%;
-		width: 89%
+		gap: 12px;
+		flex: 1 0 0;
+		flex-direction: row;
+        justify-content: flex-start;
+	}
+	.mega-menu .product-name{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex: 1 0 0;
 	}
 
 	.mega-menu .mask-group {
