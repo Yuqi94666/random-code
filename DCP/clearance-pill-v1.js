@@ -1,5 +1,9 @@
+/**
+ * Author:  Yuqi Sui
+ * Date: 2026-05-01
+ * Description: This script add custom pills on both listing and pdp pages, subscribe the target device from the logic emitter
+ * */
 'use strict';
-
 let pillCONSTANTS = {
 	EXPERIMENT_ID: extension.id,
 	PILL_COPY: extension.pillCopy || '',
@@ -9,12 +13,12 @@ let pillCONSTANTS = {
 	PILL_SVG_ICON: extension.pillSvgIcon || '',
 	INJECT_TYPE: extension.templateInjectType || '',
 	TARGET_TYPE: extension.targetType || '',
-	TRIGGER_NAME: extension.triggerName || '',
+	TRIGGER_NAME: extension.subscriber || '',
 
 	LISTING_SEL_1: '[data-testid="device-listing"] > div',
 	LISTING_SEL_2: '[data-testid="lean-devices"] > div',
-	NAME_SEL: 'a h2 > div:nth-of-type(2)',
-	INJECT_POS_SEL: 'a h2 > div:first-child',
+	NAME_SEL: 'h2 a > div',
+	INJECT_POS_SEL: 'div:has(+ h2)',
 
 	CUSTOM_CSS: `
 	.${extension.id}-extension {
@@ -39,7 +43,7 @@ let pillCONSTANTS = {
 	font-family: 'VodafoneRegular';
 	font-size: 14px;
 	font-style: normal;
-	font-weight: 400;
+	font-weight: 700;
 	line-height: 20px;
 	margin-left: 4px;
 	}
@@ -66,7 +70,7 @@ let pillOBJ = {
 	},
 
 	injectPill: function (targetEl) {
-		console.log(`[pill] injectPill()`);
+		//console.log(`[pill] injectPill()`);
 		if (!targetEl) return;
 		if (targetEl.dataset && targetEl.dataset.pillInjected === 'true') return;
 		if (targetEl.querySelector('.' + extension.id + '-extension')) return;
@@ -92,18 +96,20 @@ let pillOBJ = {
 			case 'append': targetEl.append(pill); break;
 			default: targetEl.insertAdjacentElement('beforebegin', pill);
 		}
-		console.log(`[pill] injectPill jejected:`, targetEl);
+		//console.log(`[pill] injectPill jejected:`, targetEl);
 	},
 
 	render: function (data) {
 		try {
-			console.log(`[pill] render()`);
+			//console.log(`[pill] render()`);
 			if (pillCONSTANTS.TARGET_TYPE === 'isPdp') {
 				if (pillOBJ.isPdpInjected) return;
 				let targetEl = document.querySelector('[data-testid="mobile-phone-title"]');
 				if (!targetEl) return;
 
 				const name = pillOBJ.getName(targetEl);
+        //console.log(`[pill] name:`,name);
+   //console.log(`[pill] in`,data);
 				if (!data || typeof data.hasDevice !== 'function' || !data.hasDevice(name)) return;
 
 				pillOBJ.injectPill(targetEl);
@@ -130,7 +136,7 @@ let pillOBJ = {
 
 	observe: function () {
 		croWD.hotbed.listen(`${pillCONSTANTS.TRIGGER_NAME}`, function (_, __, data) {
-			console.log(`[pill] ${pillCONSTANTS.TRIGGER_NAME}`, data);
+			//console.log(`[pill] ${pillCONSTANTS.TRIGGER_NAME}`, data);
 			
 			pillOBJ.lastData = data;
 			pillOBJ.buildCSS();

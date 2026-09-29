@@ -125,7 +125,7 @@ const NavCONSTANTS = {
 	color: var(--palette-light-globaltype-grey-900, #333333);
 	text-align: center;
 	font-family: var(--label-link-button-large-link-button-text-font-family, "VodafoneRegular", sans-serif);
-	font-size: var(--label-link-button-large-link-button-text-font-size, 18px);
+	font-size: var(--label-link-button-large-link-button-text-font-size, 16px);
 	line-height: var(--label-link-button-large-link-button-text-line-height, 24px);
 	font-weight: var(--label-link-button-large-link-button-text-font-weight, 400);
 	position: relative;

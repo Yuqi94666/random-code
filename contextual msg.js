@@ -1,218 +1,685 @@
-
 'use strict';
+// if (typeof extension === 'undefined') {
+//   var extension = {
+//     id: 'DCP18198contextual',
+//     subscriber: 'iPhoneNPIEmitter',
+//     devicesList: JSON.stringify([
+//       {
+//         id: 'IPH_17_PRO',
+//         title: 'EOFY deals on iPhone 17 Pro.',
+//         description: 'Take another look and save with our EOFY offers.',
+//         tandc: 'Ends 30/06. T&amp;C apply.',
+//         image: 'https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-inline-desktop.webp',
+//         image_mobile: 'https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-inline-mobile.webp',
+//         cta_text: 'Shop now',
+//         cta_link: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro'
+//       },
+//       {
+//         id: 'IPH_17_PRO_MAX',
+//         title: 'EOFY deals on iPhone 17 Pro Max.',
+//         description: 'Take another look and save with our EOFY offers.',
+//         tandc: 'Ends 30/06. T&amp;C apply.',
+//         image: 'https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-max-inline-desktop.webp',
+//         image_mobile: 'https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-max-inline-mobile.webp',
+//         cta_text: 'Shop now',
+//         cta_link: 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro-max'
+//       }
+//     ])
+//   };
+// }
 
-// LOCAL TEST FIXTURE — remove or leave; the live extension object takes precedence
-if (typeof extension === 'undefined') {
-    var extension = {
-        subscriber:   'iPhoneNPIEmitter',
-        extensionID:  'DCP18198contextual',
-        devicesList:  JSON.stringify([
-            {
-                'id': 'IPH_17_PRO',
-                'title': 'EOFY deals on iPhone 17 Pro.',
-                'description': 'Take another look and save with our EOFY offers.',
-                'tandc': 'Ends 30/06. T&C apply.',
-                'image': 'https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-inline-desktop.webp',
-                'image_mobile': 'https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-inline-mobile.webp',
-                'cta_text': 'Shop now',
-                'cta_link': 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro'
-            },
-            {
-                'id': 'IPH_17_PRO_MAX',
-                'title': 'EOFY deals on iPhone 17 Pro Max.',
-                'description': 'Take another look and save with our EOFY offers.',
-                'tandc': 'Ends 30/06. T&C apply.',
-                'image': 'https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-max-inline-desktop.webp',
-                'image_mobile': 'https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-max-inline-mobile.webp',
-                'cta_text': 'Shop now',
-                'cta_link': 'https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro-max'
+var extensionRoot = typeof extension !== 'undefined' && extension ? extension : {};
+var extensionId = extensionRoot.id || extensionRoot.extensionID || 'DCP18198contextual';
+
+var CONTEXTUALCONSTANTS = {
+  EXPERIMENT_ID: extensionRoot.extensionID || extensionId,
+  EXPERIMENT_VARIANT: 'extension',
+  TRIGGER_NAME: extensionRoot.subscriber,
+  STORAGE_KEY: 'viewedProducts',
+  TARGET_SELECTOR: 'vha-previously-viewed',
+  BANNER_ID: extensionId + '-extension',
+  DEVICES_LIST: extensionRoot.devicesList,
+
+  CUSTOM_CSS: `
+        .${extensionId}-extension {
+            display: block;
+            padding: 48px 16px 32px;
+            background-color: #f4f4f4;
+            box-sizing: border-box;
+        }
+
+        .${extensionId}-extension .inline-banner {
+            display: flex;
+            align-items: stretch;
+            width: 100%;
+            min-height: 140px;
+            max-width: 1180px;
+            margin: auto;
+            padding: 0;
+            overflow: hidden;
+            background: #fff;
+            border: 1px solid #bebebe;
+            border-radius: 16px;
+            box-sizing: border-box;
+        }
+
+        .${extensionId}-extension .inline-banner__image {
+            display: flex;
+            flex: 0 0 280px;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #f3f3f3;
+            border-radius: 16px 0 0 16px;
+        }
+
+        .${extensionId}-extension .inline-banner__image-cta {
+            position: relative;
+            display: flex;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .${extensionId}-extension .inline-banner__image-link {
+            display: block;
+            width: 100%;
+            min-height: 140px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .${extensionId}-extension .inline-banner__mobile-image {
+            display: none;
+        }
+
+        .${extensionId}-extension .inline-banner__container {
+            display: flex;
+            flex: 1 1 auto;
+            align-items: center;
+            width: 100%;
+            padding: 32px;
+            color: #333;
+            box-sizing: border-box;
+        }
+
+        .${extensionId}-extension .inline-banner__content {
+            display: flex;
+            flex: 1 1 auto;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 32px;
+        }
+
+        .${extensionId}-extension .inline-banner__title {
+            margin-bottom: 8px;
+            font-family: "VodafoneRegularBold", Arial, sans-serif;
+            font-size: 28px;
+            line-height: 34px;
+        }
+
+        .${extensionId}-extension .inline-banner__description {
+            margin-bottom: 8px;
+            font-family: "VodafoneRegular", Arial, sans-serif;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 24px;
+        }
+
+        .${extensionId}-extension .inline-banner__terms {
+            margin-bottom: 0;
+            font-family: "VodafoneRegular", Arial, sans-serif;
+            font-size: 12px;
+            line-height: 16px;
+        }
+
+        .${extensionId}-extension .inline-banner__cta {
+            display: flex;
+            flex: 0 0 auto;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .${extensionId}-extension .inline-banner__button {
+            display: inline-block;
+            padding: 15px 20px;
+            color: #fff;
+            background: #e60000;
+            border: none;
+            border-radius: 6px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+            font-family: "VodafoneRegular", Arial, sans-serif;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 24px;
+            text-align: center;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .${extensionId}-extension .inline-banner__button:hover {
+            background: #b80000;
+        }
+
+        .${extensionId}-extension .inline-banner__button:focus-visible,
+        .${extensionId}-extension .inline-banner__image-link:focus-visible {
+            outline: 3px solid #007c92;
+            outline-offset: 3px;
+        }
+
+        @media (max-width: 768px) {
+            .${extensionId}-extension {
+                min-width: 235px;
+                margin: auto;
+                padding: 32px 16px;
             }
-        ])
-    };
-}
 
-const CONTEXTUAL_CONSTANTS = {
-    EXPERIMENT_ID: extension.extensionID, // Experiment ID
-    TEMPLATE_INJECT_TYPE: 'replace' // possible values: replace|before|prepend|after|append
+            .${extensionId}-extension .inline-banner {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .${extensionId}-extension .inline-banner__image {
+                position: relative;
+                flex: 0 0 180px;
+                width: 100%;
+                border-radius: 16px 16px 0 0;
+            }
+
+            .${extensionId}-extension .inline-banner__image-link {
+                min-height: 180px;
+                background-image: none !important;
+            }
+
+            .${extensionId}-extension .inline-banner__mobile-image {
+                position: absolute;
+                inset: 0;
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .${extensionId}-extension .inline-banner__container {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 24px 16px;
+            }
+
+            .${extensionId}-extension .inline-banner__content {
+                padding-right: 0;
+                text-align: center;
+            }
+
+            .${extensionId}-extension .inline-banner__title {
+                margin-bottom: 8px;
+                font-size: 20px;
+                line-height: 28px;
+            }
+
+            .${extensionId}-extension .inline-banner__description {
+                margin-bottom: 8px;
+                font-size: 16px;
+                line-height: 22px;
+            }
+
+            .${extensionId}-extension .inline-banner__terms {
+                font-size: 12px;
+                line-height: 18px;
+            }
+
+            .${extensionId}-extension .inline-banner__cta {
+                width: 100%;
+                padding-top: 16px;
+            }
+
+            .${extensionId}-extension .inline-banner__button {
+                width: 100%;
+                padding: 15px 18px;
+                font-size: 18px;
+                box-sizing: border-box;
+            }
+        }
+    `
 };
 
-const CONTEXTUAL = {
-    DEVICES_LIST: (function () {
-        var ext = typeof extension !== 'undefined' ? extension : {};
-        if (!ext.devicesList) { return []; }
-        try { return JSON.parse(ext.devicesList); } catch (e) { return []; }
-    })(),
-    applyChanges: function (device) {
-        try {
-            if (!device || !device.id) { return; }
+var CONTEXTUALOBJ = {
+  devices: [],
+  observer: null,
+  matchedDevice: null,
+  displayTrackedDeviceId: null,
 
-            CONTEXTUAL.buildCSS();
-            CONTEXTUAL.buildTemplate();
+  normalise: function (value) {
+    return String(value || '').trim().toLowerCase();
+  },
 
-            const bannerInlineContainer = document.querySelector('#contextual');
-
-            if (!bannerInlineContainer) {
-                console.error('Contextual Message: Banner container not found after template build.');
-                return;
-            }
-
-            const mobileImg = bannerInlineContainer.querySelector('.inline-banner img.mobile');
-            if (mobileImg) {
-                mobileImg.src = device.image_mobile;
-                mobileImg.alt = device.title;
-            }
-
-            const imageCtaLink = bannerInlineContainer.querySelector('.inline-banner__image_cta a');
-            if (imageCtaLink) {
-                imageCtaLink.href = device.cta_link;
-                imageCtaLink.style.backgroundImage = 'url(' + device.image + ')';
-                imageCtaLink.addEventListener('click', function () {
-                    CONTEXTUAL.tracking('click image ' + device.id);
-                    window.optimizely = window.optimizely || [];
-                    window.optimizely.push({ type: 'event', eventName: 'contextual_messaging' });
-                });
-            }
-
-            const titleEl = bannerInlineContainer.querySelector('.inline-banner__title');
-            if (titleEl) { titleEl.innerHTML = device.title; }
-
-            const descEl = bannerInlineContainer.querySelector('.inline-banner__desc');
-            if (descEl) { descEl.innerHTML = device.description; }
-
-            const tandcEl = bannerInlineContainer.querySelector('.inline-banner__tandc');
-            if (tandcEl) { tandcEl.innerHTML = device.tandc; }
-
-            const ctaButton = bannerInlineContainer.querySelector('.inline-banner__button');
-            if (ctaButton) {
-                ctaButton.href = device.cta_link;
-                ctaButton.innerText = device.cta_text;
-                ctaButton.addEventListener('click', function () {
-                    CONTEXTUAL.tracking('click cta ' + device.id);
-                    window.optimizely = window.optimizely || [];
-                    window.optimizely.push({ type: 'event', eventName: 'contextual_messaging' });
-                });
-            }
-
-            CONTEXTUAL.tracking('display ' + device.id);
-        } catch (error) {
-            console.error('Error in applyChanges function:', error);
-            CONTEXTUAL.tracking('error applyChanges');
-        }
-    },
-    tracking: function (value) {
-        try {
-            croWD.utils.launchTracking(CONTEXTUAL_CONSTANTS.EXPERIMENT_ID, value, 'personalisation', '');
-        } catch (error) {
-            console.error('Error in tracking function:', error);
-        }
-    },
-    buildCSS: function () {
-        try {
-            const styleSheet = document.createElement('style');
-            styleSheet.setAttribute('type', 'text/css');
-            styleSheet.setAttribute('id', 'contextual-styles');
-
-            // Remove any existing stylesheet with the same ID
-            const existingStyle = document.getElementById('contextual-styles');
-            if (existingStyle) {
-                existingStyle.remove();
-            }
-
-            // Check for CSP nonce to avoid violations
-            const existingStyleNonce = document.querySelector('style[nonce]');
-            const existingScript = document.querySelector('script[nonce]');
-            const nonce = (existingStyleNonce && existingStyleNonce.nonce) || (existingScript && existingScript.nonce) || (existingStyleNonce && existingStyleNonce.getAttribute('nonce')) || (existingScript && existingScript.getAttribute('nonce'));
-            if (nonce) {
-                styleSheet.setAttribute('nonce', nonce);
-            }
-
-            // Append stylesheet to head
-            const css = `#contextual{display:block;padding:48px 0 32px;background-color:#f4f4f4}#contextual .inline-banner{display:flex;align-items:stretch;width:100%;min-height:140px;background:#fff;border-radius:16px;padding:0;max-width:1180px;margin:auto;border:1px solid #bebebe;text-decoration:none}#contextual .inline-banner__image{flex:0 0 280px;display:flex;align-items:center;justify-content:center;background:#f3f3f3;border-radius:16px 0 0 16px}#contextual .inline-banner__image .inline-banner__image_cta{position:relative;width:280px;height:100%;overflow:hidden;border-radius:16px 0 0 16px;display:flex}#contextual .inline-banner__image .inline-banner__image_cta a{display:flex;align-items:center;background-repeat:no-repeat;background-position:center center;background-size:cover;width:100%;height:100%}#contextual .inline-banner__image img.mobile{display:none}#contextual .inline-banner__container{padding:32px;display:flex;color:#333;text-decoration:none;width:100%}#contextual .inline-banner__content{flex:1 1 0;display:flex;flex-direction:column;justify-content:center;padding-right:32px}#contextual .inline-banner__title{font-family:"VodafoneRegularBold",Arial,sans-serif;font-size:28px;line-height:34px;margin-bottom:8px}#contextual .inline-banner__desc{font-family:"VodafoneRegular",Arial,sans-serif;font-size:18px;font-style:normal;font-weight:400;line-height:24px;margin-bottom:8px}#contextual .inline-banner__tandc{font-size:12px;line-height:16px;margin-bottom:0}#contextual .inline-banner__cta{display:flex;align-items:center;justify-content:center}#contextual .inline-banner__button{display:inline-block;background:#e60000;color:#fff;font-family:"Vodafone",Arial,sans-serif;font-size:20px;font-style:normal;font-weight:400;line-height:24px;border:none;border-radius:6px;padding:15px 20px;text-align:center;text-decoration:none;box-shadow:0 1px 2px rgba(0,0,0,.04)}#contextual .inline-banner__button:hover{background:#b80000}@media(max-width:1172px){#contextual .inline-banner__image .inline-banner__image_cta a{display:flex;align-items:center}}@media(max-width:768px){#contextual{display:block;margin:auto;padding:32px 0;min-width:235px}#contextual .inline-banner{flex-direction:column;min-height:unset;margin:0;border:unset}#contextual .inline-banner__image{flex:0 0 180px;border-radius:16px 16px 0 0;width:100%;margin:0;padding:0;position:relative;overflow:hidden}#contextual .inline-banner__image .inline-banner__image_cta{width:100%;border-radius:16px 16px 0 0}#contextual .inline-banner__image .inline-banner__image_cta a{position:initial}#contextual .inline-banner__image img.mobile{display:block;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);height:100%;width:auto;max-width:none}#contextual .inline-banner__container{border:1px solid #bebebe;border-radius:16px;border-top:none;border-top-left-radius:0;border-top-right-radius:0;flex-direction:column;padding:24px 16px}#contextual .inline-banner__content{text-align:center;padding-right:0}#contextual .inline-banner__title{font-size:1.25rem;margin-bottom:8px;line-height:28px}#contextual .inline-banner__desc{font-size:1rem;line-height:22px;margin-bottom:8px}#contextual .inline-banner__tandc{font-size:12px;line-height:18px;margin-bottom:0}#contextual .inline-banner__cta{padding:16px 0 0 0;justify-content:center;width:unset}#contextual .inline-banner__button{width:100%;font-size:18px;padding:15px 18px}}`;
-            styleSheet.appendChild(document.createTextNode(css));
-            document.head.appendChild(styleSheet);
-        } catch (error) {
-            console.error('Error in buildCSS function:', error); CONTEXTUAL.tracking('error buildCSS');
-        }
-    },
-    buildTemplate: function () {
-        try {
-            const mainElement = document.querySelector('vha-previously-viewed');
-            if (!mainElement) {
-                console.error('Contextual Message: Target element not found:', 'vha-previously-viewed');
-                return;
-            }
-
-            let template = document.createElement('div');
-            template.innerHTML = `<div class="inline-banner">
-                        <div class="inline-banner__image">
-                            <div class="inline-banner__image_cta">
-                                <a href="">
-                                    <img src="" class="mobile" alt="" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="inline-banner__container">
-                            <div class="inline-banner__content">
-                                <div class="inline-banner__title"></div>
-                                <div class="inline-banner__desc"></div>
-                                <div class="inline-banner__tandc"></div>
-                            </div>
-                            <div class="inline-banner__cta">
-                                <a href="" class="inline-banner__button"></a>
-                            </div>
-                        </div>
-                    </div>`;
-            template.id = 'contextual';
-
-            // Remove any existing template with the same ID
-            const existingTemplate = document.getElementById('contextual');
-            if (existingTemplate) {
-                existingTemplate.remove();
-            }
-            switch (CONTEXTUAL_CONSTANTS.TEMPLATE_INJECT_TYPE) {
-                case 'replace':
-                    mainElement.insertAdjacentHTML('afterend', template.outerHTML);
-                    mainElement.remove(); // Remove the original element after replacing
-                    break;
-                case 'before':
-                    mainElement.insertAdjacentHTML('beforebegin', template.outerHTML);
-                    break;
-                case 'prepend':
-                    mainElement.insertBefore(template, mainElement.firstChild);
-                    break;
-                case 'after':
-                    mainElement.insertAdjacentHTML('afterend', template.outerHTML);
-                    break;
-                default:
-                    //case 'append'
-                    mainElement.appendChild(template);
-                    break;
-            }
-        } catch (error) {
-            console.error('Error in buildTemplate function:', error); CONTEXTUAL.tracking('error buildTemplate');
-        }
+  parseDevicesList: function () {
+    var rawDevices = CONTEXTUALCONSTANTS.DEVICES_LIST;
+    croWD.debug('[contextual] rawDevices:', rawDevices);
+    if (!rawDevices) {
+      croWD.debug('[contextual] devicesList is empty');
+      return [];
     }
+
+    if (Array.isArray(rawDevices)) {
+      return rawDevices;
+    }
+
+    try {
+      var parsedDevices = JSON.parse(rawDevices);
+      croWD.debug('[contextual] parsedDevices:', parsedDevices);
+      if (!Array.isArray(parsedDevices)) {
+        console.error('[contextual] devicesList is not an array:', parsedDevices);
+        return [];
+      }
+      return parsedDevices;
+    } catch (error) {
+      console.error('[contextual] Failed to parse devicesList:', error, rawDevices);
+      return [];
+    }
+  },
+
+  getViewedProducts: function () {
+    var rawViewedProducts;
+
+    try {
+      rawViewedProducts = localStorage.getItem(CONTEXTUALCONSTANTS.STORAGE_KEY);
+    } catch (error) {
+      console.error('[contextual] Unable to access localStorage:', error);
+      return [];
+    }
+
+    if (!rawViewedProducts) {
+      croWD.debug('[contextual] viewedProducts does not exist');
+      return [];
+    }
+
+    try {
+      var viewedProducts = JSON.parse(rawViewedProducts);
+
+      if (Array.isArray(viewedProducts)) {
+        return viewedProducts;
+      }
+
+      if (viewedProducts && Array.isArray(viewedProducts.products)) {
+        return viewedProducts.products;
+      }
+
+      if (viewedProducts && Array.isArray(viewedProducts.viewedProducts)) {
+        return viewedProducts.viewedProducts;
+      }
+
+      croWD.debug('[contextual] viewedProducts is not an array:', viewedProducts);
+      return [];
+    } catch (error) {
+      console.error('[contextual] Failed to parse viewedProducts:', error, rawViewedProducts);
+      return [];
+    }
+  },
+
+  getViewedProductId: function (product) {
+    if (typeof product === 'string' || typeof product === 'number') {
+      return String(product);
+    }
+
+    if (!product || typeof product !== 'object') {
+      return '';
+    }
+    return (
+      product.id ||
+      product.productId ||
+      product.productID ||
+      product.deviceId ||
+      product.deviceID ||
+      product.sku ||
+      product.code ||
+      product.productCode ||
+      ''
+    );
+  },
+
+  getMatchingDevice: function () {
+    var viewedProducts =CONTEXTUALOBJ.getViewedProducts();
+
+    croWD.debug('[contextual] viewedProducts:', viewedProducts);
+
+    if (
+      !Array.isArray(viewedProducts) ||
+      viewedProducts.length === 0
+    ) {
+      croWD.debug('[contextual] viewedProducts is empty. No banner.');
+      return null;
+    }
+
+    var viewedProductIds = viewedProducts
+      .map(function (product) {
+        return CONTEXTUALOBJ.normalise(
+          CONTEXTUALOBJ.getViewedProductId(
+            product
+          )
+        );
+      })
+      .filter(function (productId) {
+        return Boolean(productId);
+      });
+
+    croWD.debug('[contextual] viewed product IDs:', viewedProductIds);
+
+    var matchedDevice = CONTEXTUALOBJ.devices.find(
+      function (configuredDevice) {
+        if ( !configuredDevice || !configuredDevice.id ) {
+          return false;
+        }
+
+        var configuredDeviceId =CONTEXTUALOBJ.normalise( configuredDevice.id);
+        return (
+          viewedProductIds.indexOf( configuredDeviceId) !== -1
+        );
+      }
+    );
+
+    if (!matchedDevice) {
+      croWD.debug('[contextual] No configured device matched viewedProducts');
+
+      croWD.debug('[contextual] Configured device IDs:', CONTEXTUALOBJ.devices.map(
+        function (device) {
+          return device.id;
+        }
+      )
+      );
+
+      return null;
+    }
+
+    croWD.debug('[contextual] Matched device:', matchedDevice);
+
+    return matchedDevice;
+  },
+
+  buildCSS: function () {
+    var styleId = CONTEXTUALCONSTANTS.EXPERIMENT_ID + '-style';
+
+    if (document.getElementById(styleId)) {
+      return;
+    }
+
+    var style = document.createElement('style');
+
+    style.id = styleId;
+    style.type = 'text/css';
+
+
+    var nonceElement = document.querySelector('style[nonce], script[nonce]');
+
+    if (nonceElement) {
+      var nonce = nonceElement.nonce || nonceElement.getAttribute('nonce');
+      if (nonce) {
+        style.setAttribute('nonce', nonce);
+      }
+    }
+
+    style.textContent = CONTEXTUALCONSTANTS.CUSTOM_CSS;
+    document.head.appendChild(style);
+    croWD.debug('[contextual] CSS added');
+  },
+  buildTemplate: function (device) {
+    var banner = document.createElement('section');
+
+    banner.id = CONTEXTUALCONSTANTS.BANNER_ID;
+    banner.className = CONTEXTUALCONSTANTS.EXPERIMENT_ID + '-extension';
+
+    banner.innerHTML = `
+      <div class="inline-banner">
+        <div class="inline-banner__image">
+          <div class="inline-banner__image-cta">
+            <a
+              class="inline-banner__image-link"
+              href="${device.cta_link || '#'}"
+              aria-label="${device.title || 'View offer'}"
+              style="background-image: url('${device.image || ''}')"
+            ></a>
+            <img
+              class="inline-banner__mobile-image"
+              src="${device.image_mobile || ''}"
+              alt="${device.title || ''}"
+            />
+          </div>
+        </div>
+
+        <div class="inline-banner__container">
+          <div class="inline-banner__content">
+            <div class="inline-banner__title">
+              ${device.title || ''}
+            </div>
+
+            <div class="inline-banner__description">
+              ${device.description || ''}
+            </div>
+
+            <div class="inline-banner__terms">
+              ${device.tandc || ''}
+            </div>
+          </div>
+
+          <div class="inline-banner__cta">
+            <a
+              class="inline-banner__button"
+              href="${device.cta_link || '#'}"
+              aria-label="${device.cta_text || 'Shop now'}"
+            >
+              ${device.cta_text || 'Shop now'}
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+
+    var imageLink = banner.querySelector('.inline-banner__image-link');
+    var ctaButton = banner.querySelector('.inline-banner__button');
+
+    if (imageLink) {
+      imageLink.addEventListener('click', function () {
+        CONTEXTUALOBJ.tracking('click image ' + device.id);
+        CONTEXTUALOBJ.pushPromotionDataLayer('select_promotion', device, 'image');
+      });
+    }
+
+    if (ctaButton) {
+      ctaButton.addEventListener('click', function () {
+        CONTEXTUALOBJ.tracking('click cta ' + device.id);
+        CONTEXTUALOBJ.pushPromotionDataLayer('select_promotion', device, 'cta');
+      });
+    }
+
+    return banner;
+  },
+
+  injectBanner: function (device) {
+    var existingBanner = document.getElementById(CONTEXTUALCONSTANTS.BANNER_ID);
+
+    if (existingBanner) {
+      existingBanner.replaceWith(CONTEXTUALOBJ.buildTemplate(device));
+      croWD.debug('[contextual] Existing banner replaced:', device.id);
+      return true;
+    }
+
+    var targetElement = document.querySelector(CONTEXTUALCONSTANTS.TARGET_SELECTOR);
+
+    if (!targetElement) {
+      croWD.debug('[contextual] Target not available yet:', CONTEXTUALCONSTANTS.TARGET_SELECTOR);
+      return false;
+    }
+
+    var banner = CONTEXTUALOBJ.buildTemplate(device);
+    targetElement.replaceWith(banner);
+
+    croWD.debug('[contextual] Replaced previously viewed component:', device.id);
+
+    if (
+      CONTEXTUALOBJ.displayTrackedDeviceId !== device.id) {
+      CONTEXTUALOBJ.displayTrackedDeviceId = device.id;
+
+      CONTEXTUALOBJ.tracking('display ' + device.id);
+      CONTEXTUALOBJ.pushPromotionDataLayer('view_promotion', device, 'display');
+    }
+
+    return true;
+  },
+
+  render: function () {
+    croWD.debug('[contextual] render() called');
+
+    var targetElement = document.querySelector(CONTEXTUALCONSTANTS.TARGET_SELECTOR);
+    if (!targetElement) {
+      croWD.debug('[contextual] Target not present yet. Skipping render.');
+      return;
+    }
+
+    var matchedDevice = CONTEXTUALOBJ.getMatchingDevice();
+    if (!matchedDevice) {
+      return;
+    }
+
+    CONTEXTUALOBJ.matchedDevice = matchedDevice;
+
+    CONTEXTUALOBJ.buildCSS();
+
+    CONTEXTUALOBJ.injectBanner(matchedDevice);
+  },
+
+  pushPromotionDataLayer: function (eventName, device, elementType) {
+    try {
+      if (typeof window === 'undefined') {
+        return;
+      }
+
+      if (!window.dataLayer) {
+        window.dataLayer = [];
+      }
+
+      var promotionId = device && device.id ? device.id : (CONTEXTUALCONSTANTS.EXPERIMENT_ID || 'DCP18198contextual');
+
+      window.dataLayer.push({
+        event: eventName,
+        event_params: {
+          promotion_name: 'Apple-NPI',
+          promotion_id: promotionId,
+          logged_in: false,
+          creative_slot: 'contextual-messaging'
+        }
+      });
+
+      croWD.debug('[contextual] dataLayer push:', {
+        event: eventName,
+        promotionName: 'Apple-NPI',
+        promotionId: promotionId,
+        elementType: elementType,
+        creative_slot: 'contextual-messaging'
+      });
+    } catch (error) {
+      console.error('[contextual] dataLayer push error:', error);
+    }
+  },
+
+  tracking: function (value) {
+    try {
+      if (typeof croWD !== 'undefined' && croWD.utils && typeof croWD.utils.launchTracking === 'function') {
+        croWD.utils.launchTracking(CONTEXTUALCONSTANTS.EXPERIMENT_ID, value, 'personalisation', '');
+
+        return;
+      }
+
+      croWD.debug('[contextual] Tracking unavailable:', value);
+    } catch (error) {
+      console.error('[contextual] Tracking error:', error);
+    }
+  },
+
+  init: function () {
+    CONTEXTUALOBJ.devices = CONTEXTUALOBJ.parseDevicesList();
+
+    croWD.debug('[contextual] Initialising:',
+      {
+        experimentId: CONTEXTUALCONSTANTS.EXPERIMENT_ID,
+        subscriber: CONTEXTUALCONSTANTS.TRIGGER_NAME,
+        storageKey: CONTEXTUALCONSTANTS.STORAGE_KEY,
+        targetSelector: CONTEXTUALCONSTANTS.TARGET_SELECTOR,
+        configuredDevices: CONTEXTUALOBJ.devices
+      }
+    );
+
+    if (!CONTEXTUALOBJ.devices.length) {
+      croWD.debug('[contextual] No valid configured devices');
+
+      return;
+    }
+
+    CONTEXTUALOBJ.render();
+
+    if (CONTEXTUALCONSTANTS.TRIGGER_NAME) {
+      croWD.hotbed.listen(CONTEXTUALCONSTANTS.TRIGGER_NAME, function (
+        observable,
+        eventType,
+        data
+      ) {
+        croWD.debug(
+          '[contextual] Subscriber event received:',
+          {
+            subscriber:
+              CONTEXTUALCONSTANTS.TRIGGER_NAME,
+
+            observable: observable,
+            eventType: eventType,
+            data: data
+          }
+        );
+
+        CONTEXTUALOBJ.render();
+      }
+      );
+
+      croWD.debug('[contextual] Listener registered:', CONTEXTUALCONSTANTS.TRIGGER_NAME);
+    } else {
+      croWD.debug('[contextual] No subscriber configured');
+    }
+  },
+
+  destroy: function () {
+    if (CONTEXTUALOBJ.observer) {
+      CONTEXTUALOBJ.observer.disconnect();
+
+      CONTEXTUALOBJ.observer = null;
+    }
+  }
 };
 
-var crowdMaxContextual = 10;
-var crowdFinderContextual = setInterval(function () {
-    crowdMaxContextual--;
+window.CONTEXTUALOBJ = CONTEXTUALOBJ;
 
-    if (typeof croWD !== 'undefined') {
-        clearInterval(crowdFinderContextual);
-        var subscriber = typeof extension !== 'undefined' && extension.subscriber;
-        if (subscriber) {
-            croWD.hotbed.listen(subscriber, function (observable, eventType, device) {
-                CONTEXTUAL.applyChanges(device);
-            });
-        } else {
-            // fallback for local testing where croWD exists but no subscriber is configured
-            CONTEXTUAL.applyChanges(null);
-        }
-        croWD.cmdr(CONTEXTUAL_CONSTANTS.EXPERIMENT_ID, 'inject');
+var crowdMaxCallCounter = 15;
+var crowdFinderCall = setInterval(
+  function () {
+    crowdMaxCallCounter--;
+
+    if (typeof croWD !== 'undefined' && croWD.hotbed && typeof croWD.hotbed.listen === 'function') {
+      clearInterval(crowdFinderCall);
+      croWD.debug('[contextual] croWD found');
+      CONTEXTUALOBJ.init();
+      if (typeof croWD.cmdr === 'function') {
+        croWD.cmdr(
+          CONTEXTUALCONSTANTS.EXPERIMENT_ID,
+          'inject'
+        );
+        croWD.debug('[contextual] Inject command sent:', CONTEXTUALCONSTANTS.EXPERIMENT_ID);
+      }
+      return;
     }
 
-    if (crowdMaxContextual <= 0) {
-        clearInterval(crowdFinderContextual);
+    if (crowdMaxCallCounter <= 0) {
+      clearInterval(crowdFinderCall);
+
+      croWD.debug('[contextual] Finder stopped: maximum retries reached');
     }
-}, 1000);
+  },
+  50
+);

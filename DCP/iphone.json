@@ -1,47 +1,5 @@
 [
 	{
-		"id": "IPH_17_PRO",
-		"title": "EOFY deals on iPhone 17 Pro.",
-		"description": "Take another look and save with our EOFY offers.",
-		"tandc": "Ends 30/06. T&C apply.",
-		"image": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-inline-desktop.webp",
-		"image_mobile": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-inline-mobile.webp",
-		"cta_text": "Shop now",
-		"cta_link": "https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro"
-	},
-	{
-		"id": "IPH_17_PRO_MAX",
-		"title": "EOFY deals on iPhone 17 Pro Max.",
-		"description": "Take another look and save with our EOFY offers.",
-		"tandc": "Ends 30/06. T&C apply.",
-		"image": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-max-inline-desktop.webp",
-		"image_mobile": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-max-inline-mobile.webp",
-		"cta_text": "Shop now",
-		"cta_link": "https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro-max"
-	}
-],
-[
-	{
-		"id": "IPH_17_PRO",
-		"title": "Still thinking about the Apple Watch Series 12?",
-		"description": "Pre-order now and enjoy our latest offers.",
-		"tandc": "T&C here",
-		"image": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-inline-desktop.webp",
-		"image_mobile": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-inline-mobile.webp",
-		"cta_text": "Pre-order now",
-		"cta_link": "https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro"
-	},
-	{
-		"id": "IPH_17_PRO_MAX",
-		"title": "Still thinking about the Apple Watch Series 12?",
-		"description": "Pre-order now and enjoy our latest offers.",
-		"tandc": "T&C here",
-		"image": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-max-inline-desktop.webp",
-		"image_mobile": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-17-pro-max-inline-mobile.webp",
-		"cta_text": "Pre-order now",
-		"cta_link": "https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-17-pro-max"
-	},
-	{
 		"id": "IPH_18_PRO",
 		"title": "Still thinking about the iPhone 18 Pro?",
 		"description": "Pre-order now and enjoy our latest offers.",
@@ -62,14 +20,14 @@
 		"cta_link": "https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-18-pro-max"
 	},
 	{
-		"id": "IPH_18_DUO",
+		"id": "IPH_DUO",
 		"title": "Still thinking about the iPhone 18 Duo?",
 		"description": "Pre-order now and enjoy our latest offers.",
 		"tandc": "T&C here",
 		"image": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-18-duo-inline-desktop.webp",
 		"image_mobile": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-iphone-18-duo-inline-mobile.webp",
 		"cta_text": "Pre-order now",
-		"cta_link": "https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-18-duo"
+		"cta_link": "https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-duo"
 	},
 	{
 		"id": "AW_SERIES_12",
@@ -79,26 +37,297 @@
 		"image": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-apple-watch-series-12-inline-desktop.webp",
 		"image_mobile": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-apple-watch-series-12-inline-mobile.webp",
 		"cta_text": "Pre-order now",
-		"cta_link": "https://www.vodafone.com.au/mobile/mobile-phones/apple/apple-watch-series-12"
+		"cta_link": "https://www.vodafone.com.au/accessories/smart-watches/apple/apple-watch-series-12"
 	},
 	{
-		"id": "AW_ULTRA_4",
+		"id": "AW_SERIES_ULTRA4",
 		"title": "Still thinking about the Apple Watch Ultra 4?",
 		"description": "Pre-order now and enjoy our latest offers.",
 		"tandc": "T&C here",
 		"image": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-apple-watch-ultra-4-inline-desktop.webp",
 		"image_mobile": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-apple-watch-ultra-4-inline-mobile.webp",
 		"cta_text": "Pre-order now",
-		"cta_link": "https://www.vodafone.com.au/mobile/mobile-phones/apple/apple-watch-ultra-4"
-	},
-	{
-		"id": "AP_5",
-		"title": "Still thinking about the AirPods 5?",
-		"description": "Pre-order now and enjoy our latest offers.",
-		"tandc": "T&C here",
-		"image": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-airpods-5-inline-desktop.webp",
-		"image_mobile": "https://www.vodafone.com.au/images/merch/events/eofy-2026/generic/1441-eofy-airpods-5-inline-mobile.webp",
-		"cta_text": "Pre-order now",
-		"cta_link": "https://www.vodafone.com.au/mobile/mobile-phones/apple/airpods-5"
+		"cta_link": "https://www.vodafone.com.au/accessories/smart-watches/apple/apple-watch-ultra-4"
 	}
 ]
+
+
+{
+	"@context": "https://schema.org",
+	"@type": "ProductGroup",
+	"@id": "https://www.tpg.com.au/mobile#mobile-plans",
+	"name": "TPG Mobile SIM Only Plans",
+	"description": "Prepaid SIM only mobile plans with 4G and 5G access, unlimited standard national calls and texts, international inclusions and no lock-in contract.",
+	"url": "https://www.tpg.com.au/mobile",
+	"brand": {
+		"@type": "Brand",
+		"name": "TPG"
+	},
+	"provider": {
+		"@type": "Organization",
+		"name": "TPG Telecom Limited",
+		"url": "https://www.tpg.com.au"
+	},
+	"variesBy": [
+		"dataAllowance"
+	],
+	"hasVariant": [
+		{
+			"@type": "Product",
+			"@id": "https://www.tpg.com.au/mobile#small-plan",
+			"name": "TPG Small Mobile Plan",
+			"description": "30GB mobile plan with unlimited standard national calls and texts and 100 international minutes and SMS.",
+			"additionalProperty": [
+				{
+					"@type": "PropertyValue",
+					"name": "Data Allowance",
+					"value": "30GB"
+				},
+				{
+					"@type": "PropertyValue",
+					"name": "Network",
+					"value": "4G"
+				},
+				{
+					"@type": "PropertyValue",
+					"name": "Maximum Speed",
+					"value": "150Mbps"
+				}
+			],
+			"offers": {
+				"@type": "Offer",
+				"price": "15",
+				"priceCurrency": "AUD",
+				"availability": "https://schema.org/InStock",
+				"url": "https://www.tpg.com.au/mobile"
+			}
+		},
+		{
+			"@type": "Product",
+			"@id": "https://www.tpg.com.au/mobile#medium-plan",
+			"name": "TPG Medium Mobile Plan",
+			"description": "50GB mobile plan with unlimited standard national calls and texts and unlimited international minutes and SMS.",
+			"additionalProperty": [
+				{
+					"@type": "PropertyValue",
+					"name": "Data Allowance",
+					"value": "50GB"
+				},
+				{
+					"@type": "PropertyValue",
+					"name": "Network",
+					"value": "5G"
+				},
+				{
+					"@type": "PropertyValue",
+					"name": "Maximum Speed",
+					"value": "150Mbps"
+				}
+			],
+			"offers": {
+				"@type": "Offer",
+				"price": "17.50",
+				"priceCurrency": "AUD",
+				"availability": "https://schema.org/InStock",
+				"url": "https://www.tpg.com.au/mobile"
+			}
+		},
+		{
+			"@type": "Product",
+			"@id": "https://www.tpg.com.au/mobile#large-plan",
+			"name": "TPG Large Mobile Plan",
+			"description": "100GB mobile plan with unlimited standard national calls and texts and unlimited international minutes and SMS.",
+			"additionalProperty": [
+				{
+					"@type": "PropertyValue",
+					"name": "Data Allowance",
+					"value": "100GB"
+				},
+				{
+					"@type": "PropertyValue",
+					"name": "Network",
+					"value": "5G"
+				},
+				{
+					"@type": "PropertyValue",
+					"name": "Maximum Speed",
+					"value": "250Mbps"
+				}
+			],
+			"offers": {
+				"@type": "Offer",
+				"price": "22.50",
+				"priceCurrency": "AUD",
+				"availability": "https://schema.org/InStock",
+				"url": "https://www.tpg.com.au/mobile"
+			}
+		}
+	]
+}
+
+
+{
+	"@context": "https://schema.org",
+	"@type": "ProductGroup",
+	"@id": "https://www.iinet.net.au/sim-only-plans#plans",
+	"productGroupID": "IINET-MOBILE-PLANS",
+	"name": "iiNet SIM Only Mobile Plans",
+	"description": "SIM only mobile plans with no lock-in contract, included national calls and texts, international inclusions and monthly auto-renewal.",
+	"url": "https://www.iinet.net.au/sim-only-plans",
+	"brand": {
+		"@type": "Brand",
+		"name": "iiNet"
+	},
+	"category": "Mobile Service",
+	"provider": {
+		"@type": "Organization",
+		"name": "iiNet",
+		"url": "https://www.iinet.net.au"
+	},
+	"areaServed": {
+		"@type": "Country",
+		"name": "Australia"
+	},
+	"variesBy": [
+		"Data Allowance",
+		"Network Type",
+		"Maximum Speed"
+	],
+	"hasVariant": [
+		{
+			"@type": "Product",
+			"@id": "https://www.iinet.net.au/sim-only-plans#small-plan",
+			"productGroupID": "IINET-MOBILE-PLANS",
+			"name": "iiNet Small Mobile Plan",
+			"sku": "IINET-MOBILE-SMALL",
+			"category": "Mobile Service",
+			"isVariantOf": {
+				"@id": "https://www.iinet.net.au/sim-only-plans#plans"
+			},
+			"additionalProperty": [
+				{
+					"@type": "PropertyValue",
+					"name": "Data Allowance",
+					"value": "30GB"
+				},
+				{
+					"@type": "PropertyValue",
+					"name": "Network Type",
+					"value": "4G"
+				},
+				{
+					"@type": "PropertyValue",
+					"name": "Maximum Speed",
+					"value": "150Mbps"
+				},
+				{
+					"@type": "PropertyValue",
+					"name": "National Calls and Texts",
+					"value": "Unlimited"
+				},
+				{
+					"@type": "PropertyValue",
+					"name": "International Inclusions",
+					"value": "100 standard international minutes and SMS to 31 destinations"
+				}
+			],
+			"offers": {
+				"@type": "Offer",
+				"url": "https://www.iinet.net.au/sim-only-plans",
+				"priceCurrency": "AUD",
+				"price": "15.00",
+				"availability": "https://schema.org/InStock"
+			}
+		},
+		{
+			"@type": "Product",
+			"@id": "https://www.iinet.net.au/sim-only-plans#medium-plan",
+			"productGroupID": "IINET-MOBILE-PLANS",
+			"name": "iiNet Medium Mobile Plan",
+			"sku": "IINET-MOBILE-MEDIUM",
+			"category": "Mobile Service",
+			"isVariantOf": {
+				"@id": "https://www.iinet.net.au/sim-only-plans#plans"
+			},
+			"additionalProperty": [
+				{
+					"@type": "PropertyValue",
+					"name": "Data Allowance",
+					"value": "50GB"
+				},
+				{
+					"@type": "PropertyValue",
+					"name": "Network Type",
+					"value": "5G"
+				},
+				{
+					"@type": "PropertyValue",
+					"name": "Maximum Speed",
+					"value": "150Mbps"
+				},
+				{
+					"@type": "PropertyValue",
+					"name": "National Calls and Texts",
+					"value": "Unlimited"
+				},
+				{
+					"@type": "PropertyValue",
+					"name": "International Inclusions",
+					"value": "Unlimited standard international minutes and SMS to 31 destinations"
+				}
+			],
+			"offers": {
+				"@type": "Offer",
+				"url": "https://www.iinet.net.au/sim-only-plans",
+				"priceCurrency": "AUD",
+				"price": "17.50",
+				"availability": "https://schema.org/InStock"
+			}
+		},
+		{
+			"@type": "Product",
+			"@id": "https://www.iinet.net.au/sim-only-plans#large-plan",
+			"productGroupID": "IINET-MOBILE-PLANS",
+			"name": "iiNet Large Mobile Plan",
+			"sku": "IINET-MOBILE-LARGE",
+			"category": "Mobile Service",
+			"isVariantOf": {
+				"@id": "https://www.iinet.net.au/sim-only-plans#plans"
+			},
+			"additionalProperty": [
+				{
+					"@type": "PropertyValue",
+					"name": "Data Allowance",
+					"value": "100GB"
+				},
+				{
+					"@type": "PropertyValue",
+					"name": "Network Type",
+					"value": "5G"
+				},
+				{
+					"@type": "PropertyValue",
+					"name": "Maximum Speed",
+					"value": "250Mbps"
+				},
+				{
+					"@type": "PropertyValue",
+					"name": "National Calls and Texts",
+					"value": "Unlimited"
+				},
+				{
+					"@type": "PropertyValue",
+					"name": "International Inclusions",
+					"value": "Unlimited standard international minutes and SMS to 31 destinations"
+				}
+			],
+			"offers": {
+				"@type": "Offer",
+				"url": "https://www.iinet.net.au/sim-only-plans",
+				"priceCurrency": "AUD",
+				"price": "22.50",
+				"availability": "https://schema.org/InStock"
+			}
+		}
+	]
+}

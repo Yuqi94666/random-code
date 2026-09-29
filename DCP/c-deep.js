@@ -340,25 +340,18 @@ var CONTEXTUALOBJ = {
   },
 
   getMatchingDevice: function () {
-    var viewedProducts =CONTEXTUALOBJ.getViewedProducts();
+    var viewedProducts = CONTEXTUALOBJ.getViewedProducts();
 
     croWD.debug('[contextual] viewedProducts:', viewedProducts);
 
-    if (
-      !Array.isArray(viewedProducts) ||
-      viewedProducts.length === 0
-    ) {
+    if (!Array.isArray(viewedProducts) || viewedProducts.length === 0) {
       croWD.debug('[contextual] viewedProducts is empty. No banner.');
       return null;
     }
 
     var viewedProductIds = viewedProducts
       .map(function (product) {
-        return CONTEXTUALOBJ.normalise(
-          CONTEXTUALOBJ.getViewedProductId(
-            product
-          )
-        );
+        return CONTEXTUALOBJ.normalise(CONTEXTUALOBJ.getViewedProductId(product));
       })
       .filter(function (productId) {
         return Boolean(productId);
@@ -366,28 +359,41 @@ var CONTEXTUALOBJ = {
 
     croWD.debug('[contextual] viewed product IDs:', viewedProductIds);
 
-    var matchedDevice = CONTEXTUALOBJ.devices.find(
-      function (configuredDevice) {
-        if ( !configuredDevice || !configuredDevice.id ) {
+    if (!viewedProductIds.length) {
+      croWD.debug('[contextual] No valid viewed product IDs found.');
+      return null;
+    }
+
+    var mostRecentViewedId = viewedProductIds[0];
+    croWD.debug('[contextual] Most recent viewed product ID:', mostRecentViewedId);
+
+    var matchedDevice = CONTEXTUALOBJ.devices.find(function (configuredDevice) {
+      if (!configuredDevice || !configuredDevice.id) {
+        return false;
+      }
+
+      return CONTEXTUALOBJ.normalise(configuredDevice.id) === mostRecentViewedId;
+    });
+
+    if (!matchedDevice) {
+      croWD.debug('[contextual] Most recent viewed product was not found in configured devices. Falling back to first matching device.');
+
+      matchedDevice = CONTEXTUALOBJ.devices.find(function (configuredDevice) {
+        if (!configuredDevice || !configuredDevice.id) {
           return false;
         }
 
-        var configuredDeviceId =CONTEXTUALOBJ.normalise( configuredDevice.id);
-        return (
-          viewedProductIds.indexOf( configuredDeviceId) !== -1
-        );
-      }
-    );
+        var configuredDeviceId = CONTEXTUALOBJ.normalise(configuredDevice.id);
+        return viewedProductIds.indexOf(configuredDeviceId) !== -1;
+      });
+    }
 
     if (!matchedDevice) {
       croWD.debug('[contextual] No configured device matched viewedProducts');
 
-      croWD.debug('[contextual] Configured device IDs:', CONTEXTUALOBJ.devices.map(
-        function (device) {
-          return device.id;
-        }
-      )
-      );
+      croWD.debug('[contextual] Configured device IDs:', CONTEXTUALOBJ.devices.map(function (device) {
+        return device.id;
+      }));
 
       return null;
     }

@@ -47,7 +47,7 @@
 	width: 100%
 }
 
-.mega-menu a:hover {
+.mega-menu a:hover, .link-button > .button:hover {
 	color: var(--palette-light-navigationelements-buttons-primary-default, #e60000);
 	text-decoration: underline
 }
