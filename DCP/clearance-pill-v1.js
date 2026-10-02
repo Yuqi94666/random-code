@@ -17,6 +17,7 @@ let pillCONSTANTS = {
 
 	LISTING_SEL_1: '[data-testid="device-listing"] > div',
 	LISTING_SEL_2: '[data-testid="lean-devices"] > div',
+	LISTING_SEL_3: 'div[data-product-id]',
 	NAME_SEL: 'h2 a > div',
 	INJECT_POS_SEL: 'div:has(+ h2)',
 
@@ -49,7 +50,19 @@ let pillCONSTANTS = {
 	}
 	`
 };
-
+// croWD may live on the top window when this runs inside an iframe
+function getCro() {
+	if (typeof croWD !== 'undefined' && croWD.hotbed) return croWD;
+	var wins = [window.top, window.parent];
+	for (var i = 0; i < wins.length; i++) {
+		try {
+			if (wins[i] && wins[i] !== window && wins[i].croWD && wins[i].croWD.hotbed) {
+				return wins[i].croWD;
+			}
+		} catch (e) { /* cross-origin */ }
+	}
+	return null;
+}
 let pillOBJ = {
 	aid: 'Ext-clearance-pill-v1',
 	isPdpInjected: false,
@@ -70,7 +83,7 @@ let pillOBJ = {
 	},
 
 	injectPill: function (targetEl) {
-		//console.log(`[pill] injectPill()`);
+		croWD.debug(`[pill] injectPill()`);
 		if (!targetEl) return;
 		if (targetEl.dataset && targetEl.dataset.pillInjected === 'true') return;
 		if (targetEl.querySelector('.' + extension.id + '-extension')) return;
@@ -96,35 +109,40 @@ let pillOBJ = {
 			case 'append': targetEl.append(pill); break;
 			default: targetEl.insertAdjacentElement('beforebegin', pill);
 		}
-		//console.log(`[pill] injectPill jejected:`, targetEl);
+		croWD.debug(`[pill] injectPill jejected:`, targetEl);
 	},
 
 	render: function (data) {
 		try {
-			//console.log(`[pill] render()`);
+			croWD.debug(`[pill] render()`);
 			if (pillCONSTANTS.TARGET_TYPE === 'isPdp') {
 				if (pillOBJ.isPdpInjected) return;
 				let targetEl = document.querySelector('[data-testid="mobile-phone-title"]');
 				if (!targetEl) return;
 
 				const name = pillOBJ.getName(targetEl);
-        //console.log(`[pill] name:`,name);
-   //console.log(`[pill] in`,data);
+				croWD.debug(`[pill] name:`, name);
+				croWD.debug(`[pill] in`, data);
 				if (!data || typeof data.hasDevice !== 'function' || !data.hasDevice(name)) return;
 
 				pillOBJ.injectPill(targetEl);
 				pillOBJ.isPdpInjected = true;
 
 			} else if (pillCONSTANTS.TARGET_TYPE === 'isListing') {
+				croWD.debug(`[pill] isListing`);
 				let cards = document.querySelectorAll(pillCONSTANTS.LISTING_SEL_1);
+				croWD.debug(`[pill] cards1 found:`, cards);
 				if (!cards.length) cards = document.querySelectorAll(pillCONSTANTS.LISTING_SEL_2);
+				croWD.debug(`[pill] cards2 found:`, cards);
+				if (!cards.length) cards = document.querySelectorAll(pillCONSTANTS.LISTING_SEL_3);
+				croWD.debug(`[pill] cards3 found:`, cards);
 
 				cards.forEach(function (card, i) {
 					const nameEl = card.querySelector(pillCONSTANTS.NAME_SEL);
 					const nameText = pillOBJ.getName(nameEl);
 					const injectPosition = card.querySelector(pillCONSTANTS.INJECT_POS_SEL);
 					const eligible = !!(data && typeof data.hasDevice === 'function' && data.hasDevice(nameText));
-
+					croWD.debug(`[pill] card ${i} nameEl:`, nameEl, `eligible:`, eligible, `injectPosition:`, injectPosition);
 					if (!injectPosition || !eligible) return;
 					pillOBJ.injectPill(injectPosition);
 				});
@@ -136,8 +154,8 @@ let pillOBJ = {
 
 	observe: function () {
 		croWD.hotbed.listen(`${pillCONSTANTS.TRIGGER_NAME}`, function (_, __, data) {
-			//console.log(`[pill] ${pillCONSTANTS.TRIGGER_NAME}`, data);
-			
+			croWD.debug(`[pill] ${pillCONSTANTS.TRIGGER_NAME}`, data);
+
 			pillOBJ.lastData = data;
 			pillOBJ.buildCSS();
 			pillOBJ.render(data);
@@ -152,20 +170,24 @@ let pillOBJ = {
 // ------------------------------
 // Finder structure
 // ------------------------------
-var crowdMaxPillCounter = 15;
+var crowdMaxPillCounter = 200; // 200 x 50ms = 10s
 var crowdFinderPill = setInterval(function () {
 	crowdMaxPillCounter--;
-	if (typeof croWD !== 'undefined' && croWD.hotbed && typeof croWD.hotbed.listen === 'function') {
-		clearInterval(crowdFinderPill);
-		pillOBJ.observe();
+	var cro = getCro();
 
-		if (typeof croWD.cmdr === 'function') {
-			croWD.cmdr(pillOBJ.aid, 'inject');
+	if (cro && typeof cro.hotbed.listen === 'function') {
+		clearInterval(crowdFinderPill);
+		pillOBJ.cro = cro;
+		pillOBJ.observe();
+		if (typeof cro.cmdr === 'function') {
+			cro.cmdr(pillOBJ.aid, 'inject');
 		}
+		return;
 	}
 
 	if (crowdMaxPillCounter <= 0) {
 		clearInterval(crowdFinderPill);
-		console.warn('[pill] finder stopped: max retries reached');
+		console.warn('[pill] finder stopped: max retries reached, using fallback');
+		pillOBJ.fallback();
 	}
 }, 50);
