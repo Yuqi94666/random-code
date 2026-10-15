@@ -1,15 +1,10 @@
-/**
-  * Author: Fabio Toledo
-  * Date: 17/03/2024
-  * Description: A/B Test Quick Links Home Page arrow versus no arrow.'
-  */
 
-var DCP11943 = {
-	aid: 'DCP11943',
+var DCP18662 = {
+	aid: 'DCP18662',
 	tracking: function (event, value) {
 		dataLayer.push({
 			'event': 'optimizely_event',
-			'optimizely_experiment': 'quicklinks-abtest-arrow',
+			'optimizely_experiment': 'prepaid-deals-merch-ab',
 			'optimizely_variant': 'variant',
 			'page_referrer': document.referrer, //optional
 			'page_location': document.location.href, //optional
@@ -149,7 +144,7 @@ var DCP11943 = {
 		let quicklinks = document.querySelector('vha-button-link-group');
 		quicklinks.parentNode.insertBefore(newQuickLinks, quicklinks);
 
-		let style = DCP11943.buildCSS();
+		let style = DCP18662.buildCSS();
 		newQuickLinks.appendChild(style);
 
 		quicklinks.style.display = 'none';
@@ -158,14 +153,14 @@ var DCP11943 = {
 		if (links) {
 			for (const element of links) {
 				element.onclick = function () {
-					DCP11943.tracking('click', element.id);
+					DCP18662.tracking('click', element.id);
 					window.optimizely = window.optimizely || [];
 					window.optimizely.push({
 						type: 'event',
 						eventName: element.id
 					});
 
-					DCP11943.tracking('click', 'quicklinks');
+					DCP18662.tracking('click', 'quicklinks');
 					window.optimizely = window.optimizely || [];
 					window.optimizely.push({
 						type: 'event',
@@ -175,7 +170,7 @@ var DCP11943 = {
 			}
 		}
 
-		//DCP11943.tracking('display', 'quicklinks');
+		//DCP18662.tracking('display', 'quicklinks');
 
 	},
 	init: function () {
@@ -190,7 +185,7 @@ var DCP11943 = {
 				clearInterval(i);
 				i = null;
 
-				DCP11943.applyChanges();
+				DCP18662.applyChanges();
 
 			}
 			
@@ -205,4 +200,4 @@ var DCP11943 = {
 	}
 };
 
-DCP11943.init();
+DCP18662.init();
