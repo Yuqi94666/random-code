@@ -1,212 +1,178 @@
-const pillCONSTANTS = {
-    EXPERIMENT_ID: extension.code, // Experiment ID
-    EXPERIMENT_VARIANT: 'extention', // possible values: variant|control|personalisation
-    TARGET_ELEMENT: extension.targetElement, // Target element to be modified
-    TEMPLATE_COPY: extension.templateCopy, // HTML template to be injected
-    TEMPLATE_INJECT_TYPE: extension.templateInjectType, // possible values: replace|before|prepend|after|append
-    CUSTOM_CSS: `
-		.pill-extension {
-		font-family: VodafoneRegular, Arial, sans-serif;
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		margin-bottom: 10px;
-    font-size: 14px;
-		font-style: normal;
-		font-weight: 400;
-		line-height:20px;
-		margin-left: 4px;
-	}
+/**
+ * Author:  Yuqi Sui
+ * Date: 2026-05-01
+ * Description: This script add custom pills on both listing and pdp pages, subscribe the target device from the logic emitter
+ * */
+'use strict';
+let pillCONSTANTS = {
+	EXPERIMENT_ID: extension.id,
+	PILL_COPY: extension.pillCopy || '',
+	PILL_COLOR: extension.pillColor || '',
+	PILL_BG_COLOR: extension.pillBgColor || '',
+	PILL_IMAGE: extension.pillImage || '',
+	PILL_SVG_ICON: extension.pillSvgIcon || '',
+	INJECT_TYPE: extension.templateInjectType || '',
+	TARGET_TYPE: extension.targetType || '',
+	TRIGGER_NAME: extension.subscriber || '',
 
-	.pill-extension:hover {
-		cursor: pointer
+	LISTING_SEL_1: '[data-testid="device-listing"] > div',
+	LISTING_SEL_2: '[data-testid="lean-devices"] > div',
+	LISTING_SEL_3: 'div[data-product-id]',
+	NAME_SEL: 'h2 a > div',
+	INJECT_POS_SEL: 'div:has(+ h2)',
+
+	CUSTOM_CSS: `
+	.${extension.id}-extension {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin-bottom: 10px;
 	}
-	.pill-extension .pill-container{
-		display: flex;
-		padding:4px 12px 4px 12px;
-		justify-content: center;
-		align-items: center;
-		border-radius: 16px;
+	.${extension.id}-container {
+	display: flex;
+	padding: 6px 12px;
+	justify-content: center;
+	align-items: center;
+	border-radius: 16px;
 	}
-	.pill-container img{
-	width:20px;height:20px;margin-right:8px;
+	.${extension.id}-container img,
+	.${extension.id}-container svg {
+	width: 20px;
+	height: 20px;
 	}
-	.hidden{
-		display: none;
+	.${extension.id}-font {
+	font-family: 'VodafoneRegularBold';
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 20px;
+	margin-left: 4px;
 	}
-	`, // CSS to be injected
-    SCROLL_TO_ELEMENT: extension.scrollToElement,
-    TEMPLATE_COLOR: extension.templateColor,
-    TEMPLATE_BG_COLOR: extension.templateBgColor,
-    TEMPLATE_IMAGE: extension.templateImage,
-    INIT_RETRY_INTERVAL: 500, // milliseconds for init retry
-    INIT_MAX_RETRIES: 20, // max retries for init
+	`
 };
 
 let pillOBJ = {
-    applyChanges: function (el) {
-        try {
-            //Add your logic here
-            pillOBJ.buildCSS();
-            pillOBJ.buildTemplate();
-        } catch (error) {
-            console.error('Error in applyChanges function:', error);
-        }
-    },
-    tracking: function (value) {
-        try {
-            if (typeof dataLayer !== 'undefined' && dataLayer) { // Check if dataLayer exists
-                croWD.utils.launchTracking(
-                    pillCONSTANTS.EXPERIMENT_ID,
-                    value,
-                    pillCONSTANTS.EXPERIMENT_VARIANT,
-                    ''
-                );
-            } else {
-                console.warn('dataLayer is not defined. Tracking event:', value, 'was not sent.');
-            }
-        } catch (error) {
-            console.error('Error in tracking function:', error);
-        }
-    },
-    buildCSS: function () {
-        try {
-            const styleSheet = document.createElement('style');
-            styleSheet.setAttribute('type', 'text/css');
-            styleSheet.setAttribute('id', `${pillCONSTANTS.EXPERIMENT_ID}-styles`);
+	aid: 'Ext-clearance-pill-v1',
+	isPdpInjected: false,
+	lastData: null,
 
-            // Remove any existing stylesheet with the same ID
-            const existingStyle = document.getElementById(`${pillCONSTANTS.EXPERIMENT_ID}-styles`);
-            if (existingStyle) {
-                existingStyle.remove();
-            }
+	getName: function (titleEl) {
+		return titleEl && titleEl.textContent ? titleEl.textContent.trim() : '';
+	},
 
-            // Append stylesheet to head
-            const css = pillCONSTANTS.CUSTOM_CSS;
-            styleSheet.appendChild(document.createTextNode(css));
-            document.head.appendChild(styleSheet);
-        } catch (error) {
-            console.error('Error in buildCSS function:', error);
-            pillOBJ.tracking('error buildCSS');
-        }
-    },
-    buildTemplate: function () {
-        try {
-            let eTarget = document.querySelector(pillCONSTANTS.TARGET_ELEMENT);
+	buildCSS: function () {
+		if (!document.head) return;
+		let id = pillCONSTANTS.EXPERIMENT_ID + '-style';
+		if (document.getElementById(id)) return;
+		let style = document.createElement('style');
+		style.id = id;
+		style.innerHTML = pillCONSTANTS.CUSTOM_CSS;
+		document.head.appendChild(style);
+	},
 
-            // Check if target element exists
-            if (!eTarget) {
-                console.error('Target element mobile title is not found');
-                return;
-            }
-            // Check if pill already exists
-            if (document.querySelector('.pill-extension')) {
-                return;
-            }
+	injectPill: function (targetEl) {
+		croWD.debug(`[pill] injectPill()`);
+		if (!targetEl) return;
+		if (targetEl.dataset && targetEl.dataset.pillInjected === 'true') return;
+		if (targetEl.querySelector('.' + extension.id + '-extension')) return;
 
-            // Create pill element from HTML string
-            let pill = document.createElement('div');
-			pill.innerHTML = `
-			<div style="background-color:${pillCONSTANTS.TEMPLATE_BG_COLOR}" class="pill-container" id="pill-container">
-			<img src="${pillCONSTANTS.TEMPLATE_IMAGE}" alt="Pill Icon"/>
-			<span style="color:${pillCONSTANTS.TEMPLATE_COLOR }">${pillCONSTANTS.TEMPLATE_COPY}</span>
-			</div>
-			`;
-console.log('TEMPLATE_COLOR =', pillCONSTANTS?.TEMPLATE_COLOR);
-            pill.className = 'pill-extension';
-			if (pillCONSTANTS.TEMPLATE_IMAGE === '') {
-				pill.querySelector('img').classList.add('hidden');
-				pill.querySelector('.pill-extension .pill-container').style.padding = '4px 12px';
+		let pill = document.createElement('span');
+		pill.className = extension.id + '-extension';
+		pill.innerHTML =
+			'<span class="' + extension.id + '-container" style="background:' + pillCONSTANTS.PILL_BG_COLOR + '">' +
+			(pillCONSTANTS.PILL_IMAGE
+				? '<img src="' + pillCONSTANTS.PILL_IMAGE + '" />'
+				: (pillCONSTANTS.PILL_SVG_ICON || '')
+			) +
+			'<span style="color:' + pillCONSTANTS.PILL_COLOR + '" class="' + extension.id + '-font">' +
+			(pillCONSTANTS.PILL_COPY || '') +
+			'</span></span>';
+
+		if (targetEl.dataset) targetEl.dataset.pillInjected = 'true';
+
+		switch (pillCONSTANTS.INJECT_TYPE) {
+			case 'before': targetEl.insertAdjacentElement('beforebegin', pill); break;
+			case 'after': targetEl.insertAdjacentElement('afterend', pill); break;
+			case 'prepend': targetEl.prepend(pill); break;
+			case 'append': targetEl.append(pill); break;
+			default: targetEl.insertAdjacentElement('beforebegin', pill);
+		}
+		croWD.debug(`[pill] injectPill jejected:`, targetEl);
+	},
+
+	render: function (data) {
+		try {
+			croWD.debug(`[pill] render()`);
+			if (pillCONSTANTS.TARGET_TYPE === 'isPdp') {
+				if (pillOBJ.isPdpInjected) return;
+				let targetEl = document.querySelector('[data-testid="mobile-phone-title"]');
+				if (!targetEl) return;
+
+				const name = pillOBJ.getName(targetEl);
+				croWD.debug(`[pill] name:`, name);
+				croWD.debug(`[pill] in`, data);
+				if (!data || typeof data.hasDevice !== 'function' || !data.hasDevice(name)) return;
+
+				pillOBJ.injectPill(targetEl);
+				pillOBJ.isPdpInjected = true;
+
+			} else if (pillCONSTANTS.TARGET_TYPE === 'isListing') {
+				croWD.debug(`[pill] isListing`);
+				let cards = document.querySelectorAll(pillCONSTANTS.LISTING_SEL_1);
+				croWD.debug(`[pill] cards1 found:`, cards);
+				if (!cards.length) cards = document.querySelectorAll(pillCONSTANTS.LISTING_SEL_2);
+				croWD.debug(`[pill] cards2 found:`, cards);
+				if (!cards.length) cards = document.querySelectorAll(pillCONSTANTS.LISTING_SEL_3);
+				croWD.debug(`[pill] cards3 found:`, cards);
+
+				cards.forEach(function (card, i) {
+					const nameEl = card.querySelector(pillCONSTANTS.NAME_SEL);
+					const nameText = pillOBJ.getName(nameEl);
+					const injectPosition = card.querySelector(pillCONSTANTS.INJECT_POS_SEL);
+					const eligible = !!(data && typeof data.hasDevice === 'function' && data.hasDevice(nameText));
+            croWD.debug(`[pill] card data:`, data);
+					croWD.debug(`[pill] card ${i} nameEl:`, nameEl,nameText, `eligible:`, eligible, `injectPosition:`, injectPosition);
+					if (!injectPosition || !eligible) return;
+					pillOBJ.injectPill(injectPosition);
+				});
 			}
+		} catch (e) {
+			console.error('[pill] render() error', e);
+		}
+	},
 
-            // Insert based on specified type
-            switch (pillCONSTANTS.TEMPLATE_INJECT_TYPE) {
-                case 'before':
-                    eTarget.parentNode.insertBefore(pill, eTarget);
-                    break;
-                case 'after':
-                    eTarget.parentNode.insertBefore(pill, eTarget.nextSibling);
-                    break;
-                case 'prepend':
-                    eTarget.prepend(pill);
-                    break;
-                case 'append':
-                    eTarget.append(pill);
-                    break;
-                case 'replace':
-                    eTarget.parentNode.replaceChild(pill, eTarget);
-                    break;
-                default:
-                    eTarget.parentNode.insertBefore(pill, eTarget);
-            }
+	observe: function () {
+		croWD.hotbed.listen(`${pillCONSTANTS.TRIGGER_NAME}`, function (_, __, data) {
+			croWD.debug(`[pill] listen ${pillCONSTANTS.TRIGGER_NAME}`, data);
 
-            // Add click event if needed
-            if (pillCONSTANTS.SCROLL_TO_ELEMENT) {
-                pill.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetElement = document.querySelector(pillCONSTANTS.SCROLL_TO_ELEMENT);
-                    if (!targetElement) { return }
-
-                    const targetPosition = targetElement.getBoundingClientRect().top;
-                    const startPosition = window.pageYOffset;
-                    const duration = 2000;
-                    let startTime = null;
-
-                    const ease = (t, b, c, d) => {
-                        t /= d / 2;
-                        if (t < 1) return (c / 2) * t * t + b;
-                        t--;
-                        return (-c / 2) * (t * (t - 2) - 1) + b;
-                    };
-
-                    const animation = (currentTime) => {
-                        if (startTime === null) startTime = currentTime;
-                        const timeElapsed = currentTime - startTime;
-                        const run = ease(timeElapsed, startPosition, targetPosition, duration);
-                        window.scrollTo(0, run);
-                        if (timeElapsed < duration) requestAnimationFrame(animation);
-                    };
-
-                    requestAnimationFrame(animation);
-
-                    pillOBJ.tracking('pill ' + pillCONSTANTS.TEMPLATE_COPY);
-                });
-            }
-
-        } catch (error) {
-            console.error('Error in buildTemplate function:', error);
-            pillOBJ.tracking('error buildTemplate');
-        }
-    },
-    waitForElement: function () {
-        try {
-            let rC = 0;
-            let int = setInterval(() => {
-                const el = document.querySelector(pillCONSTANTS.TARGET_ELEMENT);
-                if (el && croWD) {
-                    clearInterval(int);
-                    int = null;
-                    pillOBJ.applyChanges(el);
-                } else {
-                    rC++;
-                    if (rC >= pillCONSTANTS.INIT_MAX_RETRIES) {
-                        clearInterval(int);
-                        int = null;
-                        console.error('Element not found after max retries. pillOBJ');
-                        pillOBJ.tracking('error elementsNotFound');
-                    }
-                }
-            }, pillCONSTANTS.INIT_RETRY_INTERVAL);
-
-        } catch (error) {
-            console.error('Error in waitForElement function:', error);
-            pillOBJ.tracking('error waitForElement');
-        }
-    },
-    init: function () {
-        pillOBJ.waitForElement();
-    }
-
+			pillOBJ.lastData = data;
+			pillOBJ.buildCSS();
+			pillOBJ.render(data);
+		});
+		let mo = new MutationObserver(function () {
+			pillOBJ.render(pillOBJ.lastData);
+		});
+		mo.observe(document.body, { childList: true, subtree: true });
+	}
 };
 
-pillOBJ.init();
+// ------------------------------
+// Finder structure
+// ------------------------------
+var crowdMaxPillCounter = 200;
+var crowdFinderPill = setInterval(function () {
+	crowdMaxPillCounter--;
+	if (typeof croWD !== 'undefined' && croWD.hotbed && typeof croWD.hotbed.listen === 'function') {
+		clearInterval(crowdFinderPill);
+		pillOBJ.observe();
+
+		if (typeof croWD.cmdr === 'function') {
+			croWD.cmdr(pillOBJ.aid, 'inject');
+		}
+	}
+
+	if (crowdMaxPillCounter <= 0) {
+		clearInterval(crowdFinderPill);
+		console.warn('[pill] finder stopped: max retries reached');
+	}
+}, 50);
