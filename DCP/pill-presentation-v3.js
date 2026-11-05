@@ -1,9 +1,3 @@
-/**
- * Author:  Yuqi Sui
- * Date: 2026-05-01
- * Description: This script add custom pills on both listing and pdp pages, subscribe the target device from the logic emitter
- * */
-'use strict';
 let pillCONSTANTS = {
 	EXPERIMENT_ID: extension.id,
 	PILL_COPY: extension.pillCopy || '',
@@ -12,7 +6,7 @@ let pillCONSTANTS = {
 	PILL_IMAGE: extension.pillImage || '',
 	PILL_SVG_ICON: extension.pillSvgIcon || '',
 	INJECT_TYPE: extension.templateInjectType || '',
-	TARGET_TYPE: extension.targetType || '',
+	TARGET_TYPE: extension.targetType || 'isListing',
 	TRIGGER_NAME: extension.subscriber || '',
 
 	LISTING_SEL_1: '[data-testid="device-listing"] > div',
@@ -22,61 +16,89 @@ let pillCONSTANTS = {
 	INJECT_POS_SEL: 'div:has(+ h2)',
 
 	CUSTOM_CSS: `
-	.${extension.id}-extension {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	margin-bottom: 10px;
-	}
-	.${extension.id}-container {
-	display: flex;
-	padding: 6px 12px;
-	justify-content: center;
-	align-items: center;
-	border-radius: 16px;
-	}
-	.${extension.id}-container img,
-	.${extension.id}-container svg {
-	width: 20px;
-	height: 20px;
-	}
-	.${extension.id}-font {
-	font-family: 'VodafoneRegularBold';
-	font-size: 14px;
-	font-style: normal;
-	font-weight: 700;
-	line-height: 20px;
-	margin-left: 4px;
-	}
-	`
+		.${extension.id}-extension {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		margin-bottom: 10px;
+		}
+		.${extension.id}-container {
+		display: flex;
+		padding: 6px 12px;
+		justify-content: center;
+		align-items: center;
+		border-radius: 16px;
+		}
+		.${extension.id}-container img,
+		.${extension.id}-container svg {
+		width: 20px;
+		height: 20px;
+		}
+		.${extension.id}-font {
+		font-family: 'VodafoneRegularBold';
+		font-size: 14px;
+		font-style: normal;
+		font-weight: 700;
+		line-height: 20px;
+		margin-left: 4px;
+		}
+		`
 };
 
+// croWD may live on the top window when this runs inside an iframe
+function getCro() {
+	if (typeof croWD !== 'undefined' && croWD.hotbed) return croWD;
+	var wins = [window.top, window.parent];
+	for (var i = 0; i < wins.length; i++) {
+		try {
+			if (wins[i] && wins[i] !== window && wins[i].croWD && wins[i].croWD.hotbed) {
+				return wins[i].croWD;
+			}
+		} catch (e) { /* cross-origin */ }
+	}
+	return null;
+}
+
 let pillOBJ = {
-	aid: 'Ext-clearance-pill-v1',
+	aid: `${extension.id}-iframe`,
+	cro: null,
 	isPdpInjected: false,
 	lastData: null,
+	observerStarted: false,
+	frameObserver: null,
+	observedFrameBody: null,
+	observedFrame: null,
+
+	log: function () {
+		try {
+			if (pillOBJ.cro && typeof pillOBJ.cro.debug === 'function') {
+				pillOBJ.cro.debug.apply(pillOBJ.cro, arguments);
+			}
+		} catch (e) { /* ignore */ }
+	},
 
 	getName: function (titleEl) {
 		return titleEl && titleEl.textContent ? titleEl.textContent.trim() : '';
 	},
 
-	buildCSS: function () {
-		if (!document.head) return;
+	buildCSS: function (doc) {
+		doc = doc || document;
+		if (!doc.head) return;
 		let id = pillCONSTANTS.EXPERIMENT_ID + '-style';
-		if (document.getElementById(id)) return;
-		let style = document.createElement('style');
+		if (doc.getElementById(id)) return;
+		let style = doc.createElement('style');
 		style.id = id;
 		style.innerHTML = pillCONSTANTS.CUSTOM_CSS;
-		document.head.appendChild(style);
+		doc.head.appendChild(style);
 	},
 
 	injectPill: function (targetEl) {
-		croWD.debug(`[pill] injectPill()`);
+		pillOBJ.log('[pill] injectPill()');
 		if (!targetEl) return;
 		if (targetEl.dataset && targetEl.dataset.pillInjected === 'true') return;
 		if (targetEl.querySelector('.' + extension.id + '-extension')) return;
 
-		let pill = document.createElement('span');
+		let pill = targetEl.ownerDocument.createElement('span');
 		pill.className = extension.id + '-extension';
 		pill.innerHTML =
 			'<span class="' + extension.id + '-container" style="background:' + pillCONSTANTS.PILL_BG_COLOR + '">' +
@@ -97,82 +119,171 @@ let pillOBJ = {
 			case 'append': targetEl.append(pill); break;
 			default: targetEl.insertAdjacentElement('beforebegin', pill);
 		}
-		croWD.debug(`[pill] injectPill jejected:`, targetEl);
+		pillOBJ.log('[pill] injectPill injected:', targetEl);
+	},
+
+	getPopularFrame: function () {
+		let host = document.querySelector('vha-popular-products');
+		return document.querySelector('iframe[src*="/iframe/popular-products"]') ||
+			(host && (host.querySelector('iframe') ||
+				(host.shadowRoot && host.shadowRoot.querySelector('iframe'))));
+	},
+
+	getPopularDocument: function () {
+		let frame = pillOBJ.getPopularFrame();
+		try {
+			return frame && frame.contentDocument;
+		} catch (e) {
+			return null;
+		}
+	},
+
+	getIframeDocument: function () {
+		if (window !== window.top) return document;
+		return pillOBJ.getPopularDocument();
+	},
+
+	renderCards: function (data, cards, doc) {
+		if (doc && doc !== document) pillOBJ.buildCSS(doc);
+		cards.forEach(function (card, i) {
+			const nameEl = card.querySelector(pillCONSTANTS.NAME_SEL);
+			const nameText = pillOBJ.getName(nameEl);
+			const injectPosition = card.querySelector(pillCONSTANTS.INJECT_POS_SEL);
+			const eligible = data.hasDevice(nameText);
+			pillOBJ.log('[pill] card', i, 'name:', nameText, 'eligible:', eligible, 'pos:', injectPosition);
+			if (!injectPosition || !eligible) return;
+			pillOBJ.injectPill(injectPosition);
+		});
 	},
 
 	render: function (data) {
 		try {
-			croWD.debug(`[pill] render()`);
+			pillOBJ.log('[pill] render()');
+			if (!data || typeof data.hasDevice !== 'function') return;
+
 			if (pillCONSTANTS.TARGET_TYPE === 'isPdp') {
 				if (pillOBJ.isPdpInjected) return;
 				let targetEl = document.querySelector('[data-testid="mobile-phone-title"]');
 				if (!targetEl) return;
 
 				const name = pillOBJ.getName(targetEl);
-				croWD.debug(`[pill] name:`, name);
-				croWD.debug(`[pill] in`, data);
-				if (!data || typeof data.hasDevice !== 'function' || !data.hasDevice(name)) return;
+				pillOBJ.log('[pill] name:', name);
+				if (!data.hasDevice(name)) return;
 
 				pillOBJ.injectPill(targetEl);
 				pillOBJ.isPdpInjected = true;
 
 			} else if (pillCONSTANTS.TARGET_TYPE === 'isListing') {
-				croWD.debug(`[pill] isListing`);
 				let cards = document.querySelectorAll(pillCONSTANTS.LISTING_SEL_1);
-				croWD.debug(`[pill] cards1 found:`, cards);
 				if (!cards.length) cards = document.querySelectorAll(pillCONSTANTS.LISTING_SEL_2);
-				croWD.debug(`[pill] cards2 found:`, cards);
 				if (!cards.length) cards = document.querySelectorAll(pillCONSTANTS.LISTING_SEL_3);
-				croWD.debug(`[pill] cards3 found:`, cards);
+				pillOBJ.log('[pill] listing cards found:', cards.length);
+				pillOBJ.renderCards(data, cards, document);
 
-				cards.forEach(function (card, i) {
-					const nameEl = card.querySelector(pillCONSTANTS.NAME_SEL);
-					const nameText = pillOBJ.getName(nameEl);
-					const injectPosition = card.querySelector(pillCONSTANTS.INJECT_POS_SEL);
-					const eligible = !!(data && typeof data.hasDevice === 'function' && data.hasDevice(nameText));
-            croWD.debug(`[pill] card data:`, data);
-					croWD.debug(`[pill] card ${i} nameEl:`, nameEl,nameText, `eligible:`, eligible, `injectPosition:`, injectPosition);
-					if (!injectPosition || !eligible) return;
-					pillOBJ.injectPill(injectPosition);
-				});
+			} else if (pillCONSTANTS.TARGET_TYPE === 'isIframe') {
+				const frameDoc = pillOBJ.getIframeDocument();
+				if (!frameDoc) {
+					pillOBJ.log('[pill iframe] popular-products iframe document not available');
+					return;
+				}
+				const cards = frameDoc.querySelectorAll(pillCONSTANTS.LISTING_SEL_3);
+				pillOBJ.log('[pill iframe] iframe cards found:', cards.length);
+				pillOBJ.renderCards(data, cards, frameDoc);
+
+			} else {
+				pillOBJ.log('[pill] unsupported target type:', pillCONSTANTS.TARGET_TYPE);
 			}
 		} catch (e) {
 			console.error('[pill] render() error', e);
 		}
 	},
 
-	observe: function () {
-		croWD.hotbed.listen(`${pillCONSTANTS.TRIGGER_NAME}`, function (_, __, data) {
-			croWD.debug(`[pill] listen ${pillCONSTANTS.TRIGGER_NAME}`, data);
+	startMutationObserver: function () {
+		if (pillOBJ.observerStarted) return;
+		pillOBJ.observerStarted = true;
+		let mo = new MutationObserver(function () {
+			pillOBJ.observePopularFrame();
+			pillOBJ.render(pillOBJ.lastData);
+		});
+		mo.observe(document.body, { childList: true, subtree: true });
+		pillOBJ.observePopularFrame();
+	},
 
+	observePopularFrame: function () {
+		if (pillCONSTANTS.TARGET_TYPE !== 'isIframe' || window !== window.top) return;
+		let frame = pillOBJ.getPopularFrame();
+		if (frame && frame !== pillOBJ.observedFrame) {
+			pillOBJ.observedFrame = frame;
+			frame.addEventListener('load', function () {
+				pillOBJ.observePopularFrame();
+				pillOBJ.render(pillOBJ.lastData);
+			});
+		}
+		let frameDoc = pillOBJ.getIframeDocument();
+		if (!frameDoc || !frameDoc.body || frameDoc.body === pillOBJ.observedFrameBody) return;
+		if (pillOBJ.frameObserver) pillOBJ.frameObserver.disconnect();
+		pillOBJ.observedFrameBody = frameDoc.body;
+		pillOBJ.frameObserver = new MutationObserver(function () {
+			pillOBJ.render(pillOBJ.lastData);
+		});
+		pillOBJ.frameObserver.observe(frameDoc.body, { childList: true, subtree: true });
+		pillOBJ.render(pillOBJ.lastData);
+	},
+
+	observe: function () {
+		pillOBJ.cro.hotbed.listen(pillCONSTANTS.TRIGGER_NAME, function (_, __, data) {
+			pillOBJ.log('[pill] ' + pillCONSTANTS.TRIGGER_NAME, data);
 			pillOBJ.lastData = data;
 			pillOBJ.buildCSS();
 			pillOBJ.render(data);
 		});
-		let mo = new MutationObserver(function () {
-			pillOBJ.render(pillOBJ.lastData);
-		});
-		mo.observe(document.body, { childList: true, subtree: true });
+		pillOBJ.startMutationObserver();
+	},
+
+	// Used only if croWD is not found anywhere (needs extension.targetDevices as a JSON array string)
+	fallback: function () {
+		try {
+			let devices = JSON.parse(extension.targetDevices || '[]').map(function (d) {
+				return String(d).toLowerCase().trim();
+			});
+			if (!devices.length) return;
+			let data = {
+				devices: devices,
+				hasDevice: function (n) {
+					return devices.indexOf(String(n || '').toLowerCase().trim()) > -1;
+				}
+			};
+			pillOBJ.lastData = data;
+			pillOBJ.buildCSS();
+			pillOBJ.render(data);
+			pillOBJ.startMutationObserver();
+		} catch (e) {
+			console.error('[pill] fallback error', e);
+		}
 	}
 };
 
 // ------------------------------
 // Finder structure
 // ------------------------------
-var crowdMaxPillCounter = 200;
+var crowdMaxPillCounter = 2000; // 200 x 50ms = 10s
 var crowdFinderPill = setInterval(function () {
 	crowdMaxPillCounter--;
-	if (typeof croWD !== 'undefined' && croWD.hotbed && typeof croWD.hotbed.listen === 'function') {
-		clearInterval(crowdFinderPill);
-		pillOBJ.observe();
+	var cro = getCro();
 
-		if (typeof croWD.cmdr === 'function') {
-			croWD.cmdr(pillOBJ.aid, 'inject');
+	if (cro && typeof cro.hotbed.listen === 'function') {
+		clearInterval(crowdFinderPill);
+		pillOBJ.cro = cro;
+		pillOBJ.observe();
+		if (typeof cro.cmdr === 'function') {
+			cro.cmdr(pillOBJ.aid, 'inject');
 		}
+		return;
 	}
 
 	if (crowdMaxPillCounter <= 0) {
 		clearInterval(crowdFinderPill);
-		console.warn('[pill] finder stopped: max retries reached');
+		console.warn('[pill] finder stopped: max retries reached, using fallback');
+		pillOBJ.fallback();
 	}
 }, 50);
