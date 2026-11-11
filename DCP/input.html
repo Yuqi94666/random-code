@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<input id="box" type="text" maxlength="1000">
+	<div><span id="left">1000</span> character left </div>
+	<script>
+		const box = document.getElementById('box');
+		const left = document.getElementById('left');
+		box.addEventListener('input', () => {
+			left.textContent = box.maxLength - box.value.length;
+		});
+	</script>
+</body>
+</html>
