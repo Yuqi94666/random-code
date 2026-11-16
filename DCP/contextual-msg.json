@@ -1,0 +1,67 @@
+[
+	{
+		"id": "SM_G_S26_ULTRA",
+		"title": "Looking for a deal on the Samsung S26 Ultra?",
+		"description": "Check out our Black Friday deals.",
+		"tandc": "",
+		"image": "https://www.vodafone.com.au/images/merch/events/black-friday-2026/1478-bf-samsung-galaxy-s26-ultra-inline-desktop.webp",
+		"image_mobile": "https://www.vodafone.com.au/images/merch/events/black-friday-2026/1478-bf-samsung-galaxy-s26-ultra-inline-mobile.webp",
+		"cta_text": "Shop now",
+		"cta_link": "https://www.vodafone.com.au/mobile/mobile-phones/samsung/galaxy-s26-ultra"
+	},
+	{
+		"id": "PXL_11_PRO_XL_5G",
+		"title": "Looking for a deal on the Google Pixel 11 XL Pro?",
+		"description": "Check out our Black Friday deals.",
+		"tandc": "",
+		"image": "https://www.vodafone.com.au/images/merch/events/black-friday-2026/1478-bf-google-pixel-11-xl-pro-inline-desktop.webp",
+		"image_mobile": "https://www.vodafone.com.au/images/merch/events/black-friday-2026/1478-bf-google-pixel-11-pro-xl-inline-mobile.webp",
+		"cta_text": "Shop now",
+		"cta_link": "https://www.vodafone.com.au/mobile/mobile-phones/google/google-pixel-11-pro-xl"
+
+	},
+	{
+		"id": "IPH_17_AIR",
+		"title": "Looking for a deal on the iPhone Air?",
+		"description": "Check out our Black Friday deals.",
+		"tandc": "",
+		"image": "https://www.vodafone.com.au/images/merch/events/black-friday-2026/1478-bf-iphone-air-inline-desktop.webp",
+		"image_mobile": "https://www.vodafone.com.au/images/merch/events/black-friday-2026/1478-bf-iphone-air-inline-mobile.webp",
+		"cta_text": "Shop now",
+		"cta_link": "https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-air"
+
+	},
+	{
+		"id": "IPH_18_PRO_MAX",
+		"title": "Still interested in an iPhone 18 Pro Max?",
+		"description": "Check out our Black Friday deals.",
+		"tandc": "",
+		"image": "https://www.vodafone.com.au/images/merch/events/black-friday-2026/1478-bf-iphone-18-pro-max-inline-desktop.webp",
+		"image_mobile": "https://www.vodafone.com.au/images/merch/events/black-friday-2026/1478-bf-iphone-18-pro-max-inline-mobile.webp",
+		"cta_text": "Shop now",
+		"cta_link": "https://www.vodafone.com.au/mobile/mobile-phones/apple/iphone-18-pro-max"
+	},
+	{
+		"id": "CATNBNPLANS",
+		"title": "Looking for a deal on fast home nbn® plans?",
+		"description": "Check out our Black Friday deals.",
+		"tandc": "",
+		"image": "https://www.vodafone.com.au/images/merch/events/black-friday-2026/1478-bf-nbn-inline-desktop.webp",
+		"image_mobile": "https://www.vodafone.com.au/images/merch/events/black-friday-2026/1478-bf-nbn-inline-mobile.webp",
+		"cta_text": "Shop now",
+		"cta_link": "https://www.vodafone.com.au/home-internet/nbn"
+
+	},
+	{
+		"id": "CATPREPAIDCOMBOPLUSPLANS",
+		"title": "Ready for a great value Prepaid plan?",
+		"description": "Check out our Black Friday deals.",
+		"tandc": "",
+		"image": "https://www.vodafone.com.au/images/merch/events/black-friday-2026/1478-bf-prepaid-35-hero-inline-desktop.webp",
+		"image_mobile": "https://www.vodafone.com.au/images/merch/events/black-friday-2026/1478-bf-prepaid-35-hero-inline-mobile.webp",
+		"cta_text": "Shop now",
+		"cta_link": "https://www.vodafone.com.au/prepaid/plans"
+
+	}
+
+]

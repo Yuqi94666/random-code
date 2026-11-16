@@ -9,8 +9,9 @@ const DCP18728ToasterCONSTANTS = {
 <div class="toaster">
     <div class="toaster-close" aria-label="Close Toaster">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <rect width="24" height="24" rx="12" fill="black" fill-opacity="0.83"/>
-        <path d="M17.6466 5.6463C17.8416 5.45119 18.1586 5.45114 18.3536 5.6463C18.5487 5.84158 18.5487 6.15805 18.3536 6.35333L12.7071 11.9998L18.3536 17.6463C18.5488 17.8415 18.5488 18.1582 18.3536 18.3533C18.2561 18.4509 18.1279 18.4998 18.0001 18.4998C17.8722 18.4998 17.7441 18.4509 17.6466 18.3533L12.0001 12.7068L6.35359 18.3533C6.25599 18.4509 6.128 18.4998 6.00007 18.4998C5.87214 18.4998 5.74419 18.4509 5.64656 18.3533C5.45131 18.1581 5.45131 17.8415 5.64656 17.6463L11.293 11.9998L5.64656 6.35333C5.45131 6.15802 5.45131 5.84161 5.64656 5.6463C5.84188 5.45122 6.15831 5.45115 6.35359 5.6463L12.0001 11.2928L17.6466 5.6463Z" fill="white"/>
+        <rect x="0.5" y="0.5" width="23" height="23" rx="11.5" fill="white"/>
+        <rect x="0.5" y="0.5" width="23" height="23" rx="11.5" stroke="white"/>
+        <path d="M5.64644 18.3535C5.74409 18.4511 5.87203 18.5 6.00001 18.5C6.128 18.5 6.25594 18.4511 6.35359 18.3535L12 12.707L17.6465 18.3535C17.744 18.4511 17.8721 18.5 18 18.5C18.1279 18.5 18.256 18.4511 18.3535 18.3535C18.5488 18.1583 18.5488 17.8416 18.3535 17.6464L12.7071 12L18.3535 6.35354C18.5488 6.15823 18.5488 5.8417 18.3535 5.64639C18.1585 5.4512 17.8416 5.4512 17.6465 5.64639L12 11.2929L6.35359 5.64639C6.15828 5.4512 5.84175 5.4512 5.64644 5.64639C5.45119 5.8417 5.45119 6.15823 5.64644 6.35354L11.2929 12L5.64644 17.6464C5.45119 17.8416 5.45119 18.1583 5.64644 18.3535Z" fill-rule="evenodd" clip-rule="evenodd" fill="#25282B"/>
         </svg>
     </div>
     <div class="image-container">
@@ -260,10 +261,10 @@ let DCP18728ToasterOBJ = {
                     dataLayer.push({
                         event: 'view_promotion',
                         event_params: {
-                            promotion_name: 'Prepaid $40 Toaster',
+                            promotion_name: 'Prepaid BF Toaster',
                             promotion_id: 'DCP18728',
                             logged_in: false,
-                            creative_slot: 'Prepaid-toaster'
+                            creative_slot: 'Prepaid-BF-Toaster'
                         }
                     });
                 }
@@ -315,10 +316,10 @@ let DCP18728ToasterOBJ = {
                                 dataLayer.push({
                                     'event': 'select_promotion',
                                     'event_params': {
-                                        'promotion_name': 'Prepaid BF $40 Toaster',
+                                        'promotion_name': 'Prepaid BF Toaster',
                                         'promotion_id': 'DCP18728',
                                         'logged_in': false,
-                                        'creative_slot': 'Prepaid-BF-toaster',
+                                        'creative_slot': 'Prepaid-BF-Toaster',
                                     }
                                 });
                             }
@@ -518,3 +519,88 @@ let DCP18728ToasterOBJ = {
 };
 
 DCP18728ToasterOBJ.init();
+
+
+
+const DCP18728PrepaidCONSTANTS = {
+    EXPERIMENT_ID: 'DCP18728Toaster', // Experiment ID
+    PAGES_INCLUDE: [], // ['iphone16'] // pages to be included, if empty observe is not used
+    PAGES_EXCLUDE: [], //pages to be excluded
+    EXPERIMENT_VARIANT: 'control', // possible values: variant|control|personalisation
+    TARGET_ELEMENT: 'body', // Target element to be modified
+    TEMPLATE_HTML: ``, // HTML template to be injected
+    TEMPLATE_INJECT_TYPE: 'append', // possible values: replace|before|prepend|after|append
+    CUSTOM_CSS: ``,
+    // CSS to be injected
+    INIT_RETRY_INTERVAL: 500, // milliseconds for init retry
+    INIT_MAX_RETRIES: 20, // max retries for init
+    ELEMENT_EVENT_PAIRS: [
+        // '.cta-upgrade:click' // Example of an element event pair, format 'selector:eventType'
+    ]
+};
+
+let DCP18728PrepaidOBJ = {
+  applyChanges: function (el) {
+      try {
+
+        // this.buildCSS(); 
+        // this.buildTemplate();
+
+        DCP18728PrepaidOBJ.tracking('display');
+
+      } catch (error) {
+          console.error('Error in applyChanges function:', error);
+          DCP18728PrepaidOBJ.tracking('error applyChanges');
+      }
+  },
+  tracking: function (value) {
+      try {
+          if (typeof dataLayer !== 'undefined' && dataLayer) { // Check if dataLayer exists
+            croWD.utils.launchTracking(
+              DCP18728PrepaidCONSTANTS.EXPERIMENT_ID,
+              value,
+              DCP18728PrepaidCONSTANTS.EXPERIMENT_VARIANT,
+              ''
+          );
+          } else {
+              console.warn('dataLayer is not defined. Tracking event:', value, 'was not sent.');
+          }
+      } catch (error) {
+          console.error('Error in tracking function:', error);
+      }
+  },
+  waitForElement: function () {
+      try {
+          let rC = 0;
+          let int = setInterval(() => {
+
+              const el = document.querySelector(DCP18728PrepaidCONSTANTS.TARGET_ELEMENT);
+
+              if (el && croWD) {
+                  clearInterval(int);
+                  int = null;
+                  DCP18728PrepaidOBJ.applyChanges(el);
+              } else {
+                  rC++;
+                  if (rC >= DCP18728PrepaidCONSTANTS.INIT_MAX_RETRIES) {
+                      clearInterval(int);
+                      int = null;
+                      console.error('Element not found after max retries. DCP18728Toaster');
+                      DCP18728PrepaidOBJ.tracking('error elementsNotFound');
+                  }
+              }
+          }, DCP18728PrepaidCONSTANTS.INIT_RETRY_INTERVAL);
+
+      } catch (error) {
+          console.error('Error in waitForElement function:', error);
+          DCP18728PrepaidOBJ.tracking('error waitForElement');
+      }
+  },
+  init: function () {
+    DCP18728PrepaidOBJ.waitForElement();
+  }
+
+};
+
+DCP18728PrepaidOBJ.init();
+ 
